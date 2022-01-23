@@ -2,9 +2,13 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import BraintreeDropIn from "./components/BraintreeDropIn.js";
 import Navbar from "./components/Navbar.js";
+import Classes from "./components/Classes.js";
+import Music from "./components/Music.js";
+import Bookings from "./components/Bookings.js";
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
-  const [currentView, setCurrentView] = useState('nav')
+	const [currentView, setCurrentView] = useState("nav");
 	const [date, setDate] = useState("");
 	const [time, setTime] = useState("");
 	const [showBraintreeDropIn, setShowBraintreeDropIn] = useState(true);
@@ -43,7 +47,7 @@ function App() {
 
 	return (
 		<div>
-			<div className="app-container">
+			{/* <div className="app-container"> */}
 				{/* <form onSubmit={handleSubmit}>
 					<input
 						type="date"
@@ -64,8 +68,13 @@ function App() {
 						setShowBraintreeDropIn(false);
 					}}
 				/> */}
-			</div>
-			<Navbar />
+			{/* </div> */}
+			<Routes>
+				<Route exact path="/" element={<Navbar />} />
+				<Route exact path="/classes" element={<Classes />} />
+				<Route exact path="/music" element={<Music />} />
+				<Route exact path="/bookings" element={<Bookings />} />
+			</Routes>
 		</div>
 	);
 }

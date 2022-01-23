@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Classes from "./Classes.js";
-import Music from "./Music.js";
-import Bookings from "./Bookings.js";
+
+import { Switch, Route, Link } from "react-router-dom";
 
 function Navbar() {
 	const [navView, setNavView] = useState(true);
@@ -30,36 +29,39 @@ function Navbar() {
 	};
 
 	return (
-		<>
-			{!navView && (
-				<button className="back-button" onClick={viewNav}>
-					Back
-				</button>
-			)}
-			{navView ? (
+		// <>
+		// 	{!navView && (
+		// 		<button className="back-button" onClick={viewNav}>
+		// 			Back
+		// 		</button>
+		// 	)}
+		// 	{navView ? (
 				<div className="navbar">
 					<ul className="navbar-list">
-						<li onClick={viewClasses} className="classes-link menu-link">
-							Available Classes
+						<li className="classes-link menu-link">
+							<Link to="/classes">Available Classes</Link>
+
 						</li>
-						<li onClick={viewMusic} className="music-link menu-link">
-							My Music
+						<li className="music-link menu-link">
+							<Link to="/music">My Music</Link>
+
 						</li>
-						<li onClick={viewBookings} className="bookings-link menu-link">
-							Book a Private Event
+						<li className="bookings-link menu-link">
+							<Link to="/bookings">Book a Private Event</Link>
+
 						</li>
 					</ul>
 				</div>
-			) : (
-				""
-			)}
+		// 	) : (
+		// 		""
+		// 	)}
 
-			{classesView ? <Classes /> : ""}
+		// 	{classesView ? <Classes /> : ""}
 
-			{musicView ? <Music /> : ""}
+		// 	{musicView ? <Music /> : ""}
 
-			{bookingsView ? <Bookings /> : ""}
-		</>
+		// 	{bookingsView ? <Bookings /> : ""}
+		// </>
 	);
 }
 
