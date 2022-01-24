@@ -153,69 +153,6 @@ body,
 	background-color: white;
 }
 
-/* forward transition */
-.fade-enter.right > .absolute {
-	z-index: 1;
-	transform: translateX(100%);
-    transition: transform 500ms ease;
-}
-.fade-enter.fade-enter-active.right > .absolute {
-	transform: translateX(0);
-	transition: transform 500ms ease;
-}
-
-.fade-exit.right > .absolute {
-	z-index: -1;
-	transition: transform 500ms ease;
-	transform: translateX(0);
-}
-.fade-exit.fade-exit-active.right > .absolute {
-	transition: transform 500ms ease;
-	transform: translateX(-100%);
-}
-
-
-/* backward transition */
-.fade-enter.left > .absolute {
-	z-index: 1;
-	transform: translateX(-100%);
-    transition: transform 500ms ease;
-}
-.fade-enter.fade-enter-active.left > .absolute {
-	transform: translateX(0);
-	transition: transform 500ms ease;
-}
-.fade-exit.left > .absolute {
-	z-index: -1;
-	transition: transform 500ms ease;
-	transform: translateX(0);
-}
-.fade-exit.fade-exit-active.left > .absolute{
-	transition: transform 500ms ease;
-	transform: translateX(100%);
-}
-
-/* test */
-/* .fade-enter{
-	z-index: 1;
-	transform: translateX(100%);
-    transition: transform 500ms ease;
-}
-.fade-enter.fade-enter-active {
-	transform: translateX(0);
-	transition: transform 500ms ease;
-}
-.fade-exit {
-	z-index: -1;
-	transition: transform 500ms ease;
-	transform: translateX(0);
-}
-.fade-exit.fade-exit-active {
-	transition: transform 500ms ease;
-	transform: translateX(-100%);
-} */
-
-
 
 .absolute {
 	position: absolute;
@@ -223,4 +160,49 @@ body,
 	bottom: 0;
 	left: 0;
 	right: 0;
+}
+
+/* slide in from right */
+.right > .slide-enter {
+    transform: translateX(100%);
+    z-index: 100;
+}
+
+.right > .slide-enter.slide-enter-active {
+    transform:translateX(0);
+    transition: transform 500ms ease-out;
+}
+
+.right > .slide-exit {
+    z-index: -100;
+    transform: translateX(0);
+}
+
+
+.right > .slide-exit.slide-exit-active {
+    transform:translateX(-100%);
+    transition: transform 500ms ease-out;
+}
+
+/* slide in from left */
+.left > .slide-enter {
+    transform: translateX(-100%);
+}
+
+.left > .slide-enter.slide-enter-active {
+    z-index: 100;
+
+    transform: translateX(0);
+    transition: transform 500ms ease-out;
+}
+
+.left > .slide-exit {
+    transform: translateX(0);
+}
+
+.left > .slide-exit.slide-exit-active {
+    z-index: -100;
+
+    transform:translateX(100%);
+    transition: transform 500ms ease-out;
 }
