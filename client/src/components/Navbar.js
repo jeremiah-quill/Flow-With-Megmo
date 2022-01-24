@@ -29,39 +29,19 @@ function Navbar() {
 	};
 
 	return (
-		// <>
-		// 	{!navView && (
-		// 		<button className="back-button" onClick={viewNav}>
-		// 			Back
-		// 		</button>
-		// 	)}
-		// 	{navView ? (
-				<div className="navbar">
-					<ul className="navbar-list">
-						<li className="classes-link menu-link">
-							<Link to="/classes">Available Classes</Link>
-
-						</li>
-						<li className="music-link menu-link">
-							<Link to="/music">My Music</Link>
-
-						</li>
-						<li className="bookings-link menu-link">
-							<Link to="/bookings">Book a Private Event</Link>
-
-						</li>
-					</ul>
-				</div>
-		// 	) : (
-		// 		""
-		// 	)}
-
-		// 	{classesView ? <Classes /> : ""}
-
-		// 	{musicView ? <Music /> : ""}
-
-		// 	{bookingsView ? <Bookings /> : ""}
-		// </>
+		<div className="navbar absolute">
+			<ul className="navbar-list">
+				<li className="classes-link menu-link">
+					<Link to="/classes">Available Classes</Link>
+				</li>
+				<li className="music-link menu-link">
+					<Link to="/music">My Music</Link>
+				</li>
+				<li className="bookings-link menu-link">
+					<Link to="/bookings">Book a Private Event</Link>
+				</li>
+			</ul>
+		</div>
 	);
 }
 

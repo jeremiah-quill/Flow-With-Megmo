@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 // import "./index.css";
 import dropin from "braintree-web-drop-in";
 // import venmo from 'braintree-web-drop-in';
@@ -6,9 +7,10 @@ import dropin from "braintree-web-drop-in";
 
 export default function BraintreeDropIn(props) {
 	const tokenizedKey = "sandbox_9qj522s2_ymtkdnwk4zxckp3y";
-	const { show, onPaymentCompleted } = props;
 
 	const [braintreeInstance, setBraintreeInstance] = useState(undefined);
+
+	const [navigate, setNavigate] = useState(null);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -38,7 +40,8 @@ export default function BraintreeDropIn(props) {
 						});
 
 					console.log("payment complete! TODO: add form data to database");
-					onPaymentCompleted();
+					setNavigate("/classes");
+					// onPaymentCompleted();
 				}
 			});
 		}
@@ -47,42 +50,44 @@ export default function BraintreeDropIn(props) {
 	useEffect(() => {
 		// TODO: on page load?
 		// if show prop is passed in as is true, initialize braintree which calls a create function on the dropin object we import from braintree SDK
-		if (show) {
-			const initializeBraintree = () =>
-				dropin.create(
-					{
-						// can use tozenized key, or request a key from server using api/secret (gaining some flexibility, unnecessary for our purposes)
-						authorization: tokenizedKey,
-						// sets order of options
-						paymentOptionPriority: ["venmo", "card"],
-						container: "#braintree-drop-in-div",
-						// by default it shows credit card option.  to add venmo we configure it below.  Requires allowDesktop to be set to true so it shows QR code rather than sending you to venmo.com
-						venmo: {
-							allowDesktop: true,
-						},
+		// if (show) {
+		const initializeBraintree = () =>
+			dropin.create(
+				{
+					// can use tozenized key, or request a key from server using api/secret (gaining some flexibility, unnecessary for our purposes)
+					authorization: tokenizedKey,
+					// sets order of options
+					paymentOptionPriority: ["venmo", "card"],
+					container: "#braintree-drop-in-div",
+					// by default it shows credit card option.  to add venmo we configure it below.  Requires allowDesktop to be set to true so it shows QR code rather than sending you to venmo.com
+					venmo: {
+						allowDesktop: true,
 					},
-					// TODO: what is this doing?
-					function (error, instance) {
-						if (error) console.error(error);
-						else setBraintreeInstance(instance);
-					}
-				);
-			// TODO: what is this doing?
-			if (braintreeInstance) {
-				braintreeInstance.teardown().then(() => {
-					initializeBraintree();
-				});
-			} else {
+				},
+				// TODO: what is this doing?
+				function (error, instance) {
+					if (error) console.error(error);
+					else setBraintreeInstance(instance);
+				}
+			);
+		// TODO: what is this doing?
+		if (braintreeInstance) {
+			braintreeInstance.teardown().then(() => {
 				initializeBraintree();
-			}
+			});
+		} else {
+			initializeBraintree();
 		}
+		// }
 		// TODO: why is this set to [show]?
-	}, [show]);
-
+	}, []);
+	// if (navigate) {
+	// 	return <Navigate to="/classes" />;
+	// }
 	return (
 		<div
 			className="braintree-container"
-			style={{ display: `${show ? "block" : "none"}` }}
+			// style={{ display: `${show ? "block" : "none"}` }}
 		>
 			<form onSubmit={handleSubmit}>
 				{/* add onchange listeners to the below inputs to map to state and complete handleSubmit function */}

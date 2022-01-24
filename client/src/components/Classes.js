@@ -1,32 +1,32 @@
 import React, { useState } from "react";
-import BraintreeDropIn from "./BraintreeDropIn";
-import AvailableClassList from "./AvailableClassList";
-import BackButton from "./BackButton";
+import { Link } from "react-router-dom";
+import Button from "./Button";
 
 function Classes() {
-	let data = [{ date: "2022-01-29", time: "10:00" }, { date: "2022-01-22", time: "10:30" }, { date: "2022-02-5", time: "10:00" }];
+	let data = [
+		{ date: "2022-01-29", time: "10:00", class_id: 1 },
+		{ date: "2022-01-22", time: "10:30", class_id: 2 },
+		{ date: "2022-02-5", time: "10:00", class_id: 3 },
+	];
 
-	const [showBraintreeDropIn, setShowBraintreeDropIn] = useState(false);
-	const [availableClasses, setAvailableClasses] = useState(data);
 	return (
-		<div className="classes">
-			<BackButton />
-			
-			{!showBraintreeDropIn && (
-				<div>
-					<header>
-						Classes are $15 each. After submitting payment you will receive an
-						email with your class zoom link!
-					</header>
-                    <AvailableClassList classes={availableClasses} showCheckout={setShowBraintreeDropIn}/>
-				</div>
-			)}
-			<BraintreeDropIn
-				show={showBraintreeDropIn}
-				onPaymentCompleted={() => {
-					setShowBraintreeDropIn(false);
-				}}
-			/>
+		<div className="classes absolute">
+			<Button title={"Home"} path={"/"} />
+			<div>
+				<header>
+					Classes are $15 each. After submitting payment you will receive an
+					email with your class zoom link!
+				</header>
+				<ul className="class-list">
+					{data.map((yogaClass, idx) => (
+						<li key={idx} className="class-item">
+							<Link to={`/classes/${yogaClass.class_id}`}>
+								{yogaClass.date} @ {yogaClass.time}
+							</Link>
+						</li>
+					))}
+				</ul>
+			</div>
 		</div>
 	);
 }

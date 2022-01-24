@@ -1,80 +1,81 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
-import BraintreeDropIn from "./components/BraintreeDropIn.js";
+import React, { useEffect, useState, useRef } from "react";
 import Navbar from "./components/Navbar.js";
 import Classes from "./components/Classes.js";
 import Music from "./components/Music.js";
 import Bookings from "./components/Bookings.js";
-import { Routes, Route, Link } from "react-router-dom";
+import Class from "./components/Class";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
+import SpotifyPlayer from "./components/SpotifyPlayer";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import Dashboard from "./components/Dashboard";
 
 function App() {
-	const [currentView, setCurrentView] = useState("nav");
-	const [date, setDate] = useState("");
-	const [time, setTime] = useState("");
-	const [showBraintreeDropIn, setShowBraintreeDropIn] = useState(true);
+	const location = useLocation();
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		createClass(date, time);
-		// reset form
-		setDate("");
-		setTime("");
+
+	const getPathDepth = (location) => {
+		let pathArr = location.pathname.split("/");
+		return pathArr.filter((el) => el !== "").length;
 	};
 
-	// Create a new yoga class
-	const createClass = (classDate, classTime) => {
-		const classDetails = {
-			topic: "Flow with Megmo",
-			type: 2,
-			start_time: `${classDate}T${classTime}:00`,
-			duration: 60,
-		};
+	const [currentPath, setCurrentPath] = useState(location.pathname);
 
-		// Send post request to express server with data from form
-		fetch("/api", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(classDetails),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				// TODO: Get back meeting details to add to state/re-render UI
-				console.log(data);
-			});
-	};
+
+
+	const [currentDepth, setCurrentDepth] = useState(getPathDepth(location));
+
+	const [direction, setDirection] = useState("");
+
+	const prevDepthRef = useRef();
+
+	let directionRef = useRef(null)
+
+
+	useEffect(() => {
+		prevDepthRef.current = currentDepth;
+		setCurrentPath(location.pathname)
+		if (getPathDepth(location) > prevDepthRef.current) {
+			setDirection("right");
+			console.log('right')
+		} else {
+			setDirection("left");
+			console.log('left')
+		}
+		console.log(currentPath)
+	});
+
+
+const dothething = (location) => {
+	setCurrentDepth(getPathDepth(location));
+	setCurrentPath(location.pathname)
+}
 
 	return (
 		<div>
-			{/* <div className="app-container"> */}
-				{/* <form onSubmit={handleSubmit}>
-					<input
-						type="date"
-						value={date}
-						onChange={(e) => setDate(e.target.value)}
-					/>
-					<input
-						type="time"
-						value={time}
-						onChange={(e) => setTime(e.target.value)}
-					/>
-					<input type="submit" value="Create Class" />
-				</form> */}
+			<TransitionGroup component={null}>
+				<CSSTransition key={location.key} classNames="fade" timeout={500}>
+					<div
+						className={direction}
+						onClick={() => dothething(location) }
+						
+						ref={directionRef}
+					>
+						<Routes location={location}>
+							<Route exact path="/" element={<Navbar />} />
+							<Route exact path="/classes" element={<Classes />} />
+							<Route exact path="/music" element={<Music />} />
+							<Route exact path="/bookings" element={<Bookings />} />
+							<Route exact path="/classes/:id" element={<Class />} />
+							<Route exact path="/playlists/:id" element={<SpotifyPlayer />} />
+							<Route exact path="/dashboard" element={<Dashboard />} />
 
-				{/* <BraintreeDropIn
-					show={showBraintreeDropIn}
-					onPaymentCompleted={() => {
-						setShowBraintreeDropIn(false);
-					}}
-				/> */}
-			{/* </div> */}
-			<Routes>
-				<Route exact path="/" element={<Navbar />} />
-				<Route exact path="/classes" element={<Classes />} />
-				<Route exact path="/music" element={<Music />} />
-				<Route exact path="/bookings" element={<Bookings />} />
-			</Routes>
+							{/* add below 404 page */}
+							{/* <Route path="*" element={<NoMatch />} /> */}
+						</Routes>
+					</div>
+				</CSSTransition>
+			</TransitionGroup>
 		</div>
 	);
 }

@@ -14,8 +14,7 @@ body,
 
 .navbar {
 	width: 100%;
-    font-family: 'Licorice', cursive;
-
+	font-family: "Licorice", cursive;
 }
 
 .navbar-list {
@@ -43,98 +42,185 @@ body,
 
 .navbar-list li a {
 	text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .menu-link {
-
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
 	/* color: white; */
 	font-weight: bold;
-    font-size: 2.5em;
-    text-align: center;
+	font-size: 2.5em;
+	text-align: center;
 }
 
 .menu-link a {
-    color: white;
-    width: 100%;
-    height: 100%;
+	color: white;
+	width: 100%;
+	height: 100%;
 }
 
 .classes-link {
-	background-image: linear-gradient(rgba(35, 93, 104, 0.5), rgba(35, 93, 104, 0.5)),
+	background-image: linear-gradient(
+			rgba(35, 93, 104, 0.5),
+			rgba(35, 93, 104, 0.5)
+		),
 		url("images/test-yoga-pic.jpg");
-
 }
 
 .music-link {
-    background-image: linear-gradient(rgba(86, 170, 18, 0.5), rgba(86, 170, 18, 0.5)),
-    url("images/test-music-pic.jpg");
+	background-image: linear-gradient(
+			rgba(86, 170, 18, 0.5),
+			rgba(86, 170, 18, 0.5)
+		),
+		url("images/test-music-pic.jpg");
 }
 
 .bookings-link {
-	background-image: linear-gradient(rgba(130, 24, 179, 0.5), rgba(130, 24, 179, 0.5)),
+	background-image: linear-gradient(
+			rgba(130, 24, 179, 0.5),
+			rgba(130, 24, 179, 0.5)
+		),
 		url("images/test-private-pic.jpg");
 }
 
-.classes, .music, .bookings {
-    height: 100vh;
-    /* font-size: 1.5em; */
-    background-position: center;
+.classes,
+.music,
+.bookings {
+	height: 100vh;
+	/* font-size: 1.5em; */
+	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
 	/* color: white; */
 	font-weight: bold;
-    /* font-size: 2.5em; */
-    font-size: 1.5em;
+	/* font-size: 2.5em; */
+	font-size: 1.5em;
 
-    text-align: center;
+	text-align: center;
 }
 
 .classes {
-    background-image: linear-gradient(rgba(35, 93, 104, 0.5), rgba(35, 93, 104, 0.5));
+	/* background-image: linear-gradient(rgba(35, 93, 104, 0.5), rgba(35, 93, 104, 0.5)); */
+	background-color: rgb(35, 93, 104);
 }
 .music {
-    background-image: linear-gradient(rgba(86, 170, 18, 0.5), rgba(86, 170, 18, 0.5));
-
+	/* background-image: linear-gradient(rgba(86, 170, 18, 0.5), rgba(86, 170, 18, 0.5)); */
+	background-color: rgb(86, 170, 18);
 }
 .bookings {
-    background-image: linear-gradient(rgba(130, 24, 179, 0.5), rgba(130, 24, 179, 0.5));
+	/* background-image: linear-gradient(rgba(130, 24, 179, 0.5), rgba(130, 24, 179, 0.5)); */
+	background-color: rgb(130, 24, 179);
 }
 
 .back-button {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    border: none;
-    background: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	border: none;
+	background: none;
 }
 
 .class-list {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    list-style: none;
-    font-size: .75em;
-    height: 50vh;
-    padding: 1em 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	list-style: none;
+	font-size: 0.75em;
+	height: 50vh;
+	padding: 1em 0;
 }
 
 .class-item {
-    padding: 1em;
-    border: 1px solid black;
+	padding: 1em;
+	border: 1px solid black;
 }
 
 .classes header {
-    padding: .5em 1.5em;
-    height: 50vh;
-    display: flex;
-    align-items: center;
+	padding: 0.5em 1.5em;
+	height: 50vh;
+	display: flex;
+	align-items: center;
+}
+
+.class {
+	background-color: white;
+}
+
+/* forward transition */
+.fade-enter.right > .absolute {
+	z-index: 1;
+	transform: translateX(100%);
+    transition: transform 500ms ease;
+}
+.fade-enter.fade-enter-active.right > .absolute {
+	transform: translateX(0);
+	transition: transform 500ms ease;
+}
+
+.fade-exit.right > .absolute {
+	z-index: -1;
+	transition: transform 500ms ease;
+	transform: translateX(0);
+}
+.fade-exit.fade-exit-active.right > .absolute {
+	transition: transform 500ms ease;
+	transform: translateX(-100%);
+}
+
+
+/* backward transition */
+.fade-enter.left > .absolute {
+	z-index: 1;
+	transform: translateX(-100%);
+    transition: transform 500ms ease;
+}
+.fade-enter.fade-enter-active.left > .absolute {
+	transform: translateX(0);
+	transition: transform 500ms ease;
+}
+.fade-exit.left > .absolute {
+	z-index: -1;
+	transition: transform 500ms ease;
+	transform: translateX(0);
+}
+.fade-exit.fade-exit-active.left > .absolute{
+	transition: transform 500ms ease;
+	transform: translateX(100%);
+}
+
+/* test */
+/* .fade-enter{
+	z-index: 1;
+	transform: translateX(100%);
+    transition: transform 500ms ease;
+}
+.fade-enter.fade-enter-active {
+	transform: translateX(0);
+	transition: transform 500ms ease;
+}
+.fade-exit {
+	z-index: -1;
+	transition: transform 500ms ease;
+	transform: translateX(0);
+}
+.fade-exit.fade-exit-active {
+	transition: transform 500ms ease;
+	transform: translateX(-100%);
+} */
+
+
+
+.absolute {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
