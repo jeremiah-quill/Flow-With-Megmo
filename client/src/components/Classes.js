@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
-import BasicCard from "./BasicCard";
+import ClassCard from "./ClassCard";
 import Badge from "@mui/material/Badge";
 
 function Classes() {
@@ -9,6 +9,8 @@ function Classes() {
 		{ date: "2022-01-29", time: "10:00", class_id: 1 },
 		{ date: "2022-01-22", time: "10:30", class_id: 2 },
 		{ date: "2022-02-5", time: "10:00", class_id: 3 },
+		{ date: "2022-02-5", time: "10:00", class_id: 4 },
+
 	];
 
 	return (
@@ -21,21 +23,21 @@ function Classes() {
 				</header> */}
 				<ul className="class-list">
 					{data.map((yogaClass, idx) => (
-														<Badge  
-														key={idx}
-														anchorOrigin={{
-															vertical: 'top',
-															horizontal: 'left',
-														  }} badgeContent={"$15"} color="primary">
-
-						<li>
-							<Link to={`/classes/${yogaClass.class_id}`}>
-								{/* {yogaClass.date} @ {yogaClass.time} */}
-									<BasicCard date={yogaClass.date} time={yogaClass.time} />
-							</Link>
-						</li>
-														</Badge>
-
+						<Badge
+							key={idx}
+							anchorOrigin={{
+								vertical: "top",
+								horizontal: "left",
+							}}
+							badgeContent={"$15"}
+							color="primary"
+						>
+							<li>
+								<Link to={`/classes/${yogaClass.class_id}`}>
+									<ClassCard date={yogaClass.date} time={yogaClass.time} />
+								</Link>
+							</li>
+						</Badge>
 					))}
 				</ul>
 			</div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import ClassCard from "./ClassCard";
 
 function Music() {
 	const data = [
@@ -14,16 +15,18 @@ function Music() {
 
 	return (
 		<div className="music absolute">
-			<Button title={"Home"} path={"/"} />
+			<Button path={"/"} />
+			<div>
 			<ul className="class-list">
 				{data.map((yogaClass, idx) => (
 					<li key={idx} className="class-item">
 						<Link to={`/playlists/${yogaClass.playlistId}`}>
-							{yogaClass.date} @ {yogaClass.time}
+							<ClassCard date={yogaClass.date} />
 						</Link>
 					</li>
 				))}
 			</ul>
+			</div>
 		</div>
 	);
 }

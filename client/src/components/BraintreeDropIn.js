@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { grey } from '@mui/material/colors';
+
 // import "./index.css";
 import dropin from "braintree-web-drop-in";
 // import venmo from 'braintree-web-drop-in';
@@ -8,6 +10,9 @@ import dropin from "braintree-web-drop-in";
 import TextField from "@mui/material/TextField";
 
 export default function BraintreeDropIn(props) {
+
+	const white = grey[50];
+
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
@@ -126,6 +131,10 @@ export default function BraintreeDropIn(props) {
 			<form className="registrant-form" onSubmit={handleSubmit} autoComplete="off">
 				<input autoComplete="false" type="hidden"/>
 				<TextField
+				    style={{
+						color: "white",
+					}}
+				sx={{ input: { color: 'white' } }}
 				size="small"
 					id="outlined-basic"
 					label="First Name"

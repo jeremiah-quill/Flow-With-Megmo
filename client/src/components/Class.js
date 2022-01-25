@@ -9,7 +9,7 @@ function Class() {
 
 	return (
 		<div className="class absolute">
-			<Button title={"All Classes"} path={"/classes"} />
+			<Button path={"/classes"} />
 			{/* <div>class id: {id}</div> */}
 			<BraintreeDropIn />
 		</div>

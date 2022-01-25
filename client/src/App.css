@@ -5,7 +5,7 @@
 html,
 body,
 #root {
-	height: 100vh;
+	height: 100%;
 }
 
 .braintree-container {
@@ -105,27 +105,52 @@ body,
 	text-align: center;
 }
 
-.classes {
+.classes, .class {
 	/* background-image: linear-gradient(rgba(35, 93, 104, 0.5), rgba(35, 93, 104, 0.5)); */
 	/* background-color: rgb(35, 93, 104); */
 	background-color: black;
+	background-color: #009688;
 }
 .music {
 	/* background-image: linear-gradient(rgba(86, 170, 18, 0.5), rgba(86, 170, 18, 0.5)); */
 	/* background-color: rgb(86, 170, 18); */
+	background-color: #4caf50;
 }
 .bookings {
 	/* background-image: linear-gradient(rgba(130, 24, 179, 0.5), rgba(130, 24, 179, 0.5)); */
 	/* background-color: rgb(130, 24, 179); */
 }
 
+.spotify-player {
+	background-color: black;
+}
+
+iframe {
+	margin-top: 5em;
+}
+
 .back-button {
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 5px;
+	left: 5px;
 	z-index: 1000;
 	border: none;
 	background: none;
+	border: 1px solid white;
+	border-radius: 50%;
+	height: 25px;
+	width: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1em;
+	color: white;
+}
+
+.back-button a {
+	width: 25px;
+	height: 25px;
+	color: white;
 }
 
 .class-list {
@@ -145,7 +170,7 @@ body,
 	width: 100%;
 	margin: 0 2em;
 }
-.class-list > span {
+.class-list > span, .class-list > li {
 	width: 80%;
 	max-width: 400px;
 }
@@ -154,43 +179,29 @@ body,
 	width: 100%;
 }
 
-.class-list li a > div {
+.class-list li a > div, .class-list li a {
 	margin-bottom: 1em;
 }
 
-/* .class-list li a div {
-	min-width: 0;
-} */
-
-.class-item {
-	padding: 1em;
-	border: 1px solid black;
-}
-
-.classes header {
-	padding: 0.5em 1.5em;
-	height: 30vh;
-	display: flex;
-	align-items: center;
-}
-
-.classes > div {
+.classes > div, .music > div {
 	height: 100%;
 	padding: 2em 0;
 	overflow-y: scroll;
 }
 
 .class {
-	background-color: white;
+	/* background-color: white; */
 }
+
 
 
 .absolute {
 	position: absolute;
 	top: 0;
-	bottom: 0;
+	/* bottom: 0; */
 	left: 0;
 	right: 0;
+	bottom: 0;
 }
 
 /* slide in from right */
@@ -263,14 +274,43 @@ body,
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 2em;
+    padding: 2em 2em 0 2em;
 
 }
 
 .braintree-upper-container {
-    height: 300px;
+    /* height: 300px; */
+	background-color: #009688;
+}
+
+.braintree-large-button {
+	background-color: #009688;
+
 }
 
 a {
 	text-decoration: none;
+}
+
+
+
+  #outlined-basic-label {
+	color: white;
+  }
+
+fieldset {
+	border-color: rgba(0, 0, 0, 0);
+}
+
+.MuiOutlinedInput-notchedOutline {
+	border-color: white;
+}
+
+.MuiOutlinedInput-notchedOutline .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+	border-color: rgba(255, 255, 255, 1);
+}
+
+.braintree-large-button {
+	color: white;
+	font-weight: bold;
 }

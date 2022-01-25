@@ -6,8 +6,8 @@ function SpotifyPlayer(props) {
 	let { id } = useParams();
 
 	return (
-		<div className="absolute">
-			<Button title={"All Playlists"} path={"/music"} />
+		<div className="absolute spotify-player">
+			<Button path={"/music"} />
 			<iframe
 				src={`https://open.spotify.com/embed/playlist/${id}?utm_source=generator&theme=0`}
 				width="100%"
