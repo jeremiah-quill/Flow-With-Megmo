@@ -11,6 +11,10 @@ function Dashboard() {
 			type: 2,
 			start_time: `${classDate}T${classTime}:00`,
 			duration: 60,
+            settings: {
+                approval_type: 0,
+                registration_type: 2
+            }
 		};
 
 		// Send post request to express server with data from form

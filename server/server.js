@@ -70,6 +70,51 @@ app.post("/api", (req, res) => {
 		});
 });
 
+// Add a meeting registrant
+app.post("/api/join-class", (req, res) => {
+	// Get new JWT
+	const config = {
+		APIKey: process.env.ZOOM_KEY,
+		APISecret: process.env.ZOOM_SECRET,
+	};
+	const payload = {
+		iss: config.APIKey,
+		exp: new Date().getTime() + 5000,
+	};
+	const token = jwt.sign(payload, config.APISecret);
+
+	console.log(req.body)
+
+	// const data = JSON.stringify(req.body)
+
+	const registrantData = {
+		first_name: req.body.firstName,
+		last_name: req.body.lastName,
+		email: req.body.email,
+	}
+
+	const meetingId = req.body.meetingId
+
+	// add registrant
+	fetch(`https://api.zoom.us/v2/meetings/${meetingId}/registrants`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: "Bearer " + token,
+		},
+		body: JSON.stringify(registrantData),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			
+			// TODO: validate success, confirm success with user
+			res.json(data);
+		});
+});
+
+
+
+
 app.listen(3001, () => {
 	console.log("listening on port 3001");
 });

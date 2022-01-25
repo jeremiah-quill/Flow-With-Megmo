@@ -6,6 +6,12 @@ import dropin from "braintree-web-drop-in";
 // import { Button } from "reactstrap";
 
 export default function BraintreeDropIn(props) {
+    const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
+
+	const meetingId = '86339621811';
+
 	const tokenizedKey = "sandbox_9qj522s2_ymtkdnwk4zxckp3y";
 
 	const [braintreeInstance, setBraintreeInstance] = useState(undefined);
@@ -14,8 +20,11 @@ export default function BraintreeDropIn(props) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		//
 		pay();
+		joinClass(firstName, lastName, email, meetingId)
+		setFirstName("");
+		setLastName("");
+		setEmail("");
 	};
 
 	const pay = () => {
@@ -40,6 +49,7 @@ export default function BraintreeDropIn(props) {
 						});
 
 					console.log("payment complete! TODO: add form data to database");
+
 					setNavigate("/classes");
 					// onPaymentCompleted();
 				}
@@ -81,6 +91,29 @@ export default function BraintreeDropIn(props) {
 		// }
 		// TODO: why is this set to [show]?
 	}, []);
+
+	const joinClass = (firstName, lastName, email, meetingId) => {
+		const registrantDetails = {
+			firstName: firstName,
+			lastName: lastName,
+			email: email,
+			meetingId: meetingId,
+		};
+
+		// Send post request to express server with data from form
+		fetch("/api/join-class", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(registrantDetails),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				// TODO: Get back meeting details to add to state/re-render UI
+				console.log(data);
+			});
+	};
 	// if (navigate) {
 	// 	return <Navigate to="/classes" />;
 	// }
@@ -91,9 +124,9 @@ export default function BraintreeDropIn(props) {
 		>
 			<form onSubmit={handleSubmit}>
 				{/* add onchange listeners to the below inputs to map to state and complete handleSubmit function */}
-				<input placeholder="First Name" type="text" />
-				<input placeholder="Last Name" type="text" />
-				<input placeholder="Email" type="email" />
+				<input placeholder="First Name" type="text" onChange={(e) => setFirstName(e.target.value)} />
+				<input placeholder="Last Name" type="text" onChange={(e) => setLastName(e.target.value)} />
+				<input placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)}/>
 				<div id={"braintree-drop-in-div"} />
 
 				<input
