@@ -5,12 +5,14 @@ import dropin from "braintree-web-drop-in";
 // import venmo from 'braintree-web-drop-in';
 // import { Button } from "reactstrap";
 
+import TextField from "@mui/material/TextField";
+
 export default function BraintreeDropIn(props) {
-    const [firstName, setFirstName] = useState("");
+	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 
-	const meetingId = '86339621811';
+	const meetingId = "86339621811";
 
 	const tokenizedKey = "sandbox_9qj522s2_ymtkdnwk4zxckp3y";
 
@@ -21,7 +23,7 @@ export default function BraintreeDropIn(props) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		pay();
-		joinClass(firstName, lastName, email, meetingId)
+		joinClass(firstName, lastName, email, meetingId);
 		setFirstName("");
 		setLastName("");
 		setEmail("");
@@ -60,7 +62,6 @@ export default function BraintreeDropIn(props) {
 	useEffect(() => {
 		// TODO: on page load?
 		// if show prop is passed in as is true, initialize braintree which calls a create function on the dropin object we import from braintree SDK
-		// if (show) {
 		const initializeBraintree = () =>
 			dropin.create(
 				{
@@ -122,11 +123,33 @@ export default function BraintreeDropIn(props) {
 			className="braintree-container"
 			// style={{ display: `${show ? "block" : "none"}` }}
 		>
-			<form onSubmit={handleSubmit}>
-				{/* add onchange listeners to the below inputs to map to state and complete handleSubmit function */}
+			<form className="registrant-form" onSubmit={handleSubmit}>
+				<TextField
+				size="small"
+					id="outlined-basic"
+					label="First Name"
+					variant="outlined"
+					onChange={(e) => setFirstName(e.target.value)}
+				/>
+				<TextField
+				size="small"
+					id="outlined-basic"
+					label="Last Name"
+					variant="outlined"
+					onChange={(e) => setLastName(e.target.value)}
+				/>
+				<TextField
+				size="small"
+					id="outlined-basic"
+					label="Email"
+					variant="outlined"
+					onChange={(e) => setEmail(e.target.value)}
+				/>
+
+				{/* 
 				<input placeholder="First Name" type="text" onChange={(e) => setFirstName(e.target.value)} />
 				<input placeholder="Last Name" type="text" onChange={(e) => setLastName(e.target.value)} />
-				<input placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)}/>
+				<input placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)}/> */}
 				<div id={"braintree-drop-in-div"} />
 
 				<input

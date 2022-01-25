@@ -206,3 +206,37 @@ body,
     transform:translateX(100%);
     transition: transform 500ms ease-out;
 }
+
+.registrant-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* padding-top: 5em; */
+    width: 100%;
+}
+
+.absolute {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    /* padding: 2em; */
+    
+}
+
+.braintree-heading {
+    display: none;
+}
+
+.braintree-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2em;
+
+}
+
+.braintree-upper-container {
+    height: 300px;
+}

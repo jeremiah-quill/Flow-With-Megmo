@@ -10,7 +10,7 @@ function Class() {
 	return (
 		<div className="class absolute">
 			<Button title={"All Classes"} path={"/classes"} />
-			<div>class id: {id}</div>
+			{/* <div>class id: {id}</div> */}
 			<BraintreeDropIn />
 		</div>
 	);
