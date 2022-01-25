@@ -123,13 +123,15 @@ export default function BraintreeDropIn(props) {
 			className="braintree-container"
 			// style={{ display: `${show ? "block" : "none"}` }}
 		>
-			<form className="registrant-form" onSubmit={handleSubmit}>
+			<form className="registrant-form" onSubmit={handleSubmit} autoComplete="off">
+				<input autoComplete="false" type="hidden"/>
 				<TextField
 				size="small"
 					id="outlined-basic"
 					label="First Name"
 					variant="outlined"
 					onChange={(e) => setFirstName(e.target.value)}
+					margin='dense'
 				/>
 				<TextField
 				size="small"
@@ -137,6 +139,8 @@ export default function BraintreeDropIn(props) {
 					label="Last Name"
 					variant="outlined"
 					onChange={(e) => setLastName(e.target.value)}
+					margin='dense'
+
 				/>
 				<TextField
 				size="small"
@@ -144,6 +148,8 @@ export default function BraintreeDropIn(props) {
 					label="Email"
 					variant="outlined"
 					onChange={(e) => setEmail(e.target.value)}
+					margin='dense'
+
 				/>
 
 				{/* 
