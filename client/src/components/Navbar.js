@@ -1,33 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Navbar() {
-	const [navView, setNavView] = useState(true);
-	const [classesView, setClassesView] = useState(false);
-	const [musicView, setMusicView] = useState(false);
-	const [bookingsView, setBookingsView] = useState(false);
-
-	const viewClasses = () => {
-		setClassesView(true);
-		setNavView(false);
-	};
-	const viewMusic = () => {
-		setMusicView(true);
-		setNavView(false);
-	};
-	const viewBookings = () => {
-		setBookingsView(true);
-		setNavView(false);
-	};
-	const viewNav = () => {
-		console.log("test");
-		setNavView(true);
-		setClassesView(false);
-		setMusicView(false);
-		setBookingsView(false);
-	};
-
 	return (
 		<div className="navbar absolute">
 			<ul className="navbar-list">

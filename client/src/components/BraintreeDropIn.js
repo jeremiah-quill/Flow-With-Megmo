@@ -1,29 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import { grey } from '@mui/material/colors';
-
-// import "./index.css";
+import { useNavigate } from "react-router-dom";
 import dropin from "braintree-web-drop-in";
-// import venmo from 'braintree-web-drop-in';
-// import { Button } from "reactstrap";
-
 import TextField from "@mui/material/TextField";
 
-export default function BraintreeDropIn(props) {
+export default function BraintreeDropIn() {
 
-	const white = grey[50];
+	let navigate = useNavigate();
 
+	// Form data
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 
+	// meetingId used for testing
 	const meetingId = "86339621811";
 
+	// TODO: do I need to put this on the backend?
 	const tokenizedKey = "sandbox_9qj522s2_ymtkdnwk4zxckp3y";
 
 	const [braintreeInstance, setBraintreeInstance] = useState(undefined);
-
-	const [navigate, setNavigate] = useState(null);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -56,8 +51,7 @@ export default function BraintreeDropIn(props) {
 						});
 
 					console.log("payment complete! TODO: add form data to database");
-
-					setNavigate("/classes");
+					navigate("/classes");
 					// onPaymentCompleted();
 				}
 			});
@@ -94,8 +88,6 @@ export default function BraintreeDropIn(props) {
 		} else {
 			initializeBraintree();
 		}
-		// }
-		// TODO: why is this set to [show]?
 	}, []);
 
 	const joinClass = (firstName, lastName, email, meetingId) => {
@@ -120,53 +112,47 @@ export default function BraintreeDropIn(props) {
 				console.log(data);
 			});
 	};
+	// *** Use this to redirect back to classes page after signed up?
 	// if (navigate) {
 	// 	return <Navigate to="/classes" />;
 	// }
 	return (
-		<div
-			className="braintree-container"
-			// style={{ display: `${show ? "block" : "none"}` }}
-		>
-			<form className="registrant-form" onSubmit={handleSubmit} autoComplete="off">
-				<input autoComplete="false" type="hidden"/>
+		<div className="braintree-container">
+			<form
+				className="registrant-form"
+				onSubmit={handleSubmit}
+				autoComplete="off"
+			>
+				<input autoComplete="false" type="hidden" />
 				<TextField
-				    style={{
+					style={{
 						color: "white",
 					}}
-				sx={{ input: { color: 'white' } }}
-				size="small"
+					sx={{ input: { color: "white" } }}
+					size="small"
 					id="outlined-basic"
 					label="First Name"
 					variant="outlined"
 					onChange={(e) => setFirstName(e.target.value)}
-					margin='dense'
+					margin="dense"
 				/>
 				<TextField
-				size="small"
+					size="small"
 					id="outlined-basic"
 					label="Last Name"
 					variant="outlined"
 					onChange={(e) => setLastName(e.target.value)}
-					margin='dense'
-
+					margin="dense"
 				/>
 				<TextField
-				size="small"
+					size="small"
 					id="outlined-basic"
 					label="Email"
 					variant="outlined"
 					onChange={(e) => setEmail(e.target.value)}
-					margin='dense'
-
+					margin="dense"
 				/>
-
-				{/* 
-				<input placeholder="First Name" type="text" onChange={(e) => setFirstName(e.target.value)} />
-				<input placeholder="Last Name" type="text" onChange={(e) => setLastName(e.target.value)} />
-				<input placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)}/> */}
 				<div id={"braintree-drop-in-div"} />
-
 				<input
 					className={"braintreePayButton"}
 					type="submit"

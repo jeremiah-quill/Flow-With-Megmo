@@ -22,10 +22,6 @@ export default function ClassCard({ date, time }) {
 						{time}am
 					</Typography>
 				)}
-
-				{/* <Typography variant="body2">
-            $15
-          </Typography> */}
 			</CardContent>
 		</Card>
 	);
