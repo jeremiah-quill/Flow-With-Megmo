@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import BraintreeDropIn from "./BraintreeDropIn";
-import Button from "./Button";
+import BraintreeDropIn from "../BraintreeDropIn";
+import Button from "../Button";
 
 function Class() {
 	// TODO: add a zoom meeting registrant to zoom meeting with this id

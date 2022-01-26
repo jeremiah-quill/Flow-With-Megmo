@@ -1,16 +1,14 @@
 import "./App.css";
 import React, { useEffect, useState, useRef } from "react";
-import Navbar from "./components/Navbar.js";
-import Classes from "./components/Classes.js";
-import Music from "./components/Music.js";
-import Bookings from "./components/Bookings.js";
-import Class from "./components/Class";
+import Navbar from "./components/pages/Navbar.js";
+import Classes from "./components/pages/Classes.js";
+import Music from "./components/pages/Music.js";
+import Bookings from "./components/pages/Bookings.js";
+import Class from "./components/pages/Class";
 import { Routes, Route, useLocation } from "react-router-dom";
-import SpotifyPlayer from "./components/SpotifyPlayer";
+import SpotifyPlayer from "./components/pages/SpotifyPlayer";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import Dashboard from "./components/Dashboard";
-
-
+import Dashboard from "./components/pages/Dashboard";
 
 function App() {
 	const location = useLocation();
@@ -45,14 +43,11 @@ function App() {
 						<Routes location={location}>
 							<Route path="/" element={<Navbar />} />
 							<Route path="/classes" element={<Classes />} />
-							<Route path="/music" element={<Music />} />
-							<Route path="/bookings" element={<Bookings />} />
 							<Route path="/classes/:id" element={<Class />} />
-							<Route path="/playlists/:id" element={<SpotifyPlayer />} />
-							<Route
-								path="/dashboard"
-								element={<Dashboard />}
-							/>
+							<Route path="/music" element={<Music />} />
+							<Route path="/music/:id" element={<SpotifyPlayer />} />
+							<Route path="/bookings" element={<Bookings />} />
+							<Route path="/dashboard" element={<Dashboard />} />
 							{/* add below 404 page */}
 							{/* <Route path="*" element={<NoMatch />} /> */}
 						</Routes>

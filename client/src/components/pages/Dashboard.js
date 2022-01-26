@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import useToggle from "../hooks/useToggle";
-import CreateClassForm from "./CreateClassForm";
-import StatsOverview from "./StatsOverview";
-import Modal from "./Modal";
-import ParticipantList from "./ParticipantList";
+import useToggle from "../../hooks/useToggle";
+import CreateClassForm from "../CreateClassForm";
+import StatsOverview from "../StatsOverview";
+import Modal from "../Modal";
+import ParticipantList from "../ParticipantList";
 
 // TODO: should I get this data from centralized state, call database directly from useEffect, or should it be passed in by App component?
 const currentParticipants = [
@@ -85,10 +85,11 @@ function Dashboard() {
 			{/* TODO: should I pass in "show" as a prop to Modal, or just conditionally render it here based on isModal? */}
 			<Modal show={isModal} toggleModal={toggleModal} modalData={modalData} />
 			<h1>Welcome back Yogi!</h1>
-      {/* TODO: where should I get these stats? fetch them from database in an onEffect and then pass them in?*/}
+			{/* TODO: where should I get the stats I show in StatsOverview? fetch them from database in an onEffect and then pass them in, or fetch them within StatsOverview*/}
 			<StatsOverview />
 			<CreateClassForm />
-			<h2>current classes</h2>
+			<h2>Scheduled</h2>
+      {/* TODO: should this list be a component */}
 			<ul className="current-class-list">
 				{classData.currentClasses.map((currentClass) => (
 					<li key={currentClass.class_id}>
@@ -99,7 +100,7 @@ function Dashboard() {
 					</li>
 				))}
 			</ul>
-			<h2>previous classes</h2>
+			<h2>Completed</h2>
 			<ul className="previous-class-list">
 				{classData.previousClasses.map((previousClass) => (
 					<li key={previousClass.class_id}>

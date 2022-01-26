@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import dropin from "braintree-web-drop-in";
 import TextField from "@mui/material/TextField";
 
+// TODO: separate form and have it be a parent component to braintree
 export default function BraintreeDropIn() {
 
 	let navigate = useNavigate();

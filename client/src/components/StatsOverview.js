@@ -1,5 +1,6 @@
 import React from "react";
 
+// TODO: where should this data come from?  Where should it be converted into the below details?
 function StatsOverview() {
 	return (
 		<div className="stats-overview">
