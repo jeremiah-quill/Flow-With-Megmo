@@ -11,11 +11,11 @@ export default function ClassCard({ date, time }) {
 				</Typography>
 				<Typography variant="h5" component="div" sx={{ mb: 0 }}>
 					{/* turn full date into "15th" style date */}
-					15th
+					{date}
 				</Typography>
 				<Typography sx={{ mb: 1.5 }} color="text.secondary">
 					{/* turn full date into month only */}
-					January
+					{date}
 				</Typography>
 				{time && (
 					<Typography sx={{ fontSize: 14 }} color="text.secondary">

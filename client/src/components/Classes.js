@@ -4,14 +4,15 @@ import Button from "./Button";
 import ClassCard from "./ClassCard";
 import Badge from "@mui/material/Badge";
 
-function Classes() {
-	let data = [
-		{ date: "2022-01-29", time: "10:00", class_id: 1 },
-		{ date: "2022-01-22", time: "10:30", class_id: 2 },
-		{ date: "2022-02-5", time: "10:00", class_id: 3 },
-		{ date: "2022-02-5", time: "10:00", class_id: 4 },
-	];
+// TODO: should I get this data from centralized state, call database directly from useEffect, or should it be passed in by App component?
+let data = [
+	{ date: "2022-01-29", time: "10:00", class_id: 1 },
+	{ date: "2022-01-22", time: "10:30", class_id: 2 },
+	{ date: "2022-02-05", time: "10:00", class_id: 3 },
+	{ date: "2022-02-05", time: "10:00", class_id: 4 },
+];
 
+function Classes() {
 	return (
 		<div className="classes absolute">
 			<Button title={"Home"} path={"/"} />

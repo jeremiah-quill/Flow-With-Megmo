@@ -10,24 +10,9 @@ import SpotifyPlayer from "./components/SpotifyPlayer";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Dashboard from "./components/Dashboard";
 
-function App() {
-	const data = {
-		currentClasses: [
-			{ date: "2022-01-29", time: "10:00", class_id: 1 },
-			{ date: "2022-01-22", time: "10:30", class_id: 2 },
-			{ date: "2022-02-5", time: "10:00", class_id: 3 },
-			{ date: "2022-02-5", time: "10:00", class_id: 4 },
-	
-		],
-		previousClasses: [
-			{ date: "2022-01-29", time: "10:00", class_id: 1 },
-			{ date: "2022-01-22", time: "10:30", class_id: 2 },
-			{ date: "2022-02-5", time: "10:00", class_id: 3 },
-			{ date: "2022-02-5", time: "10:00", class_id: 4 },
-	
-		]
-	}
 
+
+function App() {
 	const location = useLocation();
 
 	const [direction, setDirection] = useState(null);
@@ -64,7 +49,10 @@ function App() {
 							<Route path="/bookings" element={<Bookings />} />
 							<Route path="/classes/:id" element={<Class />} />
 							<Route path="/playlists/:id" element={<SpotifyPlayer />} />
-							<Route path="/dashboard" element={<Dashboard data={data}/>} />
+							<Route
+								path="/dashboard"
+								element={<Dashboard />}
+							/>
 							{/* add below 404 page */}
 							{/* <Route path="*" element={<NoMatch />} /> */}
 						</Routes>

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-function CreateClassForm() {
+
+// TODO: use classDetails when they come in from edit modal and fill in 
+function CreateClassForm({ classDetails }) {
+	
+
 	const [date, setDate] = useState("");
 	const [time, setTime] = useState("");
 	// Create a new yoga class
@@ -43,15 +47,18 @@ function CreateClassForm() {
 			<form onSubmit={handleSubmit}>
 				<input
 					type="date"
-					value={date}
+					value={classDetails ? classDetails.date : date}
 					onChange={(e) => setDate(e.target.value)}
 				/>
 				<input
 					type="time"
-					value={time}
+					value={classDetails ? classDetails.time : time}
 					onChange={(e) => setTime(e.target.value)}
 				/>
-				<input type="submit" value="Create Class" />
+				<input
+					type="submit"
+					value={`${classDetails ? "Edit Class" : "Create Class"}`}
+				/>
 			</form>
 		</div>
 	);
