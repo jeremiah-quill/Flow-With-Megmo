@@ -1,62 +1,28 @@
-import React, {useState} from 'react';
+import React from "react";
+import CreateClassForm from "./CreateClassForm";
+import StatsOverview from "./StatsOverview";
 
-function Dashboard() {
+function Dashboard({data}) {
 
-    const [date, setDate] = useState("");
-	const [time, setTime] = useState("");
-	// Create a new yoga class
-	const createClass = (classDate, classTime) => {
-		const classDetails = {
-			topic: "Flow with Megmo",
-			type: 2,
-			start_time: `${classDate}T${classTime}:00`,
-			duration: 60,
-            settings: {
-                approval_type: 0,
-                registration_type: 2
-            }
-		};
-
-		// Send post request to express server with data from form
-		fetch("/api", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(classDetails),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				// TODO: Get back meeting details to add to state/re-render UI
-				console.log(data);
-			});
-	};
-
-    const handleSubmit = (e) => {
-		e.preventDefault();
-		createClass(date, time);
-		// reset form
-		setDate("");
-		setTime("");
-	};
-
-  return <div>
-      			{/* <div className="app-container"> */}
-			<form onSubmit={handleSubmit}>
-					<input
-						type="date"
-						value={date}
-						onChange={(e) => setDate(e.target.value)}
-					/>
-					<input
-						type="time"
-						value={time}
-						onChange={(e) => setTime(e.target.value)}
-					/>
-					<input type="submit" value="Create Class" />
-				</form>
-			{/* </div> */}
-  </div>;
+	return (
+		<div className="dashboard">
+			<h1>Welcome back Yogi!</h1>
+			<StatsOverview />
+			<CreateClassForm />
+			<h2>current classes</h2>
+			<ul className="current-class-list">
+        {data.currentClasses.map(currentClass => 
+          <li key={currentClass.class_id}>{currentClass.date} {currentClass.time}</li>
+        )}
+			</ul>
+			<h2>previous classes</h2>
+			<ul className="previous-class-list">
+      {data.previousClasses.map(previousClass => 
+          <li key={previousClass.class_id}>{previousClass.date} {previousClass.time}</li>
+        )}
+			</ul>
+		</div>
+	);
 }
 
 export default Dashboard;

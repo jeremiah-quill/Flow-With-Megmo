@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import Button from "./Button";
 
 function SpotifyPlayer(props) {
-	// const playlistURL = `https://open.spotify.com/embed/playlist/${props.playlistId}`
 	let { id } = useParams();
 
 	return (

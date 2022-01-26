@@ -314,3 +314,39 @@ fieldset {
 	color: white;
 	font-weight: bold;
 }
+
+
+/* Dashboard */
+
+/* class lists */
+
+.current-class-list, .previous-class-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 3em;
+}
+
+/* Stats */
+
+.dashboard {
+	text-align: center;
+}
+
+.stats-overview {
+	display: flex;
+	margin-bottom: 3em;
+}
+
+.stats-overview > * {
+	flex: 0 1 33.33%;
+	text-align: center;
+}
+
+
+/* Create Class Form */
+
+.create-class-form {
+	margin-bottom: 3em;
+}
+

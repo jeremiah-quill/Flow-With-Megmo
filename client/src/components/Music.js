@@ -10,22 +10,19 @@ function Music() {
 		{ date: "2022-02-5", time: "10:00", playlistId: "6itkGetLQesAPNyUb9x276" },
 	];
 
-	const [showMusicDetails, setShowMusicDetails] = useState(false);
-	const [previousClasses, setPreviousClasses] = useState(data);
-
 	return (
 		<div className="music absolute">
 			<Button path={"/"} />
 			<div>
-			<ul className="class-list">
-				{data.map((yogaClass, idx) => (
-					<li key={idx} className="class-item">
-						<Link to={`/playlists/${yogaClass.playlistId}`}>
-							<ClassCard date={yogaClass.date} />
-						</Link>
-					</li>
-				))}
-			</ul>
+				<ul className="class-list">
+					{data.map((yogaClass, idx) => (
+						<li key={idx} className="class-item">
+							<Link to={`/playlists/${yogaClass.playlistId}`}>
+								<ClassCard date={yogaClass.date} />
+							</Link>
+						</li>
+					))}
+				</ul>
 			</div>
 		</div>
 	);

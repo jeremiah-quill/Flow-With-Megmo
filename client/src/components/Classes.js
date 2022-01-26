@@ -10,17 +10,12 @@ function Classes() {
 		{ date: "2022-01-22", time: "10:30", class_id: 2 },
 		{ date: "2022-02-5", time: "10:00", class_id: 3 },
 		{ date: "2022-02-5", time: "10:00", class_id: 4 },
-
 	];
 
 	return (
 		<div className="classes absolute">
 			<Button title={"Home"} path={"/"} />
 			<div>
-				{/* <header>
-					Classes are $15 each. After submitting payment you will receive an
-					email with your class zoom link!
-				</header> */}
 				<ul className="class-list">
 					{data.map((yogaClass, idx) => (
 						<Badge
