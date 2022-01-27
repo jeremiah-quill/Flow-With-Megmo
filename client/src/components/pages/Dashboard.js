@@ -23,7 +23,7 @@ const previousParticipants = [
 const classData = {
 	currentClasses: [
 		{ date: "2022-01-29", time: "10:00", class_id: 1 },
-		{ date: "2022-01-22", time: "10:30", class_id: "88537600959" },
+		{ date: "2022-01-22", time: "10:30", class_id: 2 },
 		{ date: "2022-02-05", time: "10:00", class_id: 3 },
 		{ date: "2022-02-05", time: "10:00", class_id: 4 },
 	],
@@ -39,10 +39,11 @@ function Dashboard() {
 	const [isModal, toggleModal] = useToggle(false);
 	const [modalData, setModalData] = useState({});
 
+	// TODO: where should I put this delete function?  In some kind of central location?
 	const deleteClassApiCall = (id) => {
 		console.log("deleteClass firing");
 
-		const meetingId = {meetingId: id}
+		const meetingId = { meetingId: id };
 
 		// Send post request to express server with data from form
 		fetch("/api/delete-class", {
@@ -52,19 +53,20 @@ function Dashboard() {
 			},
 			body: JSON.stringify(meetingId),
 		})
-		// TODO: this response doesn't make sense, how can I tell if it's success or error
+			// TODO: this response doesn't make sense, how can I tell if it's success or error
 			.then((response) => response)
 			.then((data) => {
 				// TODO: Get back meeting details to add to state/re-render UI.  Should I add it to a central state?
 				console.log(data);
 			});
-	}
+	};
 
 	// TODO: where do I put these functions, how can I make this modal better: these are the methods that "setup" what the modal should look like in each situation (view classlist from current or previous class, edit a scheduled class, delete a scheduled class, pick a playlist for a class)
 	const viewCurrent = (currentClass) => {
 		toggleModal();
 		const title = `${currentClass.date} @ ${currentClass.time}`;
 		const content = <ParticipantList participants={currentParticipants} />;
+		// TODO: do something with this none footer
 		const footer = "none";
 		setModalData({ title, content, footer });
 		// TODO: should I reset modalData here?
@@ -74,6 +76,7 @@ function Dashboard() {
 		toggleModal();
 		const title = `${previousClass.date} @ ${previousClass.time}`;
 		const content = <ParticipantList participants={previousParticipants} />;
+		// TODO: do something with this none footer
 		const footer = "none";
 		setModalData({ title, content, footer });
 	};
@@ -82,7 +85,12 @@ function Dashboard() {
 		toggleModal();
 		const title = `${currentClass.date} @ ${currentClass.time}`;
 		const content = "Are you sure you want to delete this class?";
-		const footer = <Confirm confirmAction={deleteClassApiCall} meetingId={currentClass.class_id}/>
+		const footer = (
+			<Confirm
+				confirmAction={deleteClassApiCall}
+				meetingId={currentClass.class_id}
+			/>
+		);
 		setModalData({ title, content, footer });
 	};
 
@@ -90,6 +98,7 @@ function Dashboard() {
 		toggleModal();
 		const title = `${currentClass.date} @ ${currentClass.time}`;
 		const content = <CreateClassForm classDetails={currentClass} />;
+		// TODO: change this footer to a Confirm component, where it passes in the editClass function as the confirmAction
 		const footer = "confirm";
 		setModalData({ title, content, footer });
 	};
@@ -98,6 +107,7 @@ function Dashboard() {
 		toggleModal();
 		const title = `${previousClass.date} @ ${previousClass.time}`;
 		const content = "choose which playlist you used for this class";
+		// TODO: do something with this none footer
 		const footer = "none";
 		setModalData({ title, content, footer });
 	};

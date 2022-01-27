@@ -37,8 +37,6 @@ function CreateClassForm({ classDetails }) {
 			});
 	};
 	
-
-	// TODO: is this where I should keep this function? It takes form data and sends it to an express server which makes the zoom api call to create a class.
 	const editClass = (meetingId, classDate, classTime) => {
 		console.log("editClass firing");
 
@@ -58,7 +56,7 @@ function CreateClassForm({ classDetails }) {
 		// TODO: this response doesn't make sense, how can I tell if it's success or error
 			.then((response) => response.json())
 			.then((data) => {
-				// TODO: Get back meeting details to add to state/re-render UI.  Should I add it to a central state?
+				// TODO: re-render page to show edited class
 				console.log(data);
 			});
 	};
