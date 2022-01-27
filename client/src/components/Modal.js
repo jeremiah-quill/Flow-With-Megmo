@@ -2,6 +2,9 @@ import React from "react";
 
 function Modal({show, toggleModal, modalData }) {
     const {title, content, footer} = modalData
+
+
+
 	if (!show) {
 		return null;
 	} else

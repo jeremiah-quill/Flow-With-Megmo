@@ -4,6 +4,7 @@ import CreateClassForm from "../CreateClassForm";
 import StatsOverview from "../StatsOverview";
 import Modal from "../Modal";
 import ParticipantList from "../ParticipantList";
+import Confirm from "../Confirm";
 
 // TODO: should I get this data from centralized state, call database directly from useEffect, or should it be passed in by App component?
 const currentParticipants = [
@@ -22,7 +23,7 @@ const previousParticipants = [
 const classData = {
 	currentClasses: [
 		{ date: "2022-01-29", time: "10:00", class_id: 1 },
-		{ date: "2022-01-22", time: "10:30", class_id: 2 },
+		{ date: "2022-01-22", time: "10:30", class_id: "88537600959" },
 		{ date: "2022-02-05", time: "10:00", class_id: 3 },
 		{ date: "2022-02-05", time: "10:00", class_id: 4 },
 	],
@@ -37,6 +38,27 @@ const classData = {
 function Dashboard() {
 	const [isModal, toggleModal] = useToggle(false);
 	const [modalData, setModalData] = useState({});
+
+	const deleteClassApiCall = (id) => {
+		console.log("deleteClass firing");
+
+		const meetingId = {meetingId: id}
+
+		// Send post request to express server with data from form
+		fetch("/api/delete-class", {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(meetingId),
+		})
+		// TODO: this response doesn't make sense, how can I tell if it's success or error
+			.then((response) => response)
+			.then((data) => {
+				// TODO: Get back meeting details to add to state/re-render UI.  Should I add it to a central state?
+				console.log(data);
+			});
+	}
 
 	// TODO: where do I put these functions, how can I make this modal better: these are the methods that "setup" what the modal should look like in each situation (view classlist from current or previous class, edit a scheduled class, delete a scheduled class, pick a playlist for a class)
 	const viewCurrent = (currentClass) => {
@@ -60,7 +82,7 @@ function Dashboard() {
 		toggleModal();
 		const title = `${currentClass.date} @ ${currentClass.time}`;
 		const content = "Are you sure you want to delete this class?";
-		const footer = "confirm";
+		const footer = <Confirm confirmAction={deleteClassApiCall} meetingId={currentClass.class_id}/>
 		setModalData({ title, content, footer });
 	};
 
@@ -89,7 +111,7 @@ function Dashboard() {
 			<StatsOverview />
 			<CreateClassForm />
 			<h2>Scheduled</h2>
-      {/* TODO: should this list be a component */}
+			{/* TODO: should this list be a component */}
 			<ul className="current-class-list">
 				{classData.currentClasses.map((currentClass) => (
 					<li key={currentClass.class_id}>
