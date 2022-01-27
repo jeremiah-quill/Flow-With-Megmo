@@ -68,24 +68,27 @@ body,
 	background-image: linear-gradient(
 			rgba(35, 93, 104, 0.5),
 			rgba(35, 93, 104, 0.5)
-		),
-		url("images/test-yoga-pic.jpg");
+		)
+		/* ,
+		url("images/test-yoga-pic.jpg"); */
 }
 
 .music-link {
 	background-image: linear-gradient(
 			rgba(86, 170, 18, 0.5),
 			rgba(86, 170, 18, 0.5)
-		),
-		url("images/test-music-pic.jpg");
+		)
+		/* ,
+		url("images/test-music-pic.jpg"); */
 }
 
 .bookings-link {
 	background-image: linear-gradient(
 			rgba(130, 24, 179, 0.5),
 			rgba(130, 24, 179, 0.5)
-		),
-		url("images/test-private-pic.jpg");
+		)
+		/* ,
+		url("images/test-private-pic.jpg"); */
 }
 
 .classes,
