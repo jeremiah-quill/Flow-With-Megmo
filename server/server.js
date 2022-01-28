@@ -125,13 +125,16 @@ app.delete("/api/delete-class", (req, res) => {
 	const meetingId = req.body.meetingId;
 
 	// Edit a zoom meeting
-	fetch(`https://api.zoom.us/v2/meetings/${meetingId}?cancel_meeting_reminder=true`, {
-		method: "DELETE",
-		headers: {
-			"Content-Type": "application/json",
-			Authorization: "Bearer " + token,
+	fetch(
+		`https://api.zoom.us/v2/meetings/${meetingId}?cancel_meeting_reminder=true`,
+		{
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + token,
+			},
 		}
-	}).then((response) => {
+	).then((response) => {
 		// TODO: what is this response, why can't I access the "Symbol(Rsponse internals) where the status code is?"  It prints "Symbol(Response internals)" which ontains status in this server console.log, but not the console.log clientside
 		console.log(response);
 
@@ -179,6 +182,7 @@ app.post("/api/join-class", (req, res) => {
 	})
 		.then((response) => response.json())
 		.then((data) => {
+			console.log(data);
 			// TODO: validate success, confirm success with user
 			res.json(data);
 		});

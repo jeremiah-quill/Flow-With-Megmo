@@ -1,34 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import dropin from "braintree-web-drop-in";
-import TextField from "@mui/material/TextField";
 
-// TODO: separate form and have it be a parent component to braintree
-export default function BraintreeDropIn() {
-
-	let navigate = useNavigate();
-
-	// Form data
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-
-	// meetingId used for testing
-	const meetingId = "86339621811";
-
+export default function BraintreeDropIn({
+	setIsPaymentSuccess,
+	formSubmitted,
+}) {
 	// TODO: do I need to put this on the backend?
 	const tokenizedKey = "sandbox_9qj522s2_ymtkdnwk4zxckp3y";
 
 	const [braintreeInstance, setBraintreeInstance] = useState(undefined);
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		pay();
-		joinClass(firstName, lastName, email, meetingId);
-		setFirstName("");
-		setLastName("");
-		setEmail("");
-	};
 
 	const pay = () => {
 		// once braintree instance is set, we get the payment method (from where?) and send it to the back end to complete the transaction
@@ -48,16 +28,18 @@ export default function BraintreeDropIn() {
 					})
 						.then((response) => response.json())
 						.then((data) => {
-							console.log(data);
+							// TODO: validate before setting this to true
+							console.log(data)
+							setIsPaymentSuccess(true);
 						});
-
-					console.log("payment complete! TODO: add form data to database");
-					navigate("/classes");
-					// onPaymentCompleted();
 				}
 			});
 		}
 	};
+
+	if (formSubmitted) {
+		pay();
+	}
 
 	useEffect(() => {
 		// TODO: on page load?
@@ -117,9 +99,14 @@ export default function BraintreeDropIn() {
 	// if (navigate) {
 	// 	return <Navigate to="/classes" />;
 	// }
+
+	const handleClick = () => {
+		pay();
+	};
+
 	return (
 		<div className="braintree-container">
-			<form
+			{/* <form
 				className="registrant-form"
 				onSubmit={handleSubmit}
 				autoComplete="off"
@@ -161,7 +148,8 @@ export default function BraintreeDropIn() {
 					// onClick={pay}
 					value="Book Class"
 				/>
-			</form>
+			</form> */}
+			{/* <button onClick={handleClick}>Buy Class</button> */}
 		</div>
 	);
 }
