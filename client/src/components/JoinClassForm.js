@@ -42,9 +42,9 @@ function JoinClassForm({ meetingId }) {
 		if (isPaymentSuccess === true) {
 			// TODO: no form validation...maybe bring in braintree to this component to share that knowledge?
 			joinClass(firstName, lastName, email, meetingId);
-			setFirstName("");
-			setLastName("");
-			setEmail("");
+			// setFirstName("");
+			// setLastName("");
+			// setEmail("");
 		}
 	}, [isPaymentSuccess]);
 
@@ -93,6 +93,7 @@ function JoinClassForm({ meetingId }) {
 			<BraintreeDropIn
 				setIsPaymentSuccess={setIsPaymentSuccess}
 				formSubmitted={formSubmitted}
+				setFormSubmitted={setFormSubmitted}
 			/>
 			<input
 				className={"braintreePayButton"}

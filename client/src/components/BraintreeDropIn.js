@@ -4,6 +4,7 @@ import dropin from "braintree-web-drop-in";
 export default function BraintreeDropIn({
 	setIsPaymentSuccess,
 	formSubmitted,
+	setFormSubmitted
 }) {
 	// TODO: do I need to put this on the backend?
 	const tokenizedKey = "sandbox_9qj522s2_ymtkdnwk4zxckp3y";
@@ -30,6 +31,7 @@ export default function BraintreeDropIn({
 						.then((data) => {
 							// TODO: validate before setting this to true
 							console.log(data)
+							setFormSubmitted(false)
 							setIsPaymentSuccess(true);
 						});
 				}
@@ -39,6 +41,7 @@ export default function BraintreeDropIn({
 
 	if (formSubmitted) {
 		pay();
+		
 	}
 
 	useEffect(() => {
@@ -73,83 +76,9 @@ export default function BraintreeDropIn({
 		}
 	}, []);
 
-	const joinClass = (firstName, lastName, email, meetingId) => {
-		const registrantDetails = {
-			firstName: firstName,
-			lastName: lastName,
-			email: email,
-			meetingId: meetingId,
-		};
-
-		// Send post request to express server with data from form
-		fetch("/api/join-class", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(registrantDetails),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				// TODO: Get back meeting details to add to state/re-render UI
-				console.log(data);
-			});
-	};
-	// *** Use this to redirect back to classes page after signed up?
-	// if (navigate) {
-	// 	return <Navigate to="/classes" />;
-	// }
-
-	const handleClick = () => {
-		pay();
-	};
 
 	return (
 		<div className="braintree-container">
-			{/* <form
-				className="registrant-form"
-				onSubmit={handleSubmit}
-				autoComplete="off"
-			>
-				<input autoComplete="false" type="hidden" />
-				<TextField
-					style={{
-						color: "white",
-					}}
-					sx={{ input: { color: "white" } }}
-					size="small"
-					id="outlined-basic"
-					label="First Name"
-					variant="outlined"
-					onChange={(e) => setFirstName(e.target.value)}
-					margin="dense"
-				/>
-				<TextField
-					size="small"
-					id="outlined-basic"
-					label="Last Name"
-					variant="outlined"
-					onChange={(e) => setLastName(e.target.value)}
-					margin="dense"
-				/>
-				<TextField
-					size="small"
-					id="outlined-basic"
-					label="Email"
-					variant="outlined"
-					onChange={(e) => setEmail(e.target.value)}
-					margin="dense"
-				/>
-				<div id={"braintree-drop-in-div"} />
-				<input
-					className={"braintreePayButton"}
-					type="submit"
-					disabled={!braintreeInstance}
-					// onClick={pay}
-					value="Book Class"
-				/>
-			</form> */}
-			{/* <button onClick={handleClick}>Buy Class</button> */}
 		</div>
 	);
 }
