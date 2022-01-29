@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useToggle from "../../hooks/useToggle";
-import CreateClassForm from "../CreateClassForm";
+import CreateClassForm from "../forms/CreateClassForm";
 import StatsOverview from "../StatsOverview";
 import Modal from "../Modal";
 import ListMembersModal from "../modals/ListMembersModal";
@@ -16,10 +16,15 @@ const classData = {
 		{ date: "2022-02-05", time: "10:00", class_id: 4 },
 	],
 	previousClasses: [
-		{ date: "2022-01-29", time: "10:00", class_id: 1 },
-		{ date: "2022-01-22", time: "10:30", class_id: "86527573613" },
-		{ date: "2022-02-05", time: "10:00", class_id: 3 },
-		{ date: "2022-02-05", time: "10:00", class_id: 4 },
+		{ date: "2022-01-29", time: "10:00", class_id: 1, playlist_id: 1 },
+		{
+			date: "2022-01-22",
+			time: "10:30",
+			class_id: "86527573613",
+			playlist_id: "33c84T8rITyYEY63gfzPZH",
+		},
+		{ date: "2022-02-05", time: "10:00", class_id: 3, playlist_id: 3 },
+		{ date: "2022-02-05", time: "10:00", class_id: 4, playlist_id: 68 },
 	],
 };
 

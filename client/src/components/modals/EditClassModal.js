@@ -1,5 +1,5 @@
 import React from "react";
-import EditClassForm from "../EditClassForm";
+import EditClassForm from "../forms/EditClassForm";
 
 function EditClassModal({ yogaClass }) {
 	// TODO: move this api call method (that will be called on form submit) somewhere central, but where?

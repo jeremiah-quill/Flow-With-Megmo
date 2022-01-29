@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import BraintreeDropIn from "./BraintreeDropIn";
+import BraintreeDropIn from "../BraintreeDropIn";
 
 import TextField from "@mui/material/TextField";
 

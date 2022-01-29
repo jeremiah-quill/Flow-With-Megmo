@@ -400,16 +400,20 @@ fieldset {
 	padding: 1em;
 }
 
-.participant-list {
+.participant-list, .playlist-list {
 	margin: 0;
 	padding: 0;
 }
 
-.participant {
+.participant, .playlist-item {
 	list-style: none;
 	display: flex;
 }
 
 .participant + .participant {
 	margin-top: 1em;
+}
+
+.chosen {
+	background-color: lightgreen;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Button from "../Button";
-import JoinClassForm from "../JoinClassForm";
+import JoinClassForm from "../forms/JoinClassForm";
 
 function Class() {
 	// TODO: add a zoom meeting registrant to zoom meeting with this id
