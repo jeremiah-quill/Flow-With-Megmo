@@ -1,4 +1,5 @@
 const express = require("express");
+// const routes = require("./controllers");
 const fetch = require("node-fetch");
 const app = express();
 const jwt = require("jsonwebtoken");
@@ -15,6 +16,9 @@ const gateway = new braintree.BraintreeGateway({
 	publicKey: "yxrbz56q2p2fdrny",
 	privateKey: "226d49d29c0a7bfa800fb1af34e48e8e",
 });
+
+// app.use(routes);
+
 
 app.post("/checkout", (req, res) => {
 	// below is per braintree docs
@@ -42,7 +46,7 @@ app.post("/checkout", (req, res) => {
 });
 
 // Create a new yoga class
-app.post("/api", (req, res) => {
+app.post("/api/zoom/create-class", (req, res) => {
 	// Get new JWT
 	const config = {
 		APIKey: process.env.ZOOM_KEY,

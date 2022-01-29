@@ -2,47 +2,11 @@ import React, { useEffect, useState } from "react";
 import dropin from "braintree-web-drop-in";
 
 export default function BraintreeDropIn({
-	setIsPaymentSuccess,
-	formSubmitted,
-	setFormSubmitted
+	setBraintreeInstance,
+	braintreeInstance,
 }) {
 	// TODO: do I need to put this on the backend?
 	const tokenizedKey = "sandbox_9qj522s2_ymtkdnwk4zxckp3y";
-
-	const [braintreeInstance, setBraintreeInstance] = useState(undefined);
-
-	const pay = () => {
-		// once braintree instance is set, we get the payment method (from where?) and send it to the back end to complete the transaction
-		if (braintreeInstance) {
-			braintreeInstance.requestPaymentMethod((error, payload) => {
-				if (error) {
-					console.error(error);
-				} else {
-					const payment_method_nonce = payload.nonce;
-					// use payment method nonce to send to backend to complete transaction
-					fetch("/checkout", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify({ payment_method_nonce }),
-					})
-						.then((response) => response.json())
-						.then((data) => {
-							// TODO: validate before setting this to true
-							console.log(data)
-							setFormSubmitted(false)
-							setIsPaymentSuccess(true);
-						});
-				}
-			});
-		}
-	};
-
-	if (formSubmitted) {
-		pay();
-		
-	}
 
 	useEffect(() => {
 		// TODO: on page load?
@@ -76,9 +40,5 @@ export default function BraintreeDropIn({
 		}
 	}, []);
 
-
-	return (
-		<div className="braintree-container">
-		</div>
-	);
+	return <div className="braintree-container"></div>;
 }

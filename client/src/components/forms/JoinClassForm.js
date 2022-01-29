@@ -4,11 +4,11 @@ import BraintreeDropIn from "../BraintreeDropIn";
 
 import TextField from "@mui/material/TextField";
 
-function JoinClassForm({ meetingId }) {
+function JoinClassForm({ meetingId, isPaymentSuccess, setIsPaymentSuccess, formSubmitted, setFormSubmitted, setJoinClassSuccess }) {
     let navigate = useNavigate();
 
-	const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
-	const [formSubmitted, setFormSubmitted] = useState(false);
+	// const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
+	// const [formSubmitted, setFormSubmitted] = useState(false);
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
@@ -34,17 +34,18 @@ function JoinClassForm({ meetingId }) {
 				// TODO: Get back meeting details to add to state/re-render UI
 				// TODO: validate if api call was successful, if it was setIsJoinSuccess to true, otherwise false
 				console.log(data)
-				navigate("/classes");
+				// navigate("/classes");
+				setJoinClassSuccess(true)
 			});
 	};
 
 	useEffect(() => {
 		if (isPaymentSuccess === true) {
-			// TODO: no form validation...maybe bring in braintree to this component to share that knowledge?
+			// TODO: validation on joinClass
 			joinClass(firstName, lastName, email, meetingId);
-			// setFirstName("");
-			// setLastName("");
-			// setEmail("");
+			setFirstName("");
+			setLastName("");
+			setEmail("");
 		}
 	}, [isPaymentSuccess]);
 
@@ -90,11 +91,6 @@ function JoinClassForm({ meetingId }) {
 				margin="dense"
 			/>
 			<div id={"braintree-drop-in-div"} />
-			<BraintreeDropIn
-				setIsPaymentSuccess={setIsPaymentSuccess}
-				formSubmitted={formSubmitted}
-				setFormSubmitted={setFormSubmitted}
-			/>
 			<input
 				className={"braintreePayButton"}
 				type="submit"

@@ -45,7 +45,7 @@ function Dashboard() {
 			},
 		};
 		// Send post request to express server with data from form
-		fetch("/api", {
+		fetch("/api/zoom/create-class", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

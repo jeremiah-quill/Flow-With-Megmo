@@ -388,7 +388,7 @@ fieldset {
 
 .modal-content {
 	display: flex;
-	align-items: center;
+	/* align-items: center; */
 	justify-content: center;
 	flex: 1;
 	overflow-y: scroll;
@@ -416,4 +416,16 @@ fieldset {
 
 .chosen {
 	background-color: lightgreen;
+}
+
+/* Toast */
+
+.toast {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: white;
+	color: black;
+	font-weight: bold;
+	z-index: 2000;
 }

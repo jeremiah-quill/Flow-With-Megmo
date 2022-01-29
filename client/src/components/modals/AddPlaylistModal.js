@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+// let fetched = playlistsResponse.data.items;
+
+// 				// loop through playlists, if yoga class playlist_id matches id of playlist, make playlist green to show it has been chosen for that class
+// 				const checkedPlaylists = fetched.map((playlist) =>
+// 					playlist.id === yogaClass.playlist_id
+// 						? { ...playlist, chosen: true }
+// 						: { ...playlist, chosen: false }
+// 				);
+
 function AddPlaylistModal({ yogaClass }) {
 	const [playlists, setPlaylists] = useState([]);
 
-	useEffect(() => {
+	const getPlaylists = () => {
 		axios("https://accounts.spotify.com/api/token", {
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded",
@@ -24,18 +33,13 @@ function AddPlaylistModal({ yogaClass }) {
 				headers: { Authorization: "Bearer " + tokenResponse.data.access_token },
 			}).then((playlistsResponse) => {
 				console.log(playlistsResponse.data.items);
-
-				let fetched = playlistsResponse.data.items;
-
-				// loop through playlists, if yoga class playlist_id matches id of playlist, make playlist green to show it has been chosen for that class
-				const checkedPlaylists = fetched.map((playlist) =>
-					playlist.id === yogaClass.playlist_id
-						? { ...playlist, chosen: true }
-						: { ...playlist, chosen: false }
-				);
-				setPlaylists(checkedPlaylists);
+				setPlaylists(playlistsResponse.data.items);
 			});
 		});
+	};
+
+	useEffect(() => {
+		getPlaylists();
 	}, []);
 
 	return (
