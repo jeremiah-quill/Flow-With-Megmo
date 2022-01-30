@@ -1,43 +1,40 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
+// Import our search method
+import zoom from "../../utils/API";
+import { useNavigate } from "react-router-dom";
 
 // TODO: should this component have less logic?
 // TODO: validate form on front end
-function JoinClassForm({ meetingId, isPaymentSuccess, setFormSubmitted, setJoinClassSuccess }) {
+function JoinClassForm({
+	meetingId,
+	isPaymentSuccess,
+	setFormSubmitted,
+	// setJoinClassSuccess,
+}) {
+	const navigate = useNavigate();
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 
-	// TODO: move this function
-	const joinClass = (firstName, lastName, email, meetingId) => {
-		const registrantDetails = {
+	// Method to join class and set state
+	const joinClass = async (firstName, lastName, email) => {
+		const data = {
 			firstName: firstName,
 			lastName: lastName,
 			email: email,
 			meetingId: meetingId,
 		};
+		const response = await zoom(data);
+		console.log(response);
 
-		// Send post request to express server with data from form
-		fetch("/api/zoom/join-class", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(registrantDetails),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				// TODO: Get back meeting details to add to state/re-render UI
-				// TODO: validate if api call was successful, if it was setIsJoinSuccess to true, otherwise false
-				console.log(data)
-				setJoinClassSuccess(true)
-			});
+		navigate("/classes");
 	};
 
 	useEffect(() => {
 		if (isPaymentSuccess === true) {
 			// TODO: validation on joinClass
-			joinClass(firstName, lastName, email, meetingId);
+			joinClass(firstName, lastName, email);
 			setFirstName("");
 			setLastName("");
 			setEmail("");
