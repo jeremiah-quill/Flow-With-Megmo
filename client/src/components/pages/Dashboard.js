@@ -32,7 +32,7 @@ function Dashboard() {
 	const [isModal, toggleModal] = useToggle(false);
 	const [modalContent, setModalContent] = useState(null);
 
-	// TODO: is this where I should keep this function? It takes form data and sends it to an express server which makes the zoom api call to create a class.
+	// TODO: move function
 	const createClassApiCall = (newDate, newTime) => {
 		const classData = {
 			topic: "Flow with Megmo",
@@ -52,6 +52,7 @@ function Dashboard() {
 			},
 			body: JSON.stringify(classData),
 		})
+		// TODO: validate response
 			.then((response) => response.json())
 			.then((data) => {
 				// TODO: Get back meeting details to add to state/re-render UI, as well as add to DB.  Should I add it to a central state?
@@ -59,7 +60,6 @@ function Dashboard() {
 			});
 	};
 
-	// Is this way of configuring a modal ok?
 	const configureModal = (content) => {
 		toggleModal();
 		setModalContent(content);

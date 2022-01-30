@@ -1,10 +1,9 @@
 import React from "react";
 
 function DeleteClassModal({ yogaClass }) {
+
 	// TODO: where should I put this delete function?  In some kind of central location?
 	const deleteClassApiCall = (id) => {
-		console.log("deleteClass firing");
-
 		const meetingId = { meetingId: id };
 
 		// Send post request to express server with data from form

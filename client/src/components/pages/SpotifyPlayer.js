@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import Button from "../Button";
 
 function SpotifyPlayer() {
-	// should I pass in id through the URL params or through props?
+	// TODO: should I pass in id through the URL params or through props?
 	let { id } = useParams();
 
 	return (

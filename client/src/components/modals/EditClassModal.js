@@ -2,8 +2,8 @@ import React from "react";
 import EditClassForm from "../forms/EditClassForm";
 
 function EditClassModal({ yogaClass }) {
-	// TODO: move this api call method (that will be called on form submit) somewhere central, but where?
 
+	// TODO: move function
 	const editClassApiCall = (updatedDate, updatedTime, meetingId) => {
 		console.log("editClass firing");
 

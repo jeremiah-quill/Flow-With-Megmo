@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import dropin from "braintree-web-drop-in";
 
+// TODO: validation
 export default function BraintreeDropIn({
 	setBraintreeInstance,
 	braintreeInstance,

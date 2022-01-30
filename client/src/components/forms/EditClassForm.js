@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// TODO: validate so meghan can't send bad data
 function EditClassForm({ values, id, onSubmit }) {
 	const [date, setDate] = useState(values.date);
 	const [time, setTime] = useState(values.time);

@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import BraintreeDropIn from "../BraintreeDropIn";
 import Button from "../Button";
 import JoinClassForm from "../forms/JoinClassForm";
 import Toast from "../Toast";
 
+// TODO: is this how I should manage the booking process?
 function Class() {
-	let navigate = useNavigate();
+	// TODO: should I use this id to pass into form, or pass id through props?
+	let { id } = useParams();
 
 	const [braintreeInstance, setBraintreeInstance] = useState(undefined);
 	const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const [joinClassSuccess, setJoinClassSuccess] = useState(false);
-	// TODO: add a zoom meeting registrant to zoom meeting with this id
-	let { id } = useParams();
 
 	const pay = () => {
-		// once braintree instance is set, we get the payment method (from where?) and send it to the back end to complete the transaction
-		// if (braintreeInstance) {
 		braintreeInstance.requestPaymentMethod((error, payload) => {
 			if (error) {
 				console.error(error);
@@ -35,12 +33,10 @@ function Class() {
 					.then((data) => {
 						// TODO: validate before setting this to true
 						console.log(data);
-						// setFormSubmitted(false)
 						setIsPaymentSuccess(true);
 					});
 			}
 		});
-		// }
 	};
 
 	useEffect(() => {

@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import BraintreeDropIn from "../BraintreeDropIn";
-
 import TextField from "@mui/material/TextField";
 
-function JoinClassForm({ meetingId, isPaymentSuccess, setIsPaymentSuccess, formSubmitted, setFormSubmitted, setJoinClassSuccess }) {
-    let navigate = useNavigate();
-
-	// const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
-	// const [formSubmitted, setFormSubmitted] = useState(false);
+// TODO: should this component have less logic?
+// TODO: validate form on front end
+function JoinClassForm({ meetingId, isPaymentSuccess, setFormSubmitted, setJoinClassSuccess }) {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 
+	// TODO: move this function
 	const joinClass = (firstName, lastName, email, meetingId) => {
 		const registrantDetails = {
 			firstName: firstName,
@@ -34,7 +30,6 @@ function JoinClassForm({ meetingId, isPaymentSuccess, setIsPaymentSuccess, formS
 				// TODO: Get back meeting details to add to state/re-render UI
 				// TODO: validate if api call was successful, if it was setIsJoinSuccess to true, otherwise false
 				console.log(data)
-				// navigate("/classes");
 				setJoinClassSuccess(true)
 			});
 	};

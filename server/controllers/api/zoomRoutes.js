@@ -3,13 +3,6 @@ const jwt = require("jsonwebtoken");
 const fetch = require("node-fetch");
 
 
-
-// get all gifts for testing
-zoomRoutes.get("/", (req, res) => {
-    console.log('hi')
-  res.json('in zoomRoutes root')
-});
-
 // Create a new yoga class
 zoomRoutes.post("/create-class", (req, res) => {
 	// Get new JWT

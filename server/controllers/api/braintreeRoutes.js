@@ -1,5 +1,7 @@
 const braintreeRoutes = require("express").Router();
 const braintree = require("braintree");
+
+// TODO: configure this somewhere else?
 const gateway = new braintree.BraintreeGateway({
 	environment: braintree.Environment.Sandbox,
 	merchantId: "ymtkdnwk4zxckp3y",

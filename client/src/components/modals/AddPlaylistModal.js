@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-// let fetched = playlistsResponse.data.items;
-
-// 				// loop through playlists, if yoga class playlist_id matches id of playlist, make playlist green to show it has been chosen for that class
-// 				const checkedPlaylists = fetched.map((playlist) =>
-// 					playlist.id === yogaClass.playlist_id
-// 						? { ...playlist, chosen: true }
-// 						: { ...playlist, chosen: false }
-// 				);
-
 function AddPlaylistModal({ yogaClass }) {
 	const [playlists, setPlaylists] = useState([]);
 
+	// TODO: move this function
 	const getPlaylists = () => {
 		axios("https://accounts.spotify.com/api/token", {
 			headers: {
@@ -32,6 +24,7 @@ function AddPlaylistModal({ yogaClass }) {
 				method: "GET",
 				headers: { Authorization: "Bearer " + tokenResponse.data.access_token },
 			}).then((playlistsResponse) => {
+				// TODO: validate response
 				console.log(playlistsResponse.data.items);
 				setPlaylists(playlistsResponse.data.items);
 			});
