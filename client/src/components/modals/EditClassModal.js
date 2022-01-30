@@ -13,7 +13,7 @@ function EditClassModal({ yogaClass }) {
 		};
 
 		// Send post request to express server with data from form
-		fetch("/api/edit-class", {
+		fetch("/api/zoom/edit-class", {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json",

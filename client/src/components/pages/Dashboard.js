@@ -11,7 +11,7 @@ import EditClassModal from "../modals/EditClassModal";
 const classData = {
 	currentClasses: [
 		{ date: "2022-01-29", time: "10:00", class_id: 1 },
-		{ date: "2022-02-05", time: "12:00", class_id: "88905731953" },
+		{ date: "2022-02-05", time: "12:00", class_id: "81290956712" },
 		{ date: "2022-02-05", time: "10:00", class_id: 3 },
 		{ date: "2022-02-05", time: "10:00", class_id: 4 },
 	],

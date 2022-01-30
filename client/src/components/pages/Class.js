@@ -24,7 +24,7 @@ function Class() {
 			} else {
 				const payment_method_nonce = payload.nonce;
 				// use payment method nonce to send to backend to complete transaction
-				fetch("/checkout", {
+				fetch("/api/braintree/checkout", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",

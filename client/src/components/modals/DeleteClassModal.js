@@ -8,7 +8,7 @@ function DeleteClassModal({ yogaClass }) {
 		const meetingId = { meetingId: id };
 
 		// Send post request to express server with data from form
-		fetch("/api/delete-class", {
+		fetch("/api/zoom/delete-class", {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",

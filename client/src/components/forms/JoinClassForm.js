@@ -22,7 +22,7 @@ function JoinClassForm({ meetingId, isPaymentSuccess, setIsPaymentSuccess, formS
 		};
 
 		// Send post request to express server with data from form
-		fetch("/api/join-class", {
+		fetch("/api/zoom/join-class", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
