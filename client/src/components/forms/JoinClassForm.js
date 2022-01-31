@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 // Import our search method
-import zoom from "../../utils/API";
+import {zoom} from "../../utils/API";
 import { useNavigate } from "react-router-dom";
 
 // TODO: should this component have less logic?
@@ -10,7 +10,6 @@ function JoinClassForm({
 	meetingId,
 	isPaymentSuccess,
 	setFormSubmitted,
-	// setJoinClassSuccess,
 }) {
 	const navigate = useNavigate();
 	const [firstName, setFirstName] = useState("");
@@ -27,7 +26,6 @@ function JoinClassForm({
 		};
 		const response = await zoom(data);
 		console.log(response);
-
 		navigate("/classes");
 	};
 

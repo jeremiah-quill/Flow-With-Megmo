@@ -257,6 +257,7 @@ iframe {
     justify-content: center;
     /* padding-top: 5em; */
     width: 100%;
+	padding-top: 3em;
 }
 
 .absolute {

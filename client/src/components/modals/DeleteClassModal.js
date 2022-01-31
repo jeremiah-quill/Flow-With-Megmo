@@ -2,7 +2,7 @@ import React from "react";
 
 function DeleteClassModal({ yogaClass }) {
 
-	// TODO: where should I put this delete function?  In some kind of central location?
+	// TODO: refactor with axios and move to API folder
 	const deleteClassApiCall = (id) => {
 		const meetingId = { meetingId: id };
 
@@ -21,6 +21,7 @@ function DeleteClassModal({ yogaClass }) {
 				console.log(data);
 			});
 	};
+
 
 	return (
 		<div className="modal-card">

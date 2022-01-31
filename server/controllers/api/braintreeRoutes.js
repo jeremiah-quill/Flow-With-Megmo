@@ -17,7 +17,7 @@ braintreeRoutes.post("/checkout", (req, res) => {
 		{
 			amount: "10.00",
 			paymentMethodNonce: nonceFromTheClient,
-			// TODO: what does this do?
+			// TODO: look through docs to figure out below and see if there are any more configurations I want to add
 			// deviceData: deviceDataFromTheClient,
 			options: {
 				submitForSettlement: true,

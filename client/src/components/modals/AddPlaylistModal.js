@@ -1,35 +1,17 @@
 import React, { useEffect, useState } from "react";
+import {teacherPlaylists, spotifyToken} from "../../utils/API";
 import axios from "axios";
 
 function AddPlaylistModal({ yogaClass }) {
 	const [playlists, setPlaylists] = useState([]);
 
-	// TODO: move this function
-	const getPlaylists = () => {
-		axios("https://accounts.spotify.com/api/token", {
-			headers: {
-				"Content-Type": "application/x-www-form-urlencoded",
-				Authorization:
-					"Basic " +
-					btoa(
-						"6e4383b4262d4a5cb41c9e0e90f9e100" +
-							":" +
-							"864f85c84587428b8871708915e1f2c7"
-					),
-			},
-			data: "grant_type=client_credentials",
-			method: "POST",
-		}).then((tokenResponse) => {
-			axios("https://api.spotify.com/v1/users/mmm5660/playlists?limit=50", {
-				method: "GET",
-				headers: { Authorization: "Bearer " + tokenResponse.data.access_token },
-			}).then((playlistsResponse) => {
-				// TODO: validate response
-				console.log(playlistsResponse.data.items);
-				setPlaylists(playlistsResponse.data.items);
-			});
-		});
-	};
+	// TODO: error handling
+	const getPlaylists = async () => {
+		const token = await spotifyToken();
+		const playlists = await teacherPlaylists(token);
+		setPlaylists(playlists.data.items)
+	}
+
 
 	useEffect(() => {
 		getPlaylists();

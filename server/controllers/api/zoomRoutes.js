@@ -1,20 +1,10 @@
 const zoomRoutes = require("express").Router();
-const jwt = require("jsonwebtoken");
 const fetch = require("node-fetch");
-
+const { getZoomJWT } = require("../../helpers.js");
 
 // Create a new yoga class
 zoomRoutes.post("/create-class", (req, res) => {
-	// Get new JWT
-	const config = {
-		APIKey: process.env.ZOOM_KEY,
-		APISecret: process.env.ZOOM_SECRET,
-	};
-	const payload = {
-		iss: config.APIKey,
-		exp: new Date().getTime() + 5000,
-	};
-	const token = jwt.sign(payload, config.APISecret);
+	const token = getZoomJWT();
 
 	// Create new zoom meeting
 	fetch("https://api.zoom.us/v2/users/me/meetings", {
@@ -34,16 +24,7 @@ zoomRoutes.post("/create-class", (req, res) => {
 
 // Edit an existing yoga class
 zoomRoutes.patch("/edit-class", (req, res) => {
-	// Get new JWT
-	const config = {
-		APIKey: process.env.ZOOM_KEY,
-		APISecret: process.env.ZOOM_SECRET,
-	};
-	const payload = {
-		iss: config.APIKey,
-		exp: new Date().getTime() + 5000,
-	};
-	const token = jwt.sign(payload, config.APISecret);
+	const token = getZoomJWT();
 
 	const updatedClassData = {
 		start_time: req.body.start_time,
@@ -73,16 +54,7 @@ zoomRoutes.patch("/edit-class", (req, res) => {
 
 // Delete a class
 zoomRoutes.delete("/delete-class", (req, res) => {
-	// Get new JWT
-	const config = {
-		APIKey: process.env.ZOOM_KEY,
-		APISecret: process.env.ZOOM_SECRET,
-	};
-	const payload = {
-		iss: config.APIKey,
-		exp: new Date().getTime() + 5000,
-	};
-	const token = jwt.sign(payload, config.APISecret);
+	const token = getZoomJWT();
 
 	const meetingId = req.body.meetingId;
 
@@ -110,16 +82,7 @@ zoomRoutes.delete("/delete-class", (req, res) => {
 
 // Add a meeting registrant
 zoomRoutes.post("/join-class", (req, res) => {
-	// Get new JWT
-	const config = {
-		APIKey: process.env.ZOOM_KEY,
-		APISecret: process.env.ZOOM_SECRET,
-	};
-	const payload = {
-		iss: config.APIKey,
-		exp: new Date().getTime() + 5000,
-	};
-	const token = jwt.sign(payload, config.APISecret);
+	const token = getZoomJWT();
 
 	console.log(req.body);
 
@@ -149,6 +112,5 @@ zoomRoutes.post("/join-class", (req, res) => {
 			res.json(data);
 		});
 });
-
 
 module.exports = zoomRoutes;
