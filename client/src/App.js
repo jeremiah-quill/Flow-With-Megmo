@@ -20,18 +20,15 @@ function App() {
 		return pathArr.filter((el) => el !== "").length;
 	};
 	
-	const [locationState, setLocationState] = useState(getPathDepth(location)); //
+	const [prevPath, setPrevPath] = useState(null); //
 
+	// every time location changes, set prev path and compare it with the new path to determine if we are going left to right or right to left
 	useEffect(() => {
-		location.state = locationState;
-
-		setLocationState(getPathDepth(location));
-		// console.log(`old location: ${location.state} newlocation: ${getPathDepth(location)}`)
-		if (getPathDepth(location) - location.state >= 0) {
-			// console.log('right!')
+		setPrevPath(getPathDepth(location));
+		
+		if (getPathDepth(location) - prevPath >= 0) {
 			setDirection("right");
 		} else {
-			// console.log('left!')
 			setDirection("left");
 		}
 	}, [location]);

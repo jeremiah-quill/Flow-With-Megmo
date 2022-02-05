@@ -13,7 +13,7 @@ a {
 }
 
 .back-button {
-	position: absolute;
+	position: fixed;
 	top: 5px;
 	left: 5px;
 	z-index: 1000;
@@ -120,6 +120,7 @@ a {
 	justify-content: space-between;
 	align-items: center;
 	flex-direction: column;
+	overflow-y: scroll;
 }
 
 .classes,
