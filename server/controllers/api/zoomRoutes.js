@@ -23,7 +23,7 @@ zoomRoutes.post("/create-class", (req, res) => {
 });
 
 // Edit an existing yoga class
-zoomRoutes.patch("/edit-class", (req, res) => {
+zoomRoutes.post("/edit-class", (req, res) => {
 	const token = getZoomJWT();
 
 	const updatedClassData = {
@@ -53,12 +53,12 @@ zoomRoutes.patch("/edit-class", (req, res) => {
 });
 
 // Delete a class
-zoomRoutes.delete("/delete-class", (req, res) => {
+zoomRoutes.post("/delete-class", (req, res) => {
 	const token = getZoomJWT();
 
 	const meetingId = req.body.meetingId;
 
-	// Edit a zoom meeting
+	// Delete a zoom meeting
 	fetch(
 		`https://api.zoom.us/v2/meetings/${meetingId}?cancel_meeting_reminder=true`,
 		{

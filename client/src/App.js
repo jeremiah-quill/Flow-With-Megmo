@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/pages/Navbar.js";
 import Classes from "./components/pages/Classes.js";
 import Music from "./components/pages/Music.js";
@@ -13,13 +13,14 @@ import Dashboard from "./components/pages/Dashboard";
 function App() {
 	const location = useLocation();
 
-	const [direction, setDirection] = useState(null);
+	const [direction, setDirection] = useState(null); //
 
 	const getPathDepth = (location) => {
 		let pathArr = location.pathname.split("/");
 		return pathArr.filter((el) => el !== "").length;
 	};
-	const [locationState, setLocationState] = useState(getPathDepth(location));
+	
+	const [locationState, setLocationState] = useState(getPathDepth(location)); //
 
 	useEffect(() => {
 		location.state = locationState;

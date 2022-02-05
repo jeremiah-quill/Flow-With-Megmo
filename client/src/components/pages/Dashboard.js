@@ -10,8 +10,8 @@ import EditClassModal from "../modals/EditClassModal";
 
 const classData = {
 	currentClasses: [
-		{ date: "2022-01-29", time: "10:00", class_id: 1 },
-		{ date: "2022-02-05", time: "12:00", class_id: "81290956712" },
+		{ date: "2022-01-29", time: "10:00", class_id: "83354584725" },
+		{ date: "2022-02-05", time: "12:00", class_id: 2 },
 		{ date: "2022-02-05", time: "10:00", class_id: 3 },
 		{ date: "2022-02-05", time: "10:00", class_id: 4 },
 	],
@@ -32,34 +32,6 @@ function Dashboard() {
 	const [isModal, toggleModal] = useToggle(false);
 	const [modalContent, setModalContent] = useState(null);
 
-	// TODO: move function
-	const createClassApiCall = (newDate, newTime) => {
-		const classData = {
-			topic: "Flow with Megmo",
-			type: 2,
-			start_time: `${newDate}T${newTime}:00`,
-			duration: 60,
-			settings: {
-				approval_type: 0,
-				registration_type: 2,
-			},
-		};
-		// Send post request to express server with data from form
-		fetch("/api/zoom/create-class", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(classData),
-		})
-		// TODO: validate response
-			.then((response) => response.json())
-			.then((data) => {
-				// TODO: Get back meeting details to add to state/re-render UI, as well as add to DB.  Should I add it to a central state?
-				console.log(data);
-			});
-	};
-
 	const configureModal = (content) => {
 		toggleModal();
 		setModalContent(content);
@@ -73,7 +45,7 @@ function Dashboard() {
 			<h1>Welcome back Yogi!</h1>
 			{/* TODO: where should I get the stats I show in StatsOverview? fetch them from database in an onEffect and then pass them in, or fetch them within StatsOverview*/}
 			<StatsOverview />
-			<CreateClassForm onSubmit={createClassApiCall} />
+			<CreateClassForm />
 			<h2>Scheduled</h2>
 			{/* TODO: should this list be a component */}
 			<ul className="current-class-list">

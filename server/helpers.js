@@ -1,7 +1,5 @@
 const jwt = require("jsonwebtoken");
 
-
-
 const getZoomJWT = () => {
 	// Get new JWT
 	const config = {

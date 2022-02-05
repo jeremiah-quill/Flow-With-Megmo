@@ -1,38 +1,34 @@
 import React, { useState, useEffect } from "react";
-import TextField from "@mui/material/TextField";
-// Import our search method
-import {zoom} from "../../utils/API";
+import { zoomJoin } from "../../utils/API";
 import { useNavigate } from "react-router-dom";
 
 // TODO: should this component have less logic?
 // TODO: validate form on front end
-function JoinClassForm({
-	meetingId,
-	isPaymentSuccess,
-	setFormSubmitted,
-}) {
+function JoinClassForm({ meetingId, isPaymentSuccess, setFormSubmitted }) {
 	const navigate = useNavigate();
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 
-	// Method to join class and set state
-	const joinClass = async (firstName, lastName, email) => {
+	const handleJoinClass = async (firstName, lastName, email) => {
 		const data = {
 			firstName: firstName,
 			lastName: lastName,
 			email: email,
 			meetingId: meetingId,
 		};
-		const response = await zoom(data);
+		// add student to class
+		const response = await zoomJoin(data);
 		console.log(response);
-		navigate("/classes");
+		console.log(`join class response: ${response}`)
+		// TODO: add student to DB if api call was successful
+		navigate("/classes"); // toast to show success
 	};
 
 	useEffect(() => {
 		if (isPaymentSuccess === true) {
-			// TODO: validation on joinClass
-			joinClass(firstName, lastName, email);
+			// TODO: validation on handleJoinClass
+			handleJoinClass(firstName, lastName, email);
 			setFirstName("");
 			setLastName("");
 			setEmail("");
@@ -52,33 +48,20 @@ function JoinClassForm({
 			id={meetingId}
 		>
 			<input autoComplete="false" type="hidden" />
-			<TextField
-				style={{
-					color: "white",
-				}}
-				sx={{ input: { color: "white" } }}
-				size="small"
-				id="outlined-basic"
-				label="First Name"
-				variant="outlined"
+			<input
+				type="text"
+				placeholder="First Name"
 				onChange={(e) => setFirstName(e.target.value)}
-				margin="dense"
 			/>
-			<TextField
-				size="small"
-				id="outlined-basic"
-				label="Last Name"
-				variant="outlined"
+			<input
+				type="text"
+				placeholder="Last Name"
 				onChange={(e) => setLastName(e.target.value)}
-				margin="dense"
 			/>
-			<TextField
-				size="small"
-				id="outlined-basic"
-				label="Email"
-				variant="outlined"
+			<input
+				type="email"
+				placeholder="Email"
 				onChange={(e) => setEmail(e.target.value)}
-				margin="dense"
 			/>
 			<div id={"braintree-drop-in-div"} />
 			<input

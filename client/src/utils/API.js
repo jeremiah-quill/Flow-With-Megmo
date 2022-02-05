@@ -7,9 +7,25 @@ const { REACT_APP_BASEURL, REACT_APP_APIKEY } = process.env;
 const zoomHeaders = {
 	Authorization: "Bearer my-token",
 };
+
 // create class
-const zoom = (data) => {
+const zoomCreate = (data) => {
+	return axios.post(`/api/zoom/create-class`, data, { zoomHeaders });
+};
+
+// create class
+const zoomJoin = (data) => {
 	return axios.post(`/api/zoom/join-class`, data, { zoomHeaders });
+};
+
+// delete class
+const zoomDelete = (data) => {
+	return axios.post(`/api/zoom/delete-class`, data, { zoomHeaders });
+};
+
+// edit class
+const zoomEdit = (data) => {
+	return axios.post(`/api/zoom/edit-class`, data, { zoomHeaders });
 };
 
 // get spotify token
@@ -39,4 +55,4 @@ const teacherPlaylists = (token) => {
 	});
 };
 
-export { zoom, spotifyToken, teacherPlaylists };
+export { zoomCreate, zoomJoin, spotifyToken, teacherPlaylists, zoomDelete, zoomEdit };

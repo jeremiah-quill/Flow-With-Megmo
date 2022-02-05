@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
 	return (
-		<div className="navbar absolute">
+		<div className="navbar page">
 			<ul className="navbar-list">
 				<li className="classes-link menu-link">
 					<Link to="/classes">Available Classes</Link>

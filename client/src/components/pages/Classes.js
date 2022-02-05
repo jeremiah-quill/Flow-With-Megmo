@@ -1,41 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button";
 import ClassCard from "../ClassCard";
-import Badge from "@mui/material/Badge";
 
 // TODO: should I get this data from centralized state, call database directly from useEffect, or should it be passed in by App component?
 let data = [
-	{ date: "2022-01-29", time: "10:00", class_id: "89839316545" },
+	{ date: "2022-01-29", time: "10:00", class_id: "87206835603" },
 	{ date: "2022-01-22", time: "10:30", class_id: 2 },
 	{ date: "2022-02-05", time: "10:00", class_id: 3 },
 	{ date: "2022-02-05", time: "10:00", class_id: 4 },
 ];
+
 function Classes() {
+	// const [classes, setClasses] = useState([])
+
+	// useEffect(() => {
+	// 	// retrieve classes from DB
+	// },[])
+
+
 	return (
-		<div className="classes absolute">
+		<div className="classes page">
 			<Button title={"Home"} path={"/"} />
-			<div>
 				<ul className="class-list">
 					{data.map((yogaClass, idx) => (
-						<Badge
-							key={idx}
-							anchorOrigin={{
-								vertical: "top",
-								horizontal: "left",
-							}}
-							badgeContent={"$15"}
-							color="primary"
-						>
-							<li>
+							<li className="class-list-item" key={idx}>
 								<Link to={`/classes/${yogaClass.class_id}`}>
 									<ClassCard date={yogaClass.date} time={yogaClass.time} />
 								</Link>
 							</li>
-						</Badge>
 					))}
 				</ul>
-			</div>
 		</div>
 	);
 }

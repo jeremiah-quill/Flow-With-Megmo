@@ -2,18 +2,18 @@ import { useParams } from "react-router-dom";
 import Button from "../Button";
 
 function SpotifyPlayer() {
-	// TODO: should I pass in id through the URL params or through props?
 	let { id } = useParams();
 
 	return (
-		<div className="absolute spotify-player">
+		<div className="page spotify-player">
 			<Button path={"/music"} />
 			<iframe
 				src={`https://open.spotify.com/embed/playlist/${id}?utm_source=generator&theme=0`}
 				width="100%"
 				height="380"
 				frameBorder="0"
-				allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+				// this property lets us play the full songs rather than 30 sec clips
+				allow="encrypted-media"
 			></iframe>
 		</div>
 	);

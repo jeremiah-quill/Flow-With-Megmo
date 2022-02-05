@@ -1,13 +1,28 @@
 import React, { useState } from "react";
+import { zoomCreate } from "../../utils/API";
 
 // TODO: validate so meghan can't send bad data
-function CreateClassForm({ onSubmit }) {
+function CreateClassForm() {
 	const [date, setDate] = useState("");
 	const [time, setTime] = useState("");
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		onSubmit(date, time);
+
+		const classData = {
+			topic: "Flow with Megmo",
+			type: 2,
+			start_time: `${date}T${time}:00`,
+			duration: 60,
+			settings: {
+				approval_type: 0,
+				registration_type: 2,
+			},
+		};
+
+		const classResponse = await zoomCreate(classData)
+		console.log(`classResponse: ${classResponse}`)
+
 		setDate("");
 		setTime("");
 	};

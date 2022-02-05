@@ -3,7 +3,7 @@ import Button from "../Button";
 
 function Bookings() {
 	return (
-		<div className="bookings absolute">
+		<div className="bookings page">
 			<Button path={"/"} />
 			Bookings
 		</div>

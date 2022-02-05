@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {teacherPlaylists, spotifyToken} from "../../utils/API";
-import axios from "axios";
 
 function AddPlaylistModal({ yogaClass }) {
 	const [playlists, setPlaylists] = useState([]);

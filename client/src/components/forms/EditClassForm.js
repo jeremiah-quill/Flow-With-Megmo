@@ -1,13 +1,19 @@
 import React, { useState } from "react";
+import { zoomEdit } from "../../utils/API";
 
 // TODO: validate so meghan can't send bad data
-function EditClassForm({ values, id, onSubmit }) {
+function EditClassForm({ values, id}) {
 	const [date, setDate] = useState(values.date);
 	const [time, setTime] = useState(values.time);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		onSubmit(date, time, id);
+		const classData = {
+			start_time: `${date}T${time}:00`,
+			meetingId: id,
+		};
+		const editResponse = await zoomEdit(classData)
+		console.log(`classResponse: ${editResponse}`)
 		setDate("");
 		setTime("");
 	};
@@ -25,7 +31,7 @@ function EditClassForm({ values, id, onSubmit }) {
 					value={time}
 					onChange={(e) => setTime(e.target.value)}
 				/>
-				<input type="submit" value="Edit Class" />
+				{/* <input type="submit" value="Edit Class" /> */}
 			</form>
 		</div>
 	);
