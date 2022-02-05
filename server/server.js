@@ -4,6 +4,7 @@ const { ApolloServer } = require('apollo-server-express');
 const routes = require("./controllers");
 const app = express();
 
+const PORT = process.env.PORT || 3001;
 
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -15,16 +16,23 @@ const server = new ApolloServer({
 	resolvers,
   });
 
-server.applyMiddleware({ app });
+
+const configServer = async () => {
+	await server.start();
+	server.applyMiddleware({ app });
+}
+
+
+configServer()
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(routes);
 
-app.listen(3001, () => {
-	console.log("listening on port 3001");
-});
+// app.listen(3001, () => {
+// 	console.log("listening on port 3001");
+// });
 
 db.once('open', () => {
 	app.listen(PORT, () => {

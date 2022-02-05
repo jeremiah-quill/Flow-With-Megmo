@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useToggle from "../../hooks/useToggle";
 import CreateClassForm from "../forms/CreateClassForm";
 import StatsOverview from "../StatsOverview";
@@ -7,6 +7,10 @@ import ListMembersModal from "../modals/ListMembersModal";
 import AddPlaylistModal from "../modals/AddPlaylistModal";
 import DeleteClassModal from "../modals/DeleteClassModal";
 import EditClassModal from "../modals/EditClassModal";
+import { QUERY_TEACHERS } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
+
+
 
 const classData = {
 	currentClasses: [
@@ -29,13 +33,22 @@ const classData = {
 };
 
 function Dashboard() {
+	console.log(`start`)
+
+	const { loading, data } = useQuery(QUERY_TEACHERS);
+	const teachers = data?.teachers || [];
+
 	const [isModal, toggleModal] = useToggle(false);
 	const [modalContent, setModalContent] = useState(null);
+
 
 	const configureModal = (content) => {
 		toggleModal();
 		setModalContent(content);
 	};
+
+	console.log(teachers)
+	console.log(`end`)
 
 	return (
 		<div className="dashboard">

@@ -9,6 +9,14 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import SpotifyPlayer from "./components/pages/SpotifyPlayer";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Dashboard from "./components/pages/Dashboard";
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+
+const client = new ApolloClient({
+	uri: '/graphql',
+	cache: new InMemoryCache(),
+  });
+  
 
 function App() {
 	const location = useLocation();
@@ -34,7 +42,8 @@ function App() {
 	}, [location]);
 
 	return (
-		<>
+		    <ApolloProvider client={client}>
+
 			<div className={direction}>
 				<TransitionGroup component={null}>
 					<CSSTransition key={location.key} classNames={"slide"} timeout={500}>
@@ -52,8 +61,8 @@ function App() {
 					</CSSTransition>
 				</TransitionGroup>
 			</div>
+			</ApolloProvider>
 
-		</>
 	);
 }
 

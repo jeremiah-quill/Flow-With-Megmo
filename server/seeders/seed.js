@@ -8,7 +8,7 @@ db.once('open', async () => {
     await Teacher.create(teacherSeeds);
 
     console.log('all done!');
-    process.exit(0);
+    // process.exit(0);
   } catch (err) {
     throw err;
   }
