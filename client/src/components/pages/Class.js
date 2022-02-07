@@ -44,6 +44,7 @@ function Class() {
 
 		return (
 			<div className="class page">
+				<div className="page-content">
 				{/* <Toast
 					show={joinClassSuccess}
 					message={"Successfully signed up for class!"}
@@ -61,6 +62,7 @@ function Class() {
 					setBraintreeInstance={setBraintreeInstance}
 					braintreeInstance={braintreeInstance}
 				/>
+				</div>
 			</div>
 		);
 }

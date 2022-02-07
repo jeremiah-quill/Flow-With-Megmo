@@ -117,9 +117,9 @@ a {
 	right: 0;
 	bottom: 0;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	flex-direction: column;
+	/* justify-content: space-between; */
+	/* align-items: center; */
+	/* flex-direction: column; */
 	overflow-y: scroll;
 }
 
@@ -165,6 +165,15 @@ a {
 	margin-top: 1em;
 }
 
+.page-content {
+	margin: 0 auto;
+	width: 100%;
+}
+
+.registrant-form {
+	margin: 0 auto;
+}
+
 
 .card {
 	border: 1px solid black;
@@ -172,13 +181,23 @@ a {
 }
 
 .registrant-form {
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: center; */
 	/* padding-top: 5em; */
-	width: 100%;
-	padding-top: 3em;
+	max-width: 300px;
+	/* padding-top: 3em; */
 }
+
+.registrant-form input {
+	width: 100%;
+	/* max-width: 300px; */
+}
+
+/* .class {
+	display: flex;
+	justify-content: center;
+} */
 
 
 /* Music */
@@ -192,7 +211,11 @@ iframe {
 
 /* Braintree payment processor */
 .braintree-container {
-	max-width: 400px;
+	max-width: 300px;
+}
+
+#braintree-drop-in-div {
+	max-width: 300px;
 }
 
 .braintree-heading {
@@ -203,7 +226,7 @@ iframe {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
+	/* width: 100%; */
 	padding: 2em 2em 0 2em;
 }
 
