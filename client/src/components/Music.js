@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Button from "../Button";
-import ClassCard from "../ClassCard";
+import Button from "./Button";
+import ClassCard from "./ClassCard";
 
 // TODO: should I get this data from centralized state, call database directly from useEffect, or should it be passed in by App component?
 const data = [
@@ -19,8 +19,8 @@ function Music() {
 	// }, [])
 
 	return (
-		<div className="music page">
-			<Button path={"/"} />
+		<div className="music view">
+			{/* <Button path={"/"} /> */}
 			{/* <div> */}
 				<ul className="class-list">
 					{data.map((yogaClass, idx) => (

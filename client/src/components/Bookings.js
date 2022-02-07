@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "../Button";
+import Button from "./Button";
 
 function Bookings() {
 	return (
-		<div className="bookings page">
-			<Button path={"/"} />
+		<div className="bookings view">
+			{/* <Button path={"/"} /> */}
 			Bookings
 		</div>
 	);

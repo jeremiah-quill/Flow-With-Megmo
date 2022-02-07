@@ -1,0 +1,13 @@
+.class-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+}
+
+.class-list-item {
+    width: 100%;
+    text-align: center;
+    border: 1px solid red;
+    padding: 1em 0;
+}

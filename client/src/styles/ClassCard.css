@@ -1,0 +1,7 @@
+.class-card-content {
+    display: flex;
+}
+
+.class-card-content > * {
+    flex: 1;
+}
