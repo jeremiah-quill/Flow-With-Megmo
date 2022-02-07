@@ -1,0 +1,21 @@
+.navbar {
+	/* position: fixed;
+	bottom: 0; */
+	width: 100%;
+	/* padding: 1em; */
+	background-color: lightblue;
+    display: flex;
+}
+
+/* .navbar-list {
+    list-style: none;
+    display: flex;
+} */
+
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1.5em;
+    flex: 1;
+}

@@ -1,0 +1,25 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+.main-container {
+	height: 100%;
+}
+
+.view {
+	border: 1px solid black;
+	height: 100%;
+}
+
+
