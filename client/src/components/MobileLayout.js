@@ -3,22 +3,21 @@ import Navbar from "./Navbar";
 import Classes from "./Classes.js";
 import Music from "./Music.js";
 import Bookings from "./Bookings.js";
-import '../styles/MobileLayout.css'
+import View from "./View.js";
+import "../styles/MobileLayout.css";
 
 function MobileLayout() {
 	const [mobileView, setMobileView] = useState("classes");
 
 	return (
-
 		<div className="mobile-layout">
 			{mobileView === "classes" ? (
-				<Classes />
+				<View title={'Available Classes'} content={<Classes />} />
 			) : mobileView === "music" ? (
-				<Music />
+				<View title={'Previous Classes'}  content={<Music />} />
 			) : (
-				<Bookings />
+				<View title={'Contact'}  content={<Bookings />} />
 			)}
-
 			<Navbar setMobileView={setMobileView} />
 		</div>
 	);

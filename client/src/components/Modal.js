@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/Modal.css"
 
 function Modal({show, toggleModal, children }) {
 

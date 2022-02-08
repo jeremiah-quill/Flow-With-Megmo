@@ -7,6 +7,11 @@ function DeleteClassModal({ yogaClass }) {
 	const handleDelete = async (id) => {
 		const meetingId = {meetingId: id}
 		const deleteResponse = await zoomDelete(meetingId)
+		// TODO: graphQL mutation to delete class in database
+
+
+
+
 		console.log(deleteResponse)
 	}
 

@@ -6,11 +6,18 @@ const { REACT_APP_BASEURL, REACT_APP_APIKEY } = process.env;
 // Zoom
 const zoomHeaders = {
 	Authorization: "Bearer my-token",
+	"Content-Type": "application/json",
 };
 
 // create class
-const zoomCreate = (data) => {
-	return axios.post(`/api/zoom/create-class`, data, { zoomHeaders });
+const zoomCreate = async (data) => {
+	const response = await axios.post(`/api/zoom/create-class`, data, {
+		zoomHeaders,
+	});
+
+	const newClassDetails = response.data;
+
+	return JSON.stringify(newClassDetails);
 };
 
 // create class
@@ -55,4 +62,11 @@ const teacherPlaylists = (token) => {
 	});
 };
 
-export { zoomCreate, zoomJoin, spotifyToken, teacherPlaylists, zoomDelete, zoomEdit };
+export {
+	zoomCreate,
+	zoomJoin,
+	spotifyToken,
+	teacherPlaylists,
+	zoomDelete,
+	zoomEdit,
+};

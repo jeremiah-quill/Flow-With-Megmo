@@ -19,7 +19,7 @@ const client = new ApolloClient({
 
 function App() {
 	const [width, setWidth] = React.useState(window.innerWidth);
-	const breakpoint = 620;
+	const breakpoint = 765;
 
 	useEffect(() => {
 		const handleWindowResize = () => setWidth(window.innerWidth);

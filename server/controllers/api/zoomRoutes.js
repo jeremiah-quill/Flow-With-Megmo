@@ -15,6 +15,7 @@ zoomRoutes.post("/create-class", (req, res) => {
 		},
 		body: JSON.stringify(req.body),
 	})
+	// TODO: check status here?
 		.then((response) => response.json())
 		.then((data) => {
 			// TODO: Extract necessary meeting details, add to database, and send meeting details to front end to display to admin

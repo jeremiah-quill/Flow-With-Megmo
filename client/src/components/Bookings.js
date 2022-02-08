@@ -3,7 +3,7 @@ import Button from "./Button";
 
 function Bookings() {
 	return (
-		<div className="bookings view">
+		<div className="bookings">
 			{/* <Button path={"/"} /> */}
 			Bookings
 		</div>

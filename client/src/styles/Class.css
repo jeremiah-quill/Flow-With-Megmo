@@ -1,0 +1,38 @@
+.class-header {
+    font-size: 2em;
+    text-align: center;
+    padding-top: 2em
+}
+
+.class {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.step {
+    background-color: gray;
+    padding: 1em;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.step:last-child {
+    background-color: tan;
+}
+
+.close-page {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.class-signup-content {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}

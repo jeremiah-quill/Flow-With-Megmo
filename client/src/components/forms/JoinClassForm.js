@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { zoomJoin } from "../../utils/API";
 import { useNavigate } from "react-router-dom";
+import '../../styles/JoinClassForm.css'
+
 
 // TODO: should this component have less logic?
 // TODO: validate form on front end
 function JoinClassForm({ meetingId, isPaymentSuccess, setFormSubmitted }) {
+
 	const navigate = useNavigate();
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 
-	const handleJoinClass = async (firstName, lastName, email) => {
+	const handleSubmit = async (e) => {
+		e.preventDefault()
 		const data = {
 			firstName: firstName,
 			lastName: lastName,
@@ -19,26 +23,30 @@ function JoinClassForm({ meetingId, isPaymentSuccess, setFormSubmitted }) {
 		};
 		// add student to class
 		const response = await zoomJoin(data);
+		// TODO: graphQL mutation to add class member in database
+
+
 		console.log(response);
 		console.log(`join class response: ${response}`)
 		// TODO: add student to DB if api call was successful
-		navigate("/classes"); // toast to show success
+		// navigate("/classes"); // toast to show success
+		console.log('successfully joined class')
 	};
 
-	useEffect(() => {
-		if (isPaymentSuccess === true) {
-			// TODO: validation on handleJoinClass
-			handleJoinClass(firstName, lastName, email);
-			setFirstName("");
-			setLastName("");
-			setEmail("");
-		}
-	}, [isPaymentSuccess]);
+	// useEffect(() => {
+	// 	if (isPaymentSuccess === true) {
+	// 		// TODO: validation on handleJoinClass
+	// 		handleJoinClass(firstName, lastName, email);
+	// 		setFirstName("");
+	// 		setLastName("");
+	// 		setEmail("");
+	// 	}
+	// }, [isPaymentSuccess]);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setFormSubmitted(true);
-	};
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
+	// 	setFormSubmitted(true);
+	// };
 
 	return (
 		<form

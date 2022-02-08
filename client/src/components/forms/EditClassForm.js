@@ -13,6 +13,10 @@ function EditClassForm({ values, id}) {
 			meetingId: id,
 		};
 		const editResponse = await zoomEdit(classData)
+		// TODO: graphQL mutation to edit class in database
+
+
+
 		console.log(`classResponse: ${editResponse}`)
 		setDate("");
 		setTime("");

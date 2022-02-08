@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import ClassCard from "./ClassCard";
+import { QUERY_CLASSES } from '../utils/queries';
+import { useQuery } from '@apollo/client';
 
 // TODO: should I get this data from centralized state, call database directly from useEffect, or should it be passed in by App component?
 const data = [
@@ -12,6 +14,9 @@ const data = [
 function Music() {
 	// const [playlists , setPlaylists] = useState([])
 
+	const { loading, data } = useQuery(QUERY_CLASSES);
+	const classes = data?.classes || [];
+
 
 	// useEffect(()=> {
 	// 	// retrieve playlists from DB
@@ -19,11 +24,13 @@ function Music() {
 	// }, [])
 
 	return (
-		<div className="music view">
+		<div className="music">
+						{/* <header>Previous Classes</header> */}
+
 			{/* <Button path={"/"} /> */}
 			{/* <div> */}
 				<ul className="class-list">
-					{data.map((yogaClass, idx) => (
+					{classes.map((yogaClass, idx) => (
 						<li key={idx} className="class-list-item">
 							<Link to={`/music/${yogaClass.playlistId}`}>
 								<ClassCard date={yogaClass.date} />

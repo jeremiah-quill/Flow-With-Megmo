@@ -1,43 +1,38 @@
-const { Teacher } = require('../models');
+const { Teacher, Class, Student } = require("../models");
 
 const resolvers = {
-  Query: {
-    teachers: async () => {
-      return Teacher.find();
-    },
+	Query: {
+		teachers: async () => {
+			return Teacher.find();
+		},
+		classes: async () => {
+			return Class.find().populate("roster");
+		},
+		students: async () => {
+			return Student.find();
+		},
+	},
 
-    // profile: async (parent, { profileId }) => {
-    //   return Profile.findOne({ _id: profileId });
-    // },
-  },
-
-  // Mutation: {
-  //   addProfile: async (parent, { name }) => {
-  //     return Profile.create({ name });
-  //   },
-  //   addSkill: async (parent, { profileId, skill }) => {
-  //     return Profile.findOneAndUpdate(
-  //       { _id: profileId },
-  //       {
-  //         $addToSet: { skills: skill },
-  //       },
-  //       {
-  //         new: true,
-  //         runValidators: true,
-  //       }
-  //     );
-  //   },
-  //   removeProfile: async (parent, { profileId }) => {
-  //     return Profile.findOneAndDelete({ _id: profileId });
-  //   },
-  //   removeSkill: async (parent, { profileId, skill }) => {
-  //     return Profile.findOneAndUpdate(
-  //       { _id: profileId },
-  //       { $pull: { skills: skill } },
-  //       { new: true }
-  //     );
-  //   },
-  // },
+	Mutation: {
+		createClass: async (_, { date, price, zoomId, link }) => {
+			return Class.create({
+				date: date,
+				price: price,
+				zoomId: zoomId,
+				link: link,
+			});
+		},
+		addStudentToClass: async (_, { zoomId, studentId }) => {
+			return Class.findOneAndUpdate(
+				{ zoomId: zoomId },
+				{
+					$addToSet: {
+						roster: studentId
+					},
+				}
+			);
+		},
+	},
 };
 
 module.exports = resolvers;
