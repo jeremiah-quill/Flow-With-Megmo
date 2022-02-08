@@ -17,7 +17,10 @@ const typeDefs = gql`
 		password: String!
 	}
 
-
+	type Auth {
+		token: ID!
+		student: Student
+	}
 
 	type Class {
 		_id: ID
@@ -29,21 +32,31 @@ const typeDefs = gql`
 		roster: [Student]
 	}
 
-
 	type Query {
 		teachers: [Teacher]!
 		classes: [Class]!
 		students: [Student]!
+		student(studentId: ID!): Student
 	}
 
 	type Mutation {
-		newStudent(
+
+		createStudent(
 			firstName: String!
 			lastName: String!
 			email: String!
 			password: String!
-		): Student
-		createClass(date: Date!, link: String!, zoomId: String!, price: Float!): Class
+		): Auth
+
+		login(email: String!, password: String!): Auth
+
+		createClass(
+			date: Date!
+			link: String!
+			zoomId: String!
+			price: Float!
+		): Class
+		
 		addStudentToClass(zoomId: String!, studentId: ID!): Student
 	}
 `;

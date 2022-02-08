@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
+import LoginForm from "../forms/LoginForm";
+import SignupForm from "../forms/SignupForm";
 
 import JoinClassForm from "../forms/JoinClassForm";
 import { QUERY_CLASSES } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 import "../../styles/Class.css";
+import Auth from "../../utils/auth";
+import { zoomJoin } from "../../utils/API";
+
 
 // let data = [
 // 	{ date: "2022-01-29", time: "10:00", class_id: "83354584725", price: "$15" },
@@ -16,6 +21,9 @@ import "../../styles/Class.css";
 function Class() {
 	const { loading, data, error } = useQuery(QUERY_CLASSES);
 	const allClasses = data?.classes || [];
+
+	console.log(Auth.loggedIn())
+	// console.log(Auth.getStudent())
 
 
 	let { id } = useParams();
@@ -34,6 +42,28 @@ function Class() {
 	if (loading) return "Loading...";
 	if (error) return `Error! ${error.message}`;
 
+	const handleSubmit = async (e) => {
+		const studentData = Auth.getStudent().data
+
+
+		const data = {
+			firstName: studentData.firstName,
+			lastName: studentData.lastName,
+			email: studentData.email,
+			meetingId: id,
+		};
+		// add student to class
+		const response = await zoomJoin(data);
+		// TODO: graphQL mutation to add class member in database
+
+
+		console.log(response);
+		console.log(`join class response: ${response}`)
+		// TODO: add student to DB if api call was successful
+		// navigate("/classes"); // toast to show success
+		console.log('successfully joined class')
+	};
+
 	return (
 		<div className="class">
 			<button className="close-page" onClick={handleCloseClass}>
@@ -46,20 +76,22 @@ function Class() {
 
 				<div className="step">
 					<header>Step 1: Class signup</header>
-					{!loggedIn ? (
+					{Auth.loggedIn() ? (
 						<>
 							<p>
-								Register for class as {loggedIn.email}: <button>Register</button>
+								Register for class as {Auth.getStudent().data.email}: <button onClick={handleSubmit}>Register</button>
 							</p>
 							<p>
 								If you are signing up as a different user, logout{" "}
-								<Link to="/"> here</Link>.
+								<button onClick={() => Auth.logout()}> here</button>.
 							</p>
 						</>
 					) : (
 						<div>
-							<Link to="/">Login</Link>
-							<Link to="/">Signup</Link>
+							<LoginForm />
+							<SignupForm />
+							{/* <Link to="/">Login</Link>
+							<Link to="/">Signup</Link> */}
 							{/* <JoinClassForm meetingId={id} /> */}
 						</div>
 					)}

@@ -25,6 +25,12 @@ const studentSchema = new Schema({
 	},
 });
 
+// compare the incoming password with the hashed password
+studentSchema.methods.isCorrectPassword = async function (password) {
+	return password === this.password
+	// return bcrypt.compare(password, this.password);
+  };
+
 const Student = model("Student", studentSchema);
 
 module.exports = Student;
