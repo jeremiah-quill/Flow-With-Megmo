@@ -1,36 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import LoginForm from "../forms/LoginForm";
 import SignupForm from "../forms/SignupForm";
-
-import JoinClassForm from "../forms/JoinClassForm";
 import { QUERY_CLASSES } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 import "../../styles/Class.css";
 import Auth from "../../utils/auth";
 import { zoomJoin } from "../../utils/API";
 
-
-// let data = [
-// 	{ date: "2022-01-29", time: "10:00", class_id: "83354584725", price: "$15" },
-// 	{ date: "2022-01-22", time: "10:30", class_id: "2", price: "$15" },
-// 	{ date: "2022-02-05", time: "10:00", class_id: "3", price: "$15" },
-// 	{ date: "2022-02-05", time: "10:00", class_id: "4", price: "$15" },
-// ];
-
 function Class() {
+	let { id } = useParams();
+
 	const { loading, data, error } = useQuery(QUERY_CLASSES);
 	const allClasses = data?.classes || [];
 
-	console.log(Auth.loggedIn())
-	// console.log(Auth.getStudent())
 
-
-	let { id } = useParams();
+	const [signupView, setSignupView] = useState(null);
+	const [registered, setRegistered] = useState(false)
 
 	const navigate = useNavigate();
-
-	const loggedIn = { email: "fakeemail.gmail.com" };
 
 	const handleCloseClass = () => {
 		navigate("/");
@@ -39,12 +27,8 @@ function Class() {
 
 	const match = allClasses.find((item) => item.zoomId === id);
 
-	if (loading) return "Loading...";
-	if (error) return `Error! ${error.message}`;
-
 	const handleSubmit = async (e) => {
-		const studentData = Auth.getStudent().data
-
+		const studentData = Auth.getStudent().data;
 
 		const data = {
 			firstName: studentData.firstName,
@@ -52,17 +36,26 @@ function Class() {
 			email: studentData.email,
 			meetingId: id,
 		};
-		// add student to class
+		// add student to zoom meeting
 		const response = await zoomJoin(data);
-		// TODO: graphQL mutation to add class member in database
 
+		const responseData = JSON.parse(response);
 
-		console.log(response);
-		console.log(`join class response: ${response}`)
-		// TODO: add student to DB if api call was successful
-		// navigate("/classes"); // toast to show success
-		console.log('successfully joined class')
+		// TODO: check if response was successful
+		console.log(responseData);
+
+		// TODO: check if student is already in this class.  if they are, notify them.  if they aren't, add student to DB with graphQL mutation
+		//
+		//
+		//
+		//
+
+		// TODO: if zoom register and add to db are success, show venmo:
+		setRegistered(true)
 	};
+
+	if (loading) return "Loading...";
+	if (error) return `Error! ${error.message}`;
 
 	return (
 		<div className="class">
@@ -74,41 +67,58 @@ function Class() {
 			<div className="class-signup-content">
 				{/* <header className="class-header">{classData.date}</header> */}
 
-				<div className="step">
-					<header>Step 1: Class signup</header>
-					{Auth.loggedIn() ? (
-						<>
-							<p>
-								Register for class as {Auth.getStudent().data.email}: <button onClick={handleSubmit}>Register</button>
-							</p>
-							<p>
-								If you are signing up as a different user, logout{" "}
-								<button onClick={() => Auth.logout()}> here</button>.
-							</p>
-						</>
-					) : (
-						<div>
-							<LoginForm />
-							<SignupForm />
-							{/* <Link to="/">Login</Link>
-							<Link to="/">Signup</Link> */}
-							{/* <JoinClassForm meetingId={id} /> */}
-						</div>
-					)}
-				</div>
-				<div className="step">
-					<header>Step 2: Complete payment</header>
-					<p>
-						Once you see the join class success notification, please click the
-						following link to complete payment via venmo. I can't wait to see
-						you in class!
-					</p>
-					<a
-						href={`https://venmo.com/meghan-moran-7?txn=pay&note=Flow+with+Megmo:+${match.date}&amount=10`}
-					>
-						Class Payment
-					</a>
-				</div>
+				{!registered ? (
+					<div className="step">
+						<header>
+							Step 1: Register
+						</header>
+						{Auth.loggedIn() ? (
+							// REGISTER COMPONENT
+							<>
+								<p>
+									Register for class as {Auth.getStudent().data.email}:{" "}
+									<button onClick={handleSubmit}>Register</button>
+								</p>
+								<p>
+									If you are signing up as a different user, logout{" "}
+									<button onClick={() => Auth.logout()}> here</button>.
+								</p>
+							</>
+						) : (
+							<div>
+								{signupView === "login" ? <LoginForm /> : ""}
+								{signupView === "signup" ? <SignupForm /> : ""}
+
+								{!signupView ? (
+									<>
+										<button onClick={() => setSignupView("login")}>
+											Login
+										</button>
+										<button onClick={() => setSignupView("signup")}>
+											Signup
+										</button>
+									</>
+								) : (
+									""
+								)}
+							</div>
+						)}
+					</div>
+				) : (
+					<div className="step">
+						<header>Step 2: Complete payment</header>
+						<p>
+							We sent a zoom meeting link to {Auth.getStudent().data.email}.  Please click the
+							link below to complete payment via venmo. I can't wait to see
+							you in class!
+						</p>
+						<a
+							href={`https://venmo.com/meghan-moran-7?txn=pay&note=Flow+with+Megmo:+${match.date}&amount=${match.price}`}
+						>
+							Class Payment
+						</a>
+					</div>
+				)}
 			</div>
 		</div>
 	);

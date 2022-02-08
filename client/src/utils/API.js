@@ -21,8 +21,10 @@ const zoomCreate = async (data) => {
 };
 
 // create class
-const zoomJoin = (data) => {
-	return axios.post(`/api/zoom/join-class`, data, { zoomHeaders });
+const zoomJoin = async (data) => {
+	const response = await axios.post(`/api/zoom/join-class`, data, { zoomHeaders });
+	const joinDetails = response.data;
+	return JSON.stringify(joinDetails)
 };
 
 // delete class

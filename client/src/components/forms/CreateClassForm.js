@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { zoomCreate } from "../../utils/API";
-import { useMutation } from '@apollo/client';
-import { CREATE_CLASS } from '../../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { CREATE_CLASS } from "../../utils/mutations";
 
 // TODO: validate so meghan can't send bad data
 function CreateClassForm() {
@@ -29,35 +29,23 @@ function CreateClassForm() {
 		// const json = await classResponse.json()
 
 		// TODO: graphQL mutation to add class in database
-		const newClassDetails = JSON.parse(classResponse)
+		const newClassDetails = JSON.parse(classResponse);
 
-		console.log(newClassDetails)
+		console.log(newClassDetails);
 
-		const zoomId = JSON.stringify(newClassDetails.id)
+		const zoomId = JSON.stringify(newClassDetails.id);
 		const link = newClassDetails.join_url;
 		const dateStamp = newClassDetails.start_time;
 		const price = 25;
 
-
 		try {
-			// Execute mutation and pass in defined parameter data as variables
 			const { data } = await createClass({
-			  variables: { zoomId, link, dateStamp, price }, // { name: "Anthony"}
+				variables: { zoomId, link, dateStamp, price },
 			});
-			//{
-			//   addProfile{
-			//      _id: "8790123748710235asd",
-			//      name: "Anthony",
-			//      skills: []
-			//   }
-			//}
-	  
 			console.log(JSON.stringify(data));
-		  } catch (err) {
+		} catch (err) {
 			console.error(err);
-		  }
-		
-
+		}
 
 		setDate("");
 		setTime("");

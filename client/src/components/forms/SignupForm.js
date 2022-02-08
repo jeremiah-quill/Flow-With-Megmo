@@ -14,7 +14,6 @@ const SignupForm =() => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		console.log("successfully signed up!");
 
 		try {
 			const { data } = await createStudent({

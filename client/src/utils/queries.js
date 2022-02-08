@@ -14,6 +14,7 @@ export const QUERY_TEACHERS = gql`
 export const QUERY_CLASSES = gql`
   query allClasses {
     classes {
+      _id
       date
       price
       playlistId
