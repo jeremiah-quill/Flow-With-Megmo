@@ -10,6 +10,9 @@ function ListMembersModal({ yogaClass }) {
 		{ firstName: "pat", lastName: "quill", email: "pmquill2@charter.net" },
 	];
 
+	// TODO: once we are able to add students to a class in the db, populate this modal with participants from yogaClass.roster
+	console.log(yogaClass)
+
 	return (
 		<div className="modal-card">
 			<header className="modal-header">

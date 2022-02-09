@@ -3,12 +3,13 @@ import { zoomCreate } from "../../utils/API";
 import { useMutation } from "@apollo/client";
 import { CREATE_CLASS } from "../../utils/mutations";
 
-// TODO: validate so meghan can't send bad data
+// TODO: validate so meghan can't choose a date that is in the past
 function CreateClassForm() {
 	const [createClass, { error }] = useMutation(CREATE_CLASS);
 
 	const [date, setDate] = useState("");
 	const [time, setTime] = useState("");
+	const [price, setPrice] = useState("");
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -24,9 +25,8 @@ function CreateClassForm() {
 			},
 		};
 
-		const classResponse = await zoomCreate(classData);
 
-		// const json = await classResponse.json()
+		const classResponse = await zoomCreate(classData);
 
 		// TODO: graphQL mutation to add class in database
 		const newClassDetails = JSON.parse(classResponse);
@@ -36,19 +36,20 @@ function CreateClassForm() {
 		const zoomId = JSON.stringify(newClassDetails.id);
 		const link = newClassDetails.join_url;
 		const dateStamp = newClassDetails.start_time;
-		const price = 25;
-
+		const parsedPrice = parseInt(price)
+		
 		try {
 			const { data } = await createClass({
-				variables: { zoomId, link, dateStamp, price },
+				variables: { zoomId, link, dateStamp, parsedPrice },
 			});
-			console.log(JSON.stringify(data));
+			console.log(data)
 		} catch (err) {
 			console.error(err);
 		}
 
 		setDate("");
 		setTime("");
+		setPrice("");
 	};
 
 	return (
@@ -64,7 +65,12 @@ function CreateClassForm() {
 					value={time}
 					onChange={(e) => setTime(e.target.value)}
 				/>
-				<input type="submit" value="Create Class" />
+								<input
+					type="number"
+					value={price}
+					onChange={(e) => setPrice(e.target.value)}
+				/>
+				<input type="submit" value="Create Class" disabled={date === "" || time === "" || price === ""}/>
 			</form>
 		</div>
 	);

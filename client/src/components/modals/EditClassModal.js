@@ -1,6 +1,8 @@
 import React from "react";
 import EditClassForm from "../forms/EditClassForm";
 
+
+// TODO: this is broken, need to pull out time from timestamp rather than send time separately
 function EditClassModal({ yogaClass }) {
 
 	return (

@@ -12,11 +12,11 @@ function MobileLayout() {
 	return (
 		<div className="mobile-layout">
 			{mobileView === "classes" ? (
-				<View title={'Available Classes'} content={<Classes />} />
+				<Classes />
 			) : mobileView === "music" ? (
-				<View title={'Previous Classes'}  content={<Music />} />
+				<Music />
 			) : (
-				<View title={'Contact'}  content={<Bookings />} />
+				<Bookings />
 			)}
 			<Navbar setMobileView={setMobileView} />
 		</div>

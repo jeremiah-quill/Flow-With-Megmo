@@ -29,3 +29,23 @@ export const QUERY_CLASSES = gql`
 
   
 `;
+
+export const QUERY_SINGLE_CLASS = gql`
+  query getClassById ($classId: ID!){
+    getClassById (classId: $classId){
+      _id
+      date
+      price
+      playlistId
+      zoomId
+      roster {
+        firstName
+        lastName
+        email
+      }
+    }
+  }
+
+  
+`;
+

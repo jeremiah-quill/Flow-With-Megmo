@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useToggle from "../../hooks/useToggle";
 import CreateClassForm from "../forms/CreateClassForm";
 import StatsOverview from "../StatsOverview";
@@ -12,15 +12,17 @@ import "../../styles/Dashboard.css"
 import { QUERY_TEACHERS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 
+import { QUERY_CLASSES } from '../../utils/queries';
+
 
 
 const classData = {
-	currentClasses: [
-		{ date: "2022-01-29", time: "10:00", class_id: "83354584725" },
-		{ date: "2022-02-05", time: "12:00", class_id: 2 },
-		{ date: "2022-02-05", time: "10:00", class_id: 3 },
-		{ date: "2022-02-05", time: "10:00", class_id: 4 },
-	],
+	// currentClasses: [
+	// 	{ date: "2022-01-29", time: "10:00", class_id: "83354584725" },
+	// 	{ date: "2022-02-05", time: "12:00", class_id: 2 },
+	// 	{ date: "2022-02-05", time: "10:00", class_id: 3 },
+	// 	{ date: "2022-02-05", time: "10:00", class_id: 4 },
+	// ],
 	previousClasses: [
 		{ date: "2022-01-29", time: "10:00", class_id: 1, playlist_id: 1 },
 		{
@@ -35,22 +37,19 @@ const classData = {
 };
 
 function Dashboard() {
-	console.log(`start`)
-
-	const { loading, data } = useQuery(QUERY_TEACHERS);
-	const teachers = data?.teachers || [];
-
+	const { loading, data, error } = useQuery(QUERY_CLASSES);
+	const classes = data?.classes || [];
+	
 	const [isModal, toggleModal] = useToggle(false);
 	const [modalContent, setModalContent] = useState(null);
-
 
 	const configureModal = (content) => {
 		toggleModal();
 		setModalContent(content);
 	};
 
-	console.log(teachers)
-	console.log(`end`)
+	if (loading) return "Loading...";
+	if (error) return `Error! ${error.message}`;
 
 	return (
 		<div className="dashboard">
@@ -64,26 +63,26 @@ function Dashboard() {
 			<h2>Scheduled</h2>
 			{/* TODO: should this list be a component */}
 			<ul className="current-class-list">
-				{classData.currentClasses.map((currentClass) => (
-					<li key={currentClass.class_id}>
-						{currentClass.date} {currentClass.time}
+				{classes.map((yogaClass) => (
+					<li key={yogaClass._id}>
+						{yogaClass.date}
 						<button
 							onClick={() =>
-								configureModal(<ListMembersModal yogaClass={currentClass} />)
+								configureModal(<ListMembersModal yogaClass={yogaClass} />)
 							}
 						>
 							View
 						</button>
 						<button
 							onClick={() =>
-								configureModal(<EditClassModal yogaClass={currentClass} />)
+								configureModal(<EditClassModal yogaClass={yogaClass} />)
 							}
 						>
 							Edit
 						</button>
 						<button
 							onClick={() =>
-								configureModal(<DeleteClassModal yogaClass={currentClass} />)
+								configureModal(<DeleteClassModal yogaClass={yogaClass} />)
 							}
 						>
 							Delete

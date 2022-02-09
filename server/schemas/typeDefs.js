@@ -37,6 +37,7 @@ const typeDefs = gql`
 		classes: [Class]!
 		students: [Student]!
 		student(studentId: ID!): Student
+		getClassById(classId: ID!): Class
 	}
 
 	type Mutation {
@@ -56,8 +57,10 @@ const typeDefs = gql`
 			zoomId: String!
 			price: Float!
 		): Class
+
+		deleteClass(classId: ID!): Class
 		
-		addStudentToClass(zoomId: String!, studentId: ID!): Student
+		addStudentToClass(classId: ID!, studentId: ID!): Class
 	}
 `;
 

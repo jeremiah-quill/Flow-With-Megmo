@@ -24,7 +24,7 @@ function Music() {
 	// }, [])
 
 	return (
-		<div className="music">
+		<div className="music view">
 						{/* <header>Previous Classes</header> */}
 
 			{/* <Button path={"/"} /> */}

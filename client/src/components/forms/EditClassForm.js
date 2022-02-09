@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { zoomEdit } from "../../utils/API";
 
+
+// TODO: this is broken, need to pull out time from timestamp rather than send time separately
 // TODO: validate so meghan can't send bad data
 function EditClassForm({ values, id}) {
 	const [date, setDate] = useState(values.date);
 	const [time, setTime] = useState(values.time);
+	const [price, setPrice] = useState(values.price)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
