@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useQuery, useMutation } from "@apollo/client";
+import { ADD_TO_ROSTER, ADD_CLASS_TO_STUDENT } from "../../utils/mutations";
+import { QUERY_SINGLE_CLASS } from "../../utils/queries";
 import LoginForm from "../forms/LoginForm";
 import SignupForm from "../forms/SignupForm";
-import { QUERY_SINGLE_CLASS } from "../../utils/queries";
-import { useQuery, useMutation } from "@apollo/client";
-import "../../styles/Class.css";
 import Auth from "../../utils/auth";
-import { ADD_TO_ROSTER } from "../../utils/mutations";
+import "../../styles/Class.css";
 
 function Class() {
 	const navigate = useNavigate();
@@ -20,9 +20,13 @@ function Class() {
 	});
 	const selectedClass = data?.getClassById || [];
 
-	// use mutatiojn for adding a student to class based on class _id and student _id
+	// use mutation for adding a student to class based on class _id and student _id
 	const [addStudentToClass, { error: rosterError }] =
 		useMutation(ADD_TO_ROSTER);
+
+	// use mutation for adding a class to student based on student _id and class _id
+	const [addClassToStudent, { error: registeredError }] =
+		useMutation(ADD_CLASS_TO_STUDENT);
 
 	// used to control the content the user sees (ability to register for class if they are signed in, required to login/signup if not signed in)
 	const [signupView, setSignupView] = useState(null);
@@ -38,6 +42,11 @@ function Class() {
 			});
 			// TODO: why is this giving me undefined?
 			console.log(rosterUpdateData);
+
+			const { registeredUpdateData } = await addClassToStudent({
+				variables: { studentId: studentData._id, classId: id },
+			});
+			console.log(registeredUpdateData);
 
 			// TODO: if add to db is success, show venmo
 			setRegistered(true);

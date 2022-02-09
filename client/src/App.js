@@ -1,22 +1,32 @@
 import "./test.css";
 import React, { useEffect, useState } from "react";
-import Navbar from "./components/Navbar.js";
-
-import Class from "./components/pages/Class";
-import { Routes, Route, useLocation } from "react-router-dom";
-import SpotifyPlayer from "./components/pages/SpotifyPlayer";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import Dashboard from "./components/pages/Dashboard";
+import { setContext } from "@apollo/client/link/context";
 import {
 	ApolloClient,
 	InMemoryCache,
 	ApolloProvider,
 	createHttpLink,
 } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-
+import { Routes, Route, useLocation } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import Class from "./components/pages/Class";
+import SpotifyPlayer from "./components/pages/SpotifyPlayer";
+import Dashboard from "./components/pages/Dashboard";
 import MobileLayout from "./components/MobileLayout";
 import DesktopLayout from "./components/DesktopLayout";
+import StudentDashboard from "./components/pages/StudentDashboard";
+import Navbar from "./components/Navbar";
+import Music from "./components/Music";
+import Bookings from "./components/Bookings";
+import Classes from "./components/Classes";
+import Auth from "./utils/auth";
+import LoggedInHome from './components/pages/LoggedInHome';
+import DefaultHome from './components/pages/DefaultHome';
+
+
+
+
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -79,26 +89,34 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<div className="main-container">
+				<div className="page-content">
 				{/* <TransitionGroup component={null}>
 					<CSSTransition key={location.key} classNames={"slide"} timeout={500}> */}
 				<Routes>
-					<Route
+					{/* <Route
 						path="/"
 						element={width < breakpoint ? <MobileLayout /> : <DesktopLayout />}
-					/>
-					{/* <Route path="/classes" element={<Classes />} /> */}
+					/> */}
+					<Route path="/" element={Auth.loggedIn() ? <LoggedInHome /> : <DefaultHome/>} />
+
+					<Route path="/classes" element={<Classes />} />
 					<Route path="/classes/:id" element={<Class />} />
-					{/* <Route path="/music" element={<Music />} /> */}
+					<Route path="/music" element={<Music />} />
 					<Route path="/music/:id" element={<SpotifyPlayer />} />
-					{/* <Route path="/bookings" element={<Bookings />} /> */}
+					<Route path="/bookings" element={<Bookings />} />
 					<Route path="/dashboard" element={<Dashboard />} />
 					{/* add below 404 page */}
 					{/* <Route path="*" element={<NoMatch />} /> */}
+					<Route path="/student/:studentId" element={<StudentDashboard />} />
 				</Routes>
 				{/* </CSSTransition>
 				</TransitionGroup> */}
 				{/* {width < breakpoint ? <Navbar /> : ""} */}
+				</div>
+				<Navbar />
+
 			</div>
+
 		</ApolloProvider>
 	);
 }

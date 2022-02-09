@@ -8,16 +8,18 @@ const resolvers = {
 			return Teacher.find();
 		},
 		classes: async () => {
-			return Class.find().populate("roster");
+			const classes = Class.find().populate("roster");
+			console.log(classes);
+			return classes;
 		},
 		students: async () => {
 			return Student.find();
 		},
-		student: async (_, { studentId }) => {
-			return Student.findOne({ _id: studentId });
+		getStudentById: async (_, { studentId }) => {
+			return Student.findOne({ _id: studentId }).populate("registeredClasses");
 		},
 		getClassById: async (_, { classId }) => {
-			return Class.findOne({ _id: classId });
+			return Class.findOne({ _id: classId }).populate("roster");
 		},
 	},
 
@@ -68,6 +70,16 @@ const resolvers = {
 				{
 					$addToSet: {
 						roster: studentId,
+					},
+				}
+			);
+		},
+		addClassToStudent: async (_, { studentId, classId }) => {
+			return Student.findOneAndUpdate(
+				{ _id: studentId },
+				{
+					$addToSet: {
+						registeredClasses: classId,
 					},
 				}
 			);

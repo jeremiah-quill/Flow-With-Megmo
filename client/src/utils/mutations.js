@@ -71,3 +71,11 @@ export const ADD_TO_ROSTER = gql`
 		}
 	}
 `;
+
+export const ADD_CLASS_TO_STUDENT = gql`
+	mutation addClassToStudent($studentId: ID!, $classId: ID!) {
+		addClassToStudent(studentId: $studentId, classId: $classId) {
+			_id
+		}
+	}
+`;

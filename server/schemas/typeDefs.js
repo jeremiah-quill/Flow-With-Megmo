@@ -15,6 +15,7 @@ const typeDefs = gql`
 		lastName: String!
 		email: String!
 		password: String!
+		registeredClasses: [Class]
 	}
 
 	type Auth {
@@ -36,7 +37,7 @@ const typeDefs = gql`
 		teachers: [Teacher]!
 		classes: [Class]!
 		students: [Student]!
-		student(studentId: ID!): Student
+		getStudentById(studentId: ID!): Student
 		getClassById(classId: ID!): Class
 	}
 
@@ -61,6 +62,7 @@ const typeDefs = gql`
 		deleteClass(classId: ID!): Class
 		
 		addStudentToClass(classId: ID!, studentId: ID!): Class
+		addClassToStudent(studentId: ID!, classId: ID!): Student
 	}
 `;
 

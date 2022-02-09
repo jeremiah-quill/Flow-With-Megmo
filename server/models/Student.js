@@ -11,6 +11,12 @@ const studentSchema = new Schema({
 		required: true,
 		trim: true,
 	},
+	registeredClasses: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "Class",
+		},
+	],
 	email: {
 		type: String,
 		required: true,

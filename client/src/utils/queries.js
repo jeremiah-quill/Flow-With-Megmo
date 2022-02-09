@@ -7,8 +7,6 @@ export const QUERY_TEACHERS = gql`
       password
     }
   }
-
-  
 `;
 
 export const QUERY_CLASSES = gql`
@@ -26,8 +24,6 @@ export const QUERY_CLASSES = gql`
       }
     }
   }
-
-  
 `;
 
 export const QUERY_SINGLE_CLASS = gql`
@@ -45,7 +41,18 @@ export const QUERY_SINGLE_CLASS = gql`
       }
     }
   }
-
-  
 `;
 
+export const QUERY_SINGLE_STUDENT = gql`
+  query getStudentById ($studentId: ID!){
+    getStudentById (studentId: $studentId){
+      _id
+      firstName
+      registeredClasses {
+        _id
+        date
+        playlistId
+      }
+    }
+  }
+`;

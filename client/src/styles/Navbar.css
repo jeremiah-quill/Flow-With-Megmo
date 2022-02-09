@@ -2,6 +2,7 @@
 	width: 100%;
 	background-color: lightblue;
     display: flex;
+    /* padding: 1.5em */
 }
 
 /* .navbar-list {
@@ -9,10 +10,11 @@
     display: flex;
 } */
 
-.menu-button {
+.nav-item {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 1.5em;
+    padding: 1em;
     flex: 1;
+    text-align: center;
 }

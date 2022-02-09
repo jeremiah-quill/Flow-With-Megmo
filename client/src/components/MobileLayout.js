@@ -3,7 +3,6 @@ import Navbar from "./Navbar";
 import Classes from "./Classes.js";
 import Music from "./Music.js";
 import Bookings from "./Bookings.js";
-import View from "./View.js";
 import "../styles/MobileLayout.css";
 
 function MobileLayout() {
