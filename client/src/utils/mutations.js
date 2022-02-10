@@ -77,3 +77,11 @@ export const ADD_CLASS_TO_STUDENT = gql`
 		}
 	}
 `;
+
+export const ADD_PLAYLIST = gql`
+	mutation addPlaylist($classId: ID!, $playlistId: String!) {
+		addPlaylist(classId: $classId, playlistId: $playlistId) {
+			_id
+		}
+	}
+`;

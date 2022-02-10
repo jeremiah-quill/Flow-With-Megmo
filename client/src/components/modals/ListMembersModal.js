@@ -16,10 +16,10 @@ function ListMembersModal({ yogaClass }) {
 	return (
 		<div className="modal-card">
 			<header className="modal-header">
-				{yogaClass.date} @ {yogaClass.time}
+				{yogaClass.date}
 			</header>
 			<div className="modal-content">
-				<ParticipantList participants={participants} />
+				<ParticipantList participants={yogaClass.roster} />
 			</div>
 			<div className="modal-footer">none</div>
 		</div>

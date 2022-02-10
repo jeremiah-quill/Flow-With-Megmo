@@ -82,6 +82,17 @@ const resolvers = {
 				}
 			);
 		},
+
+		addPlaylist: async (_, { classId, playlistId }) => {
+			return Class.findOneAndUpdate(
+				{ _id: classId },
+				{
+					$set: {
+						playlistId: playlistId,
+					},
+				}
+			);
+		},
 	},
 };
 

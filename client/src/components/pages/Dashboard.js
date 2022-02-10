@@ -90,9 +90,9 @@ function Dashboard() {
 			</ul>
 			<h2>Completed</h2>
 			<ul className="previous-class-list">
-				{classData.previousClasses.map((previousClass) => (
-					<li key={previousClass.class_id}>
-						{previousClass.date} {previousClass.time}
+				{classes.map((previousClass) => (
+					<li key={previousClass._id}>
+						{previousClass.date}
 						<button
 							onClick={() =>
 								configureModal(<ListMembersModal yogaClass={previousClass} />)
@@ -102,7 +102,7 @@ function Dashboard() {
 						</button>
 						<button
 							onClick={() =>
-								configureModal(<AddPlaylistModal yogaClass={previousClass} />)
+								configureModal(<AddPlaylistModal yogaClass={previousClass} toggleModal={toggleModal} />)
 							}
 						>
 							Pick Playlist

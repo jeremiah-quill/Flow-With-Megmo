@@ -5,7 +5,7 @@ function ParticipantList({ participants }) {
 		<ul className="participant-list">
 			{participants.map((person, idx) => (
 				<li key={idx} className="participant">
-					{person.firstName} {person.lastName} / {person.email}
+					{person.username} / {person.email}
 				</li>
 			))}
 		</ul>

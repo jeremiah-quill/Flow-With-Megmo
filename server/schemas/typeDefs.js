@@ -61,6 +61,8 @@ const typeDefs = gql`
 		
 		addStudentToClass(classId: ID!, studentId: ID!): Class
 		addClassToStudent(studentId: ID!, classId: ID!): Student
+
+		addPlaylist(classId: ID!, playlistId: String!): Class
 	}
 `;
 
