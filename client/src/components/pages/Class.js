@@ -3,12 +3,30 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { ADD_TO_ROSTER, ADD_CLASS_TO_STUDENT } from "../../utils/mutations";
 import { QUERY_SINGLE_CLASS } from "../../utils/queries";
-import LoginForm from "../forms/LoginForm";
-import SignupForm from "../forms/SignupForm";
+// import LoginForm from "../forms/LoginForm";
+// import SignupForm from "../forms/SignupForm";
+import LoginModal from "../modals/LoginModal";
+import SignupModal from "../modals/SignupModal";
+import Modal from "../Modal";
 import Auth from "../../utils/auth";
+import useToggle from "../../hooks/useToggle";
 import "../../styles/Class.css";
+import { useUserContext } from "../../utils/contexts/UserContext";
+
 
 function Class() {
+	// get user context
+	const { currentUser } = useUserContext();
+
+
+	const [isModal, toggleModal] = useToggle(false);
+	const [modalContent, setModalContent] = useState(null);
+
+	const configureModal = (content) => {
+		toggleModal();
+		setModalContent(content);
+	};
+
 	const navigate = useNavigate();
 
 	// access class _id from params
@@ -33,18 +51,17 @@ function Class() {
 	const [registered, setRegistered] = useState(false);
 
 	const handleSubmit = async (e) => {
-		const studentData = Auth.getStudent().data;
 
 		// TODO: check if student is already in this class.  if they are, notify them.  if they aren't, add student to DB with graphQL mutation
 		try {
 			const { rosterUpdateData } = await addStudentToClass({
-				variables: { classId: id, studentId: studentData._id },
+				variables: { classId: id, studentId: currentUser._id },
 			});
 			// TODO: why is this giving me undefined?
 			console.log(rosterUpdateData);
 
 			const { registeredUpdateData } = await addClassToStudent({
-				variables: { studentId: studentData._id, classId: id },
+				variables: { studentId: currentUser._id, classId: id },
 			});
 			console.log(registeredUpdateData);
 
@@ -61,6 +78,10 @@ function Class() {
 
 	return (
 		<div className="class">
+			<Modal show={isModal} toggleModal={toggleModal}>
+				{modalContent}
+			</Modal>
+
 			<button className="close-page" onClick={() => navigate("/")}>
 				Close
 			</button>
@@ -71,13 +92,13 @@ function Class() {
 
 				{!registered ? (
 					<div className="step">
-						{Auth.loggedIn() ? (
+						{currentUser.loggedIn ? (
 							// REGISTER COMPONENT
 							<>
 								<header>Register for class</header>
 
 								<p>
-									Register for class as {Auth.getStudent().data.email}:{" "}
+									Register for class as {currentUser.email}:{" "}
 									<button onClick={handleSubmit}>Register</button>
 								</p>
 								<p>
@@ -89,21 +110,12 @@ function Class() {
 							<div>
 								<header>Login or Signup as a student</header>
 
-								{signupView === "login" ? <LoginForm /> : ""}
-								{signupView === "signup" ? <SignupForm /> : ""}
-
-								{!signupView ? (
-									<>
-										<button onClick={() => setSignupView("login")}>
-											Login
-										</button>
-										<button onClick={() => setSignupView("signup")}>
-											Signup
-										</button>
-									</>
-								) : (
-									""
-								)}
+								<button onClick={() => configureModal(<LoginModal />)}>
+									Login
+								</button>
+								<button onClick={() => configureModal(<SignupModal />)}>
+									Signup
+								</button>
 							</div>
 						)}
 					</div>
@@ -111,7 +123,7 @@ function Class() {
 					<div className="step">
 						<header>Step 3: Complete payment</header>
 						<p>
-							We sent a zoom meeting link to {Auth.getStudent().data.email}.
+							We sent a zoom meeting link to {currentUser.email}.
 							Please click the link below to complete payment via venmo. I can't
 							wait to see you in class!
 						</p>

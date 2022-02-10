@@ -1,25 +1,21 @@
 [
     {
-      "firstName": "megmo",
-      "lastName": "quill",
+      "username": "megmo",
       "email": "megmo@gmail.com",
       "password": "test123"
     },
     {
-        "firstName": "jerry",
-        "lastName": "quill",
+        "username": "jerry",
         "email": "jerry@gmail.com",
         "password": "test123"
       },
       {
-        "firstName": "ollie",
-        "lastName": "quill",
+        "username": "ollie",
         "email": "ollie@gmail.com",
         "password": "test123"
       },
       {
-        "firstName": "remi",
-        "lastName": "quill",
+        "username": "remi",
         "email": "remi@gmail.com",
         "password": "test123"
       }

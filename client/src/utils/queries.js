@@ -18,8 +18,8 @@ export const QUERY_CLASSES = gql`
       playlistId
       zoomId
       roster {
-        firstName
-        lastName
+        _id
+        username
         email
       }
     }
@@ -35,8 +35,8 @@ export const QUERY_SINGLE_CLASS = gql`
       playlistId
       zoomId
       roster {
-        firstName
-        lastName
+        _id
+        username
         email
       }
     }
@@ -47,7 +47,8 @@ export const QUERY_SINGLE_STUDENT = gql`
   query getStudentById ($studentId: ID!){
     getStudentById (studentId: $studentId){
       _id
-      firstName
+      username
+      email
       registeredClasses {
         _id
         date

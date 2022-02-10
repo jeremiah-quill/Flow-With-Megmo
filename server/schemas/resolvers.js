@@ -9,7 +9,6 @@ const resolvers = {
 		},
 		classes: async () => {
 			const classes = Class.find().populate("roster");
-			console.log(classes);
 			return classes;
 		},
 		students: async () => {
@@ -24,10 +23,9 @@ const resolvers = {
 	},
 
 	Mutation: {
-		createStudent: async (_, { firstName, lastName, email, password }) => {
+		createStudent: async (_, { username, email, password }) => {
 			const student = await Student.create({
-				firstName: firstName,
-				lastName: lastName,
+				username: username,
 				email: email,
 				password: password,
 			});

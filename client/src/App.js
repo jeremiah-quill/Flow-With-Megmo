@@ -12,21 +12,14 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Class from "./components/pages/Class";
 import SpotifyPlayer from "./components/pages/SpotifyPlayer";
 import Dashboard from "./components/pages/Dashboard";
-import MobileLayout from "./components/MobileLayout";
-import DesktopLayout from "./components/DesktopLayout";
-import StudentDashboard from "./components/pages/StudentDashboard";
 import Navbar from "./components/Navbar";
-import Music from "./components/Music";
+// import Music from "./components/Music";
 import Bookings from "./components/Bookings";
 import Classes from "./components/Classes";
 import Auth from "./utils/auth";
-import LoggedInHome from './components/pages/LoggedInHome';
-import DefaultHome from './components/pages/DefaultHome';
-
-
-
-
-
+import LoggedInHome from "./components/pages/LoggedInHome";
+import DefaultHome from "./components/pages/DefaultHome";
+import { useUserContext } from "./utils/contexts/UserContext";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -53,6 +46,20 @@ const client = new ApolloClient({
 });
 
 function App() {
+	const { currentUser, setCurrentUser } = useUserContext();
+
+	useEffect(() => {
+		if (Auth.loggedIn()) {
+			let userInfo = Auth.getStudent().data;
+			setCurrentUser({
+				loggedIn: true,
+				username: userInfo.username,
+				email: userInfo.email,
+				_id: userInfo._id,
+			});
+		}
+	}, []);
+
 	const [width, setWidth] = React.useState(window.innerWidth);
 	const breakpoint = 765;
 
@@ -90,33 +97,36 @@ function App() {
 		<ApolloProvider client={client}>
 			<div className="main-container">
 				<div className="page-content">
-				{/* <TransitionGroup component={null}>
+					{/* <TransitionGroup component={null}>
 					<CSSTransition key={location.key} classNames={"slide"} timeout={500}> */}
-				<Routes>
-					{/* <Route
+					<Routes>
+						{/* <Route
 						path="/"
 						element={width < breakpoint ? <MobileLayout /> : <DesktopLayout />}
 					/> */}
-					<Route path="/" element={Auth.loggedIn() ? <LoggedInHome /> : <DefaultHome/>} />
+						<Route
+							path="/"
+							element={
+								currentUser.loggedIn ? <LoggedInHome /> : <DefaultHome />
+							}
+						/>
 
-					<Route path="/classes" element={<Classes />} />
-					<Route path="/classes/:id" element={<Class />} />
-					<Route path="/music" element={<Music />} />
-					<Route path="/music/:id" element={<SpotifyPlayer />} />
-					<Route path="/bookings" element={<Bookings />} />
-					<Route path="/dashboard" element={<Dashboard />} />
-					{/* add below 404 page */}
-					{/* <Route path="*" element={<NoMatch />} /> */}
-					<Route path="/student/:studentId" element={<StudentDashboard />} />
-				</Routes>
-				{/* </CSSTransition>
+						<Route path="/classes" element={<Classes />} />
+						<Route path="/classes/:id" element={<Class />} />
+						{/* <Route path="/music" element={<Music />} /> */}
+						<Route path="/music/:id" element={<SpotifyPlayer />} />
+						<Route path="/bookings" element={<Bookings />} />
+						<Route path="/dashboard" element={<Dashboard />} />
+						{/* add below 404 page */}
+						{/* <Route path="*" element={<NoMatch />} /> */}
+						{/* <Route path="/student/:studentId" element={<StudentDashboard />} /> */}
+					</Routes>
+					{/* </CSSTransition>
 				</TransitionGroup> */}
-				{/* {width < breakpoint ? <Navbar /> : ""} */}
+					{/* {width < breakpoint ? <Navbar /> : ""} */}
 				</div>
 				<Navbar />
-
 			</div>
-
 		</ApolloProvider>
 	);
 }

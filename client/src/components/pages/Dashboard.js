@@ -7,11 +7,9 @@ import ListMembersModal from "../modals/ListMembersModal";
 import AddPlaylistModal from "../modals/AddPlaylistModal";
 import DeleteClassModal from "../modals/DeleteClassModal";
 import EditClassModal from "../modals/EditClassModal";
-
 import "../../styles/Dashboard.css"
 import { QUERY_TEACHERS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
-
 import { QUERY_CLASSES } from '../../utils/queries';
 
 

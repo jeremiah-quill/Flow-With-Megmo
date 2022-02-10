@@ -11,8 +11,7 @@ const typeDefs = gql`
 
 	type Student {
 		_id: ID
-		firstName: String!
-		lastName: String!
+		username: String!
 		email: String!
 		password: String!
 		registeredClasses: [Class]
@@ -44,8 +43,7 @@ const typeDefs = gql`
 	type Mutation {
 
 		createStudent(
-			firstName: String!
-			lastName: String!
+			username: String!
 			email: String!
 			password: String!
 		): Auth

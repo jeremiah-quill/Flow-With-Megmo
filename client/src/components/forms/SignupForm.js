@@ -4,8 +4,7 @@ import { CREATE_STUDENT } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 const SignupForm =() => {
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
+	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -18,8 +17,7 @@ const SignupForm =() => {
 		try {
 			const { data } = await createStudent({
 				variables: {
-					firstName: firstName,
-					lastName: lastName,
+					username: username,
 					email: email,
 					password: password,
 				},
@@ -30,8 +28,7 @@ const SignupForm =() => {
 			console.error(e);
 		}
 
-		setFirstName("");
-		setLastName("");
+		setUsername("");
 		setEmail("");
 		setPassword("");
 	};
@@ -43,15 +40,9 @@ const SignupForm =() => {
 			<form onSubmit={handleSubmit}>
 				<input
 					type="text"
-					value={firstName}
-					onChange={(e) => setFirstName(e.target.value)}
-					placeholder="First name"
-				/>
-				<input
-					type="text"
-					value={lastName}
-					onChange={(e) => setLastName(e.target.value)}
-					placeholder="Last name"
+					value={username}
+					onChange={(e) => setUsername(e.target.value)}
+					placeholder="Username"
 				/>
 				<input
 					type="email"
