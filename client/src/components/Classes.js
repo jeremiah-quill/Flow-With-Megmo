@@ -8,6 +8,7 @@ import { useQuery } from "@apollo/client";
 import { useModalContext } from "../utils/contexts/ModalContext";
 import Class from "./Class";
 import ClassSignupModal from "./modals/ClassSignupModal";
+import ClassOnSchedule from "./list_items/ClassOnSchedule";
 
 function Classes() {
 	const { configureModal } = useModalContext();
@@ -20,22 +21,11 @@ function Classes() {
 
 	console.log(classes);
 
-	const registerAction = (classId, date) => {
-		configureModal(<ClassSignupModal id={classId} />);
-	};
-
 	return (
 		<div className="classes view">
 			<ul className="class-list">
 				{classes.map((yogaClass, idx) => (
-					<ClassCard
-						// className="class-list-item"
-						key={idx}
-						classId={yogaClass._id}
-						action={registerAction}
-						date={yogaClass.date}
-						price={yogaClass.price}
-					/>
+					<ClassOnSchedule key={idx} classOnSchedule={yogaClass} />
 				))}
 			</ul>
 		</div>

@@ -57,7 +57,7 @@ a {
 .page-content {
 	flex: 1;
     overflow-y: scroll;
-    padding-top: 5em;
+    padding: 5em 1em 0;
 }
 
 .btn {

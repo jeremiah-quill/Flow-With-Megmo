@@ -7,11 +7,16 @@ import {
 	REMOVE_CLASS_FROM_STUDENT,
 	REMOVE_FROM_ROSTER,
 } from "../../utils/mutations";
+import "../../styles/LoggedInHome.css";
+import ClassCard from "../ClassCard";
+import RegisteredClass from "../list_items/RegisteredClass";
+import { useModalContext } from "../../utils/contexts/ModalContext";
 
 // TODO: figure out how to separate scheduled classes from completed classes
 function LoggedInHome() {
 	// get user context
 	const { currentUser } = useUserContext();
+	const {resetModal} = useModalContext()
 
 	// find student info (specifically what we need is registered classes -> should this be a specific query?) based on the currentUser's _id
 	const { loading, data, error } = useQuery(QUERY_SINGLE_STUDENT, {
@@ -26,7 +31,7 @@ function LoggedInHome() {
 		useMutation(REMOVE_CLASS_FROM_STUDENT);
 
 	// TODO: refactor
-	const handleDelete = async (classId) => {
+	const cancelAction = async (classId) => {
 		try {
 			const { data } = await removeFromRoster({
 				variables: { classId, studentId: currentUser._id },
@@ -44,8 +49,7 @@ function LoggedInHome() {
 		} catch (err) {
 			console.error(err);
 		}
-
-		// console.log("fake cancel class");
+		resetModal()
 	};
 
 	if (loading) return "Loading...";
@@ -56,19 +60,27 @@ function LoggedInHome() {
 
 	return (
 		<div className="logged-in-home">
-			<h2>Welcome {studentData.username}</h2>
-			<h3>Classes</h3>
+			<h2 className="logged-in-header">Welcome {studentData.username}</h2>
 			{studentData.registeredClasses.length > 0 ? (
-				<ul>
-					{studentData.registeredClasses.map((registeredClass) => (
-						<li key={registeredClass._id}>
-							{registeredClass.date}{" "}
-							<button onClick={() => handleDelete(registeredClass._id)}>
-								unregister
-							</button>
-						</li>
-					))}
-				</ul>
+				<>
+					<p>
+						Here you will find your scheduled and completed classes. If you are
+						looking for a specific song from a previous class, click the spotify
+						button. Enjoy!
+					</p>
+					<ul className="class-list">
+						{studentData.registeredClasses.map((registeredClass, idx) => (
+							<RegisteredClass
+								key={idx}
+								registeredClass={registeredClass}
+								action={cancelAction}
+								// classId={registeredClass._id}
+								// classAction={<CancelClass registeredClass={registeredClass} />}
+								// date={registeredClass.date}
+							/>
+						))}
+					</ul>
+				</>
 			) : (
 				<div>No scheduled or completed classes yet...get a move on!</div>
 			)}
