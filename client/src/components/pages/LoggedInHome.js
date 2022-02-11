@@ -3,6 +3,10 @@ import { QUERY_SINGLE_STUDENT } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 import { useUserContext } from "../../utils/contexts/UserContext";
+import {
+	REMOVE_CLASS_FROM_STUDENT,
+	REMOVE_FROM_ROSTER,
+} from "../../utils/mutations";
 
 // TODO: figure out how to separate scheduled classes from completed classes
 function LoggedInHome() {
@@ -15,35 +19,58 @@ function LoggedInHome() {
 	});
 	const studentData = data?.getStudentById || [];
 
+	const [removeFromRoster, { error: removeStudentError }] =
+		useMutation(REMOVE_FROM_ROSTER);
+
+	const [removeClassFromStudent, { error: removeClassFromStudentError }] =
+		useMutation(REMOVE_CLASS_FROM_STUDENT);
+
+	// TODO: refactor
+	const handleDelete = async (classId) => {
+		try {
+			const { data } = await removeFromRoster({
+				variables: { classId, studentId: currentUser._id },
+			});
+			console.log(data);
+		} catch (err) {
+			console.error(err);
+		}
+
+		try {
+			const { data } = await removeClassFromStudent({
+				variables: { studentId: currentUser._id, classId },
+			});
+			console.log(data);
+		} catch (err) {
+			console.error(err);
+		}
+
+		// console.log("fake cancel class");
+	};
+
 	if (loading) return "Loading...";
 	if (error) return `Error! ${error.message}`;
-
-	console.log(data);
+	if (removeStudentError) return `Error! ${removeStudentError.message}`;
+	if (removeClassFromStudentError)
+		return `Error! ${removeClassFromStudentError.message}`;
 
 	return (
 		<div className="logged-in-home">
-			<button onClick={() => Auth.logout()}>Logout</button>
 			<h2>Welcome {studentData.username}</h2>
-			<h3>Scheduled Classes</h3>
+			<h3>Classes</h3>
 			{studentData.registeredClasses.length > 0 ? (
 				<ul>
 					{studentData.registeredClasses.map((registeredClass) => (
-						<li key={registeredClass._id}>{registeredClass.date}</li>
+						<li key={registeredClass._id}>
+							{registeredClass.date}{" "}
+							<button onClick={() => handleDelete(registeredClass._id)}>
+								unregister
+							</button>
+						</li>
 					))}
 				</ul>
 			) : (
-				<div>You don't have any classes scheduled.</div>
-			)}
-
-			<h3>Completed Classes</h3>
-			{studentData.registeredClasses.length > 0 ? (
-				<ul>
-					{studentData.registeredClasses.map((registeredClass) => (
-						<li key={registeredClass._id}>{registeredClass.date}</li>
-					))}
-				</ul>
-			) : (
-				<div>You have not yet completed any classes.</div>
+				<div>No scheduled or completed classes yet...get a move on!</div>
 			)}
 		</div>
 	);

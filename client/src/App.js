@@ -8,12 +8,11 @@ import {
 	createHttpLink,
 } from "@apollo/client";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import Class from "./components/pages/Class";
+import { CSSTransition } from "react-transition-group";
+import Class from "./components/Class";
 import SpotifyPlayer from "./components/pages/SpotifyPlayer";
 import Dashboard from "./components/pages/Dashboard";
 import Navbar from "./components/Navbar";
-// import Music from "./components/Music";
 import Bookings from "./components/Bookings";
 import Classes from "./components/Classes";
 import Auth from "./utils/auth";
@@ -22,6 +21,7 @@ import DefaultHome from "./components/pages/DefaultHome";
 import Modal from "./components/Modal";
 import { useUserContext } from "./utils/contexts/UserContext";
 import { useModalContext } from "./utils/contexts/ModalContext";
+import UserButtons from "./components/UserButtons";
 
 
 // Construct our main GraphQL API endpoint
@@ -49,10 +49,9 @@ const client = new ApolloClient({
 });
 
 function App() {
-	const [isElementVisible, setIsElementVisible] = useState(false);
-
 	const { currentUser, setCurrentUser } = useUserContext();
-	const { isModal, resetModal, modalContent } = useModalContext();
+	const { isModal, resetModal, modalContent, configureModal } =
+		useModalContext();
 
 	useEffect(() => {
 		if (Auth.loggedIn()) {
@@ -66,51 +65,16 @@ function App() {
 		}
 	}, []);
 
-	const [width, setWidth] = React.useState(window.innerWidth);
-	const breakpoint = 765;
-
-	useEffect(() => {
-		const handleWindowResize = () => setWidth(window.innerWidth);
-		window.addEventListener("resize", handleWindowResize);
-
-		// Return a function from the effect that removes the event listener
-		return () => window.removeEventListener("resize", handleWindowResize);
-	}, []);
-
+	// When url path changes, close any open modals
 	const location = useLocation();
 	useEffect(() => {
-		// Fire whatever function you need.
 		resetModal();
 	}, [location.pathname]);
 
-	// const location = useLocation();
-
-	// const [direction, setDirection] = useState(null); //
-
-	// const getPathDepth = (location) => {
-	// 	let pathArr = location.pathname.split("/");
-	// 	return pathArr.filter((el) => el !== "").length;
-	// };
-
-	// const [prevPath, setPrevPath] = useState(null); //
-
-	// // every time location changes, set prev path and compare it with the new path to determine if we are going left to right or right to left
-	// useEffect(() => {
-	// 	setPrevPath(getPathDepth(location));
-
-	// 	if (getPathDepth(location) - prevPath >= 0) {
-	// 		setDirection("right");
-	// 	} else {
-	// 		setDirection("left");
-	// 	}
-	// }, [location]);
 
 	return (
 		<ApolloProvider client={client}>
 			<div className="main-container">
-				{/* <CSSTransition> */}
-				{/* {isModal === true ? ( */}
-
 				<CSSTransition
 					in={isModal}
 					timeout={600}
@@ -119,40 +83,25 @@ function App() {
 				>
 					<Modal resetModal={resetModal}>{modalContent}</Modal>
 				</CSSTransition>
-				{/* ) : (
-					""
-				)} */}
 
-				{/* </CSSTransition> */}
+				<UserButtons />
 
 				<div className="page-content">
-					{/* <TransitionGroup component={null}>
-					<CSSTransition key={location.key} classNames={"slide"} timeout={500}> */}
 					<Routes>
-						{/* <Route
-						path="/"
-						element={width < breakpoint ? <MobileLayout /> : <DesktopLayout />}
-					/> */}
 						<Route
 							path="/"
 							element={
 								currentUser.loggedIn ? <LoggedInHome /> : <DefaultHome />
 							}
 						/>
-
 						<Route path="/classes" element={<Classes />} />
 						<Route path="/classes/:id" element={<Class />} />
-						{/* <Route path="/music" element={<Music />} /> */}
 						<Route path="/music/:id" element={<SpotifyPlayer />} />
 						<Route path="/bookings" element={<Bookings />} />
 						<Route path="/dashboard" element={<Dashboard />} />
 						{/* add below 404 page */}
 						{/* <Route path="*" element={<NoMatch />} /> */}
-						{/* <Route path="/student/:studentId" element={<StudentDashboard />} /> */}
 					</Routes>
-					{/* </CSSTransition>
-				</TransitionGroup> */}
-					{/* {width < breakpoint ? <Navbar /> : ""} */}
 				</div>
 				<Navbar />
 			</div>

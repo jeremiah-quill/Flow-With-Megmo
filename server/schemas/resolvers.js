@@ -61,7 +61,7 @@ const resolvers = {
 		deleteClass: async (_, { classId }) => {
 			return Class.deleteOne({ _id: classId });
 		},
-		// TODO: test
+
 		addStudentToClass: async (_, { classId, studentId }) => {
 			return Class.findOneAndUpdate(
 				{ _id: classId },
@@ -80,6 +80,24 @@ const resolvers = {
 						registeredClasses: classId,
 					},
 				}
+			);
+		},
+
+		removeFromRoster: async (_, { classId, studentId }) => {
+			return Class.findOneAndUpdate(
+				{ _id: classId },
+				{
+					$pull: {
+						roster: studentId,
+					},
+				}
+			);
+		},
+
+		removeClassFromStudent: async (_, { studentId, classId }) => {
+			return Student.findOneAndUpdate(
+				{ _id: studentId },
+				{ $pull: { registeredClasses: classId } }
 			);
 		},
 

@@ -4,6 +4,7 @@ import LoginModal from "../modals/LoginModal";
 import SignupModal from "../modals/SignupModal";
 import useToggle from "../../hooks/useToggle";
 import { useModalContext } from "../../utils/contexts/ModalContext";
+import LoginForm from "../forms/LoginForm";
 import "../../styles/DefaultHome.css";
 
 function DefaultHome() {
@@ -17,7 +18,8 @@ function DefaultHome() {
 				to join me! Browse the schedule and register for a class or contact me
 				to book a private event.
 			</div>
-			<div className="home-btn-container">
+			{/* <LoginForm /> */}
+			{/* <div className="btn-container-stacked">
 				<button
 					className="btn btn-round btn-pink"
 					onClick={() => configureModal(<LoginModal />)}
@@ -30,7 +32,7 @@ function DefaultHome() {
 				>
 					Signup
 				</button>
-			</div>
+			</div> */}
 		</div>
 	);
 }

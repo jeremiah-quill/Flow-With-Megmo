@@ -6,7 +6,8 @@ import "../styles/Classes.css";
 import { QUERY_CLASSES } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useModalContext } from "../utils/contexts/ModalContext";
-import Class from "./pages/Class";
+import Class from "./Class";
+import ClassSignupModal from "./modals/ClassSignupModal";
 
 function Classes() {
 	const { configureModal } = useModalContext();
@@ -19,19 +20,22 @@ function Classes() {
 
 	console.log(classes);
 
+	const registerAction = (classId, date) => {
+		configureModal(<ClassSignupModal id={classId} />);
+	};
+
 	return (
 		<div className="classes view">
 			<ul className="class-list">
 				{classes.map((yogaClass, idx) => (
-					<li
-						className="class-list-item"
+					<ClassCard
+						// className="class-list-item"
 						key={idx}
-						onClick={() => configureModal(<Class id={yogaClass._id} />)}
-					>
-						{/* <Link to={`/classes/${yogaClass._id}` } > */}
-						<ClassCard date={yogaClass.date} price={yogaClass.price} />
-						{/* </Link> */}
-					</li>
+						classId={yogaClass._id}
+						action={registerAction}
+						date={yogaClass.date}
+						price={yogaClass.price}
+					/>
 				))}
 			</ul>
 		</div>

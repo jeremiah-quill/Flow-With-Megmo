@@ -17,6 +17,7 @@ a {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+    /* padding-top: 5em; */
 }
 
 .view {
@@ -25,13 +26,13 @@ a {
     /* display: flex;
     align-items: center;
     justify-content: center; */
-    border: 1px solid black;
+    /* border: 1px solid black; */
 	/* display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items:stretch; */
 	/* background-color: blue; */
-	padding-top: 5em;
+	/* padding-top: 5em; */
 
 }
 
@@ -55,6 +56,8 @@ a {
 
 .page-content {
 	flex: 1;
+    overflow-y: scroll;
+    padding-top: 5em;
 }
 
 .btn {
@@ -75,4 +78,33 @@ a {
     background-color: rgb(218, 99, 185);
     /* color: white; */
 
+}
+
+.btn-container-stacked {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.btn-container-stacked .btn + .btn {
+    margin-top: .5em;
+}
+
+.user-btns {
+    display: flex;
+    /* position: absolute; */
+    padding-top: 20px;
+    /* right: 20px; */
+    margin: 0 auto;
+    /* margin-top: 1em;
+    z-index: 900 */
+}
+
+.user-btns .btn + .btn {
+    margin-left: .5em;
+}
+
+.user-btns .btn {
+    width: 150px;
 }

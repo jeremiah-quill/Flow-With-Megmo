@@ -11,16 +11,16 @@
 
 
 
-.btn + .btn {
+/* .btn + .btn {
     margin-top: .5em;
-}
+} */
 
-.home-btn-container {
+/* .home-btn-container {
     display: flex;
     flex-direction: column;
     width: 150px;
     margin: 0 auto;
-}
+} */
 
 .default-home-title {
     margin: 0 auto;

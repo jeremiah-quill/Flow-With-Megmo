@@ -1,53 +1,21 @@
 import React, { useState } from "react";
-import useToggle from "../../hooks/useToggle";
 import CreateClassForm from "../forms/CreateClassForm";
 import StatsOverview from "../StatsOverview";
-import Modal from "../Modal";
 import ListMembersModal from "../modals/ListMembersModal";
 import AddPlaylistModal from "../modals/AddPlaylistModal";
 import DeleteClassModal from "../modals/DeleteClassModal";
 import EditClassModal from "../modals/EditClassModal";
 import "../../styles/Dashboard.css"
-import { QUERY_TEACHERS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 import { QUERY_CLASSES } from '../../utils/queries';
 import { useModalContext } from "../../utils/contexts/ModalContext";
 
-
-
-const classData = {
-	// currentClasses: [
-	// 	{ date: "2022-01-29", time: "10:00", class_id: "83354584725" },
-	// 	{ date: "2022-02-05", time: "12:00", class_id: 2 },
-	// 	{ date: "2022-02-05", time: "10:00", class_id: 3 },
-	// 	{ date: "2022-02-05", time: "10:00", class_id: 4 },
-	// ],
-	previousClasses: [
-		{ date: "2022-01-29", time: "10:00", class_id: 1, playlist_id: 1 },
-		{
-			date: "2022-01-22",
-			time: "10:30",
-			class_id: "86527573613",
-			playlist_id: "33c84T8rITyYEY63gfzPZH",
-		},
-		{ date: "2022-02-05", time: "10:00", class_id: 3, playlist_id: 3 },
-		{ date: "2022-02-05", time: "10:00", class_id: 4, playlist_id: 68 },
-	],
-};
 
 function Dashboard() {
 	const {configureModal} = useModalContext()
 
 	const { loading, data, error } = useQuery(QUERY_CLASSES);
 	const classes = data?.classes || [];
-	
-	const [isModal, toggleModal] = useToggle(false);
-	const [modalContent, setModalContent] = useState(null);
-
-	// const configureModal = (content) => {
-	// 	toggleModal();
-	// 	setModalContent(content);
-	// };
 
 	if (loading) return "Loading...";
 	if (error) return `Error! ${error.message}`;
@@ -55,7 +23,6 @@ function Dashboard() {
 	return (
 		<div className="dashboard">
 			<h1>Welcome back Yogi!</h1>
-			{/* TODO: where should I get the stats I show in StatsOverview? fetch them from database in an onEffect and then pass them in, or fetch them within StatsOverview*/}
 			<StatsOverview />
 			<CreateClassForm />
 			<h2>Scheduled</h2>

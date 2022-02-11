@@ -60,7 +60,12 @@ const typeDefs = gql`
 		deleteClass(classId: ID!): Class
 		
 		addStudentToClass(classId: ID!, studentId: ID!): Class
+
 		addClassToStudent(studentId: ID!, classId: ID!): Student
+
+		removeFromRoster(classId: ID!, studentId: ID!): Class
+
+		removeClassFromStudent(studentId: ID!, classId: ID!): Student
 
 		addPlaylist(classId: ID!, playlistId: String!): Class
 	}

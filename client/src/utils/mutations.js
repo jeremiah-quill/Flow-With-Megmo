@@ -6,11 +6,7 @@ export const CREATE_STUDENT = gql`
 		$email: String!
 		$password: String!
 	) {
-		createStudent(
-			username: $username
-			email: $email
-			password: $password
-		) {
+		createStudent(username: $username, email: $email, password: $password) {
 			token
 			student {
 				_id
@@ -73,6 +69,22 @@ export const ADD_TO_ROSTER = gql`
 export const ADD_CLASS_TO_STUDENT = gql`
 	mutation addClassToStudent($studentId: ID!, $classId: ID!) {
 		addClassToStudent(studentId: $studentId, classId: $classId) {
+			_id
+		}
+	}
+`;
+
+export const REMOVE_FROM_ROSTER = gql`
+	mutation removeFromRoster($classId: ID!, $studentId: ID!) {
+		removeFromRoster(classId: $classId, studentId: $studentId) {
+			_id
+		}
+	}
+`;
+
+export const REMOVE_CLASS_FROM_STUDENT = gql`
+	mutation removeClassFromStudent($studentId: ID!, $classId: ID!) {
+		removeClassFromStudent(studentId: $studentId, classId: $classId) {
 			_id
 		}
 	}

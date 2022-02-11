@@ -1,7 +1,7 @@
 .signup-form {
     display: flex;
     flex-direction: column;
-    margin-top: 2em;
+    /* margin-top: 2em; */
 }
 
 .outline-input {

@@ -33,7 +33,7 @@ function LoginForm() {
 	
 			setEmail("");
 			setPassword("");
-		},600)
+		}, 600)
 
 
 	};
