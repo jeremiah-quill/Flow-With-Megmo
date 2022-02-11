@@ -14,7 +14,8 @@ function ListMembersModal({ yogaClass }) {
 	console.log(yogaClass)
 
 	return (
-		<div className="modal-card">
+		<div>
+		{/* <div className="modal-card"> */}
 			<header className="modal-header">
 				{yogaClass.date}
 			</header>
@@ -22,6 +23,7 @@ function ListMembersModal({ yogaClass }) {
 				<ParticipantList participants={yogaClass.roster} />
 			</div>
 			<div className="modal-footer">none</div>
+		{/* </div> */}
 		</div>
 	);
 }

@@ -35,7 +35,8 @@ function DeleteClassModal({ yogaClass }) {
 	};
 
 	return (
-		<div className="modal-card">
+		<div>
+		{/* <div className="modal-card"> */}
 			<header className="modal-header">
 				{yogaClass.date} @ {yogaClass.time}
 			</header>
@@ -48,6 +49,7 @@ function DeleteClassModal({ yogaClass }) {
 					Confirm
 				</button>
 			</div>
+		{/* </div> */}
 		</div>
 	);
 }

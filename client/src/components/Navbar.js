@@ -3,11 +3,13 @@ import Auth from "../utils/auth";
 import {Link} from 'react-router-dom'
 
 import "../styles/Navbar.css";
+import { useModalContext } from "../utils/contexts/ModalContext";
 
 function Navbar() {
+	const {resetModal} = useModalContext()
 	return (
 		<div className="navbar">
-			<Link className="nav-item" to="/">Home</Link>
+			<Link onClick={resetModal} className="nav-item" to="/">Home</Link>
 			<Link className="nav-item" to="/classes">Schedule</Link>
 			<Link className="nav-item" to="/bookings">Contact Me</Link>
 

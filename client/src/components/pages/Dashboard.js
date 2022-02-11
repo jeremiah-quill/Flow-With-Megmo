@@ -11,6 +11,7 @@ import "../../styles/Dashboard.css"
 import { QUERY_TEACHERS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 import { QUERY_CLASSES } from '../../utils/queries';
+import { useModalContext } from "../../utils/contexts/ModalContext";
 
 
 
@@ -35,25 +36,24 @@ const classData = {
 };
 
 function Dashboard() {
+	const {configureModal} = useModalContext()
+
 	const { loading, data, error } = useQuery(QUERY_CLASSES);
 	const classes = data?.classes || [];
 	
 	const [isModal, toggleModal] = useToggle(false);
 	const [modalContent, setModalContent] = useState(null);
 
-	const configureModal = (content) => {
-		toggleModal();
-		setModalContent(content);
-	};
+	// const configureModal = (content) => {
+	// 	toggleModal();
+	// 	setModalContent(content);
+	// };
 
 	if (loading) return "Loading...";
 	if (error) return `Error! ${error.message}`;
 
 	return (
 		<div className="dashboard">
-			<Modal show={isModal} toggleModal={toggleModal}>
-				{modalContent}
-			</Modal>
 			<h1>Welcome back Yogi!</h1>
 			{/* TODO: where should I get the stats I show in StatsOverview? fetch them from database in an onEffect and then pass them in, or fetch them within StatsOverview*/}
 			<StatsOverview />
@@ -102,7 +102,7 @@ function Dashboard() {
 						</button>
 						<button
 							onClick={() =>
-								configureModal(<AddPlaylistModal yogaClass={previousClass} toggleModal={toggleModal} />)
+								configureModal(<AddPlaylistModal yogaClass={previousClass} />)
 							}
 						>
 							Pick Playlist

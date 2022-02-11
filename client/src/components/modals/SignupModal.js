@@ -1,12 +1,14 @@
 import React from "react";
 import SignupForm from "../forms/SignupForm";
+import "../../styles/SignupModal.css";
 
 function SignupModal() {
 	return (
-		<div className="modal-card">
-			<header className="modal-header">
+		<div>
+		{/* <div className="modal-card"> */}
+			<h1 className="signup-header">
 				Signup
-			</header>
+			</h1>
 			<div className="modal-content">
 				<SignupForm />
 			</div>
@@ -15,6 +17,7 @@ function SignupModal() {
 					Confirm
 				</button>
 			</div> */}
+		{/* </div> */}
 		</div>
 	);
 }

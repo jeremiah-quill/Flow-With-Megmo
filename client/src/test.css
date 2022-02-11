@@ -57,3 +57,22 @@ a {
 	flex: 1;
 }
 
+.btn {
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-pink {
+    background-color: rgb(236, 194, 228);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 1em 0;
+    font-weight: bold;
+}
+
+.btn-pink:hover {
+    background-color: rgb(218, 99, 185);
+    /* color: white; */
+
+}

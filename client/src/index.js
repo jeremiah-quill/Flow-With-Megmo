@@ -5,13 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import UserProvider from "./utils/contexts/UserContext";
+import ModalProvider from "./utils/contexts/ModalContext";
 
 ReactDOM.render(
 	// <React.StrictMode>
 	<UserProvider>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
+		<ModalProvider>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</ModalProvider>
 	</UserProvider>,
 	// </React.StrictMode>
 	document.getElementById("root")

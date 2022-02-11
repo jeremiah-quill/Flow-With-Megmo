@@ -1,12 +1,14 @@
 import React from "react";
 import LoginForm from "../forms/LoginForm";
+import '../../styles/LoginModal.css'
 
 function LoginModal() {
 	return (
-		<div className="modal-card">
-			<header className="modal-header">
+		<div>
+		{/* <div className="modal-card"> */}
+			<h1 className="login-header">
 				Login
-			</header>
+			</h1>
 			<div className="modal-content">
 				<LoginForm />
 			</div>
@@ -15,6 +17,7 @@ function LoginModal() {
 					Confirm
 				</button>
 			</div> */}
+		{/* </div> */}
 		</div>
 	);
 }

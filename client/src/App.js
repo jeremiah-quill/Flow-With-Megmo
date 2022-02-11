@@ -19,7 +19,11 @@ import Classes from "./components/Classes";
 import Auth from "./utils/auth";
 import LoggedInHome from "./components/pages/LoggedInHome";
 import DefaultHome from "./components/pages/DefaultHome";
+import Modal from "./components/Modal";
 import { useUserContext } from "./utils/contexts/UserContext";
+import { useModalContext } from "./utils/contexts/ModalContext";
+
+import { MountAnimation } from "./components/MountAnimation";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -46,7 +50,10 @@ const client = new ApolloClient({
 });
 
 function App() {
+	const [isElementVisible, setIsElementVisible] = useState(false);
+
 	const { currentUser, setCurrentUser } = useUserContext();
+	const { isModal, resetModal, modalContent } = useModalContext();
 
 	useEffect(() => {
 		if (Auth.loggedIn()) {
@@ -70,6 +77,12 @@ function App() {
 		// Return a function from the effect that removes the event listener
 		return () => window.removeEventListener("resize", handleWindowResize);
 	}, []);
+
+	const location = useLocation();
+	useEffect(() => {
+		// Fire whatever function you need.
+		resetModal();
+	}, [location.pathname]);
 
 	// const location = useLocation();
 
@@ -96,6 +109,18 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<div className="main-container">
+				{/* <CSSTransition> */}
+				{/* {isModal === true ? ( */}
+
+				<MountAnimation isVisible={isModal}>
+					<Modal resetModal={resetModal}>{modalContent}</Modal>
+				</MountAnimation>
+				{/* ) : (
+					""
+				)} */}
+
+				{/* </CSSTransition> */}
+
 				<div className="page-content">
 					{/* <TransitionGroup component={null}>
 					<CSSTransition key={location.key} classNames={"slide"} timeout={500}> */}

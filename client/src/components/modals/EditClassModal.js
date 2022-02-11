@@ -6,7 +6,8 @@ import EditClassForm from "../forms/EditClassForm";
 function EditClassModal({ yogaClass }) {
 
 	return (
-		<div className="modal-card">
+		<div>
+		{/* <div className="modal-card"> */}
 			<header className="modal-header">
 				{yogaClass.date} @ {yogaClass.time}
 			</header>
@@ -19,6 +20,7 @@ function EditClassModal({ yogaClass }) {
 			<div className="modal-footer">
 				<button form={yogaClass.class_id}>Confirm Class Update</button>
 			</div>
+		{/* </div> */}
 		</div>
 	);
 }

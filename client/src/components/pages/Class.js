@@ -12,25 +12,27 @@ import Auth from "../../utils/auth";
 import useToggle from "../../hooks/useToggle";
 import "../../styles/Class.css";
 import { useUserContext } from "../../utils/contexts/UserContext";
+import { useModalContext } from "../../utils/contexts/ModalContext";
 
 
-function Class() {
+function Class({id}) {
 	// get user context
 	const { currentUser } = useUserContext();
+	const {configureModal} = useModalContext()
 
 
-	const [isModal, toggleModal] = useToggle(false);
-	const [modalContent, setModalContent] = useState(null);
+	// const [isModal, toggleModal] = useToggle(false);
+	// const [modalContent, setModalContent] = useState(null);
 
-	const configureModal = (content) => {
-		toggleModal();
-		setModalContent(content);
-	};
+	// const configureModal = (content) => {
+	// 	toggleModal();
+	// 	setModalContent(content);
+	// };
 
 	const navigate = useNavigate();
 
 	// access class _id from params
-	let { id } = useParams();
+	// let { id } = useParams();
 
 	// find currentClass based on params id
 	const { loading, data, error } = useQuery(QUERY_SINGLE_CLASS, {
@@ -78,13 +80,13 @@ function Class() {
 
 	return (
 		<div className="class">
-			<Modal show={isModal} toggleModal={toggleModal}>
+			{/* <Modal show={isModal} toggleModal={toggleModal}>
 				{modalContent}
-			</Modal>
+			</Modal> */}
 
-			<button className="close-page" onClick={() => navigate("/")}>
+			{/* <button className="close-page" onClick={() => navigate("/")}>
 				Close
-			</button>
+			</button> */}
 			<header className="class-header">Saturday, March 3rd @ 12:00pm</header>
 
 			<div className="class-signup-content">

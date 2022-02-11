@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { teacherPlaylists, spotifyToken } from "../../utils/API";
 import { ADD_PLAYLIST } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
+import { useModalContext } from "../../utils/contexts/ModalContext";
 
-function AddPlaylistModal({ yogaClass, toggleModal }) {
+function AddPlaylistModal({ yogaClass }) {
+	const { resetModal } = useModalContext();
+
 	const [addPlaylist, { error }] = useMutation(ADD_PLAYLIST);
 
 	const [playlists, setPlaylists] = useState([]);
@@ -31,11 +34,12 @@ function AddPlaylistModal({ yogaClass, toggleModal }) {
 		}
 
 		// TODO why doesn't this work
-		toggleModal();
+		resetModal()
 	};
 
 	return (
-		<div className="modal-card">
+		// <div className="modal-card">
+		<div>
 			<header className="modal-header">{yogaClass.date}</header>
 			<div className="modal-content">
 				{playlists && (
@@ -53,7 +57,8 @@ function AddPlaylistModal({ yogaClass, toggleModal }) {
 				)}
 			</div>
 			<div className="modal-footer">confirm</div>
-		</div>
+			</div>
+		// </div>
 	);
 }
 
