@@ -23,7 +23,6 @@ import Modal from "./components/Modal";
 import { useUserContext } from "./utils/contexts/UserContext";
 import { useModalContext } from "./utils/contexts/ModalContext";
 
-import { MountAnimation } from "./components/MountAnimation";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -112,9 +111,14 @@ function App() {
 				{/* <CSSTransition> */}
 				{/* {isModal === true ? ( */}
 
-				<MountAnimation isVisible={isModal}>
+				<CSSTransition
+					in={isModal}
+					timeout={600}
+					classNames={"translate-y"}
+					unmountOnExit={true}
+				>
 					<Modal resetModal={resetModal}>{modalContent}</Modal>
-				</MountAnimation>
+				</CSSTransition>
 				{/* ) : (
 					""
 				)} */}
