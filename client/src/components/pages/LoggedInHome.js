@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { QUERY_SINGLE_STUDENT } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
-import Auth from "../../utils/auth";
 import { useUserContext } from "../../utils/contexts/UserContext";
 import {
 	REMOVE_CLASS_FROM_STUDENT,
 	REMOVE_FROM_ROSTER,
 } from "../../utils/mutations";
 import "../../styles/LoggedInHome.css";
-import ClassCard from "../ClassCard";
 import RegisteredClass from "../list_items/RegisteredClass";
 import { useModalContext } from "../../utils/contexts/ModalContext";
 
@@ -16,13 +14,17 @@ import { useModalContext } from "../../utils/contexts/ModalContext";
 function LoggedInHome() {
 	// get user context
 	const { currentUser } = useUserContext();
-	const {resetModal} = useModalContext()
+	const { resetModal } = useModalContext();
 
 	// find student info (specifically what we need is registered classes -> should this be a specific query?) based on the currentUser's _id
-	const { loading, data, error } = useQuery(QUERY_SINGLE_STUDENT, {
+	const { loading, data, error, refetch } = useQuery(QUERY_SINGLE_STUDENT, {
 		variables: { studentId: currentUser._id },
 	});
 	const studentData = data?.getStudentById || [];
+
+	useEffect(() => {
+		refetch();
+	}, [studentData]);
 
 	const [removeFromRoster, { error: removeStudentError }] =
 		useMutation(REMOVE_FROM_ROSTER);
@@ -49,17 +51,17 @@ function LoggedInHome() {
 		} catch (err) {
 			console.error(err);
 		}
-		resetModal()
+		resetModal();
 	};
 
-	if (loading) return "Loading...";
-	if (error) return `Error! ${error.message}`;
-	if (removeStudentError) return `Error! ${removeStudentError.message}`;
+	if (loading) return <div className="view"></div>;
+	if (error) return <div className="view">Error! {error.message}</div>
+	if (removeStudentError) return <div className="view">Error! ${removeStudentError.message}</div>
 	if (removeClassFromStudentError)
-		return `Error! ${removeClassFromStudentError.message}`;
+		return <div className="view">Error! ${removeClassFromStudentError.message}</div>
 
 	return (
-		<div className="logged-in-home">
+		<div className="logged-in-home view">
 			<h2 className="logged-in-header">Welcome {studentData.username}</h2>
 			{studentData.registeredClasses.length > 0 ? (
 				<>
@@ -73,10 +75,10 @@ function LoggedInHome() {
 							<RegisteredClass
 								key={idx}
 								registeredClass={registeredClass}
+								// if class is in the future, use cancel action
 								action={cancelAction}
-								// classId={registeredClass._id}
-								// classAction={<CancelClass registeredClass={registeredClass} />}
-								// date={registeredClass.date}
+								// otherwise, use playlist action
+								// TODO: add playlist action which will just pull up spotify playlist
 							/>
 						))}
 					</ul>

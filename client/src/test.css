@@ -108,3 +108,25 @@ a {
 .user-btns .btn {
     width: 150px;
 }
+
+.page-fade-enter {
+    opacity: 0;
+    transform: translateX(-10%);
+}
+
+.page-fade-enter.page-fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.page-fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.page-fade-exit.page-fade-exit-active {
+    opacity: 0;
+    transform: translateX(10%);
+    transition: opacity 250ms ease, transform 250ms ease;
+}

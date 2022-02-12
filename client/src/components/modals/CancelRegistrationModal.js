@@ -10,8 +10,7 @@ function CancelRegistrationModal({ yogaClass, action }) {
 				{yogaClass.date} @ {yogaClass.time}
 			</header>
 			<div className="modal-content">
-				Please confirm you would like to delete this class. All users who have
-				signed up will receive an email notification.
+				Please confirm you would like to cancel your registration for this class. Once confirmed, please give us 48 hours to send back your venmo!
 			</div>
 			<div className="modal-footer">
 				<button onClick={() => action(yogaClass._id)}>

@@ -56,7 +56,7 @@ function Class({ id }) {
 
 	if (loading) return "Loading...";
 	if (error) return `Error! ${error.message}`;
-	console.log(data);
+	// console.log(data);
 
 	return (
 		<div className="class">

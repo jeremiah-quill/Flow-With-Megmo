@@ -11,7 +11,7 @@ function DefaultHome() {
 	const { configureModal } = useModalContext();
 
 	return (
-		<div className="default-home">
+		<div className="default-home view">
 			<h2 className="default-home-title">Flow with Megmo</h2>
 			<div className="default-home-welcome">
 				Welcome! I teach weekly(ish) virtual yoga classes and would love for you

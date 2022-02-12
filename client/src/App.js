@@ -8,7 +8,7 @@ import {
 	createHttpLink,
 } from "@apollo/client";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Class from "./components/Class";
 import SpotifyPlayer from "./components/pages/SpotifyPlayer";
 import Dashboard from "./components/pages/Dashboard";
@@ -22,7 +22,6 @@ import Modal from "./components/Modal";
 import { useUserContext } from "./utils/contexts/UserContext";
 import { useModalContext } from "./utils/contexts/ModalContext";
 import UserButtons from "./components/UserButtons";
-
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -71,10 +70,10 @@ function App() {
 		resetModal();
 	}, [location.pathname]);
 
-
 	return (
 		<ApolloProvider client={client}>
 			<div className="main-container">
+				{/* GLOBAL MODAL */}
 				<CSSTransition
 					in={isModal}
 					timeout={600}
@@ -87,6 +86,7 @@ function App() {
 				<UserButtons />
 
 				<div className="page-content">
+					{/* PAGE ROUTES */}
 					<Routes>
 						<Route
 							path="/"
@@ -95,8 +95,8 @@ function App() {
 							}
 						/>
 						<Route path="/classes" element={<Classes />} />
-						<Route path="/classes/:id" element={<Class />} />
-						<Route path="/music/:id" element={<SpotifyPlayer />} />
+						{/* <Route path="/classes/:id" element={<Class />} /> */}
+						{/* <Route path="/music/:id" element={<SpotifyPlayer />} /> */}
 						<Route path="/bookings" element={<Bookings />} />
 						<Route path="/dashboard" element={<Dashboard />} />
 						{/* add below 404 page */}

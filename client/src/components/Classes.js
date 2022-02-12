@@ -19,7 +19,7 @@ function Classes() {
 	if (loading) return "Loading...";
 	if (error) return `Error! ${error.message}`;
 
-	console.log(classes);
+	// console.log(classes)
 
 	return (
 		<div className="classes view">
