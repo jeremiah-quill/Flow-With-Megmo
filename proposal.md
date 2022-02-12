@@ -12,6 +12,9 @@ Flow with Megmo is a scheduling tool to help a yoga teacher manage their zoom yo
 
 
 ## Wireframe or Design for the website
+<img width="441" alt="FWM mobile view" src="https://user-images.githubusercontent.com/53875206/153725480-ecfd6e59-231c-43eb-b1f7-2438e4095161.png">
+
+<img width="1183" alt="FWM desktop view" src="https://user-images.githubusercontent.com/53875206/153725485-6f3e245e-14d1-4ca1-9baa-900387065bb9.png">
 
 
 
