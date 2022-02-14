@@ -231,4 +231,19 @@
 		left: 30%;
 		right: 30%;
 	}
+
+
+	/* Card slide down */
+
+.translate-y-exit.translate-y-exit-active > .modal-card {
+	transform: translateY(160%);
+	transition: transform 250ms ease;
+	transition-delay: 100ms
+}
+
+/* Card slide */
+.translate-y-enter > .modal-card {
+	transform: translateY(160%);
+}
+
 }
