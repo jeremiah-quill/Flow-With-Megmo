@@ -5,22 +5,8 @@ import closeIcon from "../images/close.png";
 import { CSSTransition } from "react-transition-group";
 
 function Modal({ resetModal, children }) {
-	// const [startTransition, setStartTransition] =
-	// 	useState(false);
-
-		// console.log(exitModalTransition)
-
-	// useEffect(() => {
-	// 	setTimeout(() => {
-	// 		setStartTransition(true);
-	// 	}, 50);
-	// }, []);
-
-	// if (!isModal) {
-	// 	return null;
-	// } else
 		return (
-			<div>
+			<div className="modal">
 				<div
 					className={`modal-backdrop`}
 					onClick={resetModal}

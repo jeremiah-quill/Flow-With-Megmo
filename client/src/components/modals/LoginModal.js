@@ -7,7 +7,7 @@ function LoginModal() {
 
 
 	return (
-		<div>
+		<div className="login-modal">
 			<h1 className="login-header">
 				Login
 			</h1>

@@ -12,17 +12,6 @@ function Navbar() {
 			<Link onClick={resetModal} className="nav-item" to="/">Home</Link>
 			<Link className="nav-item" to="/classes">Schedule</Link>
 			<Link className="nav-item" to="/bookings">Contact Me</Link>
-
-			{/* <button className="menu-button" onClick={() => setMobileView("classes")}>
-				Available Classes
-			</button>
-
-			<button className="menu-button" onClick={() => setMobileView("music")}>My Music</button>
-
-			<button className="menu-button" onClick={() => setMobileView("event")}>
-				Book a Private Event
-			</button> */}
-				
 		</div>
 	);
 }

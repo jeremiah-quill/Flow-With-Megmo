@@ -3,3 +3,11 @@
     margin: 0;
 }
 
+.login-modal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+

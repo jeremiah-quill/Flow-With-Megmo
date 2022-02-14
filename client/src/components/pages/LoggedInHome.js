@@ -22,35 +22,28 @@ function LoggedInHome() {
 	});
 	const studentData = data?.getStudentById || [];
 
-	
-	let registeredClasses = studentData.registeredClasses
-	if(registeredClasses) {
-		registeredClasses.map(registeredClass => {
-			let now = new Date();
-			if(now - new Date(registeredClass.date) > 0) {
-				console.log('past');
-			} else {
-				console.log('future')
+	let registeredClasses = studentData.registeredClasses;
+	if (registeredClasses) {
+		registeredClasses.map(
+			(registeredClass) => {
+				let now = new Date();
+				if (now - new Date(registeredClass.date) > 0) {
+					console.log("past");
+				} else {
+					console.log("future");
+				}
 			}
-		}
-			
-			
+
 			// console.log(new Date(registeredClass.date).getTime())
-			
-			)}
-
-	
-
+		);
+	}
 
 	const [removeFromRoster, { error: removeStudentError }] =
 		useMutation(REMOVE_FROM_ROSTER);
 
 	const [removeClassFromStudent, { error: removeClassFromStudentError }] =
 		useMutation(REMOVE_CLASS_FROM_STUDENT, {
-			refetchQueries: [
-				QUERY_SINGLE_STUDENT, 
-				'getStudentById' 
-			  ]
+			refetchQueries: [QUERY_SINGLE_STUDENT, "getStudentById"],
 		});
 
 	// TODO: refactor
@@ -86,28 +79,50 @@ function LoggedInHome() {
 
 	return (
 		<div className="logged-in-home view">
-			<h2 className="logged-in-header">Welcome {studentData.username}</h2>
-		
-				<>
-					<p>
-						Here you will find your scheduled and completed classes. If you are
-						looking for a specific song from a previous class, click the spotify
-						button. Enjoy!
-					</p>
-					<ul className="class-list">
-						{studentData.registeredClasses.map((registeredClass, idx) => (
-							<RegisteredClass
-								key={idx}
-								registeredClass={registeredClass}
-								// if class is in the future, use cancel action
-								action={cancelAction}
-								// otherwise, use playlist action
-								// TODO: add playlist action which will just pull up spotify playlist
-							/>
-						))}
-					</ul>
-				</>
+			<div className="student-info">
+				<h2 className="logged-in-header">Welcome {studentData.username}</h2>
+				<p>
+					If you need to cancel a registration
+					for any reason, please do so here. You will receive an email
+					confirming your cancellation and we will reimburse your class fee
+					within 48 hours. <br></br><br></br>
+					Browse your completed classes and check out my playlist for each class.
+				</p>
 
+			</div>
+
+			<div className="student-lists">
+				<div className="registered-classes">
+				<h3>Registered Classes</h3>
+				<ul className="class-list home-page-class-list">
+					{studentData.registeredClasses.map((registeredClass, idx) => (
+						<RegisteredClass
+							key={idx}
+							registeredClass={registeredClass}
+							// if class is in the future, use cancel action
+							action={cancelAction}
+							// otherwise, use playlist action
+							// TODO: add playlist action which will just pull up spotify playlist
+						/>
+					))}
+				</ul>
+				</div>
+				<div className="completed-classes">
+				<h3>Completed Classes</h3>
+				<ul className="class-list home-page-class-list">
+					{studentData.registeredClasses.map((registeredClass, idx) => (
+						<RegisteredClass
+							key={idx}
+							registeredClass={registeredClass}
+							// if class is in the future, use cancel action
+							action={cancelAction}
+							// otherwise, use playlist action
+							// TODO: add playlist action which will just pull up spotify playlist
+						/>
+					))}
+				</ul>
+				</div>
+			</div>
 		</div>
 	);
 }

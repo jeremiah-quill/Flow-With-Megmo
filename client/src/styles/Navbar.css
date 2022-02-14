@@ -1,6 +1,6 @@
 .navbar {
 	width: 100%;
-	background-color: lightblue;
+	/* background-color: lightblue; */
     display: flex;
     /* padding: 1.5em */
     z-index: 999;
@@ -21,4 +21,23 @@
     padding: 1em;
     flex: 1;
     text-align: center;
+}
+
+@media screen and (min-width: 765px) {
+    .navbar {
+        position: static;
+        width: auto;
+    }
+
+    .nav-item {
+        padding: 0;
+        flex: auto;
+        /* display: flex;
+        align-items: center; */
+    }
+
+    .nav-item + .nav-item {
+        margin-left: 2em;
+    }
+    
 }

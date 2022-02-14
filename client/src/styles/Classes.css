@@ -4,8 +4,20 @@
 	padding: 0;
 	height: 100%;
 	overflow-y: scroll;
+	border: 1px solid black;
+	height: 80vh;
 }
 
 .classes {
-	overflow-y: scroll;
+	padding-top: 2em;
 }
+
+@media screen and (min-width: 765px) {
+	.classes {
+		padding-top: 0;
+	}
+}
+
+
+
+
