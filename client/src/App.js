@@ -72,6 +72,7 @@ function App() {
 
 	return (
 		<ApolloProvider client={client}>
+			
 			<div className="main-container">
 				{/* GLOBAL MODAL */}
 				<CSSTransition

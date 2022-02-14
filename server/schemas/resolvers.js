@@ -62,6 +62,17 @@ const resolvers = {
 			return Class.deleteOne({ _id: classId });
 		},
 
+		updateClass: async (_, { classId, newDateTime }) => {
+			return Class.findOneAndUpdate(
+				{ _id: classId },
+				{
+					$set: {
+						date: newDateTime,
+					},
+				}
+			);
+		},
+
 		addStudentToClass: async (_, { classId, studentId }) => {
 			return Class.findOneAndUpdate(
 				{ _id: classId },
@@ -80,7 +91,7 @@ const resolvers = {
 						registeredClasses: classId,
 					},
 				}
-			);
+			).populate("registeredClasses");
 		},
 
 		removeFromRoster: async (_, { classId, studentId }) => {
@@ -98,7 +109,7 @@ const resolvers = {
 			return Student.findOneAndUpdate(
 				{ _id: studentId },
 				{ $pull: { registeredClasses: classId } }
-			);
+			).populate("registeredClasses");
 		},
 
 		addPlaylist: async (_, { classId, playlistId }) => {

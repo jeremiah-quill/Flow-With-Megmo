@@ -1,33 +1,50 @@
 import React, { useState } from "react";
 import { zoomEdit } from "../../utils/API";
+import { useMutation } from "@apollo/client";
+import { UPDATE_CLASS } from "../../utils/mutations";
 
-
-// TODO: this is broken, need to pull out time from timestamp rather than send time separately
 // TODO: validate so meghan can't send bad data
-function EditClassForm({ values, id}) {
-	const [date, setDate] = useState(values.date);
-	const [time, setTime] = useState(values.time);
-	const [price, setPrice] = useState(values.price)
+// TODO: success/error handling for zoom update and db update
+// TODO: add email notification to everyone on roster
+function EditClassForm({ classId, zoomId, currentDateString }) {
+	const currentDate = new Date(currentDateString);
+	const formattedCurrentDate = currentDate.toLocaleDateString("en-CA");
+	const formattedCurrentTime = currentDate
+		.toLocaleTimeString("en-US", { hour12: false })
+		.split("")
+		.slice(0, -3)
+		.join("");
+
+	const [date, setDate] = useState(formattedCurrentDate);
+	const [time, setTime] = useState(formattedCurrentTime);
+
+	const [updateClass, { error }] = useMutation(UPDATE_CLASS);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		const newDateTime = `${date}T${time}:00`
+
 		const classData = {
-			start_time: `${date}T${time}:00`,
-			meetingId: id,
+			start_time: newDateTime,
+			meetingId: zoomId,
 		};
-		const editResponse = await zoomEdit(classData)
-		// TODO: graphQL mutation to edit class in database
+		const editResponse = await zoomEdit(classData);
 
+		try {
+			const { data } = await updateClass({
+				variables: { classId, newDateTime },
+			});
+		} catch (err) {
+			console.error(err);
+		}
 
-
-		console.log(`classResponse: ${editResponse}`)
 		setDate("");
 		setTime("");
 	};
 
 	return (
 		<div className="create-class-form">
-			<form id={id} onSubmit={handleSubmit}>
+			<form id={classId} onSubmit={handleSubmit}>
 				<input
 					type="date"
 					value={date}

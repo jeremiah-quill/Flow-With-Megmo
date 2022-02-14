@@ -1,7 +1,7 @@
 import React from "react";
 
 function CancelRegistrationModal({ yogaClass, action }) {
-	console.log(yogaClass)
+	// console.log(yogaClass)
 
 	return (
 		<div>

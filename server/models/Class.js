@@ -33,6 +33,14 @@ const classSchema = new Schema({
 	},
 });
 
+classSchema.methods.classTiming = function() {
+	// return scheduled or completed
+	console.log(this.date)
+	// this.username = `${this.username}...the Coolest!`;
+	// return this.username;
+  };
+  
+
 const Class = model("Class", classSchema);
 
 module.exports = Class;

@@ -17,20 +17,41 @@ function LoggedInHome() {
 	const { resetModal } = useModalContext();
 
 	// find student info (specifically what we need is registered classes -> should this be a specific query?) based on the currentUser's _id
-	const { loading, data, error, refetch } = useQuery(QUERY_SINGLE_STUDENT, {
+	const { loading, data, error } = useQuery(QUERY_SINGLE_STUDENT, {
 		variables: { studentId: currentUser._id },
 	});
 	const studentData = data?.getStudentById || [];
 
-	useEffect(() => {
-		refetch();
-	}, [studentData]);
+	
+	let registeredClasses = studentData.registeredClasses
+	if(registeredClasses) {
+		registeredClasses.map(registeredClass => {
+			let now = new Date();
+			if(now - new Date(registeredClass.date) > 0) {
+				console.log('past');
+			} else {
+				console.log('future')
+			}
+		}
+			
+			
+			// console.log(new Date(registeredClass.date).getTime())
+			
+			)}
+
+	
+
 
 	const [removeFromRoster, { error: removeStudentError }] =
 		useMutation(REMOVE_FROM_ROSTER);
 
 	const [removeClassFromStudent, { error: removeClassFromStudentError }] =
-		useMutation(REMOVE_CLASS_FROM_STUDENT);
+		useMutation(REMOVE_CLASS_FROM_STUDENT, {
+			refetchQueries: [
+				QUERY_SINGLE_STUDENT, 
+				'getStudentById' 
+			  ]
+		});
 
 	// TODO: refactor
 	const cancelAction = async (classId) => {
@@ -54,16 +75,19 @@ function LoggedInHome() {
 		resetModal();
 	};
 
-	if (loading) return <div className="view"></div>;
-	if (error) return <div className="view">Error! {error.message}</div>
-	if (removeStudentError) return <div className="view">Error! ${removeStudentError.message}</div>
+	if (loading) return <div className="view">Loading</div>;
+	if (error) return <div className="view">Error! {error.message}</div>;
+	if (removeStudentError)
+		return <div className="view">Error! ${removeStudentError.message}</div>;
 	if (removeClassFromStudentError)
-		return <div className="view">Error! ${removeClassFromStudentError.message}</div>
+		return (
+			<div className="view">Error! ${removeClassFromStudentError.message}</div>
+		);
 
 	return (
 		<div className="logged-in-home view">
 			<h2 className="logged-in-header">Welcome {studentData.username}</h2>
-			{studentData.registeredClasses.length > 0 ? (
+		
 				<>
 					<p>
 						Here you will find your scheduled and completed classes. If you are
@@ -83,9 +107,7 @@ function LoggedInHome() {
 						))}
 					</ul>
 				</>
-			) : (
-				<div>No scheduled or completed classes yet...get a move on!</div>
-			)}
+
 		</div>
 	);
 }

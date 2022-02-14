@@ -58,6 +58,9 @@ const typeDefs = gql`
 		): Class
 
 		deleteClass(classId: ID!): Class
+
+		updateClass(classId: ID!, newDateTime: Date!): Class
+
 		
 		addStudentToClass(classId: ID!, studentId: ID!): Class
 

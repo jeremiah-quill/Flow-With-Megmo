@@ -4,6 +4,9 @@
     display: flex;
     /* padding: 1.5em */
     z-index: 999;
+    position: fixed;
+    bottom: 0;
+    
 }
 
 /* .navbar-list {

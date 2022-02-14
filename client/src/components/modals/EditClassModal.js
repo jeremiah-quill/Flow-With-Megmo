@@ -13,12 +13,13 @@ function EditClassModal({ yogaClass }) {
 			</header>
 			<div className="modal-content">
 				<EditClassForm
-					values={{ date: yogaClass.date, time: yogaClass.time }}
-					id={yogaClass.class_id}
+					currentDateString={yogaClass.date}
+					zoomId={yogaClass.zoomId}
+					classId={yogaClass._id}
 				/>
 			</div>
 			<div className="modal-footer">
-				<button form={yogaClass.class_id}>Confirm Class Update</button>
+				<button form={yogaClass._id}>Confirm Class Update</button>
 			</div>
 		{/* </div> */}
 		</div>

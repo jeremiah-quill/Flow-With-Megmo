@@ -58,6 +58,17 @@ export const DELETE_CLASS = gql`
 	}
 `;
 
+export const UPDATE_CLASS = gql`
+	mutation updateClass($classId: ID!, $newDateTime: Date!) {
+		updateClass(classId: $classId, newDateTime: $newDateTime) {
+			_id
+			zoomId
+			date
+			link
+		}
+	}
+`;
+
 export const ADD_TO_ROSTER = gql`
 	mutation addStudentToClass($classId: ID!, $studentId: ID!) {
 		addStudentToClass(classId: $classId, studentId: $studentId) {
@@ -70,6 +81,11 @@ export const ADD_CLASS_TO_STUDENT = gql`
 	mutation addClassToStudent($studentId: ID!, $classId: ID!) {
 		addClassToStudent(studentId: $studentId, classId: $classId) {
 			_id
+			registeredClasses {
+				_id
+				date
+				playlistId
+			}
 		}
 	}
 `;
@@ -86,6 +102,11 @@ export const REMOVE_CLASS_FROM_STUDENT = gql`
 	mutation removeClassFromStudent($studentId: ID!, $classId: ID!) {
 		removeClassFromStudent(studentId: $studentId, classId: $classId) {
 			_id
+			registeredClasses {
+				_id
+				date
+				playlistId
+			}
 		}
 	}
 `;
