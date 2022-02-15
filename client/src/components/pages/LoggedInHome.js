@@ -120,7 +120,7 @@ function LoggedInHome() {
 							))}
 						</ul>
 					)
-				) : studentData.registeredClasses.length <= 0 ? (
+				) : studentCompleted.length <= 0 ? (
 					<div className="no-classes">
 						You do not have any completed classes at this time.
 					</div>

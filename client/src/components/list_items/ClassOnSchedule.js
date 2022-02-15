@@ -12,7 +12,11 @@ export default function ClassOnSchedule({ classOnSchedule }) {
 	const dayOfMonth = classDateStamp.toLocaleString("en-US", { day: "2-digit" });
 	const month = classDateStamp.toLocaleString("en-US", { month: "2-digit" });
 	const dayOfWeek = classDateStamp.toLocaleString("en-US", { weekday: "long" });
-	const hour = classDateStamp.toLocaleTimeString("en-US", { timeStyle: "short" });
+	const hour = classDateStamp.toLocaleTimeString("en-US", {
+		timeStyle: "short",
+	});
+
+	console.log(classOnSchedule.roster.filter(student => student._id === currentUser._id).length > 0)
 
 	return (
 		<div className="class-list-item">
@@ -24,20 +28,26 @@ export default function ClassOnSchedule({ classOnSchedule }) {
 				<div className="class-card-day">{hour}</div>
 				<div className="class-card-day">${classOnSchedule.price}</div>
 			</div>
-			<div className="class-actions">
-				{currentUser.loggedIn === true ? (
-					<button
-						className="btn btn-round btn-pink"
-						onClick={() =>
-							configureModal(<ClassSignupModal id={classOnSchedule._id} />)
-						}
-					>
-						Register
-					</button>
-				) : (
-					<p className="must-sign-up">Please login/signup to book a class</p>
-				)}
-			</div>
+			{classOnSchedule.roster.filter(
+				(student) => student._id === currentUser._id
+			).length > 0 ? (
+				<div className="currently-registered">Currently registered</div>
+			) : (
+				<div className="class-actions">
+					{currentUser.loggedIn === true ? (
+						<button
+							className="btn btn-round btn-pink"
+							onClick={() =>
+								configureModal(<ClassSignupModal id={classOnSchedule._id} />)
+							}
+						>
+							Register
+						</button>
+					) : (
+						<p className="must-sign-up">Please login/signup to book a class</p>
+					)}
+				</div>
+			)}
 		</div>
 	);
 }

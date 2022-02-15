@@ -40,7 +40,7 @@ const typeDefs = gql`
 		getClassById(classId: ID!): Class
 		getUpcomingStudentClasses(studentId: ID!): [Class]
 		getCompletedStudentClasses(studentId: ID!): [Class]
-
+		getUpcomingClasses: [Class]
 	}
 
 	type Mutation {

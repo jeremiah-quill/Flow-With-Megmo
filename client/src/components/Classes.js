@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 import ClassCard from "./ClassCard";
 import "../styles/Classes.css";
-import { QUERY_CLASSES } from "../utils/queries";
+import { QUERY_CLASSES, QUERY_UPCOMING_CLASSES } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import { useModalContext } from "../utils/contexts/ModalContext";
 import Class from "./Class";
@@ -13,8 +13,8 @@ import ClassOnSchedule from "./list_items/ClassOnSchedule";
 function Classes() {
 	const { configureModal } = useModalContext();
 
-	const { loading, data, error } = useQuery(QUERY_CLASSES);
-	const classes = data?.classes || [];
+	const { loading, data, error } = useQuery(QUERY_UPCOMING_CLASSES);
+	const classes = data?.getUpcomingClasses || [];
 
 	if (loading) return <div>"Loading..."</div>;
 	if (error) return <div>`Error! ${error.message}`</div>;

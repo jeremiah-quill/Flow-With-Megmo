@@ -31,7 +31,7 @@ a {
 
 
 .main-container {
-    max-width: 1200px;
+    max-width: 1000px;
     height: 100%;
     margin: 0 auto;
     position: relative;
@@ -137,6 +137,10 @@ a {
 /* .btn-container-stacked .btn + .btn {
     margin-top: .5em;
 } */
+
+.currently-registered {
+    margin-left: auto;
+}
 
 .user-btns {
     display: flex;

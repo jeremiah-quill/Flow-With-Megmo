@@ -38,6 +38,11 @@ const resolvers = {
 			let currDate = new Date();
 			let filteredClasses = registeredClasses.filter(registeredClass => new Date(registeredClass.date).getTime() - currDate.getTime() < 0);
 			return filteredClasses
+		},
+
+		getUpcomingClasses: async() => {
+			let now = new Date()
+			return Class.find({date: {$gt: now}}).populate("roster")
 		}
 
 	},

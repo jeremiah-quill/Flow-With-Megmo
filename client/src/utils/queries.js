@@ -26,6 +26,21 @@ export const QUERY_CLASSES = gql`
   }
 `;
 
+export const QUERY_UPCOMING_CLASSES = gql`
+  query getUpcomingClasses {
+    getUpcomingClasses {
+      _id
+      date
+      price
+      playlistId
+      zoomId
+      roster {
+        _id
+      }
+    }
+  }
+`;
+
 export const QUERY_UPCOMING_STUDENT_CLASSES = gql`
   query getUpcomingStudentClasses($studentId: ID!) {
     getUpcomingStudentClasses(studentId: $studentId) {
