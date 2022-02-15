@@ -1,22 +1,14 @@
 import { useModalContext } from "../../utils/contexts/ModalContext";
 import { useUserContext } from "../../utils/contexts/UserContext";
 import ClassSignupModal from "../modals/ClassSignupModal";
+import parseDate from '../../utils/helpers/parseDate'
 import "../../styles/ClassCard.css";
 
 export default function ClassOnSchedule({ classOnSchedule, refetch }) {
 	const { currentUser } = useUserContext();
 	const { configureModal } = useModalContext();
 
-	// TODO: abstract this into a function to be able to use on student page, class schedule, and dashboard
-	const classDateStamp = new Date(classOnSchedule.date);
-	const dayOfMonth = classDateStamp.toLocaleString("en-US", { day: "2-digit" });
-	const month = classDateStamp.toLocaleString("en-US", { month: "2-digit" });
-	const dayOfWeek = classDateStamp.toLocaleString("en-US", { weekday: "long" });
-	const hour = classDateStamp.toLocaleTimeString("en-US", {
-		timeStyle: "short",
-	});
-
-	// console.log(classOnSchedule.roster.filter(student => student._id === currentUser._id).length > 0)
+	const { dayOfMonth, month, dayOfWeek, hour } = parseDate(classOnSchedule.date);
 
 	return (
 		<div className="class-list-item">

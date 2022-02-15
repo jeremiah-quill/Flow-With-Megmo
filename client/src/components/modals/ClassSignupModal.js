@@ -1,6 +1,6 @@
 import React from "react";
 import Class from "../Class";
-import '../../styles/ClassSignupModal.css'
+import "../../styles/ClassSignupModal.css";
 
 import { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
@@ -14,19 +14,21 @@ import { useModalContext } from "../../utils/contexts/ModalContext";
 import { useToastContext } from "../../utils/contexts/ToastContext";
 import LoginForm from "../forms/LoginForm";
 import "../../styles/Class.css";
+import parseDate from "../../utils/helpers/parseDate";
 
-function ClassSignupModal({id, refetch}) {
+function ClassSignupModal({ id, refetch }) {
 	// get user context
 	const { currentUser } = useUserContext();
 	const { configureModal } = useModalContext();
 	const { configureToast, resetToast } = useToastContext();
-
 
 	// find currentClass based on params id
 	const { loading, data, error } = useQuery(QUERY_SINGLE_CLASS, {
 		variables: { classId: id },
 	});
 	const selectedClass = data?.getClassById || [];
+	// parse date to print the day, month, hour, etc. to UI
+	const { dayOfMonth, month, dayOfWeek, hour } = parseDate(selectedClass.date);
 
 	// use mutation for adding a student to class based on class _id and student _id
 	const [addStudentToClass, { error: rosterError }] =
@@ -34,7 +36,7 @@ function ClassSignupModal({id, refetch}) {
 
 	// use mutation for adding a class to student based on student _id and class _id
 	const [addClassToStudent, { error: registeredError }] =
-		useMutation(ADD_CLASS_TO_STUDENT)
+		useMutation(ADD_CLASS_TO_STUDENT);
 
 	// used to control the content the user sees (ability to register for class if they are signed in, required to login/signup if not signed in)
 	const [registered, setRegistered] = useState(false);
@@ -56,86 +58,89 @@ function ClassSignupModal({id, refetch}) {
 
 			// TODO: if add to db is success, show venmo
 			setRegistered(true);
-			configureToast('Success! You have registered for class.  Please follow instructions on the screen to pay your class fee.', 'success', 5000)
-			refetch()
+			configureToast(
+				"Success! You have registered for class.  Please follow instructions on the screen to pay your class fee.",
+				"success",
+				5000
+			);
+			refetch();
 		} catch (err) {
 			console.error(err);
-			configureToast('Something went wrong, please email us at flowwithmegmo@gmail.com', 'failure', 10000)
+			configureToast(
+				"Something went wrong, please email us at flowwithmegmo@gmail.com",
+				"failure",
+				10000
+			);
 		}
 	};
 
+	if (loading) return <div>"Loading..."</div>;
 
-		// TODO: abstract this into a function to be able to use on student page, class schedule, and dashboard
-		const classDateStamp = new Date(selectedClass.date);
-		const dayOfMonth = classDateStamp.toLocaleString("en-US", { day: "2-digit" });
-		const month = classDateStamp.toLocaleString("en-US", { month: "2-digit" });
-		const dayOfWeek = classDateStamp.toLocaleString("en-US", { weekday: "long" });
-		const hour = classDateStamp.toLocaleTimeString("en-US", { timeStyle: "short" });
-
-	if (loading) return "Loading...";
-
-	if (error) return `Error! ${error.message}`;
+	if (error) return <div>`Error! ${error.message}`</div>;
 
 	return (
 		<div className="class-signup-modal">
 			<div className="modal-content">
-			{!registered ? (
-				
-				<div className="step-directions">
-					<h1 className="class-signup-header">Register</h1>
-					{currentUser.loggedIn ? (
-						// REGISTER COMPONENT
-						<div>
-							<ul className="class-details-list">
-								<li className="class-details-item">Date: {dayOfWeek}, {month}/{dayOfMonth}</li>
-								<li className="class-details-item">Time: {hour}</li>
-								<li className="class-details-item">Price: ${selectedClass.price}</li>
-							</ul>
-							<button
-								className="btn btn-pink btn-round register-btn"
-								onClick={handleSubmit}
-							>
-								Register
-							</button>
-						</div>
-					) : (
-						<div>
-							<header className="step-directions">
-								To continue, please login or signup:
-							</header>
-							{/* <LoginForm /> */}
-							<div className="btn-container-stacked">
+				{!registered ? (
+					<div className="step-directions">
+						<h1 className="class-signup-header">Register</h1>
+						{currentUser.loggedIn ? (
+							// REGISTER COMPONENT
+							<div>
+								<ul className="class-details-list">
+									<li className="class-details-item">
+										Date: {dayOfWeek}, {month}/{dayOfMonth}
+									</li>
+									<li className="class-details-item">Time: {hour}</li>
+									<li className="class-details-item">
+										Price: ${selectedClass.price}
+									</li>
+								</ul>
 								<button
-									className=" btn btn-pink btn-round"
-									onClick={() => configureModal(<LoginModal />)}
+									className="btn btn-pink btn-round register-btn"
+									onClick={handleSubmit}
 								>
-									Login
-								</button>
-								<button
-									className="btn btn-pink btn-round"
-									onClick={() => configureModal(<SignupModal />)}
-								>
-									Signup
+									Register
 								</button>
 							</div>
-						</div>
-					)}
-				</div>
-			) : (
-				<div className="step">
-					<h1 className="class-signup-header">Complete payment</h1>
-					<p>
-						We've sent a zoom meeting invite to {currentUser.email}. Please click the
-						link below to complete payment via venmo. I can't wait to see you in
-						class!
-					</p>
-					<a
-						href={`https://venmo.com/meghan-moran-7?txn=pay&note=Flow+with+Megmo:+${selectedClass.date}&amount=${selectedClass.price}`}
-					>
-						Class Payment
-					</a>
-				</div>
-			)}
+						) : (
+							<div>
+								<header className="step-directions">
+									To continue, please login or signup:
+								</header>
+								{/* <LoginForm /> */}
+								<div className="btn-container-stacked">
+									<button
+										className=" btn btn-pink btn-round"
+										onClick={() => configureModal(<LoginModal />)}
+									>
+										Login
+									</button>
+									<button
+										className="btn btn-pink btn-round"
+										onClick={() => configureModal(<SignupModal />)}
+									>
+										Signup
+									</button>
+								</div>
+							</div>
+						)}
+					</div>
+				) : (
+					<div className="step">
+						<h1 className="class-signup-header">Complete payment</h1>
+						<p>
+							We've sent a zoom meeting invite to {currentUser.email}. Please
+							click the link below to complete payment via venmo. I can't wait
+							to see you in class!
+						</p>
+						<a
+							href={`https://venmo.com/meghan-moran-7?txn=pay&note=Flow+with+Megmo:+${selectedClass.date}&amount=${selectedClass.price}`}
+						>
+							Class Payment
+						</a>
+					</div>
+				)}
 			</div>
 		</div>
 	);
