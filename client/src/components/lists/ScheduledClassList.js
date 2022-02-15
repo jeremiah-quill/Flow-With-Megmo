@@ -11,7 +11,7 @@ function ScheduledClassList({ scheduledClasses, scheduleRefetch }) {
 	return (
 		<ul className="class-list">
 			{scheduledClasses.map((scheduledClass) => (
-				<div className="class-list-item">
+				<div key={scheduledClass._id} className="class-list-item">
 					<ClassDetails
 						date={scheduledClass.date}
 						price={scheduledClass.price}

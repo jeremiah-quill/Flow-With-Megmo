@@ -9,7 +9,6 @@ import {
 } from "@apollo/client";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import Class from "./components/Class";
 // import SpotifyPlayer from "./components/pages/SpotifyPlayer";
 import Dashboard from "./components/pages/Dashboard";
 import Navbar from "./components/Navbar";
@@ -21,7 +20,6 @@ import DefaultHome from "./components/pages/DefaultHome";
 import Modal from "./components/Modal";
 import { useUserContext } from "./utils/contexts/UserContext";
 import { useModalContext } from "./utils/contexts/ModalContext";
-import UserButtons from "./components/UserButtons";
 import Header from "./components/Header";
 import Toast from "./components/Toast";
 import { useToastContext } from "./utils/contexts/ToastContext";
