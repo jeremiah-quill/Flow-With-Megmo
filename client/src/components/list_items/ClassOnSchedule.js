@@ -3,7 +3,7 @@ import { useUserContext } from "../../utils/contexts/UserContext";
 import ClassSignupModal from "../modals/ClassSignupModal";
 import "../../styles/ClassCard.css";
 
-export default function ClassOnSchedule({ classOnSchedule }) {
+export default function ClassOnSchedule({ classOnSchedule, refetch }) {
 	const { currentUser } = useUserContext();
 	const { configureModal } = useModalContext();
 
@@ -16,7 +16,7 @@ export default function ClassOnSchedule({ classOnSchedule }) {
 		timeStyle: "short",
 	});
 
-	console.log(classOnSchedule.roster.filter(student => student._id === currentUser._id).length > 0)
+	// console.log(classOnSchedule.roster.filter(student => student._id === currentUser._id).length > 0)
 
 	return (
 		<div className="class-list-item">
@@ -38,7 +38,7 @@ export default function ClassOnSchedule({ classOnSchedule }) {
 						<button
 							className="btn btn-round btn-pink"
 							onClick={() =>
-								configureModal(<ClassSignupModal id={classOnSchedule._id} />)
+								configureModal(<ClassSignupModal id={classOnSchedule._id} refetch={refetch} />)
 							}
 						>
 							Register

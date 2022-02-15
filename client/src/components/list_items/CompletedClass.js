@@ -25,6 +25,7 @@ export default function CompletedClass({ classDate, playlistId }) {
 				</div>
 				<div className="class-card-day">{hour}</div>
 			</div>
+			<div className="class-status">Completed</div>
 			<div className="class-actions">
 				{playlistId && (
 					<button

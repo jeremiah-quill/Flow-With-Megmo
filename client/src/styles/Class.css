@@ -43,3 +43,7 @@
 .register-btn {
     width: 150px;
 }
+
+.class-status {
+    flex: 1;
+}

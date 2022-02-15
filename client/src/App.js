@@ -23,6 +23,8 @@ import { useUserContext } from "./utils/contexts/UserContext";
 import { useModalContext } from "./utils/contexts/ModalContext";
 import UserButtons from "./components/UserButtons";
 import Header from "./components/Header";
+import Toast from "./components/Toast";
+import { useToastContext } from "./utils/contexts/ToastContext";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -49,6 +51,9 @@ const client = new ApolloClient({
 });
 
 function App() {
+	const {isToast, toastMessage, toastType} = useToastContext()
+
+
 	const [width, setWidth] = useState(window.innerWidth);
 	const breakpoint = 765;
 
@@ -82,6 +87,8 @@ function App() {
 
 	return (
 		<ApolloProvider client={client}>
+			<Toast isToast={isToast} toastMessage={toastMessage} toastType={toastType} />
+
 			{/* GLOBAL MODAL */}
 			<CSSTransition
 				in={isModal}

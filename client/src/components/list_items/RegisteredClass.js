@@ -23,6 +23,7 @@ export default function RegisteredClass({ registeredClass, action }) {
 				<div className="class-card-day">{dayOfWeek}, {month}/{dayOfMonth}</div>
 				<div className="class-card-day">{hour}</div>
 			</div>
+			<div className="class-status">Registered</div>
 			<div className="class-actions">
 				<button
 					className="btn btn-round btn-pink"

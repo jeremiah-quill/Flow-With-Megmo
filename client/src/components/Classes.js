@@ -13,7 +13,7 @@ import ClassOnSchedule from "./list_items/ClassOnSchedule";
 function Classes() {
 	const { configureModal } = useModalContext();
 
-	const { loading, data, error } = useQuery(QUERY_UPCOMING_CLASSES);
+	const { loading, data, error, refetch } = useQuery(QUERY_UPCOMING_CLASSES, {fetchPolicy: "network-only"});
 	const classes = data?.getUpcomingClasses || [];
 
 	if (loading) return <div>"Loading..."</div>;
@@ -25,7 +25,7 @@ function Classes() {
 		<div className="classes view">
 			<ul className="class-list">
 				{classes.map((yogaClass, idx) => (
-					<ClassOnSchedule key={idx} classOnSchedule={yogaClass} />
+					<ClassOnSchedule key={idx} classOnSchedule={yogaClass} refetch={refetch} />
 				))}
 			</ul>
 		</div>

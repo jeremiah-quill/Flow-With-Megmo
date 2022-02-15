@@ -6,15 +6,18 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import UserProvider from "./utils/contexts/UserContext";
 import ModalProvider from "./utils/contexts/ModalContext";
+import ToastProvider from './utils/contexts/ToastContext'
 
 ReactDOM.render(
 	// <React.StrictMode>
 	<UserProvider>
-		<ModalProvider>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</ModalProvider>
+		<ToastProvider>
+			<ModalProvider>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</ModalProvider>
+		</ToastProvider>
 	</UserProvider>,
 	// </React.StrictMode>
 	document.getElementById("root")

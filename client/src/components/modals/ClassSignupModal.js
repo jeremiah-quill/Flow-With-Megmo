@@ -11,13 +11,16 @@ import SignupModal from "./SignupModal";
 import Auth from "../../utils/auth";
 import { useUserContext } from "../../utils/contexts/UserContext";
 import { useModalContext } from "../../utils/contexts/ModalContext";
+import { useToastContext } from "../../utils/contexts/ToastContext";
 import LoginForm from "../forms/LoginForm";
 import "../../styles/Class.css";
 
-function ClassSignupModal({id}) {
+function ClassSignupModal({id, refetch}) {
 	// get user context
 	const { currentUser } = useUserContext();
 	const { configureModal } = useModalContext();
+	const { configureToast, resetToast } = useToastContext();
+
 
 	// find currentClass based on params id
 	const { loading, data, error } = useQuery(QUERY_SINGLE_CLASS, {
@@ -53,8 +56,11 @@ function ClassSignupModal({id}) {
 
 			// TODO: if add to db is success, show venmo
 			setRegistered(true);
+			configureToast('Success! You have registered for class.  Please follow instructions on the screen to pay your class fee.', 'success', 5000)
+			refetch()
 		} catch (err) {
 			console.error(err);
+			configureToast('Something went wrong, please email us at flowwithmegmo@gmail.com', 'failure', 10000)
 		}
 	};
 
@@ -72,12 +78,11 @@ function ClassSignupModal({id}) {
 
 	return (
 		<div className="class-signup-modal">
-			<h1 className="class-signup-header">
-				Register
-			</h1>
 			<div className="modal-content">
 			{!registered ? (
+				
 				<div className="step-directions">
+					<h1 className="class-signup-header">Register</h1>
 					{currentUser.loggedIn ? (
 						// REGISTER COMPONENT
 						<div>
@@ -118,9 +123,9 @@ function ClassSignupModal({id}) {
 				</div>
 			) : (
 				<div className="step">
-					<header>Complete payment</header>
+					<h1 className="class-signup-header">Complete payment</h1>
 					<p>
-						We sent a zoom meeting link to {currentUser.email}. Please click the
+						We've sent a zoom meeting invite to {currentUser.email}. Please click the
 						link below to complete payment via venmo. I can't wait to see you in
 						class!
 					</p>

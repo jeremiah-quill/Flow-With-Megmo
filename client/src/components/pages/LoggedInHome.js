@@ -2,6 +2,8 @@ import { useState } from "react";
 import { QUERY_SINGLE_STUDENT, QUERY_UPCOMING_STUDENT_CLASSES, QUERY_COMPLETED_STUDENT_CLASSES } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { useUserContext } from "../../utils/contexts/UserContext";
+import { useToastContext } from "../../utils/contexts/ToastContext";
+
 import {
 	REMOVE_CLASS_FROM_STUDENT,
 	REMOVE_FROM_ROSTER,
@@ -17,6 +19,8 @@ function LoggedInHome() {
 	// get user context
 	const { currentUser } = useUserContext();
 	const { resetModal } = useModalContext();
+	const { configureToast } = useToastContext();
+
 
 	// find student info, including their registered classes
 	// set fetchPolicy to network only -> whenever this component is mounted it will pull from our network DB
@@ -50,24 +54,32 @@ function LoggedInHome() {
 
 	// TODO: refactor
 	const cancelAction = async (classId) => {
+		// try {
+		// 	const { data } = await removeFromRoster({
+		// 		variables: { classId, studentId: currentUser._id },
+		// 	});
+		// 	console.log(data);
+		// } catch (err) {
+		// 	console.error(err);
+		// 	configureToast('Something went wrong, please email us at flowwithmegmo@gmail.com', 'failure', 10000)
+		// }
+
 		try {
 			const { data } = await removeFromRoster({
 				variables: { classId, studentId: currentUser._id },
 			});
-			console.log(data);
-		} catch (err) {
-			console.error(err);
-		}
-
-		try {
-			const { data } = await removeClassFromStudent({
+			const { data: registeredCancellation } = await removeClassFromStudent({
 				variables: { studentId: currentUser._id, classId },
 			});
-			console.log(data);
+			resetModal();
+			configureToast('You have been successfully removed from class.', 'success', 5000)
+
 		} catch (err) {
 			console.error(err);
+			configureToast('Something went wrong, please email us at flowwithmegmo@gmail.com', 'failure', 10000)
+
 		}
-		resetModal();
+
 	};
 
 	if (loading) return <div className="view">Loading</div>;
