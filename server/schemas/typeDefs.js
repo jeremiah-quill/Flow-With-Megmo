@@ -38,6 +38,8 @@ const typeDefs = gql`
 		students: [Student]!
 		getStudentById(studentId: ID!): Student
 		getClassById(classId: ID!): Class
+		getUpcomingStudentClasses(studentId: ID!): [Class]
+		getCompletedStudentClasses(studentId: ID!): [Class]
 
 	}
 

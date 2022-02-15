@@ -20,6 +20,25 @@ const resolvers = {
 		getClassById: async (_, { classId }) => {
 			return Class.findOne({ _id: classId }).populate("roster");
 		},
+		getUpcomingStudentClasses: async (_, {studentId}) => {
+			let student = await Student.findOne({_id: studentId}).populate("registeredClasses");
+			// console.log(student)
+			let registeredClasses = student.registeredClasses.map(registeredClass => registeredClass)
+			
+			let currDate = new Date();
+			let filteredClasses = registeredClasses.filter(registeredClass => new Date(registeredClass.date).getTime() - currDate.getTime() > 0);
+			return filteredClasses
+		},
+
+		getCompletedStudentClasses: async (_, {studentId}) => {
+			let student = await Student.findOne({_id: studentId}).populate("registeredClasses");
+			// console.log(student)
+			let registeredClasses = student.registeredClasses.map(registeredClass => registeredClass)
+			
+			let currDate = new Date();
+			let filteredClasses = registeredClasses.filter(registeredClass => new Date(registeredClass.date).getTime() - currDate.getTime() < 0);
+			return filteredClasses
+		}
 
 	},
 

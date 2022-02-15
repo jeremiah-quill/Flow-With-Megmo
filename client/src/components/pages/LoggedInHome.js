@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { QUERY_SINGLE_STUDENT } from "../../utils/queries";
+import { QUERY_SINGLE_STUDENT, QUERY_UPCOMING_STUDENT_CLASSES, QUERY_COMPLETED_STUDENT_CLASSES } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { useUserContext } from "../../utils/contexts/UserContext";
 import {
@@ -26,13 +26,26 @@ function LoggedInHome() {
 	});
 	const studentData = data?.getStudentById || [];
 
+	// console.log(currentUser._id)
+	const { loading: upcomingLoading, data: upcomingData, error: upcomingError } = useQuery(QUERY_UPCOMING_STUDENT_CLASSES, {
+		variables: { studentId: currentUser._id },
+		fetchPolicy: "network-only",
+	});
+	const studentUpcoming = upcomingData?.getUpcomingStudentClasses || [];
+
+	const { loading: completedLoading, data: completedData, error: completedError } = useQuery(QUERY_COMPLETED_STUDENT_CLASSES, {
+		variables: { studentId: currentUser._id },
+		fetchPolicy: "network-only",
+	});
+	const studentCompleted = completedData?.getCompletedStudentClasses || [];
+
 	const [removeFromRoster, { error: removeStudentError }] =
 		useMutation(REMOVE_FROM_ROSTER);
 
-	// set refetchQueries to query single student -> whenever we run this mutation, we will also re run query single student to get the updated registered classes
+	// set refetchQueries to query upcoming classes -> whenever we run this mutation to cancel a class, we will also re-run get upcoming student classes to refresh the list
 	const [removeClassFromStudent, { error: removeClassFromStudentError }] =
 		useMutation(REMOVE_CLASS_FROM_STUDENT, {
-			refetchQueries: [QUERY_SINGLE_STUDENT, "getStudentById"],
+			refetchQueries: [QUERY_UPCOMING_STUDENT_CLASSES, "getUpcomingStudentClasses"],
 		});
 
 	// TODO: refactor
@@ -59,6 +72,10 @@ function LoggedInHome() {
 
 	if (loading) return <div className="view">Loading</div>;
 	if (error) return <div className="view">Error! {error.message}</div>;
+	if (upcomingLoading) return <div className="view">Loading</div>;
+	if (upcomingError) return <div className="view">Error! {upcomingError.message}</div>;
+	if (completedLoading) return <div className="view">Loading</div>;
+	if (completedError) return <div className="view">Error! {completedError.message}</div>;
 	if (removeStudentError)
 		return <div className="view">Error! ${removeStudentError.message}</div>;
 	if (removeClassFromStudentError)
@@ -85,13 +102,13 @@ function LoggedInHome() {
 					<button className={`list-btn ${listView === "completed" ? "selected-list" : ""}`} onClick={() => setListView("completed")}>Completed</button>
 				</div>
 				{listView === "registered" ? (
-					studentData.registeredClasses.length <= 0 ? (
+					studentUpcoming.length <= 0 ? (
 						<div className="no-classes">
 							You do not have any registered classes at this time.
 						</div>
 					) : (
 						<ul className="student-lists class-list">
-							{studentData.registeredClasses.map((registeredClass) => (
+							{studentUpcoming.map((registeredClass) => (
 								<RegisteredClass
 									key={registeredClass._id}
 									registeredClass={registeredClass}
@@ -109,7 +126,7 @@ function LoggedInHome() {
 					</div>
 				) : (
 					<ul className="student-lists class-list">
-						{studentData.registeredClasses.map((registeredClass) => (
+						{studentCompleted.map((registeredClass) => (
 							<CompletedClass
 								key={registeredClass._id}
 								classDate={registeredClass.date}

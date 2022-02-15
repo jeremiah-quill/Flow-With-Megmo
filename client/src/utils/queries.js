@@ -26,6 +26,30 @@ export const QUERY_CLASSES = gql`
   }
 `;
 
+export const QUERY_UPCOMING_STUDENT_CLASSES = gql`
+  query getUpcomingStudentClasses($studentId: ID!) {
+    getUpcomingStudentClasses(studentId: $studentId) {
+      _id
+      date
+      price
+      playlistId
+      zoomId
+    }
+  }
+`;
+
+export const QUERY_COMPLETED_STUDENT_CLASSES = gql`
+  query getCompletedStudentClasses($studentId: ID!) {
+    getCompletedStudentClasses(studentId: $studentId) {
+      _id
+      date
+      price
+      playlistId
+      zoomId
+    }
+  }
+`;
+
 
 
 export const QUERY_SINGLE_CLASS = gql`
