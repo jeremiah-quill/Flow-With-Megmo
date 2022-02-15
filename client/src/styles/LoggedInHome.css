@@ -2,6 +2,13 @@
     text-align: center;
 }
 
+.logged-in-home {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    padding-top: 150px;
+}
 
 
 h2 {
@@ -11,11 +18,30 @@ h2 {
 .student-lists {
     flex: 1;
     text-align: center;
+    width: 60%;
+}
+
+.student-lists-container {
+    margin-top: 5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .student-info {
-    flex: 1;
+    /* flex: 1; */
     padding: 2em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+.student-list-buttons {
+    display: flex;
+    margin-bottom: 1em;
 }
 
 .home-page-class-list {
@@ -26,11 +52,30 @@ h2 {
     margin-top: 2em;
 }
 
+.no-classes {
+    text-align: center;
+    margin-top: 2em;
+}
+
 @media screen and (min-width: 765px) {
     .logged-in-home {
-        display: flex;
+        /* display: flex; */
         width: 100%;
     }
 }
+
+.list-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    border: 3px solid white;
+    padding: .5em 1em;
+    border-radius: 10px;
+}
+
+.selected-list {
+    border: 3px solid rgb(218, 99, 185);
+}
+
 
 

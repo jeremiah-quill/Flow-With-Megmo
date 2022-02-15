@@ -223,9 +223,9 @@
 }
 
 @media screen and (min-width: 1400px) {
-	.modal-center {
+	/* .modal-center {
 		padding: 0 3em;
-	}
+	} */
 	.modal-card {
 		top: 250px;
 		bottom: 250px;

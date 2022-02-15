@@ -25,24 +25,13 @@ function ClassSignupModal({id}) {
 	});
 	const selectedClass = data?.getClassById || [];
 
-		// find student info (specifically what we need is registered classes -> should this be a specific query?) based on the currentUser's _id
-		const { loading: singleStudentLoading, data: singleStudentData, error: singleStudentError } = useQuery(QUERY_SINGLE_STUDENT, {
-			variables: { studentId: currentUser._id },
-		});
-		const studentData = data?.getStudentById || [];
-
 	// use mutation for adding a student to class based on class _id and student _id
 	const [addStudentToClass, { error: rosterError }] =
 		useMutation(ADD_TO_ROSTER);
 
 	// use mutation for adding a class to student based on student _id and class _id
 	const [addClassToStudent, { error: registeredError }] =
-		useMutation(ADD_CLASS_TO_STUDENT, {
-			refetchQueries: [
-				QUERY_SINGLE_STUDENT, 
-				'getStudentById' 
-			  ]
-		})
+		useMutation(ADD_CLASS_TO_STUDENT)
 
 	// used to control the content the user sees (ability to register for class if they are signed in, required to login/signup if not signed in)
 	const [registered, setRegistered] = useState(false);

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { QUERY_SINGLE_STUDENT } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
 import { useUserContext } from "../../utils/contexts/UserContext";
@@ -12,20 +13,23 @@ import CompletedClass from "../list_items/CompletedClass";
 
 // TODO: figure out how to separate scheduled classes from completed classes
 function LoggedInHome() {
+	const [listView, setListView] = useState("registered");
 	// get user context
 	const { currentUser } = useUserContext();
 	const { resetModal } = useModalContext();
 
 	// find student info, including their registered classes
+	// set fetchPolicy to network only -> whenever this component is mounted it will pull from our network DB
 	const { loading, data, error } = useQuery(QUERY_SINGLE_STUDENT, {
 		variables: { studentId: currentUser._id },
+		fetchPolicy: "network-only",
 	});
 	const studentData = data?.getStudentById || [];
-
 
 	const [removeFromRoster, { error: removeStudentError }] =
 		useMutation(REMOVE_FROM_ROSTER);
 
+	// set refetchQueries to query single student -> whenever we run this mutation, we will also re run query single student to get the updated registered classes
 	const [removeClassFromStudent, { error: removeClassFromStudentError }] =
 		useMutation(REMOVE_CLASS_FROM_STUDENT, {
 			refetchQueries: [QUERY_SINGLE_STUDENT, "getStudentById"],
@@ -75,7 +79,52 @@ function LoggedInHome() {
 					class.
 				</p>
 			</div>
+			<div className="student-lists-container">
+				<div className="student-list-buttons">
+					<button className={`list-btn ${listView === "registered" ? "selected-list" : ""}`} onClick={() => setListView("registered")}>Registered</button>
+					<button className={`list-btn ${listView === "completed" ? "selected-list" : ""}`} onClick={() => setListView("completed")}>Completed</button>
+				</div>
+				{listView === "registered" ? (
+					studentData.registeredClasses.length <= 0 ? (
+						<div className="no-classes">
+							You do not have any registered classes at this time.
+						</div>
+					) : (
+						<ul className="student-lists class-list">
+							{studentData.registeredClasses.map((registeredClass) => (
+								<RegisteredClass
+									key={registeredClass._id}
+									registeredClass={registeredClass}
+									// if class is in the future, use cancel action
+									action={cancelAction}
+									// otherwise, use playlist action
+									// TODO: add playlist action which will just pull up spotify playlist
+								/>
+							))}
+						</ul>
+					)
+				) : studentData.registeredClasses.length <= 0 ? (
+					<div className="no-classes">
+						You do not have any completed classes at this time.
+					</div>
+				) : (
+					<ul className="student-lists class-list">
+						{studentData.registeredClasses.map((registeredClass) => (
+							<CompletedClass
+								key={registeredClass._id}
+								classDate={registeredClass.date}
+								playlistId={registeredClass.playlistId}
+								// if class is in the future, use cancel action
+								// action={cancelAction}
+								// otherwise, use playlist action
+								// TODO: add playlist action which will just pull up spotify playlist
+							/>
+						))}
+					</ul>
+				)}
+			</div>
 
+			{/* 
 			<div className="student-lists">
 				<div className="registered-classes">
 					<h3>Registered Classes</h3>
@@ -83,19 +132,18 @@ function LoggedInHome() {
 					{studentData.registeredClasses.length <= 0 ? (
 						<div>You have not yet registered for any classes.</div>
 					) : (
-
-					<ul className="class-list home-page-class-list">
-						{studentData.registeredClasses.map((registeredClass, idx) => (
-							<RegisteredClass
-								key={idx}
-								registeredClass={registeredClass}
-								// if class is in the future, use cancel action
-								action={cancelAction}
-								// otherwise, use playlist action
-								// TODO: add playlist action which will just pull up spotify playlist
-							/>
-						))}
-					</ul>
+						<ul className="class-list home-page-class-list">
+							{studentData.registeredClasses.map((registeredClass, idx) => (
+								<RegisteredClass
+									key={idx}
+									registeredClass={registeredClass}
+									// if class is in the future, use cancel action
+									action={cancelAction}
+									// otherwise, use playlist action
+									// TODO: add playlist action which will just pull up spotify playlist
+								/>
+							))}
+						</ul>
 					)}
 				</div>
 				<div className="completed-classes">
@@ -114,7 +162,7 @@ function LoggedInHome() {
 						</ul>
 					)}
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 }
