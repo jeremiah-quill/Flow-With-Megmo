@@ -14,16 +14,16 @@ function CancelRegistrationModal({ yogaClass, action }) {
 
 	return (
 		<div className="modal-center">
-			{/* <div className="modal-card"> */}
 			<h1>Confirm Cancellation</h1>
 			<div className="modal-content">
 				Please confirm you would like to cancel your registration for class on{" "}
-				{dayOfWeek}, {dayOfMonth}/{month} @ {hour}. If you don't see a reimbursement within 48 hours please email me at flowwithmegmo@gmail.com.  Thanks!
+				{dayOfWeek}, {month}/{dayOfMonth} @ {hour}. If you don't see a
+				reimbursement within 48 hours please email me at
+				flowwithmegmo@gmail.com. Thanks!
 			</div>
-			{/* <div className="modal-footer"> */}
-				<button className="btn btn-pink" onClick={() => action(yogaClass._id)}>Confirm</button>
-			{/* </div> */}
-			{/* </div> */}
+			<button className="btn btn-pink" onClick={() => action(yogaClass._id)}>
+				Confirm
+			</button>
 		</div>
 	);
 }

@@ -2,13 +2,13 @@
     {
         "date": "2022-02-10T06:00:00-05:00",
         "price": 15.00,
-        "zoomId": "83633929236",
+        "zoomId": "testzoomid1",
         "playlistId": "33c84T8rITyYEY63gfzPZH",
         "link": "testlink.com",
         "roster": []
     },
     {
-        "date": "2022-02-10T07:00:00-05:00",
+        "date": "2022-02-15T07:00:00-05:00",
         "price": 10.00,
         "zoomId": "testzoomid2",
         "playlistId": "1FiXOS4iAVB3aYCEU71XRC",
@@ -17,7 +17,7 @@
 
     },
     {
-        "date": "2022-02-10T08:00:00-05:00",
+        "date": "2022-02-20T08:00:00-05:00",
         "price": 9.00,
         "zoomId": "testzoomid3",
         "playlistId": "6itkGetLQesAPNyUb9x276",
@@ -27,7 +27,7 @@
 
     },
     {
-        "date": "2022-02-10T09:00:00-05:00",
+        "date": "2022-02-25T09:00:00-05:00",
         "price": 8.00,
         "zoomId": "testzoomid4",
         "playlistId": "33c84T8rITyYEY63gfzPZH",

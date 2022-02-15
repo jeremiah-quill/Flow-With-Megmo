@@ -20,6 +20,15 @@ a {
 	text-decoration: none;
 }
 
+.main-container {
+    position: relative;
+}
+
+.view {
+    position: absolute;
+    width: 100%;
+}
+
 
 .main-container {
     max-width: 1200px;
@@ -48,7 +57,7 @@ a {
     } */
 
     .home-intro {
-        max-width: 300px;
+        /* max-width: 300px; */
         margin-bottom: 5em;
     }
 
@@ -170,4 +179,31 @@ a {
 button {
     font-family: 'Fredoka One', cursive !important;
 
+}
+
+.page-transition-enter {
+    opacity: 0;
+    transform: translateX(-5%);
+}
+
+.page-transition-enter.page-transition-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 250ms ease, transform 250ms ease;
+
+}
+
+.page-transition-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.page-transition-exit.page-transition-exit-active {
+    opacity: 0;
+    transform: translateX(5%);
+    transition: opacity 250ms ease, transform 250ms ease;
+}
+
+input {
+    border-radius: 30px;
 }

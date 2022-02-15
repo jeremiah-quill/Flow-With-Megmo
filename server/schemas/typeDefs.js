@@ -38,6 +38,7 @@ const typeDefs = gql`
 		students: [Student]!
 		getStudentById(studentId: ID!): Student
 		getClassById(classId: ID!): Class
+
 	}
 
 	type Mutation {

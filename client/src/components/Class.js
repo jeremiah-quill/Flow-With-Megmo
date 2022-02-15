@@ -72,16 +72,13 @@ function Class({ id }) {
 	// console.log(data);
 
 	return (
-		<div className="class">
-			{/* <h1 className="class-header">Saturday, March 3rd @ 12:00pm</h1> */}
-			{/* <div> */}
-			{/* <header className="class-header">{classData.date}</header> */}
+		<div className="modal-center">
+			<h1>Register</h1>
 			{!registered ? (
 				<div className="step-directions">
 					{currentUser.loggedIn ? (
 						// REGISTER COMPONENT
-						<>
-							<h2>Details:</h2>
+						<div>
 							<ul className="class-details-list">
 								<li className="class-details-item">Date: 2/10</li>
 								<li className="class-details-item">Time: 10:00am - 11:00am</li>
@@ -93,7 +90,7 @@ function Class({ id }) {
 							>
 								Register
 							</button>
-						</>
+						</div>
 					) : (
 						<div>
 							<header className="step-directions">
@@ -119,7 +116,7 @@ function Class({ id }) {
 				</div>
 			) : (
 				<div className="step">
-					<header>Step 3: Complete payment</header>
+					<header>Complete payment</header>
 					<p>
 						We sent a zoom meeting link to {currentUser.email}. Please click the
 						link below to complete payment via venmo. I can't wait to see you in

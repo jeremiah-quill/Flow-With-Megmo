@@ -11,7 +11,7 @@ function Navbar() {
 		<div className="navbar">
 			<Link onClick={resetModal} className="nav-item" to="/">Home</Link>
 			<Link className="nav-item" to="/classes">Schedule</Link>
-			<Link className="nav-item" to="/bookings">Contact Me</Link>
+			<Link className="nav-item" to="/contact">Contact Me</Link>
 		</div>
 	);
 }

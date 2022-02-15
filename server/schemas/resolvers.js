@@ -20,6 +20,7 @@ const resolvers = {
 		getClassById: async (_, { classId }) => {
 			return Class.findOne({ _id: classId }).populate("roster");
 		},
+
 	},
 
 	Mutation: {

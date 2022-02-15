@@ -1,0 +1,49 @@
+/* .contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.contact-email-input {
+margin-bottom: 2em;
+}
+
+.contact-submit {
+    margin-top: 2em;
+} */
+
+.contact {
+    width: 100%;
+    /* padding: 0 15em; */
+}
+
+.contact-form > * {
+    width: 100%;
+} 
+
+.contact-form > input {
+    line-height: 3em;
+}
+.contact-form > * + * {
+    margin-top: 1em;
+}
+
+.contact-submit {
+    padding: 1em;
+    cursor: pointer;
+}
+
+textarea {
+    min-height: 250px;
+    max-height: 250px;
+    /* width: 100%; */
+    resize: none;
+    border-radius: 30px;
+}

@@ -10,10 +10,10 @@ import {
 import { Routes, Route, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Class from "./components/Class";
-import SpotifyPlayer from "./components/pages/SpotifyPlayer";
+// import SpotifyPlayer from "./components/pages/SpotifyPlayer";
 import Dashboard from "./components/pages/Dashboard";
 import Navbar from "./components/Navbar";
-import Bookings from "./components/Bookings";
+import Contact from "./components/pages/Contact";
 import Classes from "./components/Classes";
 import Auth from "./utils/auth";
 import LoggedInHome from "./components/pages/LoggedInHome";
@@ -95,7 +95,9 @@ function App() {
 			{width < breakpoint ? <Navbar /> : <Header />}
 
 			<div className="main-container">
-				<Routes>
+				{/* <TransitionGroup component={null}>
+				<CSSTransition key={location.key} classNames="page-transition" timeout={250}> */}
+				<Routes location={location}>
 					<Route
 						path="/"
 						element={currentUser.loggedIn ? <LoggedInHome /> : <DefaultHome />}
@@ -103,11 +105,13 @@ function App() {
 					<Route path="/classes" element={<Classes />} />
 					{/* <Route path="/classes/:id" element={<Class />} /> */}
 					{/* <Route path="/music/:id" element={<SpotifyPlayer />} /> */}
-					<Route path="/bookings" element={<Bookings />} />
+					<Route path="/contact" element={<Contact />} />
 					<Route path="/dashboard" element={<Dashboard />} />
 					{/* add below 404 page */}
 					{/* <Route path="*" element={<NoMatch />} /> */}
 				</Routes>
+				{/* </CSSTransition>
+				</TransitionGroup> */}
 			</div>
 		</ApolloProvider>
 	);

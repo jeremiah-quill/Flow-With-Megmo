@@ -16,8 +16,8 @@ function Classes() {
 	const { loading, data, error } = useQuery(QUERY_CLASSES);
 	const classes = data?.classes || [];
 
-	if (loading) return "Loading...";
-	if (error) return `Error! ${error.message}`;
+	if (loading) return <div>"Loading..."</div>;
+	if (error) return <div>`Error! ${error.message}`</div>;
 
 	// console.log(classes)
 

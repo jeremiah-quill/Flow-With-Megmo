@@ -219,6 +219,7 @@
     justify-content: center;
 	width: 60%;
 	margin: 0 auto;
+	text-align: center;
 }
 
 @media screen and (min-width: 1400px) {

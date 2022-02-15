@@ -39,8 +39,8 @@ function AddPlaylistModal({ yogaClass }) {
 
 	return (
 		// <div className="modal-card">
-		<div>
-			<header className="modal-header">{yogaClass.date}</header>
+		<div className="modal-center">
+			<h1>{yogaClass.date}</h1>
 			<div className="modal-content">
 				{playlists && (
 					<ul className="playlist-list">
@@ -56,7 +56,7 @@ function AddPlaylistModal({ yogaClass }) {
 					</ul>
 				)}
 			</div>
-			<div className="modal-footer">confirm</div>
+			<button className="confirm-playlist">confirm</button>
 			</div>
 		// </div>
 	);

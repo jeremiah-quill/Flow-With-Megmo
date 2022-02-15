@@ -4,8 +4,9 @@
 	padding: 0;
 	height: 100%;
 	overflow-y: scroll;
-	border: 1px solid black;
-	height: 80vh;
+	border: 3px solid black;
+	max-height: 80vh;
+	border-radius: 10px;
 }
 
 .classes {

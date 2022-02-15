@@ -5,7 +5,7 @@
 }
 
 .outline-input {
-    border-radius: 100px;
+    /* border-radius: 100px; */
     padding: 1em 0;
     width: 250px;
     padding-left: 50px;
@@ -17,7 +17,7 @@
 
 .border-pink {
     background: white;
-    border: 1px solid rgb(236, 194, 228);
+    border: 3px solid rgb(236, 194, 228);
 
 }
 
