@@ -3,7 +3,7 @@ import { zoomDelete } from "../../utils/API";
 import { useMutation } from "@apollo/client";
 import { DELETE_CLASS } from "../../utils/mutations";
 
-function DeleteClassModal({ yogaClass }) {
+function DeleteClassModal({ scheduledClass }) {
 	const [deleteClass, { error }] = useMutation(DELETE_CLASS);
 
 	const handleDelete = async (zoomId, classId) => {
@@ -38,14 +38,14 @@ function DeleteClassModal({ yogaClass }) {
 		<div>
 		{/* <div className="modal-card"> */}
 			<header className="modal-header">
-				{yogaClass.date} @ {yogaClass.time}
+				{scheduledClass.date} @ {scheduledClass.time}
 			</header>
 			<div className="modal-content">
 				Please confirm you would like to delete this class. All users who have
 				signed up will receive an email notification.
 			</div>
 			<div className="modal-footer">
-				<button onClick={() => handleDelete(yogaClass.zoomId, yogaClass._id)}>
+				<button onClick={() => handleDelete(scheduledClass.zoomId, scheduledClass._id)}>
 					Confirm
 				</button>
 			</div>

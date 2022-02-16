@@ -10,6 +10,7 @@ const typeDefs = gql`
 	}
 
 	type Student {
+		isAdmin: Boolean
 		_id: ID
 		username: String!
 		email: String!
@@ -41,6 +42,8 @@ const typeDefs = gql`
 		getUpcomingStudentClasses(studentId: ID!): [Class]
 		getCompletedStudentClasses(studentId: ID!): [Class]
 		getUpcomingClasses: [Class]
+		getCompletedClasses: [Class]
+
 	}
 
 	type Mutation {

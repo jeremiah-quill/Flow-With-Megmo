@@ -36,6 +36,25 @@ export const QUERY_UPCOMING_CLASSES = gql`
       zoomId
       roster {
         _id
+        username
+        email
+      }
+    }
+  }
+`;
+
+export const QUERY_COMPLETED_CLASSES = gql`
+  query getCompletedClasses {
+    getCompletedClasses {
+      _id
+      date
+      price
+      playlistId
+      zoomId
+      roster {
+        _id
+        username
+        email
       }
     }
   }

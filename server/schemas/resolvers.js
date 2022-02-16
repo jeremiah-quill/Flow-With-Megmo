@@ -43,6 +43,10 @@ const resolvers = {
 		getUpcomingClasses: async() => {
 			let now = new Date()
 			return Class.find({date: {$gt: now}}).populate("roster")
+		},
+		getCompletedClasses: async() => {
+			let now = new Date()
+			return Class.find({date: {$lt: now}}).populate("roster")
 		}
 
 	},

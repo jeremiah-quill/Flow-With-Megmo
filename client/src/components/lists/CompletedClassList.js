@@ -11,7 +11,7 @@ function CompletedClassList({ completedClasses }) {
 			{completedClasses.map((completedClass) => (
 				<div key={completedClass._id} className="class-list-item">
 					<ClassDetails date={completedClass.date} />
-					<div className="class-status">Completed</div>
+					{/* <div className="class-status">Completed</div> */}
 					<div className="class-actions">
 						{completedClass.playlistId ? (
 							<button

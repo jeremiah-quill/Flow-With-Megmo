@@ -3,23 +3,23 @@ import EditClassForm from "../forms/EditClassForm";
 
 
 // TODO: this is broken, need to pull out time from timestamp rather than send time separately
-function EditClassModal({ yogaClass }) {
+function EditClassModal({ scheduledClass }) {
 
 	return (
 		<div>
 		{/* <div className="modal-card"> */}
 			<header className="modal-header">
-				{yogaClass.date} @ {yogaClass.time}
+				{scheduledClass.date} @ {scheduledClass.time}
 			</header>
 			<div className="modal-content">
 				<EditClassForm
-					currentDateString={yogaClass.date}
-					zoomId={yogaClass.zoomId}
-					classId={yogaClass._id}
+					currentDateString={scheduledClass.date}
+					zoomId={scheduledClass.zoomId}
+					classId={scheduledClass._id}
 				/>
 			</div>
 			<div className="modal-footer">
-				<button form={yogaClass._id}>Confirm Class Update</button>
+				<button form={scheduledClass._id}>Confirm Class Update</button>
 			</div>
 		{/* </div> */}
 		</div>

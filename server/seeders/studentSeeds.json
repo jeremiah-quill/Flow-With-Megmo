@@ -1,8 +1,9 @@
 [
     {
       "username": "megmo",
-      "email": "megmo@gmail.com",
-      "password": "test123"
+      "email": "mmm5660@gmail.com",
+      "password": "test123",
+      "isAdmin": true
     },
     {
         "username": "jeremiah",

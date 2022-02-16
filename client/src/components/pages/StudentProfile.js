@@ -8,7 +8,6 @@ import { useUserContext } from "../../utils/contexts/UserContext";
 import { useToastContext } from "../../utils/contexts/ToastContext";
 import RegisteredClassList from "../lists/RegisteredClassList";
 import CompletedClassList from "../lists/CompletedClassList";
-
 import {
 	REMOVE_CLASS_FROM_STUDENT,
 	REMOVE_FROM_ROSTER,
@@ -16,14 +15,17 @@ import {
 import "../../styles/LoggedInHome.css";
 import { useModalContext } from "../../utils/contexts/ModalContext";
 
-function LoggedInHome() {
+function StudentProfile() {
+	// toggle between list of registered and completed classes
 	const [listView, setListView] = useState("registered");
+
 	// get user, modal, and toast contexts
 	const { currentUser } = useUserContext();
 	const { resetModal } = useModalContext();
 	const { configureToast } = useToastContext();
 
 	// Query upcoming student classes
+	// fetchPolicy set to network only so it re-fetches from db every render, rather than use cache
 	const {
 		loading: upcomingLoading,
 		data: upcomingData,
@@ -32,9 +34,10 @@ function LoggedInHome() {
 		variables: { studentId: currentUser._id },
 		fetchPolicy: "network-only",
 	});
-	const studentUpcoming = upcomingData?.getUpcomingStudentClasses || [];
+	const studentUpcomingClasses = upcomingData?.getUpcomingStudentClasses || [];
 
 	// Query completed student classes
+	// fetchPolicy set to network only so it re-fetches from db every render, rather than use cache
 	const {
 		loading: completedLoading,
 		data: completedData,
@@ -43,12 +46,15 @@ function LoggedInHome() {
 		variables: { studentId: currentUser._id },
 		fetchPolicy: "network-only",
 	});
-	const studentCompleted = completedData?.getCompletedStudentClasses || [];
+	const studentCompletedClasses =
+		completedData?.getCompletedStudentClasses || [];
 
+	// Mutation to remove a student from class roster when they cancel registration
 	const [removeFromRoster, { error: removeStudentError }] =
 		useMutation(REMOVE_FROM_ROSTER);
 
-	// set refetchQueries to query upcoming classes -> whenever we run this mutation to cancel a class, we will also re-run get upcoming student classes to refresh the list
+	// Mutation to remove a class from student's registered classes field when they cancel registration
+	// refetchQueries set to query upcoming classes -> whenever we run this mutation to cancel a class, we will also re-run get upcoming student classes to refresh the list
 	const [removeClassFromStudent, { error: removeClassFromStudentError }] =
 		useMutation(REMOVE_CLASS_FROM_STUDENT, {
 			refetchQueries: [
@@ -57,6 +63,8 @@ function LoggedInHome() {
 			],
 		});
 
+	// Fires 2 mutations, 1 to class and 1 to student on unregister confirmation
+	// Closes modal and sends user a toast message with success or error
 	const handleUnregister = async (classId, studentId) => {
 		try {
 			const { data } = await removeFromRoster({
@@ -81,6 +89,7 @@ function LoggedInHome() {
 		}
 	};
 
+	// TODO: can I condense this?
 	if (upcomingLoading) return <div className="view">Loading</div>;
 	if (upcomingError)
 		return <div className="view">Error! {upcomingError.message}</div>;
@@ -127,26 +136,26 @@ function LoggedInHome() {
 					</button>
 				</div>
 				{listView === "registered" ? (
-					studentUpcoming.length <= 0 ? (
+					studentUpcomingClasses.length <= 0 ? (
 						<div className="no-classes">
 							You do not have any registered classes at this time.
 						</div>
 					) : (
 						<RegisteredClassList
-							registeredClasses={studentUpcoming}
+							registeredClasses={studentUpcomingClasses}
 							handleUnregister={handleUnregister}
 						/>
 					)
-				) : studentCompleted.length <= 0 ? (
+				) : studentCompletedClasses.length <= 0 ? (
 					<div className="no-classes">
 						You do not have any completed classes at this time.
 					</div>
 				) : (
-					<CompletedClassList completedClasses={studentCompleted} />
+					<CompletedClassList completedClasses={studentCompletedClasses} />
 				)}
 			</div>
 		</div>
 	);
 }
 
-export default LoggedInHome;
+export default StudentProfile;

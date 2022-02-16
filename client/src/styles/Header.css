@@ -1,23 +1,29 @@
 .site-logo {
-    font-size: 2em;
-    margin: 0;
-    margin-right: 2em;
+	font-size: 2em;
+	margin: 0;
+	margin-right: 2em;
 }
 
 .header {
-    display: flex;
-    position: fixed;
-    /* position: absolute; */
-    /* top: 0; */
-    align-items: center;
-    max-width: 1000px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    padding-top: 2em;
-    z-index: 100;
+	display: flex;
+	position: fixed;
+	/* position: absolute; */
+	/* top: 0; */
+	align-items: center;
+	width: 90%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	padding-top: 2em;
+	z-index: 100;
 }
 
 h1 {
-    font-family: 'Fredoka One', cursive;
+	font-family: "Fredoka One", cursive;
+}
+
+@media screen and (min-width: 1140px) {
+    .header {
+        width: 60%;
+    }
 }

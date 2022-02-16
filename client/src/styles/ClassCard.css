@@ -44,15 +44,15 @@
 
 .class-actions {
     margin-left: auto;
-    width: 100px;
-    /* display: flex; */
+    /* width: 100px; */
+    display: flex;
 }
 
 .class-actions .btn {
     width: 100%;
 }
 
-@media screen and (min-width: 765px) {
+@media screen and (min-width: 1140px) {
     .class-list-item {
         padding: 1em 5em;
     }

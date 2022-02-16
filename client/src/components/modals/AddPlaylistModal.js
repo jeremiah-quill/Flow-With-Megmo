@@ -4,7 +4,7 @@ import { ADD_PLAYLIST } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import { useModalContext } from "../../utils/contexts/ModalContext";
 
-function AddPlaylistModal({ yogaClass }) {
+function AddPlaylistModal({ completedClass }) {
 	const { resetModal } = useModalContext();
 
 	const [addPlaylist, { error }] = useMutation(ADD_PLAYLIST);
@@ -23,10 +23,10 @@ function AddPlaylistModal({ yogaClass }) {
 	}, []);
 
 	const handleAddPlaylist = async (playlistId) => {
-		// call db with yogaClass id and playlist id
+		// call db with completedClass id and playlist id
 		try {
 			const { data } = await addPlaylist({
-				variables: { classId: yogaClass._id, playlistId },
+				variables: { classId: completedClass._id, playlistId },
 			});
 			console.log(data);
 		} catch (err) {
@@ -40,7 +40,7 @@ function AddPlaylistModal({ yogaClass }) {
 	return (
 		// <div className="modal-card">
 		<div className="modal-center">
-			<h1>{yogaClass.date}</h1>
+			<h1>{completedClass.date}</h1>
 			<div className="modal-content">
 				{playlists && (
 					<ul className="playlist-list">

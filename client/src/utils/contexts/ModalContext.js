@@ -1,9 +1,7 @@
 import React, { useState, useContext } from "react";
 
-// Create our modal context using React.CreateContext()
 export const ModalContext = React.createContext();
 
-// Create a custom hook that allows easy access to our ModalContext values
 export const useModalContext = () => useContext(ModalContext);
 
 export default function ModalProvider({ children }) {
@@ -11,15 +9,8 @@ export default function ModalProvider({ children }) {
 	const [modalContent, setModalContent] = useState(null);
 
 	const resetModal = () => {
-		// setExitModalTransition(true)
 		setIsModal(false)
 		setModalContent(null)
-
-		// setTimeout(() => {
-		// 	setIsModal(false)
-		// 	setModalContent(null)
-		// }, 5000)
-
 	}
 
 	const configureModal = (content) => {

@@ -11,7 +11,7 @@ function RegisteredClassList({ registeredClasses, handleUnregister }) {
 			{registeredClasses.map((registeredClass) => (
 				<div key={registeredClass._id} className="class-list-item">
 					<ClassDetails date={registeredClass.date} />
-					<div className="class-status">Registered</div>
+					{/* <div className="class-status">Registered</div> */}
 					<div className="class-actions">
 						<button
 							className="btn btn-round btn-pink"

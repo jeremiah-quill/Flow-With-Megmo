@@ -1,6 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const studentSchema = new Schema({
+	isAdmin: {
+		type: Boolean,
+		default: false
+	},
 	username: {
 		type: String,
 		required: true,

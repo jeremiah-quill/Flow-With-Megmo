@@ -2,7 +2,7 @@
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	height: 100%;
+	/* height: 100%; */
 	overflow-y: scroll;
 	border: 3px solid black;
 	max-height: 80vh;
@@ -10,7 +10,7 @@
 }
 
 .classes {
-	padding-top: 2em;
+	padding-top: 5em;
 }
 
 @media screen and (min-width: 765px) {

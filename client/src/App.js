@@ -15,7 +15,7 @@ import Navbar from "./components/Navbar";
 import Contact from "./components/pages/Contact";
 import Classes from "./components/Classes";
 import Auth from "./utils/auth";
-import LoggedInHome from "./components/pages/LoggedInHome";
+import StudentProfile from "./components/pages/StudentProfile";
 import DefaultHome from "./components/pages/DefaultHome";
 import Modal from "./components/Modal";
 import { useUserContext } from "./utils/contexts/UserContext";
@@ -23,6 +23,7 @@ import { useModalContext } from "./utils/contexts/ModalContext";
 import Header from "./components/Header";
 import Toast from "./components/Toast";
 import { useToastContext } from "./utils/contexts/ToastContext";
+import UserButtons from "./components/UserButtons";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -49,8 +50,7 @@ const client = new ApolloClient({
 });
 
 function App() {
-	const {isToast, toastMessage, toastType} = useToastContext()
-
+	const { isToast, toastMessage, toastType } = useToastContext();
 
 	const [width, setWidth] = useState(window.innerWidth);
 	const breakpoint = 765;
@@ -70,6 +70,7 @@ function App() {
 			let userInfo = Auth.getStudent().data;
 			setCurrentUser({
 				loggedIn: true,
+				isAdmin: userInfo.isAdmin,
 				username: userInfo.username,
 				email: userInfo.email,
 				_id: userInfo._id,
@@ -85,31 +86,33 @@ function App() {
 
 	return (
 		<ApolloProvider client={client}>
-			<Toast isToast={isToast} toastMessage={toastMessage} toastType={toastType} />
-
-			{/* GLOBAL MODAL */}
-			<CSSTransition
-				in={isModal}
+			{width < breakpoint ? <UserButtons /> : ""}
+			<Toast
+				isToast={isToast}
+				toastMessage={toastMessage}
+				toastType={toastType}
+			/>
+			<Modal
 				timeout={600}
 				classNames={"translate-y"}
 				unmountOnExit={true}
-			>
-				<Modal resetModal={resetModal}>{modalContent}</Modal>
-			</CSSTransition>
-
-			{width < breakpoint ? <Navbar /> : <Header />}
-
+				isModal={isModal}
+				resetModal={resetModal}
+				content={modalContent}
+			/>
+			{/* {currentUser.isAdmin ? <Dashboard /> : ""} */}
+			{!currentUser.isAdmin ? width < breakpoint ? <Navbar /> : <Header /> : ""}
 			<div className="main-container">
 				{/* <TransitionGroup component={null}>
 				<CSSTransition key={location.key} classNames="page-transition" timeout={250}> */}
 				<Routes location={location}>
 					<Route
 						path="/"
-						element={currentUser.loggedIn ? <LoggedInHome /> : <DefaultHome />}
+						element={
+							currentUser.isAdmin ? <Dashboard /> : currentUser.loggedIn ? <StudentProfile /> : <DefaultHome />
+						}
 					/>
 					<Route path="/classes" element={<Classes />} />
-					{/* <Route path="/classes/:id" element={<Class />} /> */}
-					{/* <Route path="/music/:id" element={<SpotifyPlayer />} /> */}
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/dashboard" element={<Dashboard />} />
 					{/* add below 404 page */}
