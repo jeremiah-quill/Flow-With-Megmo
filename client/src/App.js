@@ -101,7 +101,7 @@ function App() {
 				content={modalContent}
 			/>
 			{/* {currentUser.isAdmin ? <Dashboard /> : ""} */}
-			{!currentUser.isAdmin ? width < breakpoint ? <Navbar /> : <Header /> : ""}
+			{!currentUser.isAdmin ? <Header /> : ""}
 			<div className="main-container">
 				{/* <TransitionGroup component={null}>
 				<CSSTransition key={location.key} classNames="page-transition" timeout={250}> */}

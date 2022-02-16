@@ -6,8 +6,11 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    /* justify-content:space-between; */
     /* justify-content: center; */
-    padding-top: 5em;
+    /* padding-top: 5em; */
+    padding-bottom: 5em;
+    padding-top: 3em;
 }
 
 
@@ -16,17 +19,25 @@ h2 {
 }
 
 .student-lists {
-    flex: 1;
+    /* flex: 1; */
     text-align: center;
     width: 100%;
-    max-height: 40vh;
+    /* max-height: 40vh; */
+    /* height: 100%; */
+    /* min-height: 90px; */
+}
+
+.logged-in-home > * {
+    flex: 1;
 }
 
 .student-lists-container {
-    margin-top: 5em;
+    /* margin-top: 5em; */
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* justify-content: center; */
+    /* flex: 1.5; */
 }
 
 .student-info {
@@ -64,7 +75,7 @@ h2 {
     .logged-in-home {
         /* display: flex; */
         width: 100%;
-        padding-top: 200px;
+        padding-top: 50px;
         
     }
 
@@ -80,7 +91,7 @@ h2 {
 }
 
 .selected-list {
-    border: 3px solid rgb(218, 99, 185);
+    border: 3px solid var(--main-green);
 }
 
 

@@ -6,6 +6,7 @@
     z-index: 999;
     position: fixed;
     bottom: 0;
+    left: 0;
     
 }
 
@@ -21,6 +22,7 @@
     padding: 1em;
     flex: 1;
     text-align: center;
+    color: #272324
 }
 
 @media screen and (min-width: 765px) {

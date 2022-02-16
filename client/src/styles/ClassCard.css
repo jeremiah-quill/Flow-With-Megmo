@@ -23,6 +23,7 @@
     padding: 1em 1em;
     display: flex;
     align-items: center;
+    /* border-bottom: 3px solid #272324; */
     
 }
 
@@ -33,6 +34,7 @@
 /* .class-list-item:first-child {
     border-top: 3px solid black;
 }
+
 
 .class-list-item:last-child {
     border-bottom: 3px solid black;

@@ -6,6 +6,7 @@ import "../../styles/ClassCard.css";
 
 function CompletedClassList({ completedClasses }) {
 	const { configureModal } = useModalContext();
+	if(completedClasses.length < 1) return <div>You have not yet completed any classes.</div>
 	return (
 		<ul className="student-lists class-list">
 			{completedClasses.map((completedClass) => (

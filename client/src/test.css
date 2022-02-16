@@ -1,6 +1,18 @@
 * {
 	box-sizing: border-box;
 }
+:root {
+    --main-green: rgb(83, 178, 128);
+    --main-blue: rgb(108, 81, 242);
+    --main-orange: rgb(218, 156, 89);
+    --main-yellow: rgb(228, 207, 104);
+    --main-black: #272324;
+    --main-tan: #E4D8B4;
+    --main-box-shadow: 5px 5px #272324;
+
+
+  }
+
 
 html,
 body,
@@ -8,6 +20,7 @@ body,
 	height: 100%;
     width: 100%;
     font-family: 'Fredoka One', cursive !important;
+    color: 272324
 }
 
 body {
@@ -115,10 +128,27 @@ a {
     cursor: pointer;
     text-align: center;
     padding: 1em;
+    box-shadow: var(--main-box-shadow);
 }
 
 .btn-pink {
-    background-color: rgb(236, 194, 228);
+    background-color: var(--main-green);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-weight: bold;
+}
+
+.btn-green {
+    background-color: var(--main-green);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-weight: bold;
+}
+
+.btn-red {
+    background-color: #E86F68;
     color: white;
     border: none;
     border-radius: 100px;
@@ -139,7 +169,29 @@ a {
     top: 10px;
     right: 10px;
     z-index: 500;
+    box-shadow: var(--main-box-shadow);
+    border-radius: 100px;
 }
+
+.btn:hover {
+    
+        filter: brightness(85%);
+      
+}
+
+.main-login {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: none;
+}
+
+.main-signup {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    box-shadow: none;
+}
+
+
 
 @media screen and (min-width: 765px) {
     .user-btns {
@@ -201,7 +253,9 @@ button {
 }
 
 input {
-    border-radius: 30px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
 }
 
 button:disabled {

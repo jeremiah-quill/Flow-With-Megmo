@@ -136,23 +136,24 @@ function StudentProfile() {
 					</button>
 				</div>
 				{listView === "registered" ? (
-					studentUpcomingClasses.length <= 0 ? (
-						<div className="no-classes">
-							You do not have any registered classes at this time.
-						</div>
-					) : (
+					// studentUpcomingClasses.length <= 0 ? (
+					// 	<div className="no-classes">
+					// 		You do not have any registered classes at this time.
+					// 	</div>
+					// ) : (
 						<RegisteredClassList
 							registeredClasses={studentUpcomingClasses}
 							handleUnregister={handleUnregister}
 						/>
-					)
-				) : studentCompletedClasses.length <= 0 ? (
-					<div className="no-classes">
-						You do not have any completed classes at this time.
-					</div>
-				) : (
+					// )
+				) : 
+				// studentCompletedClasses.length <= 0 ? (
+				// 	<div className="no-classes">
+				// 		You do not have any completed classes at this time.
+				// 	</div>
+				// ) : (
 					<CompletedClassList completedClasses={studentCompletedClasses} />
-				)}
+				}
 			</div>
 		</div>
 	);

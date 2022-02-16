@@ -1,7 +1,28 @@
 .site-logo {
-	font-size: 2em;
 	margin: 0;
+	font-size: 1.5em;
 	margin-right: 2em;
+	/* padding: .5em; */
+	background-color: var(--main-green);
+	border-radius: 5px;
+	/* box-shadow: 3px solid var(--main-green), 3px solid var(--main-blue); */
+	color: white;
+  	box-shadow:
+	  0px 0px 0px 6px var(--main-green),
+	  0px 0px 0px 12px var(--main-blue),
+	  0px 0px 0px 18px var(--main-orange),
+	  0px 0px 0px 24px var(--main-yellow)
+
+
+
+
+}
+
+@media screen and (min-width: 765px) {
+	.site-log {
+		font-size: 2em;
+
+	}
 }
 
 .header {

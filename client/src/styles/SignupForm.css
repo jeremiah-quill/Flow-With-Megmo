@@ -16,8 +16,10 @@
 }
 
 .border-pink {
-    background: white;
-    border: 3px solid rgb(236, 194, 228);
+    /* background: white; */
+    /* border: 3px solid rgb(236, 194, 228); */
+    /* border: 3px solid #272324; */
+    box-shadow: var(--main-box-shadow);
 
 }
 
