@@ -62,11 +62,13 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch }) {
 
 	return (
 		<div className="class-signup-modal">
-			<div className="modal-content">
+			{/* <div className="modal-content"> */}
+			{!registered ? <h1 className="class-signup-header">Register</h1> : <h1 className="class-signup-header">Complete payment</h1>}
 				{!registered ? (
-					<div className="step-directions">
-						<h1 className="class-signup-header">Register</h1>
-						<div>
+					<div className="modal-content">
+						<div className="signup-step">
+						{/* <h1 className="class-signup-header">Register</h1> */}
+						{/* <div> */}
 							<ul className="class-details-list">
 								<li className="class-details-item">
 									Date: {dayOfWeek}, {month}/{dayOfMonth}
@@ -77,29 +79,33 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch }) {
 								</li>
 							</ul>
 							<button
-								className="btn btn-pink btn-round register-btn"
+								className="btn btn-pink btn-round register-btn register-submit-btn"
 								onClick={handleSubmit}
 							>
 								Register
 							</button>
-						</div>
+							</div>
+						{/* </div> */}
 					</div>
 				) : (
-					<div className="step">
-						<h1 className="class-signup-header">Complete payment</h1>
-						<p>
+					<div className="modal-content">
+						<div className="signup-step">						{/* <h1 className="class-signup-header">Complete payment</h1> */}
+						<p className="venmo-instructions">
 							We've sent a zoom meeting invite to {currentUser.email}. Please
 							click the link below to complete payment via venmo. I can't wait
 							to see you in class!
 						</p>
-						<a
+						<button className="btn venmo-btn btn-green">
+						<a 
 							href={`https://venmo.com/meghan-moran-7?txn=pay&note=Flow+with+Megmo:+${scheduledClass.date}&amount=${scheduledClass.price}`}
 						>
-							Class Payment
+							Venmo
 						</a>
+						</button>
+						</div>
 					</div>
 				)}
-			</div>
+			{/* </div> */}
 		</div>
 	);
 }

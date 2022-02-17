@@ -6,6 +6,8 @@ import "../../styles/ClassCard.css";
 
 function RegisteredClassList({ registeredClasses, handleUnregister }) {
 	const { configureModal } = useModalContext();
+	if(registeredClasses.length < 1) return <div>You have not yet registered for any classes.</div>
+
 	return (
 		<ul className="student-lists class-list">
 			{registeredClasses.map((registeredClass) => (

@@ -1,6 +1,7 @@
 .class-signup-header {
     text-align: center;
     margin: 0;
+    /* margin-bottom: 2em; */
 }
 
 .class-signup-modal {
@@ -10,6 +11,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    width: 75%;
+    margin: 0 auto;
 }
 
 .class-details-list {
@@ -19,4 +22,36 @@
 
 .class-details-item + .class-details-item {
     margin-top: 1em;
+}
+
+
+.register-submit-btn {
+	margin-top: 2em;
+}
+
+.venmo-btn {
+    margin: 0 auto;
+    margin-top: 2em;
+
+}
+.venmo-btn a {
+    color: white;
+}
+
+.signup-step {
+    /* width: 75%; */
+    /* text-align: left; */
+    padding: 0;
+}
+
+p {
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+.venmo-instructions {
+text-align: left;
 }

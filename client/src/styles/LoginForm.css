@@ -37,7 +37,7 @@
 .login-btn {
     width: 150px;
     margin: 0 auto;
-    margin-top: 1em;
-    box-shadow: var(--main-box-shadow);
+    margin-top: 2em;
+    /* box-shadow: var(--main-box-shadow); */
 
 }
