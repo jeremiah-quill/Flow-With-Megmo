@@ -63,7 +63,7 @@ const typeDefs = gql`
 			price: Float!
 		): Class
 
-		deleteClass(classId: ID!): Class
+		deleteClass(classId: ID!): [Student]
 
 		updateClass(classId: ID!, newDateTime: Date!): Class
 

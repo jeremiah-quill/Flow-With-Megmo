@@ -53,7 +53,8 @@ export const CREATE_CLASS = gql`
 export const DELETE_CLASS = gql`
 	mutation deleteClass($classId: ID!) {
 		deleteClass(classId: $classId) {
-			_id
+				email
+				username
 		}
 	}
 `;
@@ -73,6 +74,7 @@ export const ADD_TO_ROSTER = gql`
 	mutation addStudentToClass($classId: ID!, $studentId: ID!) {
 		addStudentToClass(classId: $classId, studentId: $studentId) {
 			_id
+			link
 		}
 	}
 `;

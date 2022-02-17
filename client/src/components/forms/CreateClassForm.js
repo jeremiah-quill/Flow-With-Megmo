@@ -28,9 +28,9 @@ function CreateClassForm() {
 
 		const classResponse = await zoomCreate(classData);
 
-		// TODO: graphQL mutation to add class in database
 		const newClassDetails = JSON.parse(classResponse);
 
+		// TODO: error handling on response from zoom api
 		console.log(newClassDetails);
 
 		const zoomId = JSON.stringify(newClassDetails.id);

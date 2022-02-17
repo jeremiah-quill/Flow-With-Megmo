@@ -5,50 +5,64 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
 	Query: {
 		teachers: async () => {
-			return Teacher.find();
+			return await Teacher.find();
 		},
 		classes: async () => {
-			const classes = Class.find().populate("roster");
-			return classes;
+			return await Class.find().populate("roster");
 		},
 		students: async () => {
-			return Student.find();
+			return await Student.find();
 		},
 		getStudentById: async (_, { studentId }) => {
-			return Student.findOne({ _id: studentId }).populate("registeredClasses");
+			return await Student.findOne({ _id: studentId }).populate(
+				"registeredClasses"
+			);
 		},
 		getClassById: async (_, { classId }) => {
-			return Class.findOne({ _id: classId }).populate("roster");
+			return await Class.findOne({ _id: classId }).populate("roster");
 		},
-		getUpcomingStudentClasses: async (_, {studentId}) => {
-			let student = await Student.findOne({_id: studentId}).populate("registeredClasses");
+		getUpcomingStudentClasses: async (_, { studentId }) => {
+			let student = await Student.findOne({ _id: studentId }).populate(
+				"registeredClasses"
+			);
 			// console.log(student)
-			let registeredClasses = student.registeredClasses.map(registeredClass => registeredClass)
-			
+			let registeredClasses = student.registeredClasses.map(
+				(registeredClass) => registeredClass
+			);
+
 			let currDate = new Date();
-			let filteredClasses = registeredClasses.filter(registeredClass => new Date(registeredClass.date).getTime() - currDate.getTime() > 0);
-			return filteredClasses
+			let filteredClasses = registeredClasses.filter(
+				(registeredClass) =>
+					new Date(registeredClass.date).getTime() - currDate.getTime() > 0
+			);
+			return filteredClasses;
 		},
 
-		getCompletedStudentClasses: async (_, {studentId}) => {
-			let student = await Student.findOne({_id: studentId}).populate("registeredClasses");
+		getCompletedStudentClasses: async (_, { studentId }) => {
+			let student = await Student.findOne({ _id: studentId }).populate(
+				"registeredClasses"
+			);
 			// console.log(student)
-			let registeredClasses = student.registeredClasses.map(registeredClass => registeredClass)
-			
+			let registeredClasses = student.registeredClasses.map(
+				(registeredClass) => registeredClass
+			);
+
 			let currDate = new Date();
-			let filteredClasses = registeredClasses.filter(registeredClass => new Date(registeredClass.date).getTime() - currDate.getTime() < 0);
-			return filteredClasses
+			let filteredClasses = registeredClasses.filter(
+				(registeredClass) =>
+					new Date(registeredClass.date).getTime() - currDate.getTime() < 0
+			);
+			return filteredClasses;
 		},
 
-		getUpcomingClasses: async() => {
-			let now = new Date()
-			return Class.find({date: {$gt: now}}).populate("roster")
+		getUpcomingClasses: async () => {
+			let now = new Date();
+			return Class.find({ date: { $gt: now } }).populate("roster");
 		},
-		getCompletedClasses: async() => {
-			let now = new Date()
-			return Class.find({date: {$lt: now}}).populate("roster")
-		}
-
+		getCompletedClasses: async () => {
+			let now = new Date();
+			return Class.find({ date: { $lt: now } }).populate("roster");
+		},
 	},
 
 	Mutation: {
@@ -80,7 +94,7 @@ const resolvers = {
 		},
 
 		createClass: async (_, { date, price, zoomId, link }) => {
-			return Class.create({
+			return await Class.create({
 				date: date,
 				price: price,
 				zoomId: zoomId,
@@ -88,11 +102,13 @@ const resolvers = {
 			});
 		},
 		deleteClass: async (_, { classId }) => {
-			return Class.deleteOne({ _id: classId });
+			let classToDelete = await Class.findOne({ _id: classId }).populate("roster");
+			let deleted = await Class.deleteOne({ _id: classId }).populate("roster");
+			return classToDelete.roster;
 		},
 
 		updateClass: async (_, { classId, newDateTime }) => {
-			return Class.findOneAndUpdate(
+			return await Class.findOneAndUpdate(
 				{ _id: classId },
 				{
 					$set: {
@@ -103,7 +119,7 @@ const resolvers = {
 		},
 
 		addStudentToClass: async (_, { classId, studentId }) => {
-			return Class.findOneAndUpdate(
+			return await Class.findOneAndUpdate(
 				{ _id: classId },
 				{
 					$addToSet: {
@@ -113,7 +129,7 @@ const resolvers = {
 			);
 		},
 		addClassToStudent: async (_, { studentId, classId }) => {
-			return Student.findOneAndUpdate(
+			return await Student.findOneAndUpdate(
 				{ _id: studentId },
 				{
 					$addToSet: {
@@ -124,7 +140,7 @@ const resolvers = {
 		},
 
 		removeFromRoster: async (_, { classId, studentId }) => {
-			return Class.findOneAndUpdate(
+			return await Class.findOneAndUpdate(
 				{ _id: classId },
 				{
 					$pull: {
@@ -135,14 +151,14 @@ const resolvers = {
 		},
 
 		removeClassFromStudent: async (_, { studentId, classId }) => {
-			return Student.findOneAndUpdate(
+			return await Student.findOneAndUpdate(
 				{ _id: studentId },
 				{ $pull: { registeredClasses: classId } }
 			).populate("registeredClasses");
 		},
 
 		addPlaylist: async (_, { classId, playlistId }) => {
-			return Class.findOneAndUpdate(
+			return await Class.findOneAndUpdate(
 				{ _id: classId },
 				{
 					$set: {

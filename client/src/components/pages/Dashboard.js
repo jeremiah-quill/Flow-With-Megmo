@@ -41,7 +41,7 @@ function Dashboard() {
 
 	return (
 		<div className="dashboard">
-			<UserButtons />
+			{/* <UserButtons /> */}
 			<h1>Welcome back Yogi!</h1>
 			<StatsOverview completedClasses={completedClasses}/>
 			<CreateClassForm />

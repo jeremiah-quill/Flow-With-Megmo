@@ -67,12 +67,15 @@ function StudentProfile() {
 	// Closes modal and sends user a toast message with success or error
 	const handleUnregister = async (classId, studentId) => {
 		try {
-			const { data } = await removeFromRoster({
+			const { data: removeFromRosterData } = await removeFromRoster({
 				variables: { classId, studentId },
 			});
-			const { data: registeredCancellation } = await removeClassFromStudent({
+			const { data: removeClassFromStudentData } = await removeClassFromStudent({
 				variables: { studentId, classId },
 			});
+			// TODO email to user
+			console.log(`Send email to ${currentUser.email} to confirm the student has been removed from class`)
+
 			resetModal();
 			configureToast(
 				"You have been successfully removed from class.",
@@ -136,22 +139,11 @@ function StudentProfile() {
 					</button>
 				</div>
 				{listView === "registered" ? (
-					// studentUpcomingClasses.length <= 0 ? (
-					// 	<div className="no-classes">
-					// 		You do not have any registered classes at this time.
-					// 	</div>
-					// ) : (
 						<RegisteredClassList
 							registeredClasses={studentUpcomingClasses}
 							handleUnregister={handleUnregister}
 						/>
-					// )
 				) : 
-				// studentCompletedClasses.length <= 0 ? (
-				// 	<div className="no-classes">
-				// 		You do not have any completed classes at this time.
-				// 	</div>
-				// ) : (
 					<CompletedClassList completedClasses={studentCompletedClasses} />
 				}
 			</div>
