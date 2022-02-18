@@ -1,45 +1,55 @@
-/* .contact {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-} */
+.contact-form {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	width: 75%;
+    margin: 0 auto;
+}
 
-/* .contact-form {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-} */
+.contact-email-input::placeholder, textarea::placeholder { 
+    color: white;
+    opacity: 1; 
+    font-family: 'Fredoka One', cursive !important;
+    padding-left: 1em;
+  }
+
 
 .contact-email-input {
-/* margin-bottom: 2em; */
-width: 100%;
-border: none;
-background-color: var(--main-tan);
-border-radius: 0;
-border-top-right-radius: 10px;
-border-top-left-radius: 10px;
-box-shadow: var(--main-box-shadow);
-
+	border: none;
+	background-color: var(--blue3);
+	border-radius: 0;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	box-shadow: var(--main-box-shadow);
 }
 
-/* .contact-submit {
-    margin-top: 2em;
-} */
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* width: 500px; */
-    width: 100%;
-
+textarea {
+	resize: none;
+	background-color: var(--blue3);
+	outline: none;
+	border: none;
+	box-shadow: var(--main-box-shadow);
+	width: 100%;
 }
+
+.contact-submit {
+	padding: 1em;
+	cursor: pointer;
+	border-radius: 0;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	box-shadow: var(--main-box-shadow);
+}
+
+.contact-submit:hover {
+	transform: translate(0);
+	box-shadow: var(--main-box-shadow);
+	filter: brightness(85%);
+}
+
 
 .contact {
     width: 100%;
-    /* padding: 0 15em; */
-    padding-top: 5em;
 }
 
 .contact-form > * {
@@ -49,29 +59,20 @@ box-shadow: var(--main-box-shadow);
 .contact-form > input {
     line-height: 3em;
 }
-.contact-form > * + * {
-    /* margin-top: 1em; */
-}
 
-.contact-submit {
+
+.submit-btn {
     padding: 1em;
     cursor: pointer;
-    border-radius: 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-
-    box-shadow: var(--main-box-shadow);
 }
 
 textarea {
     min-height: 250px;
     max-height: 250px;
-    /* width: 100%; */
     resize: none;
-    /* border-radius: 10px; */
-    background-color: var(--main-tan);
-    outline: none;
-    border: none;
-    box-shadow: var(--main-box-shadow);
-
 }
+
+.submit-btn:disabled {
+    cursor:not-allowed;
+}
+

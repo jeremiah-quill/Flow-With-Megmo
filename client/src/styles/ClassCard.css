@@ -19,34 +19,17 @@
 .class-list-item {
     width: 100%;
     text-align: center;
-    /* border: 1px solid lightgray; */
     padding: 1em 1em;
     display: flex;
-    align-items: center;
-    /* border-bottom: 3px solid #272324; */
-    
+    align-items: center;    
 }
 
 .class-list-item + .class-list-item {
     border-top: 3px solid black;
 }
 
-/* .class-list-item:first-child {
-    border-top: 3px solid black;
-}
-
-
-.class-list-item:last-child {
-    border-bottom: 3px solid black;
-} */
-
-/* .class-list-item:last-child {
-    border-bottom: 3px solid black;
-} */
-
 .class-actions {
     margin-left: auto;
-    /* width: 100px; */
     display: flex;
 }
 

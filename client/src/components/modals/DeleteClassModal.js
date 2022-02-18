@@ -1,44 +1,44 @@
 import React from "react";
 import { zoomDelete } from "../../utils/API";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { DELETE_CLASS } from "../../utils/mutations";
-// TODO: create this query
-import { QUERY_STUDENTS } from "../../utils/queries";
+
+import {useToastContext} from '../../utils/contexts/ToastContext'
+import {useModalContext} from '../../utils/contexts/ModalContext'
 
 
-function DeleteClassModal({ scheduledClass }) {
+function DeleteClassModal({ scheduledClass, refetch }) {
+
+	const {configureToast} = useToastContext()
+	const {resetModal} = useModalContext()
+
 	const [deleteClass] = useMutation(DELETE_CLASS);
 
 	const handleDelete = async (zoomId, classId) => {
-		// TODO: query all students in this class and get their eamils.  send them each an email telling them class is cancelled
-		//	
-		//
-		//
-
-		// TODO: error handling
 		try {
+			// Delete in Zoom API
 			const meetingId = { meetingId: zoomId };
 			const deleteResponse = await zoomDelete(meetingId);
 			console.log(deleteResponse);
-		} catch (err) {
-			console.error(err);
-		}
 
-		// Cancel class in db
-		// TODO: error handling
-		try {
+			// Delete in DB
 			const { data } = await deleteClass({
 				variables: { classId },
 			});
-			console.log(data);
-			// TODO: allow teacher to customize this cancellation message
-			// let roster = data.deleteClass.roster
 
-			// console.log(
-			// 	`Send email to ${roster} with message from Meghan that class is cancelled`
-			// );
+			// TODO: send email to students
+			// TODO: allow teacher to customize this cancellation message
+			// console.log(`Send email to everyone in this list ${data.deleteClass} with message from teacher`);
+
+			// Configure toast, refetch scheduled classes, and close modal
+			configureToast("Your class has been deleted from the schedule and you have been sent an email with registered student details", "success", 3000)
+			refetch()
+			resetModal()
+
 		} catch (err) {
 			console.error(err);
+			configureToast("Something went wrong and your class was not deleted from the schedule, please submit a bug report.", "failure", 5000)
+
 		}
 	};
 

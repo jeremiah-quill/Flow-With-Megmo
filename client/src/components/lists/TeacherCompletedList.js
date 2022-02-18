@@ -4,11 +4,11 @@ import AddPlaylistModal from "../modals/AddPlaylistModal";
 import ClassDetails from "../ClassDetails";
 import { useModalContext } from "../../utils/contexts/ModalContext";
 
-function TeacherCompletedList({ completedClasses }) {
+function TeacherCompletedList({ completedClasses, refetch }) {
     const { configureModal } = useModalContext();
 
 	return (
-		<ul className="previous-class-list class-list">
+		<ul className="student-lists class-list">
 			{completedClasses.map((completedClass) => (
 				<li className="class-list-item" key={completedClass._id}>
 					<ClassDetails date={completedClass.date} />
@@ -25,7 +25,7 @@ function TeacherCompletedList({ completedClasses }) {
                         className="btn btn-round btn-pink"
 							onClick={() =>
 								configureModal(
-									<AddPlaylistModal completedClass={completedClass} />
+									<AddPlaylistModal completedClass={completedClass} refetch={refetch} />
 								)
 							}
 						>

@@ -12,8 +12,15 @@
     --main-box-shadow: 5px 5px #272324;
     --animated-box-shadow: 0px 0px 0px 0px #272324;
 
-
-
+    --tan: rgb(243, 221, 193);
+    --blue1: rgb(18, 39, 81);
+    --blue2: rgb(54, 109, 142);
+    --blue3: rgb(73, 139, 152);
+    --blue4: rgb(142, 174, 166);
+    --orange1: rgb(244, 224, 185);
+    --orange2: rgb(235, 171, 119);
+    --orange3: rgb(223, 117, 68);
+    --orange4: rgb(207, 74, 49);
   }
 
 
@@ -23,11 +30,14 @@ body,
 	height: 100%;
     width: 100%;
     font-family: 'Fredoka One', cursive !important;
-    color: 272324
+    
+    color: var(--main-black);
 }
 
 body {
     margin: 0;
+    background-color: var(--tan);
+
 }
 
 
@@ -35,6 +45,10 @@ body {
 a {
 	text-decoration: none;
 }
+
+/* a:visited {
+    color:initial;
+} */
 
 
 .view {
@@ -50,7 +64,7 @@ a {
     position: relative;
     padding: 0 1em;    
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
 }
 
@@ -293,6 +307,7 @@ input {
     outline: none;
 }
 
+
 button:disabled {
     cursor:not-allowed;
 }
@@ -349,7 +364,18 @@ button:disabled {
 .fade-toast-exit.fade-toast-exit-active {
 	opacity: 0;
     transform: translateX(100%);
-
     transition: opacity 500ms ease, transform 500ms ease;
+}
 
+.qr-code {
+    width: 100px;
+    margin-top: 1em;
+}
+
+.student-info {
+    text-align: center;
+}
+
+.home-intro {
+    margin-top: 1em;
 }

@@ -14,8 +14,8 @@ function ContactForm() {
 
 	return (
 		<form className="contact-form" onSubmit={handleSubmit}>
-			<input className="contact-email-input outline-input border-pink" value={email} onChange={(e)=> setEmail(e.target.value)} placeholder="Email"/>
-			<textarea className="contact-message-input outline-input border-pink" value={message} onChange={(e)=> setMessage(e.target.value)} placeholder="Message"/>
+			<input className="contact-email-input" value={email} onChange={(e)=> setEmail(e.target.value)} placeholder="Email"/>
+			<textarea className="contact-message-input" value={message} onChange={(e)=> setMessage(e.target.value)} placeholder="Message"/>
             <input className="contact-submit btn btn-green" type="submit"/> 
 		</form>
 	);

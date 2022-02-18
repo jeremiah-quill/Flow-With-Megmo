@@ -1,11 +1,9 @@
 .signup-form {
     display: flex;
     flex-direction: column;
-    /* margin-top: 2em; */
 }
 
 .outline-input {
-    /* border-radius: 100px; */
     padding: 1em 0;
     width: 250px;
     padding-left: 50px;
@@ -13,14 +11,6 @@
 
 .outline-input-container + .outline-input-container {
     margin-top: 1em;
-}
-
-.border-pink {
-    /* background: white; */
-    /* border: 3px solid rgb(236, 194, 228); */
-    /* border: 3px solid #272324; */
-    /* box-shadow: var(--main-box-shadow); */
-
 }
 
 .input-icon {

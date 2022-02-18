@@ -5,12 +5,12 @@ import EditClassModal from "../modals/EditClassModal";
 import DeleteClassModal from "../modals/DeleteClassModal";
 import { useModalContext } from "../../utils/contexts/ModalContext";
 
-function TeacherUpcomingList({ scheduledClasses }) {
+function TeacherUpcomingList({ scheduledClasses, refetch }) {
 	const { configureModal } = useModalContext();
 
 
 	return (
-		<ul className="current-class-list class-list">
+		<ul className="student-lists class-list">
 			{scheduledClasses.map((scheduledClass) => (
 				<li className="class-list-item" key={scheduledClass._id}>
 					<ClassDetails date={scheduledClass.date} />
@@ -29,7 +29,7 @@ function TeacherUpcomingList({ scheduledClasses }) {
 							className="btn btn-round btn-pink"
 							onClick={() =>
 								configureModal(
-									<EditClassModal scheduledClass={scheduledClass} />
+									<EditClassModal scheduledClass={scheduledClass} refetch={refetch} />
 								)
 							}
 						>
@@ -39,7 +39,7 @@ function TeacherUpcomingList({ scheduledClasses }) {
 							className="btn btn-round btn-pink"
 							onClick={() =>
 								configureModal(
-									<DeleteClassModal scheduledClass={scheduledClass} />
+									<DeleteClassModal scheduledClass={scheduledClass} refetch={refetch} />
 								)
 							}
 						>

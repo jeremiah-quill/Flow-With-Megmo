@@ -2,12 +2,10 @@ import React from "react";
 import EditClassForm from "../forms/EditClassForm";
 
 
-// TODO: this is broken, need to pull out time from timestamp rather than send time separately
-function EditClassModal({ scheduledClass }) {
+function EditClassModal({ scheduledClass, refetch }) {
 
 	return (
 		<div>
-		{/* <div className="modal-card"> */}
 			<header className="modal-header">
 				{scheduledClass.date} @ {scheduledClass.time}
 			</header>
@@ -16,12 +14,9 @@ function EditClassModal({ scheduledClass }) {
 					currentDateString={scheduledClass.date}
 					zoomId={scheduledClass.zoomId}
 					classId={scheduledClass._id}
+					refetch={refetch}
 				/>
 			</div>
-			<div className="modal-footer">
-				<button form={scheduledClass._id}>Confirm Class Update</button>
-			</div>
-		{/* </div> */}
 		</div>
 	);
 }

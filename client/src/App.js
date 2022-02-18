@@ -11,7 +11,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 // import SpotifyPlayer from "./components/pages/SpotifyPlayer";
 import Dashboard from "./components/pages/Dashboard";
-import Navbar from "./components/Navbar";
 import Contact from "./components/pages/Contact";
 import Classes from "./components/Classes";
 import Auth from "./utils/auth";
@@ -24,6 +23,7 @@ import Header from "./components/Header";
 import Toast from "./components/Toast";
 import { useToastContext } from "./utils/contexts/ToastContext";
 import UserButtons from "./components/UserButtons";
+import RequireAdmin from './components/RequireAdmin'
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -101,7 +101,8 @@ function App() {
 				content={modalContent}
 			/>
 			{/* {currentUser.isAdmin ? <Dashboard /> : ""} */}
-			{!currentUser.isAdmin ? <Header /> : ""}
+			{/* {!currentUser.isAdmin ? <Header /> : ""} */}
+			<Header />
 			<div className="main-container">
 				{/* <TransitionGroup component={null}>
 				<CSSTransition key={location.key} classNames="page-transition" timeout={250}> */}
@@ -109,12 +110,19 @@ function App() {
 					<Route
 						path="/"
 						element={
-							currentUser.isAdmin ? <Dashboard /> : currentUser.loggedIn ? <StudentProfile /> : <DefaultHome />
+							currentUser.loggedIn ? <StudentProfile /> : <DefaultHome />
 						}
 					/>
 					<Route path="/classes" element={<Classes />} />
 					<Route path="/contact" element={<Contact />} />
-					<Route path="/dashboard" element={<Dashboard />} />
+					<Route
+						path="/dashboard"
+						element={
+							<RequireAdmin>
+								<Dashboard />
+							</RequireAdmin>
+						}
+					/>
 					{/* add below 404 page */}
 					{/* <Route path="*" element={<NoMatch />} /> */}
 				</Routes>

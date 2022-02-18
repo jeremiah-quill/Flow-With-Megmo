@@ -1,7 +1,6 @@
 .class-header {
     font-size: 2em;
     text-align: center;
-    /* padding-top: 2em */
 }
 
 .class {
@@ -23,9 +22,6 @@
 
 .class-signup-content {
     height: auto;
-    /* display: flex;
-    flex-direction: column;
-    flex: 1; */
 }
 
 

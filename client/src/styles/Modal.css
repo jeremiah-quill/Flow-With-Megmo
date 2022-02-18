@@ -15,17 +15,12 @@
 	z-index: 1000;
 	background-color: white;
 	position: absolute;
-	/* left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%); */
 	width: 100%;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	/* padding-top: 5em; */
-	background-color: var(--main-blue);
+	background-color: var(--blue2);
 	color: white;
-	/* box-shadow: var(--main-box-shadow); */
 }
 
 
@@ -33,25 +28,20 @@
 
 
 .modal-header {
-	/* border-bottom: 1px solid black; */
 	padding: 1em;
 }
 
 .modal-content {
 	display: flex;
 	justify-content: center;
-	/* flex: 1; */
-	/* overflow-y: scroll; */
 	margin-top: 2em;
 	margin-bottom: 2em;
 	overflow-y: hidden;
-	/* padding: 2em; */
 	width: 100%;
 	
 }
 
 .modal-footer {
-	/* border-top: 1px solid black; */
 	width: 100%;
 	padding: 1em;
 }
@@ -79,35 +69,6 @@
 	background-color: lightgreen;
 }
 
-/* .backdrop-fade-start {
-	opacity: 0;
-}
-
-.backdrop-fade-start.backdrop-fade-start-active {
-	opacity: .8;
-	transition: opacity 250ms ease;
-}
-
-.modal-slide-start {
-	transform: translateY(100%);
-}
-
-.modal-slide-start.modal-slide-start-active {
-	transform: translateY(0);
-	transition: transform 250ms ease;
-	transition-delay: 100ms;
-}
-
-.modal-slide-start > div:last-child {
-	opacity: 0;
-}
-
-.modal-slide-start.modal-slide-start-active > div:last-child {
-	opacity: 1;
-	transition: opacity 250ms ease;
-	transition-delay: 350ms;
-} */
-
 .reset-modal-btn {
 	position: absolute;
 	top: 20px;
@@ -120,25 +81,6 @@
 .reset-modal-btn > img {
 	width: 20px;
 }
-
-/* .modal-slide-end-active {
-	transform: translateY(100%);
-	transition: transform 250ms ease;
-} */
-
-/* .slide-out-exit {
-	transform: translateY(0);
-}
-
-.slide-out-exit.slide-out-exit-active {
-	transform: translateY(100%);
-	transition: transform 5000ms ease;
-} */
-
-/* .modal-slide-end-active > .modal-card{
-	transform: translateY(100%);
-	transition: transform 5000ms ease;
-} */
 
 /* MODAL ENTER TRANSITION */
 
@@ -172,19 +114,6 @@
 	transition-delay: 350ms;
 }
 
-
-
-
-
-/* Card content fade out */
-/* .translate-y-exit > .modal-card > div:last-child {
-	opacity: 1;
-}
-.translate-y-exit.translate-y-exit-active > .modal-card > div:last-child {
-	opacity: 0;
-	transition: opacity 250ms ease;
-	transition-delay: 100ms
-} */
 
 /* Card slide down */
 .translate-y-exit > .modal-card {
@@ -226,17 +155,12 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: center;
 	width: 60%;
 	margin: 0 auto;
-	/* text-align: center; */
 }
 
 @media screen and (min-width: 765px) {
-	/* .modal-center {
-		padding: 0 3em;
-	} */
 	.modal-card {
 		top: 250px;
 		bottom: 250px;

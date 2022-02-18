@@ -109,14 +109,11 @@ function StudentProfile() {
 	return (
 		<div className="logged-in-home view">
 			<div className="student-info">
-				<h2 className="logged-in-header">Welcome {currentUser.username}</h2>
+				<h2 className="logged-in-header">Welcome {currentUser.username}!</h2>
 				<p>
-					If you need to cancel a registration for any reason, please do so
-					here. You will receive an email confirming your cancellation and we
-					will reimburse your class fee within 48 hours. <br></br>
+					Here you'll be able to manage any classes you have registered for.<br></br>
 					<br></br>
-					Browse your completed classes and check out my playlist for each
-					class.
+					Also check out my music!  After we finish a class I will post the playlist I used.  Check it out in the completed classes section.
 				</p>
 			</div>
 			<div className="student-lists-container">

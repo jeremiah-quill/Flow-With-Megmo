@@ -27,12 +27,15 @@ function UserButtons() {
 					</button>
 				</>
 			) : (
+				<>
+				{/* <div>Logged in as: {currentUser.username}</div> */}
 				<button
 					className="btn btn-round btn-red"
 					onClick={() => Auth.logout()}
 				>
 					Logout
 				</button>
+				</>
 			)}
 		</div>
 	);

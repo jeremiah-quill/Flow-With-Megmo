@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { zoomEdit } from "../../utils/API";
 import { useMutation } from "@apollo/client";
 import { UPDATE_CLASS } from "../../utils/mutations";
+import { useToastContext } from "../../utils/contexts/ToastContext";
+import { useModalContext } from "../../utils/contexts/ModalContext";
 
 // TODO: validate so meghan can't send bad data
 // TODO: success/error handling for zoom update and db update
 // TODO: add email notification to everyone on roster
-function EditClassForm({ classId, zoomId, currentDateString }) {
+function EditClassForm({ classId, zoomId, currentDateString, refetch }) {
+	const { configureToast } = useToastContext();
+	const { resetModal } = useModalContext();
+
 	const currentDate = new Date(currentDateString);
 	const formattedCurrentDate = currentDate.toLocaleDateString("en-CA");
 	const formattedCurrentTime = currentDate
@@ -18,33 +23,48 @@ function EditClassForm({ classId, zoomId, currentDateString }) {
 	const [date, setDate] = useState(formattedCurrentDate);
 	const [time, setTime] = useState(formattedCurrentTime);
 
-	const [updateClass, { error }] = useMutation(UPDATE_CLASS);
+	const [updateClass] = useMutation(UPDATE_CLASS);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const newDateTime = `${date}T${time}:00`
-
-		const classData = {
-			start_time: newDateTime,
-			meetingId: zoomId,
-		};
-		const editResponse = await zoomEdit(classData);
 
 		try {
+			// Update class in Zoom API
+			const newDateTime = `${date}T${time}:00`;
+			const classData = {
+				start_time: newDateTime,
+				meetingId: zoomId,
+			};
+			const editResponse = await zoomEdit(classData);
+
+			// Update class in DB
 			const { data } = await updateClass({
 				variables: { classId, newDateTime },
 			});
-		} catch (err) {
-			console.error(err);
-		}
 
-		setDate("");
-		setTime("");
+			// Configure toast, refetch list of scheduled classes, reset modal, reset form
+			configureToast(
+				"Your class details have been updated on the schedule.",
+				"success",
+				3000
+			);
+			refetch();
+			resetModal();
+			setDate("");
+			setTime("");
+		} catch (err) {
+			// console.error(err);
+			configureToast(
+				"Something went wrong and your class was not updated, please submit a bug report.",
+				"failure",
+				5000
+			);
+		}
 	};
 
 	return (
 		<div className="create-class-form">
-			<form id={classId} onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit}>
 				<input
 					type="date"
 					value={date}
@@ -55,7 +75,7 @@ function EditClassForm({ classId, zoomId, currentDateString }) {
 					value={time}
 					onChange={(e) => setTime(e.target.value)}
 				/>
-				{/* <input type="submit" value="Edit Class" /> */}
+				<input type="submit" value="Edit Class" />
 			</form>
 		</div>
 	);

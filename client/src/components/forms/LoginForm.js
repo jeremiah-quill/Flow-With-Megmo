@@ -4,6 +4,9 @@ import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import "../../styles/LoginForm.css";
 import { useModalContext } from "../../utils/contexts/ModalContext";
+import lock from '../../images/lock.png';
+import emailIcon from '../../images/email.png';
+
 
 function LoginForm() {
 	const {resetModal} = useModalContext()
@@ -41,7 +44,7 @@ function LoginForm() {
 	return (
 		<form className="login-form" onSubmit={handleSubmit}>
 			<div className="outline-input-container">
-				<img className="icon-input" />
+				<img className="input-icon" src={emailIcon}/>
 				<input
 					className="outline-input border-pink"
 					type="email"
@@ -51,7 +54,7 @@ function LoginForm() {
 				/>
 			</div>
 			<div className="outline-input-container">
-				<img className="input-icon" />
+				<img className="input-icon" src={lock}/>
 				<input
 					className="outline-input border-pink"
 					type="password"

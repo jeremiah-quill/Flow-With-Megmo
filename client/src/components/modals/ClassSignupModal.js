@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TO_ROSTER, ADD_CLASS_TO_STUDENT } from "../../utils/mutations";
 import { useUserContext } from "../../utils/contexts/UserContext";
@@ -7,8 +7,18 @@ import { useToastContext } from "../../utils/contexts/ToastContext";
 import parseDate from "../../utils/helpers/parseDate";
 import "../../styles/ClassSignupModal.css";
 import "../../styles/Class.css";
+import megmoQr from "../../images/megmo-qr.png";
 
 function ClassSignupModal({ scheduledClass, scheduleRefetch }) {
+	const [width, setWidth] = useState(window.innerWidth);
+	const breakpoint = 765;
+
+	useEffect(() => {
+		const handleWindowResize = () => setWidth(window.innerWidth);
+		window.addEventListener("resize", handleWindowResize);
+		return () => window.removeEventListener("resize", handleWindowResize);
+	}, []);
+
 	// used to control the content the user sees (ability to register for class if they are signed in, required to login/signup if not signed in)
 	const [registered, setRegistered] = useState(false);
 
@@ -39,10 +49,12 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch }) {
 			});
 			// TODO: should I use this reponse at all?
 			// console.log(addClassToStudentData);
-			
+
 			// TODO: send email with link here?
-			console.log(`Send email to ${currentUser.email} with zoom link: ${addToRosterData.addStudentToClass.link}`)
-			
+			console.log(
+				`Send email to ${currentUser.email} with zoom link: ${addToRosterData.addStudentToClass.link}`
+			);
+
 			// TODO: if add to db is success, show venmo
 			setRegistered(true);
 			configureToast(
@@ -94,16 +106,22 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch }) {
 					<div className="signup-step">
 						<p className="venmo-instructions">
 							We've sent a zoom meeting invite to {currentUser.email}. Please
-							click the link below to complete payment via venmo. I can't wait
-							to see you in class!
+							{width < breakpoint
+								? "click the link below"
+								: "scan the QR code below with your phone camera"}{" "}
+							to complete payment via venmo. I can't wait to see you in class!
 						</p>
-						<button className="btn venmo-btn btn-green">
-							<a
-								href={`https://venmo.com/meghan-moran-7?txn=pay&note=Flow+with+Megmo:+${scheduledClass.date}&amount=${scheduledClass.price}`}
-							>
-								Venmo
-							</a>
-						</button>
+						{width < breakpoint ? (
+							<button className="btn venmo-btn btn-green">
+								<a
+									href={`https://venmo.com/meghan-moran-7?txn=pay&note=Flow+with+Megmo:+${scheduledClass.date}&amount=${scheduledClass.price}`}
+								>
+									Venmo
+								</a>
+							</button>
+						) : (
+							<img className="qr-code" src={megmoQr} />
+						)}
 					</div>
 				</div>
 			)}

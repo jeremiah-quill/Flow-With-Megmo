@@ -1,12 +1,10 @@
 .login-form {
     display: flex;
     flex-direction: column;
-    /* margin-top: 2em; */
     padding: 1em;
 }
 
 .outline-input {
-    /* border-radius: 100px; */
     padding: 1em 0;
     width: 250px;
     padding-left: 50px;
@@ -14,12 +12,6 @@
 
 .outline-input-container + .outline-input-container {
     margin-top: 1em;
-}
-
-.border-pink {
-    /* background: white; */
-    /* border: 3px solid rgb(236, 194, 228); */
-
 }
 
 .input-icon {
@@ -38,6 +30,4 @@
     width: 150px;
     margin: 0 auto;
     margin-top: 2em;
-    /* box-shadow: var(--main-box-shadow); */
-
 }

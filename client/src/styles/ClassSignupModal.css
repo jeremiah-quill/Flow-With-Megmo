@@ -1,7 +1,6 @@
 .class-signup-header {
     text-align: center;
     margin: 0;
-    /* margin-bottom: 2em; */
 }
 
 .class-signup-modal {
@@ -39,8 +38,6 @@
 }
 
 .signup-step {
-    /* width: 75%; */
-    /* text-align: left; */
     padding: 0;
 }
 
