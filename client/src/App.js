@@ -1,7 +1,7 @@
 import "./App.css";
-import "./reset.css"
-import "./test.css"
-import "./test2.css"
+import "./reset.css";
+import "./test.css";
+import "./test2.css";
 import React, { useEffect, useState } from "react";
 import { setContext } from "@apollo/client/link/context";
 import {
@@ -13,7 +13,7 @@ import {
 import { Routes, Route, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 // import SpotifyPlayer from "./components/pages/SpotifyPlayer";
-import Dashboard from "./components/pages/Dashboard";
+import AdminDashboard from "./components/pages/AdminDashboard";
 import Contact from "./components/pages/Contact";
 import Classes from "./components/Classes";
 import Auth from "./utils/auth";
@@ -26,9 +26,15 @@ import Header from "./components/Header";
 import Toast from "./components/Toast";
 import { useToastContext } from "./utils/contexts/ToastContext";
 import UserButtons from "./components/UserButtons";
-import RequireAdmin from './components/RequireAdmin'
+import RequireAdmin from "./components/RequireAdmin";
 import Sidebar from "./components/Sidebar";
 import Home from "./pages/Home";
+import MyStory from "./pages/MyStory";
+import MyClass from "./pages/MyClass";
+import HowItWorks from "./pages/HowItWorks";
+import BookPrivate from "./pages/BookPrivate";
+import StudentManage from "./pages/StudentManage";
+import Navbar from "./components/Navbar";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -58,8 +64,12 @@ function App() {
 	const { isToast, toastMessage, toastType } = useToastContext();
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+	const closeSidebar = () => {
+		setIsSidebarOpen(false);
+	};
+
 	const [width, setWidth] = useState(window.innerWidth);
-	const breakpoint = 765;
+	const breakpoint = 1200;
 
 	useEffect(() => {
 		const handleWindowResize = () => setWidth(window.innerWidth);
@@ -88,13 +98,36 @@ function App() {
 	const location = useLocation();
 	useEffect(() => {
 		resetModal();
+		if (isSidebarOpen) {
+			closeSidebar();
+		}
 	}, [location.pathname]);
 
 	return (
 		<ApolloProvider client={client}>
-			<button className="dash-btn" onClick={()=> setIsSidebarOpen(!isSidebarOpen)}>{isSidebarOpen ? "Close" : "Dashboard"}</button>
-			{isSidebarOpen ? <Sidebar /> : ""}
+			<header className="header">
+				{width < breakpoint ? (
+					""
+				) : (
+					<div className="hero-content">
+						<h1 className="hero-title">Flow with Megmo</h1>
+					</div>
+				)}
+
+				{width < breakpoint ? (
+					<Sidebar
+						isSidebarOpen={isSidebarOpen}
+						setIsSidebarOpen={setIsSidebarOpen}
+						closeSidebar={closeSidebar}
+					/>
+				) : (
+					<Navbar />
+				)}
+			</header>
+
+			{/* {isSidebarOpen ? <Sidebar closeSidebar={closeSidebar} /> : ""} */}
 			{/* {width < breakpoint ? <UserButtons /> : ""} */}
+
 			<Toast
 				isToast={isToast}
 				toastMessage={toastMessage}
@@ -112,14 +145,20 @@ function App() {
 			{/* {!currentUser.isAdmin ? <Header /> : ""} */}
 			{/* <Header /> */}
 			{/* <div className="main-container"> */}
-				<Routes location={location}>
-					<Route
-						path="/"
-						element={
-							<Home />
-						}
-					/>
-					{/* <Route path="/classes" element={<Classes />} />
+			<Routes location={location}>
+				{/* <CSSTransition in={isSidebarOpen} classNames="shrink-page" timeout={500}> */}
+				<Route path="/" element={<Home />} />
+				{/* </CSSTransition> */}
+				<Route path="/my-story" element={<MyStory />} />
+				<Route path="/my-class" element={<MyClass />} />
+				<Route path="/how-it-works" element={<HowItWorks />} />
+				<Route path="/book-private" element={<BookPrivate />} />
+				<Route path="/manage-classes" element={<StudentManage width={width} breakpoint={breakpoint} />} />
+				<Route path="/admin-dashboard" element={<AdminDashboard />} />
+
+				{/* <Route path="/manage-classes-admin" element={<TeacherManage />} /> */}
+
+				{/* <Route path="/classes" element={<Classes />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route
 						path="/dashboard"
@@ -129,7 +168,7 @@ function App() {
 							</RequireAdmin>
 						}
 					/> */}
-				</Routes>
+			</Routes>
 			{/* </div> */}
 		</ApolloProvider>
 	);

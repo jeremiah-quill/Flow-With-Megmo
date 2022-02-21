@@ -13,28 +13,28 @@ function UserButtons() {
 		<div className="user-btns">
 			{currentUser.loggedIn === false ? (
 				<>
-					<button
-						className="btn btn-round btn-green main-login"
+					<a href="#"
+						className="nav-item"
 						onClick={() => configureModal(<LoginModal />)}
 					>
 						Login
-					</button>
-					<button
-						className="btn btn-round btn-green main-signup"
+					</a>
+					<a href="#"
+						className="nav-item signup-button"
 						onClick={() => configureModal(<SignupModal />)}
 					>
 						Signup
-					</button>
+					</a>
 				</>
 			) : (
 				<>
 				{/* <div>Logged in as: {currentUser.username}</div> */}
-				<button
-					className="btn btn-round btn-red"
+				<a href="#"
+					className="nav-item"
 					onClick={() => Auth.logout()}
 				>
 					Logout
-				</button>
+				</a>
 				</>
 			)}
 		</div>

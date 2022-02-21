@@ -14,7 +14,7 @@ import {
 import TeacherUpcomingList from "../lists/TeacherUpcomingList";
 import TeacherCompletedList from "../lists/TeacherCompletedList";
 
-function Dashboard() {
+function AdminDashboard() {
 	// toggle between list of registered and completed classes
 	const [listView, setListView] = useState("scheduled");
 
@@ -87,4 +87,4 @@ function Dashboard() {
 	);
 }
 
-export default Dashboard;
+export default AdminDashboard;
