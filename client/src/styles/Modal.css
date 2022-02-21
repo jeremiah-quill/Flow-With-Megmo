@@ -19,7 +19,7 @@
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	background-color: var(--blue2);
+	background-color: gray;
 	color: white;
 }
 
