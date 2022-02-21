@@ -5,9 +5,11 @@ import "../../styles/ClassCard.css";
 import { useUserContext } from "../../utils/contexts/UserContext";
 import ClassSignupModal from "../modals/ClassSignupModal";
 
-function ScheduledClassList({ scheduledClasses, scheduleRefetch }) {
+function ScheduledClassList({ scheduledClasses, scheduleRefetch, studentScheduleRefetch }) {
 	const { configureModal } = useModalContext();
 	const { currentUser } = useUserContext();
+
+	
 	return (
 		<ul className="class-list">
 			{scheduledClasses.map((scheduledClass) => (
@@ -24,12 +26,13 @@ function ScheduledClassList({ scheduledClasses, scheduleRefetch }) {
 						<div className="class-actions">
 							{currentUser.loggedIn === true ? (
 								<button
-									className="btn btn-round btn-pink"
+									
 									onClick={() =>
 										configureModal(
 											<ClassSignupModal
 												scheduledClass={scheduledClass}
 												scheduleRefetch={scheduleRefetch}
+												studentScheduleRefetch={studentScheduleRefetch}
 											/>
 										)
 									}

@@ -56,6 +56,10 @@ const spotifyToken = () => {
 	});
 };
 
+const sendEmail = (data) => {
+	return axios.post(`/api/email/`, data)
+}
+
 // use spotify token to get playlists
 // TODO: error handling
 const teacherPlaylists = (token) => {
@@ -71,4 +75,5 @@ export {
 	teacherPlaylists,
 	zoomDelete,
 	zoomEdit,
+	sendEmail,
 };

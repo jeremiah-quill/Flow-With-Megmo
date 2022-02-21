@@ -22,10 +22,10 @@ function CreateClassForm({refetch}) {
 			type: 2,
 			start_time: `${date}T${time}:00`,
 			duration: 60,
-			settings: {
-				approval_type: 0,
-				registration_type: 2,
-			},
+			// settings: {
+			// 	approval_type: 0,
+			// 	registration_type: 2,
+			// },
 		};
 
 		try {

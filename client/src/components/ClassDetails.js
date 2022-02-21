@@ -6,7 +6,7 @@ function ClassDetails({ date, price }) {
 	const { dayOfMonth, month, dayOfWeek, hour } = parseDate(date);
 
 	return (
-		<div className="class-card-content">
+		<div className="class-details">
 			<h2 className="card-header">Flow with Megmo</h2>
 			<div className="class-card-day">
 				{dayOfWeek}, {month}/{dayOfMonth}

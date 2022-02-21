@@ -115,7 +115,7 @@ const resolvers = {
 						date: newDateTime,
 					},
 				}
-			);
+			).populate("roster")
 		},
 
 		addStudentToClass: async (_, { classId, studentId }) => {

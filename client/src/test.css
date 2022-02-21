@@ -1,0 +1,471 @@
+:root {
+	--ff-main: "Spartan";
+	--light-gray-text: hsl(0, 0%, 63%);
+
+	--main-green: rgb(83, 178, 128);
+    --main-blue: rgb(108, 81, 242);
+    --main-orange: rgb(218, 156, 89);
+    --main-yellow: rgb(228, 207, 104);
+    --main-red: #E86F68;
+    --main-black: #272324;
+    --main-tan: #E4D8B4;
+    --main-box-shadow: 5px 5px #272324;
+    --animated-box-shadow: 0px 0px 0px 0px #272324;
+
+    --tan: rgb(243, 221, 193);
+    --blue1: rgb(18, 39, 81);
+    --blue2: rgb(54, 109, 142);
+    --blue3: rgb(73, 139, 152);
+    --blue4: rgb(142, 174, 166);
+    --orange1: rgb(244, 224, 185);
+    --orange2: rgb(235, 171, 119);
+    --orange3: rgb(223, 117, 68);
+    --orange4: rgb(207, 74, 49);
+}
+
+
+body {
+	/* width: 100%; */
+	font-family: var(--ff-main);
+} 
+
+.dash-btn {
+	position: fixed;
+	top: 25px;
+	left: 25px;
+	z-index: 2000;
+	padding: .5em 1em;
+	border-radius: 5px;
+	border: none;
+	background: none;
+	outline: none;
+	cursor: pointer;
+	color: white;
+	font-family: var(--ff-main);
+}
+
+.register-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.class-list-item {
+    display: flex;
+    width: 100%;
+    padding: 1em 1em;
+}
+
+.class-list-item {
+    border-bottom: 1px solid lightgray;
+}
+
+.class-list-item + .class-list-item {
+    border-bottom: none;
+}
+
+/* .class-list {
+    margin-top: 2em;
+} */
+
+.class-details {
+    font-size: .5em;
+}
+
+.class-actions, .currently-registered {
+	margin-left: auto;
+}
+
+.list-nav {
+	margin-top: 5em;
+	margin-bottom: 3em;
+}
+
+.list-nav-ul {
+	display: flex;
+}
+
+.list-nav-item {
+	flex: 1;
+	text-align: center;
+	cursor: pointer;
+}
+
+
+.sidebar {
+    position: fixed;
+    height: 100vh;
+    background-color: white;
+    top: 0;
+    left: 0;
+    width: 90%;
+    max-width: 400px;
+    z-index: 200;
+    /* opacity: 0; */
+}
+
+.hero {
+	background: linear-gradient(rgba(231, 209, 201, 0.3), rgba(231, 209, 201, 0.3)),
+    
+		url("./images/main-img-2.jpeg");
+}
+
+.yoga-blocks-img {
+	background: linear-gradient(
+			rgba(208, 180, 159, .5),
+			rgba(208, 180, 159, .5)
+		),
+		url("./images/yoga-blocks.jpg");
+	/* object-fit: cover; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.hero,
+.yoga-blocks-img {
+	background-position: center;
+	background-repeat: none;
+	height: 100vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+.hero-content {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	padding-top: 80px;
+}
+
+.hero-title {
+	color: white;
+	font-size: 5em;
+	font-family: "Dawning of a New Day", cursive;
+	padding-bottom: 0.5em;
+}
+
+.login-signup-button {
+	background: none;
+	border: none;
+	text-transform: uppercase;
+	letter-spacing: 8px;
+	padding: 0px;
+	font-size: 1em;
+	margin-right: 2em;
+	color: white;
+}
+
+.login-signup-button-group {
+	display: flex;
+	align-items: center;
+	color: white;
+}
+
+.arrow-icon {
+	color: white;
+	stroke: white;
+	fill: white;
+}
+
+.main-section h2,
+.main-section p {
+	width: 90%;
+	margin: 0 auto;
+	max-width: 75ch;
+}
+
+.main-section h2 {
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 5px;
+	line-height: 1.5em;
+    color: rgb(124, 109, 97);
+}
+
+.main-section p {
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--light-gray-text);
+	line-height: 1.5;
+}
+
+.main-section {
+	min-height: 100vh;
+}
+
+.section-title {
+	font-size: 2em;
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+.section-content {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+/* My story */
+
+.my-story-section {
+	background-image: linear-gradient(
+		174.2deg,
+		rgba(255, 244, 228, 1) 7.1%,
+		rgba(240, 246, 238, 1) 67.4%
+	);
+}
+
+.my-img {
+	width: 90%;
+	margin: 0 auto;
+	max-width: 450px;
+	border-radius: 3px;
+	/* -webkit-box-shadow: -20px 20px 0px 0px #rgb(243, 231, 228); */
+	box-shadow: -20px 20px 0px 0px rgb(243, 231, 228), -40px 40px 0px 0px rgb(231, 209, 201);
+}
+
+.how-it-works,
+.my-story-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	/* height: 100%; */
+}
+
+
+/* what to expect */
+.what-to-expect + .what-to-expect {
+	margin-top: 2em;
+}
+
+.what-to-expect {
+	color: white !important;
+	/* text-align: center; */
+}
+
+
+
+/* How does this work? */
+
+.how-it-works-img {
+	/* height: 150px; */
+	width: 100%;
+	object-fit: cover;
+	max-width: 993px;
+	margin: 0 auto;
+}
+
+
+.how-it-works-section {
+	padding-top: 0;
+	color: white;
+}
+
+.how-it-works {
+	background-image: linear-gradient(
+		174.2deg,
+		rgba(255, 244, 228, 1) 7.1%,
+		rgba(240, 246, 238, 1) 67.4%
+	);
+}
+
+.book-private-section {
+
+    background: linear-gradient(
+			rgba(208, 180, 159, .5),
+			rgba(208, 180, 159, .5)
+		),
+		url("./images/group-yoga.jpg");
+	background-repeat: none;
+	height: 100vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+
+.book-private-container {
+    margin: 0 auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+footer {
+    padding: 5em 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(231, 209, 201);
+}
+
+
+
+
+
+/* ANIMATIONS */
+.page-fade-enter {
+    opacity: 0;
+    transform: translateX(-10%);
+}
+
+.page-fade-enter.page-fade-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.page-fade-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.page-fade-exit.page-fade-exit-active {
+    opacity: 0;
+    transform: translateX(10%);
+    transition: opacity 250ms ease, transform 250ms ease;
+}
+
+/* button {
+    font-family: 'Fredoka One', cursive !important;
+
+} */
+
+.page-transition-enter {
+    opacity: 0;
+    transform: translateX(-5%);
+}
+
+.page-transition-enter.page-transition-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 250ms ease, transform 250ms ease;
+
+}
+
+.page-transition-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.page-transition-exit.page-transition-exit-active {
+    opacity: 0;
+    transform: translateX(5%);
+    transition: opacity 250ms ease, transform 250ms ease;
+}
+
+/* input {
+    border-radius: 10px;
+    border: none;
+    outline: none;
+} */
+
+
+button:disabled {
+    cursor:not-allowed;
+}
+
+
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    z-index: 10000;
+    border-radius: 10px;
+    background: black;
+    color: white;
+    font-weight: bold;
+    padding: 1.5em;
+    width: 200px;
+    
+}
+
+.success {
+    background: var(--main-green);
+
+}
+
+.failure {
+    border-top: 3px solid var(--main-red);
+}
+
+
+.fade-toast-enter {
+	opacity: 0;
+    transform: translateX(100%);
+
+}
+
+.fade-toast-enter.fade-toast-enter-active {
+	opacity: 1;
+    transform: translateX(0);
+
+	transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.fade-toast-exit {
+	opacity: 1;
+    transform: translateX(0);
+
+}
+
+.fade-toast-exit.fade-toast-exit-active {
+	opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.qr-code {
+    width: 100px;
+	margin: 0 auto;
+	margin-top: 1em;
+
+}
+
+/* .student-info {
+    text-align: center;
+}
+
+.home-intro {
+    margin-top: 1em;
+} */
+
+
+
+
+
+
+@media screen and (min-width: 1024px) {
+	.hero-content {
+		top: 50%;
+		left: 0;
+		transform: translate(0, -50%);
+		padding-left: 200px;
+		padding-top: 0;
+	}
+
+    .what-to-expect-container {
+        display: flex;
+        align-items: center;
+        max-width: 893px;
+    }
+
+    .what-to-expect + .what-to-expect {
+        margin-top: 0;
+        margin-left: 4em;
+    }
+
+}
+
+
+

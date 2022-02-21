@@ -4,6 +4,9 @@ import { useMutation } from "@apollo/client";
 import { UPDATE_CLASS } from "../../utils/mutations";
 import { useToastContext } from "../../utils/contexts/ToastContext";
 import { useModalContext } from "../../utils/contexts/ModalContext";
+import { sendEmail } from "../../utils/API";
+import { updateClassMsg } from "../../utils/emailMessages.js";
+import parseDate from "../../utils/helpers/parseDate";
 
 // TODO: validate so meghan can't send bad data
 // TODO: success/error handling for zoom update and db update
@@ -28,9 +31,15 @@ function EditClassForm({ classId, zoomId, currentDateString, refetch }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		const newDateTime = `${date}T${time}:00`;
+
+		const { dayOfMonth, month, dayOfWeek, hour } = parseDate(currentDateString);
+		const oldClassDetails = { dayOfMonth, month, dayOfWeek, hour };
+		const updatedClassDetails = parseDate(newDateTime)
+
 		try {
 			// Update class in Zoom API
-			const newDateTime = `${date}T${time}:00`;
+			// const newDateTime = `${date}T${time}:00`;
 			const classData = {
 				start_time: newDateTime,
 				meetingId: zoomId,
@@ -40,6 +49,17 @@ function EditClassForm({ classId, zoomId, currentDateString, refetch }) {
 			// Update class in DB
 			const { data } = await updateClass({
 				variables: { classId, newDateTime },
+			});
+
+			data.updateClass.roster.forEach(async (student) => {
+				// Send email to user confirming the updated class details
+				const emailData = {
+					toEmail: student.email,
+					subject: `Class time has been updated for ${dayOfWeek}, ${month}/${dayOfMonth} @ ${hour}`,
+					message: updateClassMsg(oldClassDetails, updatedClassDetails),
+				};
+
+				const emailResponse = await sendEmail(emailData);
 			});
 
 			// Configure toast, refetch list of scheduled classes, reset modal, reset form

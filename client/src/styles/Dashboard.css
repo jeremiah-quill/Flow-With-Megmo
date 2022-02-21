@@ -1,5 +1,4 @@
-/* Dashboard */
-/* class lists */
+
 .current-class-list,
 .previous-class-list {
 	list-style: none;
@@ -8,7 +7,6 @@
 	margin-bottom: 3em;
 }
 
-/* Stats */
 .dashboard {
 	text-align: center;
 	width: 100%;
@@ -24,7 +22,6 @@
 	text-align: center;
 }
 
-/* Create Class Form */
 .create-class-form {
 	margin-bottom: 3em;
 }

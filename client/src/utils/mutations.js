@@ -55,6 +55,7 @@ export const DELETE_CLASS = gql`
 		deleteClass(classId: $classId) {
 				email
 				username
+				_id
 		}
 	}
 `;
@@ -66,6 +67,10 @@ export const UPDATE_CLASS = gql`
 			zoomId
 			date
 			link
+			roster {
+				_id
+				email
+			}
 		}
 	}
 `;

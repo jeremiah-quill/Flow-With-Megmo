@@ -1,4 +1,7 @@
 import "./App.css";
+import "./reset.css"
+import "./test.css"
+import "./test2.css"
 import React, { useEffect, useState } from "react";
 import { setContext } from "@apollo/client/link/context";
 import {
@@ -24,6 +27,8 @@ import Toast from "./components/Toast";
 import { useToastContext } from "./utils/contexts/ToastContext";
 import UserButtons from "./components/UserButtons";
 import RequireAdmin from './components/RequireAdmin'
+import Sidebar from "./components/Sidebar";
+import Home from "./pages/Home";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -51,6 +56,7 @@ const client = new ApolloClient({
 
 function App() {
 	const { isToast, toastMessage, toastType } = useToastContext();
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
 	const [width, setWidth] = useState(window.innerWidth);
 	const breakpoint = 765;
@@ -86,7 +92,9 @@ function App() {
 
 	return (
 		<ApolloProvider client={client}>
-			{width < breakpoint ? <UserButtons /> : ""}
+			<button className="dash-btn" onClick={()=> setIsSidebarOpen(!isSidebarOpen)}>{isSidebarOpen ? "Close" : "Dashboard"}</button>
+			{isSidebarOpen ? <Sidebar /> : ""}
+			{/* {width < breakpoint ? <UserButtons /> : ""} */}
 			<Toast
 				isToast={isToast}
 				toastMessage={toastMessage}
@@ -102,18 +110,16 @@ function App() {
 			/>
 			{/* {currentUser.isAdmin ? <Dashboard /> : ""} */}
 			{/* {!currentUser.isAdmin ? <Header /> : ""} */}
-			<Header />
-			<div className="main-container">
-				{/* <TransitionGroup component={null}>
-				<CSSTransition key={location.key} classNames="page-transition" timeout={250}> */}
+			{/* <Header /> */}
+			{/* <div className="main-container"> */}
 				<Routes location={location}>
 					<Route
 						path="/"
 						element={
-							currentUser.loggedIn ? <StudentProfile /> : <DefaultHome />
+							<Home />
 						}
 					/>
-					<Route path="/classes" element={<Classes />} />
+					{/* <Route path="/classes" element={<Classes />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route
 						path="/dashboard"
@@ -122,13 +128,9 @@ function App() {
 								<Dashboard />
 							</RequireAdmin>
 						}
-					/>
-					{/* add below 404 page */}
-					{/* <Route path="*" element={<NoMatch />} /> */}
+					/> */}
 				</Routes>
-				{/* </CSSTransition>
-				</TransitionGroup> */}
-			</div>
+			{/* </div> */}
 		</ApolloProvider>
 	);
 }

@@ -14,6 +14,8 @@ import {
 } from "../../utils/mutations";
 import "../../styles/LoggedInHome.css";
 import { useModalContext } from "../../utils/contexts/ModalContext";
+import { sendEmail } from "../../utils/API";
+import {unregisterMsg} from '../../utils/emailMessages.js'
 
 function StudentProfile() {
 	// toggle between list of registered and completed classes
@@ -65,18 +67,28 @@ function StudentProfile() {
 
 	// Fires 2 mutations, 1 to class and 1 to student on unregister confirmation
 	// Closes modal and sends user a toast message with success or error
-	const handleUnregister = async (classId, studentId) => {
+	const handleUnregister = async (classId, studentId, classDetails) => {
+		const {dayOfWeek, month, dayOfMonth, hour} = classDetails
 		try {
 			const { data: removeFromRosterData } = await removeFromRoster({
 				variables: { classId, studentId },
 			});
-			const { data: removeClassFromStudentData } = await removeClassFromStudent({
-				variables: { studentId, classId },
-			});
-			// TODO email to user
-			console.log(`Send email to ${currentUser.email} to confirm the student has been removed from class`)
+			const { data: removeClassFromStudentData } = await removeClassFromStudent(
+				{
+					variables: { studentId, classId },
+				}
+			);
+
+			// Send email to user confirming their cancellation
+			const emailData = {
+				toEmail: currentUser.email,
+				subject: `Unregistered from class on ${dayOfWeek}, ${month}/${dayOfMonth} @ ${hour}`,
+				message: unregisterMsg(classDetails)
+			};
+			const emailResponse = await sendEmail(emailData);
 
 			resetModal();
+
 			configureToast(
 				"You have been successfully removed from class.",
 				"success",
@@ -111,9 +123,11 @@ function StudentProfile() {
 			<div className="student-info">
 				<h2 className="logged-in-header">Welcome {currentUser.username}!</h2>
 				<p>
-					Here you'll be able to manage any classes you have registered for.<br></br>
+					Here you'll be able to manage any classes you have registered for.
 					<br></br>
-					Also check out my music!  After we finish a class I will post the playlist I used.  Check it out in the completed classes section.
+					<br></br>
+					Also check out my music! After we finish a class I will post the
+					playlist I used. Check it out in the completed classes section.
 				</p>
 			</div>
 			<div className="student-lists-container">
@@ -136,13 +150,13 @@ function StudentProfile() {
 					</button>
 				</div>
 				{listView === "registered" ? (
-						<RegisteredClassList
-							registeredClasses={studentUpcomingClasses}
-							handleUnregister={handleUnregister}
-						/>
-				) : 
+					<RegisteredClassList
+						registeredClasses={studentUpcomingClasses}
+						handleUnregister={handleUnregister}
+					/>
+				) : (
 					<CompletedClassList completedClasses={studentCompletedClasses} />
-				}
+				)}
 			</div>
 		</div>
 	);

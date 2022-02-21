@@ -1,4 +1,4 @@
-* {
+/* * {
 	box-sizing: border-box;
 }
 :root {
@@ -46,9 +46,6 @@ a {
 	text-decoration: none;
 }
 
-/* a:visited {
-    color:initial;
-} */
 
 
 .view {
@@ -78,9 +75,6 @@ a {
 
 
 
-/* .home-img {
-    float: right;
-} */
 @media screen and (min-width: 765px) {
     .home-flex-container {
         display: flex;
@@ -89,33 +83,17 @@ a {
     .common-questions {
         flex: 1;
     }
-    /* .home-img {
-        flex: 1;
-    } */
+
 
     .home-intro {
-        /* max-width: 300px; */
         margin-bottom: 5em;
     }
 
     .main-container {
         padding: 0;
         align-items: center;
-        /* padding-top: 10em; */
-
-        
     }
 }
-
-
-/* .common-questions {
-    display: inline-block;
-} */
-
-/* .view {
-    width: 100%;
-    height: 100%;
-} */
 
 .view-header {
 	text-align: center;
@@ -137,12 +115,7 @@ a {
 
 .page-content {
 	flex: 1;
-    /* overflow-y: scroll; */
     padding: 5em 1em 0;
-}
-
-.btn {
-
 }
 
 .btn-pink {
@@ -168,12 +141,6 @@ a {
     border-radius: 100px;
     font-weight: bold;
 }
-
-/* .btn-pink:hover {
-    background-color: rgb(218, 99, 185);
-} */
-
-
 .currently-registered {
     margin-left: auto;
 }
@@ -183,25 +150,20 @@ a {
     top: 10px;
     right: 10px;
     z-index: 500;
-    /* box-shadow: var(--main-box-shadow); */
     border-radius: 100px;
 }
 
 .btn {
-    /* box-shadow: var(--animated-box-shadow); */
     cursor: pointer;
     text-align: center;
     padding: 1em;
-    /* box-shadow: var(--main-box-shadow); */
     transition: transform 500ms ease, box-shadow 500ms;
 }
 
 
 
 .btn:hover {
-    
-        /* filter: brightness(85%); */
-        transform: translate(-5px, -5px);
+            transform: translate(-5px, -5px);
         box-shadow: var(--main-box-shadow);
     
 }
@@ -209,15 +171,6 @@ a {
 .step-directions {
     padding: 1em;
 }
-
-/* .class-signup-header {
-    margin: 0;
-} */
-
-/* .step {
-    display: flex;
-    flex-direction: column;
-} */
 
 .signup-step {
     padding: 1em;
@@ -313,11 +266,9 @@ button:disabled {
 }
 
 
-/* Toast animations */
 
 .toast {
     position: fixed;
-    /* border-radius: 10px; */
     bottom: 30px;
     right: 20px;
     z-index: 10000;
@@ -331,8 +282,6 @@ button:disabled {
 }
 
 .success {
-    /* border-top: 3px solid rgb(83,165,81); */
-    /* border: 3px solid var(--main-green); */
     background: var(--main-green);
 
 }
@@ -378,4 +327,4 @@ button:disabled {
 
 .home-intro {
     margin-top: 1em;
-}
+} */
