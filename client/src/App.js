@@ -145,8 +145,8 @@ function App() {
 			{/* {!currentUser.isAdmin ? <Header /> : ""} */}
 			{/* <Header /> */}
 			{/* <div className="main-container"> */}
-			<TransitionGroup element={null}>
-			<CSSTransition key={location.pathname} classNames="page-transition" timeout={500}>
+			{/* <TransitionGroup element={null}>
+			<CSSTransition key={location.pathname} classNames="page-transition" timeout={500}> */}
 			<Routes location={location}>
 				{/* <CSSTransition in={isSidebarOpen} classNames="shrink-page" timeout={500}> */}
 				<Route path="/" element={<Home />} />
@@ -171,8 +171,8 @@ function App() {
 						}
 					/> */}
 			</Routes>
-			</CSSTransition>
-			</TransitionGroup>
+			{/* </CSSTransition>
+			</TransitionGroup> */}
 			{/* </div> */}
 		</ApolloProvider>
 	);
