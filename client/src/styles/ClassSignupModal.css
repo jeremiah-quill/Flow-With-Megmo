@@ -16,7 +16,7 @@
 
 .class-details-list {
     text-align: left;
-    margin-bottom: 2em;
+    /* margin-bottom: 2em; */
 }
 
 .class-details-item + .class-details-item {
@@ -28,14 +28,10 @@
 	margin-top: 2em;
 }
 
-.venmo-btn {
-    margin: 0 auto;
-    margin-top: 2em;
-
-}
+/* 
 .venmo-btn a {
     color: white;
-}
+} */
 
 .signup-step {
     padding: 0;

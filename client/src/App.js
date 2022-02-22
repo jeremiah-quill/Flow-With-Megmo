@@ -16,7 +16,9 @@ import Modal from "./components/Modal";
 import { useUserContext } from "./utils/contexts/UserContext";
 import { useModalContext } from "./utils/contexts/ModalContext";
 import { useToastContext } from "./utils/contexts/ToastContext";
+import { useSidebarContext } from "./utils/contexts/SidebarContext";
 import { useWidthContext } from "./utils/contexts/WidthContext";
+import { usePageTransitionContext } from "./utils/contexts/PageTransitionContext";
 import Toast from "./components/Toast";
 import RequireAdmin from "./components/RequireAdmin";
 import Sidebar from "./components/Sidebar";
@@ -53,23 +55,16 @@ const client = new ApolloClient({
 });
 
 function App() {
-	// full page transition overlays
-	const [firstOverlay, setFirstOverlay] = useState(false);
-	const [secondOverlay, setSecondOverlay] = useState(false);
-	// sidebar local state
-	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-	const closeSidebar = () => {
-		setIsSidebarOpen(false);
-	};
-
-	// global toast context
+	// global toast, width, user, modal, sidebar, and page transition contexts
 	const { isToast, toastMessage, toastType } = useToastContext();
-	// global width context
 	const { width, breakpoint } = useWidthContext();
-
 	const { setCurrentUser } = useUserContext();
 	const { isModal, resetModal, modalContent } = useModalContext();
+	const { isSidebarOpen, setIsSidebarOpen } = useSidebarContext();
+	const { firstOverlay, secondOverlay, initializePageTransition } =
+		usePageTransitionContext();
 
+	// set current user when app component is mounted?
 	useEffect(() => {
 		if (Auth.loggedIn()) {
 			let userInfo = Auth.getStudent().data;
@@ -83,32 +78,18 @@ function App() {
 		}
 	}, []);
 
-	// When url path changes, close any open modals
+	// When url path changes, close any open modals and the sidebar
 	const location = useLocation();
 	useEffect(() => {
 		resetModal();
 		if (isSidebarOpen) {
-			closeSidebar();
+			setIsSidebarOpen(false);
 		}
 	}, [location.pathname]);
 
+	// when url path changes, initiate page transition
 	useEffect(() => {
-		// turn on first overlay
-		setFirstOverlay(true);
-
-		// after half a second, turn off first overlay
-		setTimeout(() => {
-			setFirstOverlay(false);
-		}, 500);
-
-		// after half a second, turn on second overlay
-		setTimeout(() => {
-			setSecondOverlay(true);
-			// after half a second, turn off second overlay
-			setTimeout(() => {
-				setSecondOverlay(false);
-			}, 500);
-		}, 500);
+		initializePageTransition();
 	}, [location.pathname]);
 
 	return (
@@ -122,15 +103,7 @@ function App() {
 					</div>
 				)}
 
-				{width < breakpoint ? (
-					<Sidebar
-						isSidebarOpen={isSidebarOpen}
-						setIsSidebarOpen={setIsSidebarOpen}
-						closeSidebar={closeSidebar}
-					/>
-				) : (
-					<Navbar />
-				)}
+				{width < breakpoint ? <Sidebar /> : <Navbar />}
 			</header>
 			<Toast
 				isToast={isToast}

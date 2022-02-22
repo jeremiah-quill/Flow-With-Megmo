@@ -81,9 +81,9 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefe
 	return (
 		<div className="class-signup-modal">
 			{!registered ? (
-				<h1 className="class-signup-header">Register</h1>
+				<h1 className="class-signup-header modal-title">Register</h1>
 			) : (
-				<h1 className="class-signup-header">Complete payment</h1>
+				<h1 className="class-signup-header modal-title">Complete payment</h1>
 			)}
 			{!registered ? (
 				<div className="modal-content">
@@ -98,7 +98,7 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefe
 							</li>
 						</ul>
 						<button
-							className="main-btn"
+							className="main-btn modal-btn"
 							onClick={handleRegister}
 						>
 							Confirm
@@ -111,13 +111,13 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefe
 						<p className="venmo-instructions">
 							We've sent a zoom meeting invite to {currentUser.email}. Please
 							{width < breakpoint
-								? "click the link below"
-								: "scan the QR code below with your phone camera"}{" "}
+								? " click the link below"
+								: " scan the QR code below with your phone camera"}{" "}
 							to complete payment via venmo. I can't wait to see you in class!
 						</p>
 						{width < breakpoint ? (
-							<button className="main-btn">
-								<a
+							<button className="main-btn modal-btn">
+								<a className="venmo-btn"
 									href={`https://venmo.com/meghan-moran-7?txn=pay&note=Flow+with+Megmo:+${scheduledClass.date}&amount=${scheduledClass.price}`}
 								>
 									Venmo

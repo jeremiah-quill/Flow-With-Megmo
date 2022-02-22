@@ -3,9 +3,12 @@ import { teacherPlaylists, spotifyToken } from "../../utils/API";
 import { ADD_PLAYLIST } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import { useModalContext } from "../../utils/contexts/ModalContext";
+import { useToastContext } from "../../utils/contexts/ToastContext";
 
-function AddPlaylistModal({ completedClass }) {
+function AddPlaylistModal({ completedClass, refetchPlaylists, refetch }) {
 	const { resetModal } = useModalContext();
+	const { configureToast } = useToastContext();
+
 
 	const [addPlaylist, { error }] = useMutation(ADD_PLAYLIST);
 
@@ -34,13 +37,14 @@ function AddPlaylistModal({ completedClass }) {
 		}
 
 		// TODO why doesn't this work
-		resetModal()
+		refetch()
+		configureToast("You have successfully added a playlist to this class.", "success", 5000)
+		resetModal();
 	};
 
 	return (
-		// <div className="modal-card">
-		<div className="modal-center">
-			<h1>{completedClass.date}</h1>
+		<div className="add-playlist-modal">
+			<h1 className="modal-title">Choose Playlist</h1>
 			<div className="modal-content">
 				{playlists && (
 					<ul className="playlist-list">
@@ -48,7 +52,7 @@ function AddPlaylistModal({ completedClass }) {
 							<li
 								onClick={() => handleAddPlaylist(playlist.id)}
 								key={playlist.id}
-								className={`playlist-item ${playlist.chosen && "chosen"}`}
+								className={`playlist-item ${completedClass.playlistId === playlist.id ?  "chosen" : ""}`}
 							>
 								{playlist.name}
 							</li>
@@ -56,9 +60,8 @@ function AddPlaylistModal({ completedClass }) {
 					</ul>
 				)}
 			</div>
-			<button className="confirm-playlist main-btn">confirm</button>
-			</div>
-		// </div>
+			{/* <button className="main-btn modal-btn">confirm</button> */}
+		</div>
 	);
 }
 

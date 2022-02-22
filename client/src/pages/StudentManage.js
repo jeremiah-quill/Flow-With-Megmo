@@ -141,19 +141,20 @@ function StudentManage() {
 					<nav className="list-nav">
 						<ul className="list-nav-ul">
 							<li
-								className="list-nav-item multiple-lists-nav-item"
+								className={`list-nav-item multiple-lists-nav-item ${listContent === 0 ? "selected-list" : ""}`}
+								
 								onClick={() => setListContent(0)}
 							>
 								Available
 							</li>
 							<li
-								className="list-nav-item multiple-lists-nav-item"
+								className={`list-nav-item multiple-lists-nav-item ${listContent === 1 ? "selected-list" : ""}`}
 								onClick={() => setListContent(1)}
 							>
 								Registered
 							</li>
 							<li
-								className="list-nav-item multiple-lists-nav-item"
+								className={`list-nav-item multiple-lists-nav-item ${listContent === 2 ? "selected-list" : ""}`}
 								onClick={() => setListContent(2)}
 							>
 								Completed
@@ -178,6 +179,7 @@ function StudentManage() {
 			) : (
 				<div className="lists-container">
 					<div>
+						<h1 className="list-title">Available Classes</h1>
 						<ScheduledClassList
 							scheduledClasses={classes}
 							scheduleRefetch={refetch}
@@ -185,12 +187,16 @@ function StudentManage() {
 						/>
 					</div>
 					<div>
+						<h1 className="list-title">Registered Classes</h1>
+
 						<RegisteredClassList
 							registeredClasses={studentUpcomingClasses}
 							handleUnregister={handleUnregister}
 						/>
 					</div>
 					<div>
+						<h1 className="list-title">Completed Classes</h1>
+
 						<CompletedClassList completedClasses={studentCompletedClasses} />
 					</div>
 				</div>

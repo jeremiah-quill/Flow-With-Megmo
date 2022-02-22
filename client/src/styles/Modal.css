@@ -19,8 +19,9 @@
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	background-color: gray;
-	color: white;
+	background-color: var(--light-pink);
+	color: var(--main-brown);
+
 }
 
 .main-btn {
@@ -43,11 +44,11 @@
 .modal-content {
 	display: flex;
 	justify-content: center;
-	margin-top: 2em;
-	margin-bottom: 2em;
+	/* margin-top: 2em;
+	margin-bottom: 2em; */
 	overflow-y: hidden;
 	width: 100%;
-	
+
 }
 
 .modal-footer {
@@ -55,23 +56,17 @@
 	padding: 1em;
 }
 
-.participant-list,
 .playlist-list {
 	margin: 0;
-	padding: 0;
+	/* padding: 0; */
 	overflow-y: scroll;
 	height: 100%;
 	width: 100%;
 }
 
-.participant,
 .playlist-item {
 	list-style: none;
 	display: flex;
-}
-
-.participant + .participant {
-	margin-top: 1em;
 }
 
 .chosen {

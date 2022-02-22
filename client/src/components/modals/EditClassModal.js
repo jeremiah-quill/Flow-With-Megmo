@@ -5,10 +5,8 @@ import EditClassForm from "../forms/EditClassForm";
 function EditClassModal({ scheduledClass, refetch }) {
 
 	return (
-		<div>
-			<header className="modal-header">
-				{scheduledClass.date} @ {scheduledClass.time}
-			</header>
+		<div className="edit-class-modal">
+			<h1 className="modal-title">Update Class Details</h1>
 			<div className="modal-content">
 				<EditClassForm
 					currentDateString={scheduledClass.date}

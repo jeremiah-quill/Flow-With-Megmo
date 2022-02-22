@@ -41,10 +41,6 @@ function DeleteClassModal({ scheduledClass, refetch }) {
 				const emailResponse = await sendEmail(emailData);
 			});
 
-			// TODO: send email to students
-			// TODO: allow teacher to customize this cancellation message
-			// console.log(`Send email to everyone in this list ${data.deleteClass} with message from teacher`);
-
 			// Configure toast, refetch scheduled classes, and close modal
 			configureToast(
 				"Your class has been deleted from the schedule and you have been sent an email with registered student details",
@@ -64,26 +60,29 @@ function DeleteClassModal({ scheduledClass, refetch }) {
 	};
 
 	return (
-		<div>
-			{/* <div className="modal-card"> */}
-			<header className="modal-header">
-				{scheduledClass.date} @ {scheduledClass.time}
-			</header>
+		<div className="delete-class-modal">
+			<h1 className="modal-title">Confirm Cancellation</h1>
 			<div className="modal-content">
-				Please confirm you would like to delete this class. All users who have
-				signed up will receive an email notification.
+				<div>
+					<p>
+						Please confirm you would like to cancel class on {dayOfWeek},{" "}
+						{month}/{dayOfMonth} @ {hour}. All users who have registered will
+						receive an email notification.
+					</p>
+					<button
+						className="main-btn modal-btn"
+						onClick={() =>
+							handleDelete(
+								scheduledClass.zoomId,
+								scheduledClass._id,
+								classDetails
+							)
+						}
+					>
+						Confirm Cancellation
+					</button>
+				</div>
 			</div>
-			<div className="modal-footer">
-				<button
-				className="main-btn"
-					onClick={() =>
-						handleDelete(scheduledClass.zoomId, scheduledClass._id, classDetails)
-					}
-				>
-					Confirm
-				</button>
-			</div>
-			{/* </div> */}
 		</div>
 	);
 }

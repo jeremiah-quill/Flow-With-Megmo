@@ -7,7 +7,9 @@ import { BrowserRouter } from "react-router-dom";
 import UserProvider from "./utils/contexts/UserContext";
 import ModalProvider from "./utils/contexts/ModalContext";
 import ToastProvider from "./utils/contexts/ToastContext";
-import WidthProvider from './utils/contexts/WidthContext';
+import WidthProvider from "./utils/contexts/WidthContext";
+import PageTransitionProvider from "./utils/contexts/PageTransitionContext";
+import SidebarProvider from "./utils/contexts/SidebarContext";
 
 ReactDOM.render(
 	// <React.StrictMode>
@@ -16,7 +18,11 @@ ReactDOM.render(
 			<ModalProvider>
 				<BrowserRouter>
 					<WidthProvider>
-						<App />
+						<PageTransitionProvider>
+							<SidebarProvider>
+								<App />
+							</SidebarProvider>
+						</PageTransitionProvider>
 					</WidthProvider>
 				</BrowserRouter>
 			</ModalProvider>

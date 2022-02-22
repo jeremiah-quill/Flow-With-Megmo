@@ -1,12 +1,15 @@
 import React from "react";
 
 function ParticipantList({ participants }) {
-	console.log(participants)
 	return (
 		<ul className="participant-list">
 			{participants.map((person, idx) => (
 				<li key={idx} className="participant">
-					Username: {person.username} Email:{person.email}
+					<div>{idx + 1}.</div>
+					<div className="participant-details">
+						<div>{person.username}</div>
+						<div>{person.email}</div>
+					</div>
 				</li>
 			))}
 		</ul>

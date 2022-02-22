@@ -1,10 +1,12 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
+import { useSidebarContext } from "../utils/contexts/SidebarContext";
 import Navbar from "./Navbar";
 import hamburger from "../images/hamburger.png";
 
 
-function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
+function Sidebar() {
+	const {isSidebarOpen, setIsSidebarOpen} = useSidebarContext()
 	return (
 		<>
 			<button

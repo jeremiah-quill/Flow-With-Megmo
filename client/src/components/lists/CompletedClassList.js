@@ -5,7 +5,7 @@ import ClassDetails from "../ClassDetails";
 
 function CompletedClassList({ completedClasses }) {
 	const { configureModal } = useModalContext();
-	if(completedClasses.length < 1) return <div>You have not yet completed any classes.</div>
+	if(completedClasses.length < 1) return <div className="empty-list">You have not yet completed any classes.</div>
 	return (
 		<ul className="student-lists class-list">
 			{completedClasses.map((completedClass) => (

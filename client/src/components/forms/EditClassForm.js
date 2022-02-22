@@ -83,21 +83,21 @@ function EditClassForm({ classId, zoomId, currentDateString, refetch }) {
 	};
 
 	return (
-		<div className="create-class-form">
-			<form onSubmit={handleSubmit}>
+			<form className="update-class-form" onSubmit={handleSubmit}>
 				<input
+					className="update-class-date outline-input"
 					type="date"
 					value={date}
 					onChange={(e) => setDate(e.target.value)}
 				/>
 				<input
+					className="update-class-time outline-input"
 					type="time"
 					value={time}
 					onChange={(e) => setTime(e.target.value)}
 				/>
-				<input className="main-btn" type="submit" value="Edit Class" />
+				<input className="main-btn modal-btn" type="submit" value="Confirm Update" />
 			</form>
-		</div>
 	);
 }
 

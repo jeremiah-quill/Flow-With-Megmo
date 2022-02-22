@@ -5,7 +5,7 @@ import ClassDetails from "../ClassDetails";
 import { useModalContext } from "../../utils/contexts/ModalContext";
 
 function TeacherCompletedList({ completedClasses, refetch }) {
-    const { configureModal } = useModalContext();
+	const { configureModal } = useModalContext();
 
 	return (
 		<ul className="student-lists class-list">
@@ -14,7 +14,7 @@ function TeacherCompletedList({ completedClasses, refetch }) {
 					<ClassDetails date={completedClass.date} />
 					<div className="class-actions">
 						<button
-                        className="main-btn"
+							className="main-btn"
 							onClick={() =>
 								configureModal(<ListMembersModal yogaClass={completedClass} />)
 							}
@@ -22,10 +22,13 @@ function TeacherCompletedList({ completedClasses, refetch }) {
 							View
 						</button>
 						<button
-                        className="main-btn"
+							className="main-btn"
 							onClick={() =>
 								configureModal(
-									<AddPlaylistModal completedClass={completedClass} refetch={refetch} />
+									<AddPlaylistModal
+										completedClass={completedClass}
+										refetch={refetch}
+									/>
 								)
 							}
 						>

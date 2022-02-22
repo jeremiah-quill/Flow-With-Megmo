@@ -9,7 +9,7 @@ function ScheduledClassList({ scheduledClasses, scheduleRefetch, studentSchedule
 	const { currentUser } = useUserContext();
 
 	
-	if(scheduledClasses.length < 1) return <div>There are no available classes at this time.</div>
+	if(scheduledClasses.length < 1) return <div className="empty-list">There are no available classes at this time.</div>
 
 
 	return (

@@ -5,7 +5,7 @@ import "../../styles/SignupModal.css";
 function SignupModal() {
 	return (
 		<div className="signup-modal">
-			<h1 className="signup-header">
+			<h1 className="signup-header modal-title">
 				Signup
 			</h1>
 			<div className="modal-content">

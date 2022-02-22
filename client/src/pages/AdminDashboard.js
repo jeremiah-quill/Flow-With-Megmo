@@ -6,7 +6,7 @@ import {
 } from "../utils/queries";
 import { useModalContext } from "../utils/contexts/ModalContext";
 import { useWidthContext } from "../utils/contexts/WidthContext";
-import CreateClassForm from "../components/forms/CreateClassForm";
+import CreateClassModal from "../components/modals/CreateClassModal";
 import StatsOverview from "../components/StatsOverview";
 import TeacherUpcomingList from "../components/lists/TeacherUpcomingList";
 import TeacherCompletedList from "../components/lists/TeacherCompletedList";
@@ -50,7 +50,9 @@ function AdminDashboard() {
 				<button
 					className="main-btn schedule-class-btn"
 					onClick={() =>
-						configureModal(<CreateClassForm refetch={refetchUpcoming} />)
+						// configureModal(<CreateClassForm refetch={refetchUpcoming} />)
+						configureModal(<CreateClassModal refetch={refetchUpcoming} />)
+
 					}
 				>
 					Schedule Class
