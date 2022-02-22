@@ -4,9 +4,8 @@ import React from "react";
 function StatsOverview({completedClasses}) {
 	return (
 		<div className="stats-overview">
-			<div className="total-classes">{completedClasses.length} classes</div>
-            {/* <div className="unique-students">60 unique students</div> */}
-            <div className="gross-income">$2,000</div>
+			<div className="total-classes">{completedClasses.length} classes taught</div>
+            <div className="gross-income">${completedClasses.length * 12} earned</div>
 		</div>
 	);
 }

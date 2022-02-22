@@ -63,13 +63,13 @@ function AdminDashboard() {
 					<nav className="list-nav">
 						<ul className="list-nav-ul">
 							<li
-								className="list-nav-item multiple-lists-nav-item"
+								className={`list-nav-item multiple-lists-nav-item ${listContent === 0 ? "selected-list" : ""}`}
 								onClick={() => setListContent(0)}
 							>
 								Available
 							</li>
 							<li
-								className="list-nav-item multiple-lists-nav-item"
+								className={`list-nav-item multiple-lists-nav-item ${listContent === 1 ? "selected-list" : ""}`}
 								onClick={() => setListContent(1)}
 							>
 								Completed

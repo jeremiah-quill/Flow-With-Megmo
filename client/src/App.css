@@ -64,13 +64,14 @@ body {
 	display: flex;
 	width: 100%;
 	padding: 1em 1em;
+	align-items: center;
 }
 
 .class-list-item {
 	border-bottom: 1px solid lightgray;
 }
 
-.class-list-item + .class-list-item {
+.class-list-item:last-child {
 	border-bottom: none;
 }
 
