@@ -122,7 +122,7 @@ function App() {
 				setSecondOverlay(false);
 			}, 500);
 		}, 500);
-	}, [location.key]);
+	}, [location.pathname]);
 
 	return (
 		<ApolloProvider client={client}>
@@ -181,7 +181,7 @@ function App() {
 				{/* <img className="yoga-spinner" src={yogaSpinner}/> */}
 			</div>
 			<TransitionGroup element={null}>
-				<CSSTransition key={location.key} classNames="page-delay" timeout={550}>
+				<CSSTransition key={location.pathname} classNames="page-delay" timeout={550}>
 					<div className="page">
 						<Routes location={location}>
 							{/* <CSSTransition in={isSidebarOpen} classNames="shrink-page" timeout={500}> */}
