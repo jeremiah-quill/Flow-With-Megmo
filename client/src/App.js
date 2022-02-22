@@ -1,4 +1,3 @@
-
 import "./reset.css";
 import "./App.css";
 import React, { useEffect, useState } from "react";
@@ -16,8 +15,9 @@ import Auth from "./utils/auth";
 import Modal from "./components/Modal";
 import { useUserContext } from "./utils/contexts/UserContext";
 import { useModalContext } from "./utils/contexts/ModalContext";
-import Toast from "./components/Toast";
 import { useToastContext } from "./utils/contexts/ToastContext";
+import { useWidthContext } from "./utils/contexts/WidthContext";
+import Toast from "./components/Toast";
 import RequireAdmin from "./components/RequireAdmin";
 import Sidebar from "./components/Sidebar";
 import Home from "./pages/Home";
@@ -53,24 +53,19 @@ const client = new ApolloClient({
 });
 
 function App() {
+	// full page transition overlays
 	const [firstOverlay, setFirstOverlay] = useState(false);
 	const [secondOverlay, setSecondOverlay] = useState(false);
-
-	const { isToast, toastMessage, toastType } = useToastContext();
+	// sidebar local state
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
 	const closeSidebar = () => {
 		setIsSidebarOpen(false);
 	};
 
-	const [width, setWidth] = useState(window.innerWidth);
-	const breakpoint = 1200;
-
-	useEffect(() => {
-		const handleWindowResize = () => setWidth(window.innerWidth);
-		window.addEventListener("resize", handleWindowResize);
-		return () => window.removeEventListener("resize", handleWindowResize);
-	}, []);
+	// global toast context
+	const { isToast, toastMessage, toastType } = useToastContext();
+	// global width context
+	const { width, breakpoint } = useWidthContext();
 
 	const { setCurrentUser } = useUserContext();
 	const { isModal, resetModal, modalContent } = useModalContext();
@@ -162,11 +157,7 @@ function App() {
 			></div>
 			{/* Half a second after pathname changes, transition in the new page and out the old page */}
 			<TransitionGroup element={null}>
-				<CSSTransition
-					key={location.pathname}
-					classNames=""
-					timeout={500}
-				>
+				<CSSTransition key={location.pathname} classNames="" timeout={500}>
 					<div className="page">
 						<Routes location={location}>
 							<Route path="/" element={<Home />} />

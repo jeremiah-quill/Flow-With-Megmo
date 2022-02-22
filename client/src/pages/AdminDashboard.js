@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import CreateClassForm from "../components/forms/CreateClassForm";
-import StatsOverview from "../components/StatsOverview";
 import { useQuery } from "@apollo/client";
 import {
 	QUERY_UPCOMING_CLASSES,
 	QUERY_COMPLETED_CLASSES,
 } from "../utils/queries";
+import { useModalContext } from "../utils/contexts/ModalContext";
+import { useWidthContext } from "../utils/contexts/WidthContext";
+import CreateClassForm from "../components/forms/CreateClassForm";
+import StatsOverview from "../components/StatsOverview";
 import TeacherUpcomingList from "../components/lists/TeacherUpcomingList";
 import TeacherCompletedList from "../components/lists/TeacherCompletedList";
-import { useModalContext } from "../utils/contexts/ModalContext";
 
-function AdminDashboard({ width, breakpoint }) {
+function AdminDashboard() {
 	// global context
 	const { configureModal } = useModalContext();
+	// global width context
+	const { width, breakpoint } = useWidthContext();
 
 	// local state
 	const [listContent, setListContent] = useState(0);

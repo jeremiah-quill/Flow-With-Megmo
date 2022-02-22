@@ -12,19 +12,21 @@ import {
 import { useModalContext } from "../utils/contexts/ModalContext";
 import { useUserContext } from "../utils/contexts/UserContext";
 import { useToastContext } from "../utils/contexts/ToastContext";
+import { useWidthContext } from "../utils/contexts/WidthContext";
 import { sendEmail } from "../utils/API";
 import { unregisterMsg } from "../utils/emailMessages.js";
 import ScheduledClassList from "../components/lists/ScheduledClassList";
 import RegisteredClassList from "../components/lists/RegisteredClassList";
 import CompletedClassList from "../components/lists/CompletedClassList";
 
-function StudentManage({ width, breakpoint }) {
+function StudentManage() {
 	const [listContent, setListContent] = useState(0);
 
-	// get user, modal, and toast contexts
+	// get user, modal, toast, and width contexts
 	const { currentUser } = useUserContext();
 	const { resetModal } = useModalContext();
 	const { configureToast } = useToastContext();
+	const { width, breakpoint } = useWidthContext();
 
 	const {
 		loading: scheduledLoading,

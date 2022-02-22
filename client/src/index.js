@@ -6,7 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import UserProvider from "./utils/contexts/UserContext";
 import ModalProvider from "./utils/contexts/ModalContext";
-import ToastProvider from './utils/contexts/ToastContext'
+import ToastProvider from "./utils/contexts/ToastContext";
+import WidthProvider from './utils/contexts/WidthContext';
 
 ReactDOM.render(
 	// <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.render(
 		<ToastProvider>
 			<ModalProvider>
 				<BrowserRouter>
-					<App />
+					<WidthProvider>
+						<App />
+					</WidthProvider>
 				</BrowserRouter>
 			</ModalProvider>
 		</ToastProvider>
