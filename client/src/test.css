@@ -688,7 +688,12 @@ button:disabled {
 		order: 2;
 		margin-left: auto;
 		line-height: 16px;
-		height: 16px;
+		/* height: 16px; */
+	}
+
+	.user-btns > button {
+		background: white;
+		color: var(--main-brown);
 	}
 
 	.nav-item + .nav-item {
