@@ -10,6 +10,9 @@ function ScheduledClassList({ scheduledClasses, scheduleRefetch, studentSchedule
 	const { currentUser } = useUserContext();
 
 	
+	if(scheduledClasses.length < 1) return <div>There are no available classes at this time.</div>
+
+
 	return (
 		<ul className="class-list">
 			{scheduledClasses.map((scheduledClass) => (

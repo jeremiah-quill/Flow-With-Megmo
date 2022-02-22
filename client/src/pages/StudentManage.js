@@ -186,7 +186,6 @@ function StudentManage({ width, breakpoint }) {
 						/>
 					</div>
 					<div>
-						{" "}
 						<RegisteredClassList
 							registeredClasses={studentUpcomingClasses}
 							handleUnregister={handleUnregister}
@@ -199,6 +198,6 @@ function StudentManage({ width, breakpoint }) {
 			)}
 		</div>
 	);
-}
+};
 
 export default StudentManage;

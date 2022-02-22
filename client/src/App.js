@@ -35,6 +35,7 @@ import HowItWorks from "./pages/HowItWorks";
 import BookPrivate from "./pages/BookPrivate";
 import StudentManage from "./pages/StudentManage";
 import Navbar from "./components/Navbar";
+import yogaSpinner from "./images/yoga-spinner.png";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -108,23 +109,20 @@ function App() {
 	}, [location.pathname]);
 
 	useEffect(() => {
-		setTimeout(() => {
-			setPageDelay(true);
-		}, 500);
-
 		setFirstOverlay(true);
+
+		// setFirstOverlay(true);
 		setTimeout(() => {
 			setFirstOverlay(false);
-		}, 715);
+		}, 500);
 
 		setTimeout(() => {
 			setSecondOverlay(true);
 			setTimeout(() => {
 				setSecondOverlay(false);
 			}, 500);
-		}, 685);
-		console.log(firstOverlay);
-	}, [location.pathname]);
+		}, 500);
+	}, [location.key]);
 
 	return (
 		<ApolloProvider client={client}>
@@ -172,14 +170,18 @@ function App() {
 				className={`first-overlay ${
 					firstOverlay === true ? "first-overlay-on" : "first-overlay-off"
 				}`}
-			></div>
+			>
+				{/* <img className="yoga-spinner" src={yogaSpinner} /> */}
+			</div>
 			<div
 				className={`second-overlay ${
 					secondOverlay === true ? "second-overlay-on" : "second-overlay-off"
 				}`}
-			></div>
+			>
+				{/* <img className="yoga-spinner" src={yogaSpinner}/> */}
+			</div>
 			<TransitionGroup element={null}>
-				<CSSTransition key={location.key} classNames="page-delay" timeout={600}>
+				<CSSTransition key={location.key} classNames="page-delay" timeout={550}>
 					<div className="page">
 						<Routes location={location}>
 							{/* <CSSTransition in={isSidebarOpen} classNames="shrink-page" timeout={500}> */}
@@ -198,7 +200,9 @@ function App() {
 							<Route
 								path="/admin-dashboard"
 								element={
-									<AdminDashboard width={width} breakpoint={breakpoint} />
+									<RequireAdmin>
+										<AdminDashboard width={width} breakpoint={breakpoint} />
+									</RequireAdmin>
 								}
 							/>
 

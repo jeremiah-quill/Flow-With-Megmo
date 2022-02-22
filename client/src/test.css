@@ -29,6 +29,8 @@ body {
 	font-family: var(--ff-main);
 }
 
+
+
 .hamburger {
 	position: fixed;
 	top: 25px;
@@ -349,6 +351,8 @@ footer {
 
 /* ADMIN DASHBOARD */
 
+
+
 .stats-overview {
 	display: flex;
 	width: 100%;
@@ -362,6 +366,7 @@ footer {
 
 .admin-dashboard {
 	padding-top: 8em;
+	background-color: white;
 }
 
 .schedule-class-btn {
@@ -412,7 +417,11 @@ footer {
 .first-overlay,
 .second-overlay {
 	background-color: var(--main-brown);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
+
 
 .first-overlay {
 	top: 0;
@@ -433,16 +442,16 @@ footer {
 }
 
 .second-overlay {
-	left: 0;
-	right: 0;
-	height: 100%;
+	top: 0;
+	bottom: 0;
+	width: 100%;
 	position: absolute;
 	opacity: 0;
-	transform: translateY(0);
+	transform: translateX(0);
 }
 
 .second-overlay-on {
-	transform: translateY(100%);
+	transform: translateX(100%);
 	opacity: 1;
 	transition: transform 500ms ease, opacity 0s ease;
 	z-index: 600;
@@ -462,13 +471,13 @@ footer {
 	right: 0;
 }
 
-.page-delay-enter > * {
+/* .page-delay-enter > * {
 	opacity: 0;
 }
 
 .page-delay-enter.page-delay-enter-active > * {
 	opacity: 1;
-	transition: opacity 50s linear 500ms;
+	transition: opacity 0ms linear 500ms;
 	
 }
 
@@ -479,8 +488,8 @@ footer {
 
 .page-delay-exit.page-delay-exit-active > * {
 	opacity: 0;
-	transition: opacity 50s linear 500ms;
-}
+	transition: opacity 0ms linear 500ms;
+} */
 
 
 
