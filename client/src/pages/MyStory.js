@@ -16,7 +16,7 @@ function MyStory() {
 				</p>
 			</div>
 
-			<img className="my-img" src="megmo-yoga2.png" />
+			<img className="my-img" src="megmo-yoga2compressed.png" />
 		</section>
 	);
 }
