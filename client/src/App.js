@@ -61,6 +61,10 @@ const client = new ApolloClient({
 });
 
 function App() {
+	const [firstOverlay, setFirstOverlay] = useState(false);
+	const [secondOverlay, setSecondOverlay] = useState(false);
+	const [pageDelay, setPageDelay] = useState(false);
+
 	const { isToast, toastMessage, toastType } = useToastContext();
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -101,6 +105,25 @@ function App() {
 		if (isSidebarOpen) {
 			closeSidebar();
 		}
+	}, [location.pathname]);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setPageDelay(true);
+		}, 500);
+
+		setFirstOverlay(true);
+		setTimeout(() => {
+			setFirstOverlay(false);
+		}, 715);
+
+		setTimeout(() => {
+			setSecondOverlay(true);
+			setTimeout(() => {
+				setSecondOverlay(false);
+			}, 500);
+		}, 685);
+		console.log(firstOverlay);
 	}, [location.pathname]);
 
 	return (
@@ -145,22 +168,43 @@ function App() {
 			{/* {!currentUser.isAdmin ? <Header /> : ""} */}
 			{/* <Header /> */}
 			{/* <div className="main-container"> */}
-			{/* <TransitionGroup element={null}>
-			<CSSTransition key={location.pathname} classNames="page-transition" timeout={500}> */}
-			<Routes location={location}>
-				{/* <CSSTransition in={isSidebarOpen} classNames="shrink-page" timeout={500}> */}
-				<Route path="/" element={<Home />} />
-				{/* </CSSTransition> */}
-				<Route path="/my-story" element={<MyStory />} />
-				<Route path="/my-class" element={<MyClass />} />
-				<Route path="/how-it-works" element={<HowItWorks />} />
-				<Route path="/book-private" element={<BookPrivate />} />
-				<Route path="/manage-classes" element={<StudentManage width={width} breakpoint={breakpoint} />} />
-				<Route path="/admin-dashboard" element={<AdminDashboard />} />
+			<div
+				className={`first-overlay ${
+					firstOverlay === true ? "first-overlay-on" : "first-overlay-off"
+				}`}
+			></div>
+			<div
+				className={`second-overlay ${
+					secondOverlay === true ? "second-overlay-on" : "second-overlay-off"
+				}`}
+			></div>
+			<TransitionGroup element={null}>
+				<CSSTransition key={location.key} classNames="page-delay" timeout={600}>
+					<div className="page">
+						<Routes location={location}>
+							{/* <CSSTransition in={isSidebarOpen} classNames="shrink-page" timeout={500}> */}
+							<Route path="/" element={<Home />} />
+							{/* </CSSTransition> */}
+							<Route path="/my-story" element={<MyStory />} />
+							<Route path="/my-class" element={<MyClass />} />
+							<Route path="/how-it-works" element={<HowItWorks />} />
+							<Route path="/book-private" element={<BookPrivate />} />
+							<Route
+								path="/manage-classes"
+								element={
+									<StudentManage width={width} breakpoint={breakpoint} />
+								}
+							/>
+							<Route
+								path="/admin-dashboard"
+								element={
+									<AdminDashboard width={width} breakpoint={breakpoint} />
+								}
+							/>
 
-				{/* <Route path="/manage-classes-admin" element={<TeacherManage />} /> */}
+							{/* <Route path="/manage-classes-admin" element={<TeacherManage />} /> */}
 
-				{/* <Route path="/classes" element={<Classes />} />
+							{/* <Route path="/classes" element={<Classes />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route
 						path="/dashboard"
@@ -170,9 +214,10 @@ function App() {
 							</RequireAdmin>
 						}
 					/> */}
-			</Routes>
-			{/* </CSSTransition>
-			</TransitionGroup> */}
+						</Routes>
+					</div>
+				</CSSTransition>
+			</TransitionGroup>
 			{/* </div> */}
 		</ApolloProvider>
 	);

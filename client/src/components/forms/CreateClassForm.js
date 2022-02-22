@@ -81,6 +81,7 @@ function CreateClassForm({refetch}) {
 					onChange={(e) => setPrice(e.target.value)}
 				/>
 				<input
+					className="main-btn"
 					type="submit"
 					value="Create Class"
 					disabled={date === "" || time === "" || price === ""}

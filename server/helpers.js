@@ -13,4 +13,16 @@ const getZoomJWT = () => {
 	return jwt.sign(payload, config.APISecret);
 };
 
-module.exports = { getZoomJWT };
+const errorFormatter = (e) => {
+	let errors = {};
+
+	const allErrors = e.substring(e.indexOf(':') + 1).trim()
+	const allErrorsinArrayFormat = allErrors.split(',').map(err => err.trim());
+	allErrorsinArrayFormat.forEach(error => {
+		const [key, value] = error.split(":").map(err => err.trim())
+		errors[key] = value
+	})
+	return errors
+}
+
+module.exports = { getZoomJWT, errorFormatter };

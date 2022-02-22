@@ -6,23 +6,25 @@ import "../../styles/LoginForm.css";
 import { useModalContext } from "../../utils/contexts/ModalContext";
 import lock from '../../images/lock.png';
 import emailIcon from '../../images/email.png';
+import { useToastContext } from "../../utils/contexts/ToastContext";
 
 
 function LoginForm() {
+	const {configureToast} = useToastContext()
 	const {resetModal} = useModalContext()
 
-	const [login, { error, data }] = useMutation(LOGIN_USER);
+	const [login, { error }] = useMutation(LOGIN_USER);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		resetModal()
+		// resetModal()
 
 
-		setTimeout(async () => {
+		// setTimeout(async () => {
 			try {
 				const { data } = await login({
 					variables: { email: email, password: password },
@@ -30,16 +32,20 @@ function LoginForm() {
 	
 				Auth.login(data.login.token);
 			} catch (e) {
-				console.error(e);
+				// console.log(e.message);
+				configureToast(e.message, "failure", 5000)
+				// console.log(e)
 			}
 	
 	
 			setEmail("");
 			setPassword("");
-		}, 600)
+		// }, 600)
 
 
 	};
+
+	// if(error) configureToast(error, "failure", 5000)
 
 	return (
 		<form className="login-form" onSubmit={handleSubmit}>
@@ -63,7 +69,7 @@ function LoginForm() {
 					placeholder="Password"
 				/>
 			</div>
-			<input className="login-btn btn btn-pink" type="submit" value="Login" />
+			<input className="login-btn main-btn" type="submit" value="Login" />
 		</form>
 	);
 }

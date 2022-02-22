@@ -8,9 +8,12 @@ import { useUserContext } from "../utils/contexts/UserContext";
 import UserButtons from "./UserButtons";
 
 function Navbar() {
+	
+
+
 	const { currentUser } = useUserContext();
 	return (
-		<nav className="list-nav">
+		<nav className="list-nav sidebar-nav">
 			<UserButtons />
 			<Link className="nav-item main-nav-item" to="/">
 				Home
@@ -29,7 +32,7 @@ function Navbar() {
 			</Link>
 
 			{currentUser.isAdmin ? (
-				<Link className="nav-item" to="/admin-dashboard">
+				<Link className="nav-item main-nav-item" to="/admin-dashboard">
 					Admin Dashboard
 				</Link>
 			) : (
@@ -37,7 +40,7 @@ function Navbar() {
 			)}
 
 			{currentUser.loggedIn ? (
-				<Link className="nav-item" to="/manage-classes">
+				<Link className="nav-item main-nav-item" to="/manage-classes">
 					Manage Classes
 				</Link>
 			) : (

@@ -16,7 +16,7 @@ function CompletedClassList({ completedClasses }) {
 					<div className="class-actions">
 						{completedClass.playlistId ? (
 							<button
-								className="btn btn-round btn-pink"
+								className="main-btn"
 								onClick={() =>
 									configureModal(
 										<SpotifyPlayer playlistId={completedClass.playlistId} />

@@ -23,7 +23,16 @@
 	color: white;
 }
 
+.main-btn {
+	padding: .5em 1em;
+	cursor: pointer;
+	border: none;
+	outline: none;
+}
 
+.main-btn:hover {
+	opacity: .7;
+}
 
 
 

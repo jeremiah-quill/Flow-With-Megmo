@@ -18,7 +18,7 @@ function RegisteredClassList({ registeredClasses, handleUnregister }) {
 					{/* <div className="class-status">Registered</div> */}
 					<div className="class-actions">
 						<button
-							className="btn btn-round btn-pink"
+							className="main-btn"
 							onClick={() =>
 								configureModal(
 									<CancelRegistrationModal

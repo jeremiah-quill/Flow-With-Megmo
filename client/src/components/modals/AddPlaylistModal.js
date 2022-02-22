@@ -56,7 +56,7 @@ function AddPlaylistModal({ completedClass }) {
 					</ul>
 				)}
 			</div>
-			<button className="confirm-playlist">confirm</button>
+			<button className="confirm-playlist main-btn">confirm</button>
 			</div>
 		// </div>
 	);

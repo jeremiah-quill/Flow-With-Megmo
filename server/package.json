@@ -15,6 +15,7 @@
   "dependencies": {
     "apollo-server-express": "^3.6.2",
     "axios": "^0.25.0",
+    "bcrypt": "^5.0.1",
     "braintree": "^3.8.0",
     "cors": "^2.8.5",
     "dotenv": "^14.2.0",

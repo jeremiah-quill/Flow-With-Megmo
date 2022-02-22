@@ -5,7 +5,7 @@ import StatsOverview from "../StatsOverview";
 // import AddPlaylistModal from "../modals/AddPlaylistModal";
 // import DeleteClassModal from "../modals/DeleteClassModal";
 // import EditClassModal from "../modals/EditClassModal";
-import "../../styles/Dashboard.css";
+// import "../../styles/Dashboard.css";
 import { useQuery } from "@apollo/client";
 import {
 	QUERY_UPCOMING_CLASSES,
@@ -13,10 +13,13 @@ import {
 } from "../../utils/queries";
 import TeacherUpcomingList from "../lists/TeacherUpcomingList";
 import TeacherCompletedList from "../lists/TeacherCompletedList";
+import { useModalContext } from "../../utils/contexts/ModalContext";
 
-function AdminDashboard() {
+function AdminDashboard({ width, breakpoint }) {
+	const { configureModal } = useModalContext();
+
 	// toggle between list of registered and completed classes
-	const [listView, setListView] = useState("scheduled");
+	const [listContent, setListContent] = useState(0);
 
 	const {
 		loading: upcomingLoading,
@@ -40,44 +43,65 @@ function AdminDashboard() {
 	if (completedError) return `Error! ${completedError.message}`;
 
 	return (
-		<div className="logged-in-home">
-			<div className="student-info">
-				<h1>Welcome back Yogi!</h1>
+		<div className="main-section admin-dashboard">
+			<h1 className="admin-welcome">Welcome back Yogi!</h1>
+
+			<div className="admin-square-1">
 				<StatsOverview completedClasses={completedClasses} />
-				<CreateClassForm refetch={refetchUpcoming} />
+
+				<button
+					className="main-btn schedule-class-btn"
+					onClick={() =>
+						configureModal(<CreateClassForm refetch={refetchUpcoming} />)
+					}
+				>
+					Schedule Class
+				</button>
 			</div>
 
-			<div className="student-lists-container">
-				<div className="student-list-buttons">
-					<button
-						className={`list-btn ${
-							listView === "scheduled" ? "selected-list" : ""
-						}`}
-						onClick={() => setListView("scheduled")}
-					>
-						Scheduled
-					</button>
-					<button
-						className={`list-btn ${
-							listView === "completed" ? "selected-list" : ""
-						}`}
-						onClick={() => setListView("completed")}
-					>
-						Completed
-					</button>
+			{width < breakpoint ? (
+				<div className="multiple-lists-container">
+					<nav className="list-nav">
+						<ul className="list-nav-ul">
+							<li
+								className="list-nav-item multiple-lists-nav-item"
+								onClick={() => setListContent(0)}
+							>
+								Available
+							</li>
+							<li
+								className="list-nav-item multiple-lists-nav-item"
+								onClick={() => setListContent(1)}
+							>
+								Completed
+							</li>
+						</ul>
+					</nav>
+
+					{listContent === 0 ? (
+						<TeacherUpcomingList
+							scheduledClasses={upcomingClasses}
+							refetch={refetchUpcoming}
+						/>
+					) : (
+						<TeacherCompletedList
+							completedClasses={completedClasses}
+							refetch={refetchCompleted}
+						/>
+					)}
 				</div>
-				{listView === "scheduled" ? (
+			) : (
+				<div className="lists-container">
 					<TeacherUpcomingList
 						scheduledClasses={upcomingClasses}
 						refetch={refetchUpcoming}
 					/>
-				) : (
 					<TeacherCompletedList
 						completedClasses={completedClasses}
 						refetch={refetchCompleted}
 					/>
-				)}
-			</div>
+				</div>
+			)}
 
 			{/* <h2>Scheduled</h2>
 			<TeacherUpcomingList scheduledClasses={upcomingClasses} refetch={refetchUpcoming} />

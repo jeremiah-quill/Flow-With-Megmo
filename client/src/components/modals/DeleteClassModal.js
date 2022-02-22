@@ -75,6 +75,7 @@ function DeleteClassModal({ scheduledClass, refetch }) {
 			</div>
 			<div className="modal-footer">
 				<button
+				className="main-btn"
 					onClick={() =>
 						handleDelete(scheduledClass.zoomId, scheduledClass._id, classDetails)
 					}

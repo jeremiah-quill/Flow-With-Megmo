@@ -99,10 +99,10 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefe
 							</li>
 						</ul>
 						<button
-							className="btn btn-pink btn-round register-btn register-submit-btn"
+							className="main-btn"
 							onClick={handleRegister}
 						>
-							Register
+							Confirm
 						</button>
 					</div>
 				</div>
@@ -117,7 +117,7 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefe
 							to complete payment via venmo. I can't wait to see you in class!
 						</p>
 						{width < breakpoint ? (
-							<button className="btn venmo-btn btn-green">
+							<button className="main-btn">
 								<a
 									href={`https://venmo.com/meghan-moran-7?txn=pay&note=Flow+with+Megmo:+${scheduledClass.date}&amount=${scheduledClass.price}`}
 								>

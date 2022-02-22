@@ -22,7 +22,7 @@ function CancelRegistrationModal({ date, classId, handleUnregister }) {
 				reimbursement within 48 hours please email me at
 				flowwithmegmo@gmail.com. Thanks!
 			</div>
-			<button className="btn btn-pink" onClick={() => handleUnregister(classId, currentUser._id, classDetails)}>
+			<button className="main-btn" onClick={() => handleUnregister(classId, currentUser._id, classDetails)}>
 				Confirm
 			</button>
 		</div>

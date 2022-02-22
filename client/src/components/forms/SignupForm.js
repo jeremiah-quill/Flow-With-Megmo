@@ -7,9 +7,11 @@ import emailIcon from "../../images/email.png";
 import userIcon from "../../images/user.png";
 import lockIcon from "../../images/lock.png";
 import { useModalContext } from "../../utils/contexts/ModalContext";
+import { useToastContext } from "../../utils/contexts/ToastContext";
 
 const SignupForm = () => {
-	const {resetModal} = useModalContext()
+	const { resetModal } = useModalContext();
+	const {configureToast} = useToastContext()
 
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
@@ -17,15 +19,15 @@ const SignupForm = () => {
 
 	const [createStudent, { error, data }] = useMutation(CREATE_STUDENT);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		resetModal()
+		// resetModal()
 
-		setTimeout(async () => {
+		// setTimeout(async () => {
 
 		try {
-			const { data } = await createStudent({
+			const { data, error } = await createStudent({
 				variables: {
 					username: username,
 					email: email,
@@ -33,16 +35,38 @@ const SignupForm = () => {
 				},
 			});
 
+			console.log(error)
+
+			// if(error) {
+			// 	console.log(error)
+			// }
+
+
+
 			Auth.login(data.createStudent.token);
+
 		} catch (e) {
-			console.error(e);
+			// console.log(e)
+			console.log(e)
+			configureToast(e.message, 'failure', 5000)
+			// console.log(e.type)
+			// configureToast(e, "failure", 5000);
+
+			// if(e.name === 'ValidationError') {
+			// 	console.error(Object.values(e.errors).map(val => val.message))
+			// }
+
+			// if(err) {
+			// 	if (err.name === 'ValidationError') {
+			// 	  console.error(Object.values(err.errors).map(val => val.message))
+			// 	}
+			//   }
 		}
 
 		setUsername("");
 		setEmail("");
 		setPassword("");
-		}, 600)
-
+		// }, 600)
 	};
 
 	return (
@@ -80,7 +104,7 @@ const SignupForm = () => {
 				/>
 			</div>
 
-			<input className="btn btn-pink signup-btn" type="submit" value="Signup" />
+			<input className="main-btn signup-btn" type="submit" value="Signup" />
 		</form>
 		// </div>
 	);

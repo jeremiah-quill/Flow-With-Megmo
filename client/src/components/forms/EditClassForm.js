@@ -95,7 +95,7 @@ function EditClassForm({ classId, zoomId, currentDateString, refetch }) {
 					value={time}
 					onChange={(e) => setTime(e.target.value)}
 				/>
-				<input type="submit" value="Edit Class" />
+				<input className="main-btn" type="submit" value="Edit Class" />
 			</form>
 		</div>
 	);

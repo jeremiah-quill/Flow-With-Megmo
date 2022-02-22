@@ -26,7 +26,7 @@ function ScheduledClassList({ scheduledClasses, scheduleRefetch, studentSchedule
 						<div className="class-actions">
 							{currentUser.loggedIn === true ? (
 								<button
-									
+								className="main-btn"
 									onClick={() =>
 										configureModal(
 											<ClassSignupModal

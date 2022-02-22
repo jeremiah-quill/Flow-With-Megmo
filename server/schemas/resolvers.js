@@ -67,11 +67,14 @@ const resolvers = {
 
 	Mutation: {
 		createStudent: async (_, { username, email, password }) => {
+			
 			const student = await Student.create({
 				username: username,
 				email: email,
 				password: password,
 			});
+
+			
 			const token = signToken(student);
 
 			return { token, student };
@@ -80,13 +83,13 @@ const resolvers = {
 			const student = await Student.findOne({ email });
 
 			if (!student) {
-				throw new AuthenticationError("No student with this email found!");
+				throw new AuthenticationError("Cannot find email.");
 			}
 
 			const correctPw = await student.isCorrectPassword(password);
 
 			if (!correctPw) {
-				throw new AuthenticationError("Incorrect password!");
+				throw new AuthenticationError("Incorrect password.");
 			}
 
 			const token = signToken(student);

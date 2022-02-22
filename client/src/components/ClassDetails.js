@@ -7,7 +7,7 @@ function ClassDetails({ date, price }) {
 
 	return (
 		<div className="class-details">
-			<h2 className="card-header">Flow with Megmo</h2>
+			<h3 className="card-header">Flow with Megmo</h3>
 			<div className="class-card-day">
 				{dayOfWeek}, {month}/{dayOfMonth}
 			</div>

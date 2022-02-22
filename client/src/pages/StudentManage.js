@@ -21,7 +21,7 @@ import { QUERY_UPCOMING_CLASSES } from "../utils/queries";
 // import { useQuery } from "@apollo/client";
 import ScheduledClassList from "../components/lists/ScheduledClassList";
 
-function StudentManage({width, breakpoint}) {
+function StudentManage({ width, breakpoint }) {
 	const [listContent, setListContent] = useState(0);
 
 	// get user, modal, and toast contexts
@@ -138,16 +138,25 @@ function StudentManage({width, breakpoint}) {
 	return (
 		<div className="student-manage">
 			{width < breakpoint ? (
-				<>
+				<div className="multiple-lists-container">
 					<nav className="list-nav">
 						<ul className="list-nav-ul">
-							<li className="list-nav-item" onClick={() => setListContent(0)}>
+							<li
+								className="list-nav-item multiple-lists-nav-item"
+								onClick={() => setListContent(0)}
+							>
 								Available
 							</li>
-							<li className="list-nav-item" onClick={() => setListContent(1)}>
+							<li
+								className="list-nav-item multiple-lists-nav-item"
+								onClick={() => setListContent(1)}
+							>
 								Registered
 							</li>
-							<li className="list-nav-item" onClick={() => setListContent(2)}>
+							<li
+								className="list-nav-item multiple-lists-nav-item"
+								onClick={() => setListContent(2)}
+							>
 								Completed
 							</li>
 						</ul>
@@ -166,20 +175,26 @@ function StudentManage({width, breakpoint}) {
 					) : (
 						<CompletedClassList completedClasses={studentCompletedClasses} />
 					)}
-				</>
+				</div>
 			) : (
 				<div className="lists-container">
-					{" "}
-					<ScheduledClassList
-						scheduledClasses={classes}
-						scheduleRefetch={refetch}
-						studentScheduleRefetch={refetchUpcomingStudentClasses}
-					/>{" "}
-					<RegisteredClassList
-						registeredClasses={studentUpcomingClasses}
-						handleUnregister={handleUnregister}
-					/>{" "}
-					<CompletedClassList completedClasses={studentCompletedClasses} />
+					<div>
+						<ScheduledClassList
+							scheduledClasses={classes}
+							scheduleRefetch={refetch}
+							studentScheduleRefetch={refetchUpcomingStudentClasses}
+						/>
+					</div>
+					<div>
+						{" "}
+						<RegisteredClassList
+							registeredClasses={studentUpcomingClasses}
+							handleUnregister={handleUnregister}
+						/>
+					</div>
+					<div>
+						<CompletedClassList completedClasses={studentCompletedClasses} />
+					</div>
 				</div>
 			)}
 		</div>

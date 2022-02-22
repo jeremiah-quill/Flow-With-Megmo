@@ -16,7 +16,7 @@ function TeacherUpcomingList({ scheduledClasses, refetch }) {
 					<ClassDetails date={scheduledClass.date} />
 					<div className="class-actions">
 						<button
-							className="btn btn-round btn-pink"
+							className="main-btn"
 							onClick={() =>
 								configureModal(
 									<ListMembersModal yogaClass={scheduledClass} />
@@ -26,7 +26,7 @@ function TeacherUpcomingList({ scheduledClasses, refetch }) {
 							View
 						</button>
 						<button
-							className="btn btn-round btn-pink"
+							className="main-btn"
 							onClick={() =>
 								configureModal(
 									<EditClassModal scheduledClass={scheduledClass} refetch={refetch} />
@@ -36,7 +36,7 @@ function TeacherUpcomingList({ scheduledClasses, refetch }) {
 							Edit
 						</button>
 						<button
-							className="btn btn-round btn-pink"
+							className="main-btn"
 							onClick={() =>
 								configureModal(
 									<DeleteClassModal scheduledClass={scheduledClass} refetch={refetch} />
