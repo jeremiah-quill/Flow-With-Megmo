@@ -181,7 +181,7 @@ function App() {
 				{/* <img className="yoga-spinner" src={yogaSpinner}/> */}
 			</div>
 			<TransitionGroup element={null}>
-				<CSSTransition key={location.pathname} classNames="page-delay" timeout={550}>
+				<CSSTransition key={location.pathname} classNames="page-delay" timeout={500}>
 					<div className="page">
 						<Routes location={location}>
 							{/* <CSSTransition in={isSidebarOpen} classNames="shrink-page" timeout={500}> */}
