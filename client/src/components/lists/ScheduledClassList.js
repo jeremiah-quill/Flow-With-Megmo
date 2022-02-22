@@ -1,7 +1,6 @@
 import React from "react";
 import { useModalContext } from "../../utils/contexts/ModalContext";
 import ClassDetails from "../ClassDetails";
-import "../../styles/ClassCard.css";
 import { useUserContext } from "../../utils/contexts/UserContext";
 import ClassSignupModal from "../modals/ClassSignupModal";
 

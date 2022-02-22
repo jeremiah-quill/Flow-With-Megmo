@@ -3,23 +3,20 @@ import {
 	QUERY_UPCOMING_STUDENT_CLASSES,
 	QUERY_COMPLETED_STUDENT_CLASSES,
 } from "../utils/queries";
+import { QUERY_UPCOMING_CLASSES } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
-import { useUserContext } from "../utils/contexts/UserContext";
-import { useToastContext } from "../utils/contexts/ToastContext";
-import RegisteredClassList from "../components/lists/RegisteredClassList";
-import CompletedClassList from "../components/lists/CompletedClassList";
 import {
 	REMOVE_CLASS_FROM_STUDENT,
 	REMOVE_FROM_ROSTER,
 } from "../utils/mutations";
-import "../styles/LoggedInHome.css";
 import { useModalContext } from "../utils/contexts/ModalContext";
+import { useUserContext } from "../utils/contexts/UserContext";
+import { useToastContext } from "../utils/contexts/ToastContext";
 import { sendEmail } from "../utils/API";
 import { unregisterMsg } from "../utils/emailMessages.js";
-import "../styles/Classes.css";
-import { QUERY_UPCOMING_CLASSES } from "../utils/queries";
-// import { useQuery } from "@apollo/client";
 import ScheduledClassList from "../components/lists/ScheduledClassList";
+import RegisteredClassList from "../components/lists/RegisteredClassList";
+import CompletedClassList from "../components/lists/CompletedClassList";
 
 function StudentManage({ width, breakpoint }) {
 	const [listContent, setListContent] = useState(0);
@@ -198,6 +195,6 @@ function StudentManage({ width, breakpoint }) {
 			)}
 		</div>
 	);
-};
+}
 
 export default StudentManage;

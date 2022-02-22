@@ -2,7 +2,6 @@ import React from "react";
 import { useModalContext } from "../../utils/contexts/ModalContext";
 import SpotifyPlayer from "../modals/SpotifyPlayer";
 import ClassDetails from "../ClassDetails";
-import "../../styles/ClassCard.css";
 
 function CompletedClassList({ completedClasses }) {
 	const { configureModal } = useModalContext();

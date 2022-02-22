@@ -2,7 +2,6 @@ import React from "react";
 import { useModalContext } from "../../utils/contexts/ModalContext";
 import CancelRegistrationModal from "../modals/CancelRegistrationModal";
 import ClassDetails from "../ClassDetails";
-import "../../styles/ClassCard.css";
 
 function RegisteredClassList({ registeredClasses, handleUnregister }) {
 	const { configureModal } = useModalContext();

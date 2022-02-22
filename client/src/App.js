@@ -1,7 +1,6 @@
-import "./App.css";
+
 import "./reset.css";
-import "./test.css";
-import "./test2.css";
+import "./App.css";
 import React, { useEffect, useState } from "react";
 import { setContext } from "@apollo/client/link/context";
 import {
@@ -12,20 +11,13 @@ import {
 } from "@apollo/client";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-// import SpotifyPlayer from "./components/pages/SpotifyPlayer";
-import AdminDashboard from "./components/pages/AdminDashboard";
-import Contact from "./components/pages/Contact";
-import Classes from "./components/Classes";
+import AdminDashboard from "./pages/AdminDashboard";
 import Auth from "./utils/auth";
-import StudentProfile from "./components/pages/StudentProfile";
-import DefaultHome from "./components/pages/DefaultHome";
 import Modal from "./components/Modal";
 import { useUserContext } from "./utils/contexts/UserContext";
 import { useModalContext } from "./utils/contexts/ModalContext";
-import Header from "./components/Header";
 import Toast from "./components/Toast";
 import { useToastContext } from "./utils/contexts/ToastContext";
-import UserButtons from "./components/UserButtons";
 import RequireAdmin from "./components/RequireAdmin";
 import Sidebar from "./components/Sidebar";
 import Home from "./pages/Home";
@@ -35,7 +27,6 @@ import HowItWorks from "./pages/HowItWorks";
 import BookPrivate from "./pages/BookPrivate";
 import StudentManage from "./pages/StudentManage";
 import Navbar from "./components/Navbar";
-import yogaSpinner from "./images/yoga-spinner.png";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -64,7 +55,6 @@ const client = new ApolloClient({
 function App() {
 	const [firstOverlay, setFirstOverlay] = useState(false);
 	const [secondOverlay, setSecondOverlay] = useState(false);
-	const [pageDelay, setPageDelay] = useState(false);
 
 	const { isToast, toastMessage, toastType } = useToastContext();
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -82,9 +72,8 @@ function App() {
 		return () => window.removeEventListener("resize", handleWindowResize);
 	}, []);
 
-	const { currentUser, setCurrentUser } = useUserContext();
-	const { isModal, resetModal, modalContent, configureModal } =
-		useModalContext();
+	const { setCurrentUser } = useUserContext();
+	const { isModal, resetModal, modalContent } = useModalContext();
 
 	useEffect(() => {
 		if (Auth.loggedIn()) {
@@ -109,15 +98,18 @@ function App() {
 	}, [location.pathname]);
 
 	useEffect(() => {
+		// turn on first overlay
 		setFirstOverlay(true);
 
-		// setFirstOverlay(true);
+		// after half a second, turn off first overlay
 		setTimeout(() => {
 			setFirstOverlay(false);
 		}, 500);
 
+		// after half a second, turn on second overlay
 		setTimeout(() => {
 			setSecondOverlay(true);
+			// after half a second, turn off second overlay
 			setTimeout(() => {
 				setSecondOverlay(false);
 			}, 500);
@@ -145,10 +137,6 @@ function App() {
 					<Navbar />
 				)}
 			</header>
-
-			{/* {isSidebarOpen ? <Sidebar closeSidebar={closeSidebar} /> : ""} */}
-			{/* {width < breakpoint ? <UserButtons /> : ""} */}
-
 			<Toast
 				isToast={isToast}
 				toastMessage={toastMessage}
@@ -162,31 +150,26 @@ function App() {
 				resetModal={resetModal}
 				content={modalContent}
 			/>
-			{/* {currentUser.isAdmin ? <Dashboard /> : ""} */}
-			{/* {!currentUser.isAdmin ? <Header /> : ""} */}
-			{/* <Header /> */}
-			{/* <div className="main-container"> */}
 			<div
 				className={`first-overlay ${
 					firstOverlay === true ? "first-overlay-on" : "first-overlay-off"
 				}`}
-			>
-				{/* <img className="yoga-spinner" src={yogaSpinner} /> */}
-			</div>
+			></div>
 			<div
 				className={`second-overlay ${
 					secondOverlay === true ? "second-overlay-on" : "second-overlay-off"
 				}`}
-			>
-				{/* <img className="yoga-spinner" src={yogaSpinner}/> */}
-			</div>
+			></div>
+			{/* Half a second after pathname changes, transition in the new page and out the old page */}
 			<TransitionGroup element={null}>
-				<CSSTransition key={location.pathname} classNames="page-delay" timeout={500}>
+				<CSSTransition
+					key={location.pathname}
+					classNames=""
+					timeout={500}
+				>
 					<div className="page">
 						<Routes location={location}>
-							{/* <CSSTransition in={isSidebarOpen} classNames="shrink-page" timeout={500}> */}
 							<Route path="/" element={<Home />} />
-							{/* </CSSTransition> */}
 							<Route path="/my-story" element={<MyStory />} />
 							<Route path="/my-class" element={<MyClass />} />
 							<Route path="/how-it-works" element={<HowItWorks />} />
@@ -205,24 +188,10 @@ function App() {
 									</RequireAdmin>
 								}
 							/>
-
-							{/* <Route path="/manage-classes-admin" element={<TeacherManage />} /> */}
-
-							{/* <Route path="/classes" element={<Classes />} />
-					<Route path="/contact" element={<Contact />} />
-					<Route
-						path="/dashboard"
-						element={
-							<RequireAdmin>
-								<Dashboard />
-							</RequireAdmin>
-						}
-					/> */}
 						</Routes>
 					</div>
 				</CSSTransition>
 			</TransitionGroup>
-			{/* </div> */}
 		</ApolloProvider>
 	);
 }

@@ -1,16 +1,9 @@
 import React from "react";
-import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
-
-import "../styles/Navbar.css";
-import { useModalContext } from "../utils/contexts/ModalContext";
 import { useUserContext } from "../utils/contexts/UserContext";
 import UserButtons from "./UserButtons";
 
 function Navbar() {
-	
-
-
 	const { currentUser } = useUserContext();
 	return (
 		<nav className="list-nav sidebar-nav">

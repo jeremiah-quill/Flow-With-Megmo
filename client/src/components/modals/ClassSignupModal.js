@@ -6,7 +6,6 @@ import { useUserContext } from "../../utils/contexts/UserContext";
 import { useToastContext } from "../../utils/contexts/ToastContext";
 import parseDate from "../../utils/helpers/parseDate";
 import "../../styles/ClassSignupModal.css";
-import "../../styles/Class.css";
 import megmoQr from "../../images/megmo-qr.png";
 import { sendEmail } from "../../utils/API";
 import {registerMsg} from '../../utils/emailMessages.js'

@@ -1,26 +1,23 @@
 import React, { useState } from "react";
-import CreateClassForm from "../forms/CreateClassForm";
-import StatsOverview from "../StatsOverview";
-// import ListMembersModal from "../modals/ListMembersModal";
-// import AddPlaylistModal from "../modals/AddPlaylistModal";
-// import DeleteClassModal from "../modals/DeleteClassModal";
-// import EditClassModal from "../modals/EditClassModal";
-// import "../../styles/Dashboard.css";
+import CreateClassForm from "../components/forms/CreateClassForm";
+import StatsOverview from "../components/StatsOverview";
 import { useQuery } from "@apollo/client";
 import {
 	QUERY_UPCOMING_CLASSES,
 	QUERY_COMPLETED_CLASSES,
-} from "../../utils/queries";
-import TeacherUpcomingList from "../lists/TeacherUpcomingList";
-import TeacherCompletedList from "../lists/TeacherCompletedList";
-import { useModalContext } from "../../utils/contexts/ModalContext";
+} from "../utils/queries";
+import TeacherUpcomingList from "../components/lists/TeacherUpcomingList";
+import TeacherCompletedList from "../components/lists/TeacherCompletedList";
+import { useModalContext } from "../utils/contexts/ModalContext";
 
 function AdminDashboard({ width, breakpoint }) {
+	// global context
 	const { configureModal } = useModalContext();
 
-	// toggle between list of registered and completed classes
+	// local state
 	const [listContent, setListContent] = useState(0);
 
+	// define queries and responses
 	const {
 		loading: upcomingLoading,
 		data: upcomingData,
@@ -45,10 +42,8 @@ function AdminDashboard({ width, breakpoint }) {
 	return (
 		<div className="main-section admin-dashboard">
 			<h1 className="admin-welcome">Welcome back Yogi!</h1>
-
 			<div className="admin-square-1">
 				<StatsOverview completedClasses={completedClasses} />
-
 				<button
 					className="main-btn schedule-class-btn"
 					onClick={() =>
@@ -58,7 +53,6 @@ function AdminDashboard({ width, breakpoint }) {
 					Schedule Class
 				</button>
 			</div>
-
 			{width < breakpoint ? (
 				<div className="multiple-lists-container">
 					<nav className="list-nav">
@@ -77,7 +71,6 @@ function AdminDashboard({ width, breakpoint }) {
 							</li>
 						</ul>
 					</nav>
-
 					{listContent === 0 ? (
 						<TeacherUpcomingList
 							scheduledClasses={upcomingClasses}
@@ -102,11 +95,6 @@ function AdminDashboard({ width, breakpoint }) {
 					/>
 				</div>
 			)}
-
-			{/* <h2>Scheduled</h2>
-			<TeacherUpcomingList scheduledClasses={upcomingClasses} refetch={refetchUpcoming} />
-			<h2>Completed</h2>
-			<TeacherCompletedList completedClasses={completedClasses} refetch={refetchCompleted} /> */}
 		</div>
 	);
 }
