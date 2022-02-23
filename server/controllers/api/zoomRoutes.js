@@ -22,7 +22,7 @@ zoomRoutes.post("/create-class", async (req, res) => {
 			res.json(data);
 		}).catch(e => {
 			console.log(e)
-			res.json(e)
+			res.json('something went wrong')
 		})
 });
 
