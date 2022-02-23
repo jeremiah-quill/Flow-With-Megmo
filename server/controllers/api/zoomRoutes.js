@@ -3,8 +3,8 @@ const fetch = require("node-fetch");
 const { getZoomJWT } = require("../../helpers.js");
 
 // Create a new yoga class
-zoomRoutes.post("/create-class", (req, res) => {
-	const token = getZoomJWT();
+zoomRoutes.post("/create-class", async (req, res) => {
+	const token = await getZoomJWT();
 
 	// Create new zoom meeting
 	fetch("https://api.zoom.us/v2/users/me/meetings", {

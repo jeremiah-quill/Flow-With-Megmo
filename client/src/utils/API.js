@@ -5,7 +5,7 @@ const { REACT_APP_BASEURL, REACT_APP_APIKEY } = process.env;
 
 // Zoom
 const zoomHeaders = {
-	Authorization: "Bearer my-token",
+	// Authorization: "Bearer my-token",
 	"Content-Type": "application/json",
 };
 
