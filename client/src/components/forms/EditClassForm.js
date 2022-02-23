@@ -75,9 +75,9 @@ function EditClassForm({ classId, zoomId, currentDateString, refetch }) {
 		} catch (err) {
 			// console.error(err);
 			configureToast(
-				"Something went wrong and your class was not updated, please submit a bug report.",
+				err.message,
 				"failure",
-				5000
+				10000
 			);
 		}
 	};

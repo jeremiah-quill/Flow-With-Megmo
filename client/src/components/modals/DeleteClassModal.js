@@ -52,9 +52,9 @@ function DeleteClassModal({ scheduledClass, refetch }) {
 		} catch (err) {
 			console.error(err);
 			configureToast(
-				"Something went wrong and your class was not deleted from the schedule, please submit a bug report.",
+				err.message,
 				"failure",
-				5000
+				10000
 			);
 		}
 	};

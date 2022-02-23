@@ -33,7 +33,11 @@ function AddPlaylistModal({ completedClass, refetchPlaylists, refetch }) {
 			});
 			console.log(data);
 		} catch (err) {
-			console.error(err);
+			configureToast(
+				err.message,
+				"failure",
+				10000
+			);
 		}
 
 		// TODO why doesn't this work

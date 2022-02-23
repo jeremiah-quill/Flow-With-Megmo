@@ -64,9 +64,9 @@ function CreateClassForm({ refetch }) {
 		} catch (err) {
 			// console.error(err);
 			configureToast(
-				"Something went wrong and your class was not added to the schedule, please submit a bug report and we will look into it.",
+				err.message,
 				"failure",
-				5000
+				10000
 			);
 		}
 	};
