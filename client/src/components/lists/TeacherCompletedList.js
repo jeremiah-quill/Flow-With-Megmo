@@ -7,6 +7,9 @@ import { useModalContext } from "../../utils/contexts/ModalContext";
 function TeacherCompletedList({ completedClasses, refetch }) {
 	const { configureModal } = useModalContext();
 
+	if(completedClasses.length < 1) return <div className="empty-list">You have not yet completed any classes.</div>
+
+
 	return (
 		<div className="multi-list-container">
 

@@ -8,6 +8,7 @@ import { useModalContext } from "../../utils/contexts/ModalContext";
 function TeacherUpcomingList({ scheduledClasses, refetch }) {
 	const { configureModal } = useModalContext();
 
+	if(scheduledClasses.length < 1) return <div className="empty-list">You have not yet scheduled any classes.</div>
 
 	return (
 		<div className="multi-list-container">
