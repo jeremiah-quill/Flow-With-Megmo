@@ -137,7 +137,7 @@ function StudentManage() {
 	return (
 		<div className="student-manage">
 			{width < breakpoint ? (
-				<div className="multiple-lists-container">
+				<div className="multiple-lists-container list-card">
 					<nav className="list-nav">
 						<ul className="list-nav-ul">
 							<li
@@ -178,26 +178,35 @@ function StudentManage() {
 				</div>
 			) : (
 				<div className="lists-container">
-					<div>
-						<h1 className="list-title">Available Classes</h1>
+					<div className="multi-list-container">
+					<h1 className="list-title">Available</h1>
+
+						<div className="multi-list list-card">
 						<ScheduledClassList
 							scheduledClasses={classes}
 							scheduleRefetch={refetch}
 							studentScheduleRefetch={refetchUpcomingStudentClasses}
 						/>
+						</div>
 					</div>
-					<div>
-						<h1 className="list-title">Registered Classes</h1>
+					<div className="multi-list-container">
+					<h1 className="list-title">Registered</h1>
+
+					<div className="multi-list list-card">
 
 						<RegisteredClassList
 							registeredClasses={studentUpcomingClasses}
 							handleUnregister={handleUnregister}
 						/>
+						</div>
 					</div>
-					<div>
-						<h1 className="list-title">Completed Classes</h1>
+					<div className="multi-list-container">
+					<h1 className="list-title">Completed</h1>
+
+					<div className="multi-list list-card">
 
 						<CompletedClassList completedClasses={studentCompletedClasses} />
+						</div>
 					</div>
 				</div>
 			)}

@@ -24,7 +24,11 @@
 
 	--main-brown: rgb(124, 109, 97);
 	--light-pink: rgba(231, 209, 201);
+	--lighter-pink: rgba(241, 231, 221)
+
 }
+
+
 
 input {
 	background-color: none !important;
@@ -69,6 +73,10 @@ body {
 
 .class-list-item {
 	border-bottom: 1px solid lightgray;
+}
+
+.class-details-list {
+	padding: .5em;
 }
 
 .class-list-item:last-child {
@@ -151,8 +159,12 @@ body {
 
 .student-manage {
 	height: 100vh;
-	background-color: white;
+	/* background-color: white; */
 	padding-top: 8em;
+	background-image: linear-gradient( 
+		174.2deg, rgba(255, 244, 228, 1) 7.1%, rgba(240, 246, 238, 1) 67.4% );
+		
+		
 }
 
 .hero {
@@ -162,6 +174,50 @@ body {
 		),
 		url("./images/main-img-2.jpeg");
 }
+
+.main-title-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	flex-direction: column;
+}
+
+.main-title {
+	color: white;
+	font-family: "Dawning of a New Day", cursive;
+	font-size: 5em;
+	text-align: center;
+	/* max-width: 5ch; */
+	/* border: 5px solid white; */
+	/* padding: 1em; */
+	padding: 20px 10px;
+	margin: 0 20px;
+}
+
+.title-btns > .user-btns {
+	/* display: flex */
+	flex-direction: row;
+	color: purple;
+	display: block;
+	margin: 0;
+	padding: 0;
+	border: none;
+	width: auto;
+	margin-top: 1em;
+}
+
+.title-btns > .user-btns button {
+	border: 3px solid white;
+	color: white;
+	background: transparent;
+	margin: 0;
+}
+
+.title-btns > .user-btns > button:last-child {
+	margin-left: 1em;
+}
+
 
 .yoga-blocks-img {
 	background: linear-gradient(
@@ -238,8 +294,6 @@ body {
 
 .main-section h2,
 .main-section p {
-	width: 90%;
-	margin: 0 auto;
 	max-width: 75ch;
 }
 
@@ -257,6 +311,10 @@ body {
 	font-size: 16px;
 	color: var(--light-gray-text);
 	line-height: 1.5;
+	margin: 0 auto;
+	width: 90%;
+
+
 }
 
 .main-section {
@@ -270,7 +328,10 @@ body {
 	font-size: 2em;
 	text-align: center;
 	margin-bottom: 1em;
+	margin-bottom: 3em;
+
 }
+
 
 .section-content {
 	padding-top: 1em;
@@ -363,9 +424,11 @@ footer {
 	margin: 0 auto;
 }
 
-.lists-container > * {
+/* .lists-container > * {
 	padding: 0 5em;
-}
+} */
+
+
 
 /* ADMIN DASHBOARD */
 .stats-overview {
@@ -409,10 +472,42 @@ footer {
 	margin: 0 auto;
 }
 
+.list-card {
+	background: var(--lighter-pink);
+	padding: 1em;
+	/* margin: .5em; */
+	border-radius: 10px;
+}
+
 .multiple-lists-nav-item {
 	font-size: 14px;
 	color: gray;
 	padding-bottom: 1em;
+}
+
+.multi-list {
+	background: var(--lighter-pink);
+	padding: 1em;
+	/* border: var(--light-pink); */
+	/* margin: .5em; */
+	border-radius: 10px;
+	width: 80%;
+	margin: .5em auto;
+	/* max-width: 500px;
+	min-width: 400px; */
+	/* box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px; */
+}
+
+.multi-list-container {
+	flex: 1;
+	/* display: flex; */
+	/* align-items: center;
+	justify-content: center; */
+}
+
+.lists-container {
+	display: flex;
+	width: 100%;
 }
 
 .currently-registered {
@@ -446,10 +541,10 @@ button:disabled {
 	height: 100%;
 }
 
-.create-class-date, .create-class-time {
+.create-class-date,
+.create-class-time {
 	margin-bottom: 1em;
 }
-
 
 .update-class-form {
 	display: flex;
@@ -469,8 +564,6 @@ button:disabled {
 
 /* MODALS */
 
-
-
 .cancel-modal {
 	height: 100%;
 	display: flex;
@@ -483,7 +576,7 @@ button:disabled {
 }
 
 .please-confirm-cancel {
-	padding: .5em;
+	padding: 0.5em;
 }
 
 .edit-class-modal {
@@ -523,6 +616,7 @@ button:disabled {
 .main-btn {
 	background-color: var(--main-brown);
 	color: var(--light-pink);
+	border-radius: 5px;
 }
 
 .modal-btn {
@@ -553,7 +647,20 @@ button:disabled {
 
 .list-title {
 	text-align: center;
+}
+
+.list-title {
+	/* margin-top: -23px; */
+	/* padding: .5em 1.5em; */
+	/* background: var(--main-brown); */
+	border-radius: 5px;
+	width: 50%;
+	color: black;
+	font-weight: bold;
+	margin: 0 auto;
+	/* margin-top: -23px; */
 	margin-bottom: 2em;
+
 }
 
 .empty-list {
@@ -821,6 +928,13 @@ button:disabled {
 		margin-left: auto;
 		line-height: 16px;
 	}
+
+	.main-title {
+		font-size: 8em;
+		max-width: 500px;
+	}
+
+
 
 	/* .user-btns > button {
 		background: white;
