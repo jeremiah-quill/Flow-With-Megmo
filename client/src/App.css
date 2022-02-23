@@ -24,11 +24,8 @@
 
 	--main-brown: rgb(124, 109, 97);
 	--light-pink: rgba(231, 209, 201);
-	--lighter-pink: rgba(241, 231, 221)
-
+	--lighter-pink: rgba(241, 231, 221);
 }
-
-
 
 input {
 	background-color: none !important;
@@ -76,7 +73,7 @@ body {
 }
 
 .class-details-list {
-	padding: .5em;
+	padding: 0.5em;
 }
 
 .class-list-item:last-child {
@@ -161,10 +158,11 @@ body {
 	height: 100vh;
 	/* background-color: white; */
 	padding-top: 8em;
-	background-image: linear-gradient( 
-		174.2deg, rgba(255, 244, 228, 1) 7.1%, rgba(240, 246, 238, 1) 67.4% );
-		
-		
+	background-image: linear-gradient(
+		174.2deg,
+		rgba(255, 244, 228, 1) 7.1%,
+		rgba(240, 246, 238, 1) 67.4%
+	);
 }
 
 .hero {
@@ -217,7 +215,6 @@ body {
 .title-btns > .user-btns > button:last-child {
 	margin-left: 1em;
 }
-
 
 .yoga-blocks-img {
 	background: linear-gradient(
@@ -313,8 +310,6 @@ body {
 	line-height: 1.5;
 	margin: 0 auto;
 	width: 90%;
-
-
 }
 
 .main-section {
@@ -329,9 +324,7 @@ body {
 	text-align: center;
 	margin-bottom: 1em;
 	margin-bottom: 3em;
-
 }
-
 
 .section-content {
 	padding-top: 1em;
@@ -428,8 +421,6 @@ footer {
 	padding: 0 5em;
 } */
 
-
-
 /* ADMIN DASHBOARD */
 .stats-overview {
 	display: flex;
@@ -442,7 +433,11 @@ footer {
 }
 .admin-dashboard {
 	padding-top: 8em;
-	background-color: white;
+	background-image: linear-gradient(
+		174.2deg,
+		rgba(255, 244, 228, 1) 7.1%,
+		rgba(240, 246, 238, 1) 67.4%
+	);
 }
 .schedule-class-btn {
 	width: 100px;
@@ -492,7 +487,7 @@ footer {
 	/* margin: .5em; */
 	border-radius: 10px;
 	width: 80%;
-	margin: .5em auto;
+	margin: 0.5em auto;
 	/* max-width: 500px;
 	min-width: 400px; */
 	/* box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px; */
@@ -660,7 +655,6 @@ button:disabled {
 	margin: 0 auto;
 	/* margin-top: -23px; */
 	margin-bottom: 2em;
-
 }
 
 .empty-list {
@@ -933,8 +927,6 @@ button:disabled {
 		font-size: 8em;
 		max-width: 500px;
 	}
-
-
 
 	/* .user-btns > button {
 		background: white;

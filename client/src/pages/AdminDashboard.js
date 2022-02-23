@@ -59,7 +59,7 @@ function AdminDashboard() {
 				</button>
 			</div>
 			{width < breakpoint ? (
-				<div className="multiple-lists-container">
+				<div className="multiple-lists-container list-card">
 					<nav className="list-nav">
 						<ul className="list-nav-ul">
 							<li
@@ -89,7 +89,7 @@ function AdminDashboard() {
 					)}
 				</div>
 			) : (
-				<div className="lists-container">
+				<div className="lists-container multi-list-container">
 					<TeacherUpcomingList
 						scheduledClasses={upcomingClasses}
 						refetch={refetchUpcoming}

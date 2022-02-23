@@ -10,7 +10,8 @@ function TeacherUpcomingList({ scheduledClasses, refetch }) {
 
 
 	return (
-		<ul className="student-lists class-list">
+		<div className="multi-list-container">
+		<ul className="multi-list list-card">
 			{scheduledClasses.map((scheduledClass) => (
 				<li className="class-list-item" key={scheduledClass._id}>
 					<ClassDetails date={scheduledClass.date} />
@@ -49,6 +50,7 @@ function TeacherUpcomingList({ scheduledClasses, refetch }) {
 				</li>
 			))}
 		</ul>
+		</div>
 	);
 }
 

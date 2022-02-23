@@ -8,7 +8,9 @@ function TeacherCompletedList({ completedClasses, refetch }) {
 	const { configureModal } = useModalContext();
 
 	return (
-		<ul className="student-lists class-list">
+		<div className="multi-list-container">
+
+		<ul className="multi-list list-card">
 			{completedClasses.map((completedClass) => (
 				<li className="class-list-item" key={completedClass._id}>
 					<ClassDetails date={completedClass.date} />
@@ -38,6 +40,7 @@ function TeacherCompletedList({ completedClasses, refetch }) {
 				</li>
 			))}
 		</ul>
+		</div>
 	);
 }
 
