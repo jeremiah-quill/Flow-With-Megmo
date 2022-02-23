@@ -55,8 +55,8 @@ const spotifyToken = () => {
 	});
 };
 
-const sendEmail = (data) => {
-	return axios.post(`/api/email/`, data)
+const sendEmail = async (data) => {
+	return await axios.post(`/api/email`, data)
 }
 
 // use spotify token to get playlists

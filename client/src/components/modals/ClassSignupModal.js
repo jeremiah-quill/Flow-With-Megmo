@@ -60,6 +60,7 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefe
 				message: registerMsg(classDetails, addToRosterData.addStudentToClass.link)
 			};
 			const emailResponse = await sendEmail(emailData);
+			console.log(emailResponse)
 
 			setRegistered(true);
 			configureToast(
