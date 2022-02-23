@@ -13,7 +13,7 @@ const studentSchema = new Schema({
 		trim: true,
 		required: [true, 'Please enter a username.'],
 		minlength: 3,
-		maxlength: 20
+		maxlength: 30
 	},
 	registeredClasses: [
 		{
@@ -37,8 +37,8 @@ const studentSchema = new Schema({
 		type: String,
 		required: true,
 		trim: true,
-		minlength: 4,
-		maxlength: 10
+		minlength: 3,
+		maxlength: 30
 	},
 });
 
