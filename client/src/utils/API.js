@@ -11,9 +11,11 @@ const zoomHeaders = {
 
 // create class
 const zoomCreate = async (data) => {
+	console.log('API line 14')
 	const response = await axios.post(`/api/zoom/create-class`, data, {
 		zoomHeaders,
 	});
+	console.log('API line 18')
 
 	const newClassDetails = response.data;
 

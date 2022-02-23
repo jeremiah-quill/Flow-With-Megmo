@@ -32,6 +32,7 @@ function CreateClassForm({ refetch }) {
 
 		try {
 			const classResponse = await zoomCreate(classData);
+			console.log(classResponse)
 			const newClassDetails = JSON.parse(classResponse);
 
 			// TODO: error handling on response from zoom api
