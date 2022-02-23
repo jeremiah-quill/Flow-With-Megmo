@@ -119,7 +119,7 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefe
 						{width < breakpoint ? (
 							<button className="main-btn modal-btn">
 								<a className="venmo-btn"
-									href={`https://venmo.com/meghan-moran-7?txn=pay&note=Flow+with+Megmo:+${scheduledClass.date}&amount=${scheduledClass.price}`}
+									href={`https://venmo.com/meghan-moran-7?txn=pay&note=namaste!&amount=${scheduledClass.price}`}
 								>
 									Venmo
 								</a>

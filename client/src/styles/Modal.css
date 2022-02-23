@@ -140,10 +140,10 @@
 	transition-delay: 350ms;
 }
 
-@media screen and (min-width: 765px) {
+@media screen and (min-width: 1200px) {
 	.modal-card {
-		top: 150px;
-		bottom: 150px;
+		top: 20%;
+		bottom: 20%;
 		left: 20%;
 		right: 20%;
 		width: auto;
@@ -164,10 +164,10 @@
 	margin: 0 auto;
 }
 
-@media screen and (min-width: 765px) {
+@media screen and (min-width: 1200px) {
 	.modal-card {
-		top: 250px;
-		bottom: 250px;
+		top: 20%;
+		bottom: 20%;
 		left: 30%;
 		right: 30%;
 	}

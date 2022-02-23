@@ -4,18 +4,20 @@ function MyClass() {
 	return (
 		<section className="main-section how-it-works-section">
 			<div className="yoga-blocks-img">
-				<h2 className="section-title yoga-blocks-title">What can you expect from my class?</h2>
-
-
+				<h2 className="section-title yoga-blocks-title">
+					What can you expect from my class?
+				</h2>
 
 				<p className="section-content yoga-blocks-content">
-				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae
-				voluptate similique dolorum, qui doloribus dolore at recusandae officia
-				ut tempora expedita id delectus vel nisi alias sed quod quam assumenda.
-				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ea,
-				aliquid quas vero repellat neque. Nisi explicabo, nostrum aliquam quis
-				quos repellendus aperiam dolores totam maiores sint, modi, ut placeat?
-			</p>
+					My classes are typically an hour long with a carefully crafted blend
+					of stretching, breathing, strengthening, and cardio. The goal is to
+					get your heart pumping, but my mantra is always "go at your own pace".
+					All set to an upbeat, curated playlist (by yours truly) to match the
+					movements and mood of class.<br></br>
+					<br></br>You deserve to take this time for yourself, believe me, I
+					know how challenging it is to find the time. Don't think of this as
+					yoga, think of this as YOUga!
+				</p>
 			</div>
 		</section>
 	);
