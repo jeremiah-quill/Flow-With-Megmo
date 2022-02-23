@@ -4,18 +4,15 @@ import axios from "axios";
 const { REACT_APP_BASEURL, REACT_APP_APIKEY } = process.env;
 
 // Zoom
-const zoomHeaders = {
-	Authorization: "Bearer my-token",
-	"Content-Type": "application/json",
-};
+// const zoomHeaders = {
+// 	Authorization: "Bearer my-token",
+// 	"Content-Type": "application/json",
+// };
 
 // create class
 const zoomCreate = async (data) => {
-	console.log('API line 14')
-	const response = await axios.post(`/api/zoom/create-class`, data, {
-		zoomHeaders,
-	});
-	console.log('API line 18')
+	const response = await axios.post(`/api/zoom/create-class`, data);
+	console.log(response)
 
 	const newClassDetails = response.data;
 
@@ -24,19 +21,19 @@ const zoomCreate = async (data) => {
 
 // create class
 const zoomJoin = async (data) => {
-	const response = await axios.post(`/api/zoom/join-class`, data, { zoomHeaders });
+	const response = await axios.post(`/api/zoom/join-class`, data);
 	const joinDetails = response.data;
 	return JSON.stringify(joinDetails)
 };
 
 // delete class
 const zoomDelete = (data) => {
-	return axios.post(`/api/zoom/delete-class`, data, { zoomHeaders });
+	return axios.post(`/api/zoom/delete-class`, data);
 };
 
 // edit class
 const zoomEdit = (data) => {
-	return axios.post(`/api/zoom/edit-class`, data, { zoomHeaders });
+	return axios.post(`/api/zoom/edit-class`, data);
 };
 
 // get spotify token

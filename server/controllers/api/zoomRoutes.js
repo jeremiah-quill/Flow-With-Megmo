@@ -20,7 +20,10 @@ zoomRoutes.post("/create-class", async (req, res) => {
 		.then((data) => {
 			// TODO: Extract necessary meeting details, add to database, and send meeting details to front end to display to admin
 			res.json(data);
-		});
+		}).catch(e => {
+			console.log(e)
+			res.json(e)
+		})
 });
 
 // Edit an existing yoga class
