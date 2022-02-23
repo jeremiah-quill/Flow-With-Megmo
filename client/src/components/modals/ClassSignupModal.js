@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_TO_ROSTER, ADD_CLASS_TO_STUDENT } from "../../utils/mutations";
 import { useUserContext } from "../../utils/contexts/UserContext";
 import { useToastContext } from "../../utils/contexts/ToastContext";
+import {useWidthContext} from '../../utils/contexts/WidthContext'
 import parseDate from "../../utils/helpers/parseDate";
 import "../../styles/ClassSignupModal.css";
 import megmoQr from "../../images/megmo-qr.png";
@@ -11,14 +12,16 @@ import { sendEmail } from "../../utils/API";
 import {registerMsg} from '../../utils/emailMessages.js'
 
 function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefetch }) {
-	const [width, setWidth] = useState(window.innerWidth);
-	const breakpoint = 765;
+	// const [width, setWidth] = useState(window.innerWidth);
+	// const breakpoint = 765;
 
-	useEffect(() => {
-		const handleWindowResize = () => setWidth(window.innerWidth);
-		window.addEventListener("resize", handleWindowResize);
-		return () => window.removeEventListener("resize", handleWindowResize);
-	}, []);
+	// useEffect(() => {
+	// 	const handleWindowResize = () => setWidth(window.innerWidth);
+	// 	window.addEventListener("resize", handleWindowResize);
+	// 	return () => window.removeEventListener("resize", handleWindowResize);
+	// }, []);
+
+	const {width, breakpoint} = useWidthContext()
 
 	// used to control the content the user sees (ability to register for class if they are signed in, required to login/signup if not signed in)
 	const [registered, setRegistered] = useState(false);
