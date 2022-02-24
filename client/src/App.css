@@ -182,7 +182,7 @@ body {
 .student-manage {
 	height: 100vh;
 	/* background-color: white; */
-	padding-top: 12em;
+	padding-top: 8em;
 	background-image: linear-gradient(
 		174.2deg,
 		rgba(255, 244, 228, 1) 7.1%,
@@ -416,8 +416,9 @@ body {
 .my-story-section {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	/* justify-content: center; */
 	align-items: center;
+	padding-top: 8em;
 }
 
 /* how it works */
@@ -485,8 +486,8 @@ body {
 		rgba(255, 244, 228, 1) 7.1%,
 		rgba(240, 246, 238, 1) 67.4%
 	); */
-	background-image: url('./images/confetti-doodles.svg')
-
+	background-image: url('./images/confetti-doodles.svg');
+padding-top: 8em;
 }
 
 .book-private-section {
@@ -934,6 +935,15 @@ button:disabled {
 	transition: opacity 500ms ease, transform 500ms ease;
 }
 
+.page > .main-section {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-y: scroll;
+}
+
 @media screen and (min-width: 1200px) {
 	.active-link {
 		border-bottom: 2px solid var(--main-brown);
@@ -942,6 +952,8 @@ button:disabled {
 	.inactive-link {
 		border-bottom: 2px solid transparent;
 	}
+
+
 	
 
 
@@ -1008,6 +1020,12 @@ button:disabled {
 		align-items: center;
 		justify-content: center;
 		/* padding-top: 30em; */
+		padding-top: 12em;
+
+	}
+
+	.how-it-works, .my-story-section {
+		padding-top: 12em;
 	}
 
 	.how-it-works-container {

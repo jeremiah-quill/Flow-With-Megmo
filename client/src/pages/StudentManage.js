@@ -135,7 +135,7 @@ function StudentManage() {
 		);
 
 	return (
-		<div className="student-manage">
+		<div className="student-manage main-section">
 			<div className="dashboard-instructions">
 				<p className="dashboard-instructions-content">
 					Find my classes here. Book a class and follow the instructions on
