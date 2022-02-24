@@ -1,4 +1,10 @@
-/* .contact-form {
+.book-private-section {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.contact-form {
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
@@ -7,29 +13,33 @@
 }
 
 .contact-email-input::placeholder, textarea::placeholder { 
-    color: white;
+    /* color: white; */
     opacity: 1; 
-    font-family: 'Fredoka One', cursive !important;
+    font-family: var(--ff-main);
     padding-left: 1em;
   }
 
 
 .contact-email-input {
 	border: none;
-	background-color: var(--blue3);
+	/* background-color: var(--blue3); */
 	border-radius: 0;
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
-	box-shadow: var(--main-box-shadow);
+	background-color: var(--light-pink);
+
+	/* box-shadow: var(--main-box-shadow); */
 }
 
 textarea {
 	resize: none;
-	background-color: var(--blue3);
+	/* background-color: var(--blue3); */
 	outline: none;
 	border: none;
-	box-shadow: var(--main-box-shadow);
+	/* box-shadow: var(--main-box-shadow); */
 	width: 100%;
+	background-color: var(--light-pink);
+
 }
 
 .contact-submit {
@@ -38,12 +48,12 @@ textarea {
 	border-radius: 0;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	box-shadow: var(--main-box-shadow);
+	/* box-shadow: var(--main-box-shadow); */
 }
 
 .contact-submit:hover {
 	transform: translate(0);
-	box-shadow: var(--main-box-shadow);
+	/* box-shadow: var(--main-box-shadow); */
 	filter: brightness(85%);
 }
 
@@ -75,4 +85,4 @@ textarea {
 .submit-btn:disabled {
     cursor:not-allowed;
 }
- */
+

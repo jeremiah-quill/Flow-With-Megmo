@@ -1,5 +1,6 @@
 import "./reset.css";
 import "./App.css";
+import "./styles/Contact.css"
 import React, { useEffect, useState } from "react";
 import { setContext } from "@apollo/client/link/context";
 import {
