@@ -43,6 +43,7 @@ function AdminDashboard() {
 	if (completedError) return `Error! ${completedError.message}`;
 
 	return (
+		<div className="admin-page-background page-background">
 		<div className="main-section admin-dashboard">
 			<h1 className="admin-welcome">Welcome back Yogi!</h1>
 			<div className="admin-square-1">
@@ -100,6 +101,7 @@ function AdminDashboard() {
 					/>
 				</div>
 			)}
+		</div>
 		</div>
 	);
 }

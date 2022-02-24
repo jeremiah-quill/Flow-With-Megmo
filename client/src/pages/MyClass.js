@@ -3,8 +3,7 @@ import React from "react";
 function MyClass() {
 	return (
 		<div className="yoga-blocks-hero">
-		<section className="main-section how-it-works-section">
-			<div className="yoga-blocks-img">
+		<section className="main-section my-class-section">
 				<h2 className="section-title yoga-blocks-title text-container-h2">
 					What can you expect from my class?
 				</h2>
@@ -19,7 +18,6 @@ function MyClass() {
 					know how challenging it is to find the time. Don't think of this as
 					yoga, think of this as YOUga!
 				</p>
-			</div>
 		</section>
 		</div>
 	);

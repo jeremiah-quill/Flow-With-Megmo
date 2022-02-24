@@ -2,6 +2,7 @@ import React from "react";
 
 function MyStory() {
 	return (
+		<div className="page-background my-story-background">
 		<section className="main-section my-story-section">
 			<div className="my-story-content-container">
 				<h2 className="section-title text-container-h2">My Story</h2>
@@ -18,6 +19,7 @@ function MyStory() {
 
 			<img className="my-img" src="megmo-yoga2compressed.png" />
 		</section>
+		</div>
 	);
 }
 
