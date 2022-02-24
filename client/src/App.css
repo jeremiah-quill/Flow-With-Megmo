@@ -66,6 +66,7 @@ body {
 	width: 100%;
 	padding: 1em 1em;
 	align-items: center;
+	min-height: 92px;
 }
 
 .class-list-item {
@@ -91,6 +92,7 @@ body {
 
 .list-nav {
 	padding-bottom: 3em;
+	padding-top: 1em;
 }
 
 .sidebar-nav {
@@ -165,13 +167,7 @@ body {
 	);
 }
 
-.hero {
-	background: linear-gradient(
-			rgba(231, 209, 201, 0.3),
-			rgba(231, 209, 201, 0.3)
-		),
-		url("./images/main-img-2.jpeg");
-}
+
 
 .main-title-container {
 	display: flex;
@@ -228,15 +224,43 @@ body {
 	justify-content: center;
 }
 
+.hero {
+	background-image: 
+	/* linear-gradient(
+			rgba(231, 209, 201, 0.3),
+			rgba(231, 209, 201, 0.3)
+		), */
+		url("./images/look-up.PNG");
+}
+
 .hero,
 .yoga-blocks-img {
-	background-position: center;
+	/* background-position: center; */
 	background-repeat: none;
 	height: 100vh;
-	background-position: center;
+	/* background-position: center; */
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
+}
+.hero {
+	/* background-position: 0px px; */
+	/* background: linear-gradient(
+		rgba(231, 209, 201, 0.3),
+		rgba(231, 209, 201, 0.3)
+	)
+	url("./images/look-up.PNG"), no-repeat, -500px 0; */
+	/* background-position: -200px 0; */
+	/* background-size:initial; */
+	/* background-position: -270px 0px; */
+	/* object-fit: cover; */
+	background-position: -250px;
+}
+
+@media screen and (min-width:1000px) {
+	.hero {
+		background-position:initial;	
+	}
 }
 
 .yoga-blocks-content,
@@ -250,6 +274,11 @@ body {
 	text-align: center;
 	width: 100%;
 	font-family: "Dawning of a New Day", cursive;
+}
+
+.hero-title a {
+	text-decoration: none;
+	color: black;
 }
 
 .hero-content {
@@ -469,7 +498,7 @@ footer {
 
 .list-card {
 	background: var(--lighter-pink);
-	padding: 1em;
+	/* padding: 1em; */
 	/* margin: .5em; */
 	border-radius: 10px;
 }
@@ -482,12 +511,13 @@ footer {
 
 .multi-list {
 	background: var(--lighter-pink);
-	padding: 1em;
+	/* padding: 1em; */
 	/* border: var(--light-pink); */
 	/* margin: .5em; */
 	border-radius: 10px;
 	width: 80%;
 	margin: 0.5em auto;
+	min-height: 92px;
 	/* max-width: 500px;
 	min-width: 400px; */
 	/* box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px; */
@@ -514,6 +544,16 @@ footer {
 	width: 100px;
 	margin: 0 auto;
 	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.qr-code-problem {
+	font-size: .75em;
+}
+
+.venmo-span {
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 .header {
@@ -660,9 +700,17 @@ button:disabled {
 .empty-list {
 	padding: 1em;
 	text-align: center;
+	min-height: 92px !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 /* PLAYLIST LIST */
+.view-btn, .edit-btn {
+	margin-right: .5em;
+}
+
 .playlist-list {
 	padding: 0.5em;
 }

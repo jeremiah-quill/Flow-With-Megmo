@@ -102,9 +102,9 @@ function StudentManage() {
 			refetch();
 
 			configureToast(
-				"You have been successfully removed from class.",
+				"Bummer!  Don't sweat it.  Hope to see you soon.",
 				"success",
-				5000
+				10000
 			);
 		} catch (err) {
 			console.error(err);

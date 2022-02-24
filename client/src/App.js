@@ -29,6 +29,7 @@ import HowItWorks from "./pages/HowItWorks";
 import BookPrivate from "./pages/BookPrivate";
 import StudentManage from "./pages/StudentManage";
 import Navbar from "./components/Navbar";
+import {Link} from 'react-router-dom'
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -99,7 +100,7 @@ function App() {
 					""
 				) : (
 					<div className="hero-content">
-						<h1 className="hero-title">Flow with Megmo</h1>
+						<h1 className="hero-title"><Link to="/">Flow with Megmo</Link></h1>
 					</div>
 				)}
 

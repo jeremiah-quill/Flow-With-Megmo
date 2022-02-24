@@ -19,7 +19,7 @@ function TeacherCompletedList({ completedClasses, refetch }) {
 					<ClassDetails date={completedClass.date} />
 					<div className="class-actions">
 						<button
-							className="main-btn"
+							className="main-btn view-btn"
 							onClick={() =>
 								configureModal(<ListMembersModal yogaClass={completedClass} />)
 							}
@@ -27,7 +27,7 @@ function TeacherCompletedList({ completedClasses, refetch }) {
 							View
 						</button>
 						<button
-							className="main-btn"
+							className="main-btn playlist-btn"
 							onClick={() =>
 								configureModal(
 									<AddPlaylistModal

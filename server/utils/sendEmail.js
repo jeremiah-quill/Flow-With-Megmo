@@ -6,7 +6,8 @@ const mailOptions = {
 	from: "flowwithmegmo@gmail.com",
 	to: "",
 	subject: "",
-	text: "",
+	// text: "",
+	html: ""
 };
 
 // email transporter config
@@ -22,7 +23,7 @@ const transporter = nodemailer.createTransport({
 const sendEmail = (toEmail, subject, message) => {
     mailOptions.to = toEmail;
 	mailOptions.subject = subject;
-	mailOptions.text = message;
+	mailOptions.html = message;
 	transporter.sendMail(mailOptions, (err, info) => {
 		if (err) {
 			console.log(err);

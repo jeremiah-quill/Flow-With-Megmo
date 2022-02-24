@@ -7,13 +7,13 @@ function ClassDetails({ date, price }) {
 
 	return (
 		<div className="class-details">
-			<h3 className="card-header">Flow with Megmo</h3>
-			<div className="class-card-day">
+			{/* <h3 className="card-header class-details-item">Flow with Megmo</h3> */}
+			<div className="class-card-day class-details-item">
 				{dayOfWeek}, {month}/{dayOfMonth}
 			</div>
-			<div className="class-card-day">{hour}</div>
+			<div className="class-card-day class-details-item">{hour}</div>
 			{price ? (
-				<div className="class-card-day">${price}</div>
+				<div className="class-card-day class-details-item">${price}</div>
 			) : (
 				""
 			)}

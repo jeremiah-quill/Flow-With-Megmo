@@ -4,14 +4,18 @@ import { useMutation } from "@apollo/client";
 import { ADD_TO_ROSTER, ADD_CLASS_TO_STUDENT } from "../../utils/mutations";
 import { useUserContext } from "../../utils/contexts/UserContext";
 import { useToastContext } from "../../utils/contexts/ToastContext";
-import {useWidthContext} from '../../utils/contexts/WidthContext'
+import { useWidthContext } from "../../utils/contexts/WidthContext";
 import parseDate from "../../utils/helpers/parseDate";
 import "../../styles/ClassSignupModal.css";
 import megmoQr from "../../images/megmo-qr.png";
 import { sendEmail } from "../../utils/API";
-import {registerMsg} from '../../utils/emailMessages.js'
+import { registerMsg } from "../../utils/emailMessages.js";
 
-function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefetch }) {
+function ClassSignupModal({
+	scheduledClass,
+	scheduleRefetch,
+	studentScheduleRefetch,
+}) {
 	// const [width, setWidth] = useState(window.innerWidth);
 	// const breakpoint = 765;
 
@@ -21,7 +25,7 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefe
 	// 	return () => window.removeEventListener("resize", handleWindowResize);
 	// }, []);
 
-	const {width, breakpoint} = useWidthContext()
+	const { width, breakpoint } = useWidthContext();
 
 	// used to control the content the user sees (ability to register for class if they are signed in, required to login/signup if not signed in)
 	const [registered, setRegistered] = useState(false);
@@ -59,20 +63,23 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefe
 
 			const emailData = {
 				toEmail: currentUser.email,
-				subject: `Flow with Megmo Zoom Link: ${dayOfWeek}, ${month}/${dayOfMonth} @ ${hour}`,
-				message: registerMsg(classDetails, addToRosterData.addStudentToClass.link)
+				subject: `Flow with Megmo registration confirmed for ${dayOfWeek}, ${month}/${dayOfMonth} @ ${hour}.  Open for class link.`,
+				message: registerMsg(
+					classDetails,
+					addToRosterData.addStudentToClass.link
+				),
 			};
 			const emailResponse = await sendEmail(emailData);
-			console.log(emailResponse)
+			console.log(emailResponse);
 
 			setRegistered(true);
 			configureToast(
-				"Success! You have registered for class.  Please follow instructions on the screen to pay your class fee.",
+				"Yay you're in!  Follow the prompt to complete payment.",
 				"success",
-				5000
+				10000
 			);
 			scheduleRefetch();
-			studentScheduleRefetch()
+			studentScheduleRefetch();
 		} catch (err) {
 			configureToast(
 				"Something went wrong, please email us at flowwithmegmo@gmail.com",
@@ -101,10 +108,7 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefe
 								Price: ${scheduledClass.price}
 							</li>
 						</ul>
-						<button
-							className="main-btn modal-btn"
-							onClick={handleRegister}
-						>
+						<button className="main-btn modal-btn" onClick={handleRegister}>
 							Confirm
 						</button>
 					</div>
@@ -113,22 +117,29 @@ function ClassSignupModal({ scheduledClass, scheduleRefetch, studentScheduleRefe
 				<div className="modal-content">
 					<div className="signup-step">
 						<p className="venmo-instructions">
-							We've sent a zoom meeting invite to {currentUser.email}. Please
+							We've sent a zoom meeting invite to {currentUser.email}. Complete
+							your payment by
 							{width < breakpoint
-								? " click the link below"
-								: " scan the QR code below with your phone camera"}{" "}
-							to complete payment via venmo. I can't wait to see you in class!
+								? " clicking the link below"
+								: " using your camera to scan the QR code below"}{" "}
 						</p>
 						{width < breakpoint ? (
 							<button className="main-btn modal-btn">
-								<a className="venmo-btn"
+								<a
+									className="venmo-btn"
 									href={`https://venmo.com/meghan-moran-7?txn=pay&note=namaste!&amount=${scheduledClass.price}`}
 								>
 									Venmo
 								</a>
 							</button>
 						) : (
-							<img className="qr-code" src={megmoQr} />
+							<>
+								<img className="qr-code" src={megmoQr} />
+								<p className="qr-code-problem">
+									Having trouble? No prob! Just venmo $12 to{" "}
+									<span className="venmo-span">meghan-moran-7</span>
+								</p>
+							</>
 						)}
 					</div>
 				</div>
