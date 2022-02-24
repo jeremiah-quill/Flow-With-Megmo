@@ -1,7 +1,7 @@
 {
   "name": "flow-with-megmo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A portal for students to access my wife's online yoga classes",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
