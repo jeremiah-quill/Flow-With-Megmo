@@ -3,6 +3,7 @@ import { CSSTransition } from "react-transition-group";
 import { useSidebarContext } from "../utils/contexts/SidebarContext";
 import Navbar from "./Navbar";
 import hamburger from "../images/hamburger.png";
+import {Link} from 'react-router-dom';
 
 
 function Sidebar() {
@@ -28,7 +29,7 @@ function Sidebar() {
 					></div>
 					<div className="sidebar">
 						<div className="hero-content hero-content-sidebar">
-							<h1 className="hero-title">Flow with Megmo</h1>
+							<h1 className="hero-title"><Link to={'/'}>Flow with Megmo</Link></h1>
 						</div>
 						<Navbar />
 					</div>
