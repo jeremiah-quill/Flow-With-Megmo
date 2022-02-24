@@ -27,6 +27,12 @@
 	--lighter-pink: rgba(241, 231, 221);
 }
 
+.coming-soon {
+	color: white;
+	font-size: 5em;
+	text-align: center;
+}
+
 input {
 	background-color: none !important;
 }
@@ -281,7 +287,7 @@ body {
 
 .hero-title a {
 	text-decoration: none;
-	color: black;
+	color: var(--main-brown);
 }
 
 .hero-content {
@@ -321,12 +327,12 @@ body {
 	fill: white;
 }
 
-.main-section h2,
-.main-section p {
+.main-section .text-container-h2,
+.main-section .text-container-p {
 	max-width: 75ch;
 }
 
-.main-section h2 {
+.main-section .text-container-h2 {
 	text-transform: uppercase;
 	font-size: 18px;
 	font-weight: 700;
@@ -335,7 +341,7 @@ body {
 	color: rgb(124, 109, 97);
 }
 
-.main-section p {
+.main-section .text-container-p {
 	font-weight: 500;
 	font-size: 16px;
 	color: var(--light-gray-text);
@@ -392,6 +398,47 @@ body {
 /* how it works */
 .how-it-works-item + .how-it-works-item {
 	margin-top: 2em;
+}
+
+.how-it-works-item {
+	background: var(--light-pink);
+	padding: 1em;
+	border-radius: 5px;
+	padding-top: 6em;
+	/* height: 175px !important; */
+	max-width: 350px;
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--light-gray-text);
+	line-height: 1.5;
+}
+
+.link-span {
+	font-weight: bold;
+	color: var(--main-brown);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.how-it-works-btn {
+	font-weight: bold;
+	color: var(--main-brown);
+	text-decoration: underline;
+	cursor: pointer;
+	background: none;
+	outline: none;
+	border: none;
+	font-size: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+.how-it-works-icon {
+	position: relative;
+	top: -50px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 50px;
 }
 
 /* How does this work? */
@@ -924,13 +971,21 @@ button:disabled {
 
 	.how-it-works-container {
 		display: flex;
-		align-items: center;
+		/* align-items: center; */
 		max-width: 893px;
+		/* align-items: stretch; */
 	}
 
 	.how-it-works-item + .how-it-works-item {
 		margin-top: 0;
 		margin-left: 4em;
+	}
+
+	.how-it-works-item {
+		/* height: 300px !important; */
+		/* width: 175px; */
+		flex: 1;
+
 	}
 
 	.hero-content {

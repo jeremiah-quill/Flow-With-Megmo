@@ -14,11 +14,12 @@ function BookPrivate() {
 
 	return (
 		<div className="main-section book-private-section">
-		<form className="contact-form" onSubmit={handleSubmit}>
+			<h1 className="coming-soon">Coming Soon!</h1>
+		{/* <form className="contact-form" onSubmit={handleSubmit}>
 			<input className="contact-email-input" value={email} onChange={(e)=> setEmail(e.target.value)} placeholder="Email"/>
 			<textarea className="contact-message-input" value={message} onChange={(e)=> setMessage(e.target.value)} placeholder="Message"/>
             <input className="contact-submit btn btn-green" type="submit"/> 
-		</form>
+		</form> */}
 		</div>
 	);}
 

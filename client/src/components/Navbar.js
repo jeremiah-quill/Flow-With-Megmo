@@ -8,9 +8,9 @@ function Navbar() {
 	return (
 		<nav className="list-nav sidebar-nav">
 			<UserButtons />
-			<Link className="nav-item main-nav-item" to="/">
+			{/* <Link className="nav-item main-nav-item" to="/">
 				Home
-			</Link>
+			</Link> */}
 			<Link className="nav-item main-nav-item" to="/my-story">
 				My Story
 			</Link>
@@ -33,8 +33,8 @@ function Navbar() {
 			)}
 
 			{currentUser.loggedIn ? (
-				<Link className="nav-item main-nav-item" to="/manage-classes">
-					Manage Classes
+				<Link className="nav-item main-nav-item" to="/dashboard">
+					Dashboard
 				</Link>
 			) : (
 				""

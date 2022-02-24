@@ -141,7 +141,7 @@ function App() {
 							<Route path="/how-it-works" element={<HowItWorks />} />
 							<Route path="/book-private" element={<BookPrivate />} />
 							<Route
-								path="/manage-classes"
+								path="/dashboard"
 								element={
 									<StudentManage width={width} breakpoint={breakpoint} />
 								}

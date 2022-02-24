@@ -4,8 +4,8 @@ function MyStory() {
 	return (
 		<section className="main-section my-story-section">
 			<div className="my-story-content-container">
-				<h2 className="section-title">My Story</h2>
-				<p className="my-story-content section-content">
+				<h2 className="section-title text-container-h2">My Story</h2>
+				<p className="my-story-content section-content text-container-p">
 					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae
 					voluptate similique dolorum, qui doloribus dolore at recusandae
 					officia ut tempora expedita id delectus vel nisi alias sed quod quam
