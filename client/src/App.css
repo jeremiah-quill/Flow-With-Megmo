@@ -521,25 +521,20 @@ padding-top: 8em;
 			rgba(208, 180, 159, 0.5)
 		),
 		url("./images/yoga-blocks-min.jpg");
-	/* position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	overflow-y: scroll;
 
-
-	background: linear-gradient(
-		rgba(208, 180, 159, 0.5),
-		rgba(208, 180, 159, 0.5)
-	),
-	url("./images/group-yoga.jpg"); */
-background-repeat: none;
-height: 100vh;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-position: relative;
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+overflow-y: scroll;
+	/* background-position: center; */
+	background-repeat: none;
+	height: 100vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
 }
 .dashboard-hero {
 	background-image: url('./images/confetti-doodles.svg');
@@ -569,7 +564,7 @@ position: relative;
 }
 
 .book-private-hero {
-	background-image: url('./images/group-yoga.jpg');
+
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -579,7 +574,7 @@ position: relative;
 }
 
 
-.book-private-section {
+/* .book-private-section {
 	background: linear-gradient(
 			rgba(208, 180, 159, 0.5),
 			rgba(208, 180, 159, 0.5)
@@ -591,6 +586,30 @@ position: relative;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
+} */
+
+.book-private-section {
+	background: linear-gradient(
+		rgba(208, 180, 159, 0.5),
+		rgba(208, 180, 159, 0.5)
+	),
+	url("./images/group-yoga.jpg");
+
+
+
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+overflow-y: scroll;
+/* background-position: center; */
+background-repeat: none;
+height: 100vh;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+position: relative;
 }
 
 
