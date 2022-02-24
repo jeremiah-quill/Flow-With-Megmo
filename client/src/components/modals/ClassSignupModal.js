@@ -121,7 +121,7 @@ function ClassSignupModal({
 							your payment by
 							{width < breakpoint
 								? " clicking the link below"
-								: " using your camera to scan the QR code below"}{" "}
+								: " using your phone camera to scan the QR code below"}{" "}
 						</p>
 						{width < breakpoint ? (
 							<button className="main-btn modal-btn">

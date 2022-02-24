@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useUserContext } from "../utils/contexts/UserContext";
 import UserButtons from "./UserButtons";
+import CustomLink from "./CustomLink";
 
 function Navbar() {
 	const { currentUser } = useUserContext();
@@ -11,31 +12,31 @@ function Navbar() {
 			{/* <Link className="nav-item main-nav-item" to="/">
 				Home
 			</Link> */}
-			<Link className="nav-item main-nav-item" to="/my-story">
+			<CustomLink className="nav-item main-nav-item" to="/my-story">
 				My Story
-			</Link>
-			<Link className="nav-item main-nav-item" to="/my-class">
+			</CustomLink>
+			<CustomLink className="nav-item main-nav-item" to="/my-class">
 				My Class
-			</Link>
-			<Link className="nav-item main-nav-item" to="/how-it-works">
+			</CustomLink>
+			<CustomLink className="nav-item main-nav-item" to="/how-it-works">
 				How It Works
-			</Link>
-			<Link className="nav-item main-nav-item" to="/book-private">
+			</CustomLink>
+			<CustomLink className="nav-item main-nav-item" to="/book-private">
 				Book Private
-			</Link>
+			</CustomLink>
 
 			{currentUser.isAdmin ? (
-				<Link className="nav-item main-nav-item" to="/admin-dashboard">
+				<CustomLink className="nav-item main-nav-item" to="/admin-dashboard">
 					Admin Dashboard
-				</Link>
+				</CustomLink>
 			) : (
 				""
 			)}
 
 			{currentUser.loggedIn ? (
-				<Link className="nav-item main-nav-item" to="/dashboard">
+				<CustomLink className="nav-item main-nav-item" to="/dashboard">
 					Dashboard
-				</Link>
+				</CustomLink>
 			) : (
 				""
 			)}

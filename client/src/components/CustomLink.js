@@ -1,17 +1,26 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useResolvedPath, useMatch } from "react-router-dom";
 
 export default function CustomLink({ to, children }) {
-  const navigate = useNavigate();
+  let resolved = useResolvedPath(to);
+  let match = useMatch({ path: resolved.pathname, end: true });
+  const [delayedMatch, setDelayedMatch] = useState(false)
 
-  function delayAndGo(e) {
-    e.preventDefault();
+  useEffect(() => {
+    setTimeout(() => {
+      if(match) {
+        setDelayedMatch(true)
+      }
+      else {
+        setDelayedMatch(false)
+      }
+    }, 500)
+  }, [match])
 
-    setTimeout(() => navigate(to), 1000);
-  }
+
 
   return (
-    <Link to={to} onClick={delayAndGo}>
+    <Link to={to} className={delayedMatch === true ? "active-link nav-item main-nav-item" : "inactive-link nav-item main-nav-item"}>
       {children}
     </Link>
   );

@@ -1,6 +1,6 @@
 import "./reset.css";
 import "./App.css";
-import "./styles/Contact.css"
+import "./styles/Contact.css";
 import React, { useEffect, useState } from "react";
 import { setContext } from "@apollo/client/link/context";
 import {
@@ -30,7 +30,8 @@ import HowItWorks from "./pages/HowItWorks";
 import BookPrivate from "./pages/BookPrivate";
 import StudentManage from "./pages/StudentManage";
 import Navbar from "./components/Navbar";
-import {Link} from 'react-router-dom'
+import NotFound from "./pages/NotFound";
+import { Link } from "react-router-dom";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -101,7 +102,9 @@ function App() {
 					""
 				) : (
 					<div className="hero-content">
-						<h1 className="hero-title"><Link to="/">Flow with Megmo</Link></h1>
+						<h1 className="hero-title">
+							<Link to="/">Flow with Megmo</Link>
+						</h1>
 					</div>
 				)}
 
@@ -154,6 +157,7 @@ function App() {
 									</RequireAdmin>
 								}
 							/>
+							<Route path="*" element={<NotFound />} />
 						</Routes>
 					</div>
 				</CSSTransition>

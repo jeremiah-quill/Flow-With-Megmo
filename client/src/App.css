@@ -33,6 +33,22 @@
 	text-align: center;
 }
 
+.not-found {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: url('./images/confetti-doodles.svg')
+}
+
+.not-found-content {
+	padding: 1em;
+	text-align: center;
+}
+
+
+
 input {
 	background-color: none !important;
 }
@@ -99,16 +115,17 @@ body {
 .list-nav {
 	padding-bottom: 3em;
 	padding-top: 1em;
+	display: flex;
+	flex-direction: column;
 }
 
 .sidebar-nav {
 	padding-top: 8em;
 }
 
-.list-nav {
-	display: flex;
-	flex-direction: column;
-}
+/* .list-nav {
+
+} */
 
 .nav-item {
 	text-decoration: none;
@@ -165,13 +182,20 @@ body {
 .student-manage {
 	height: 100vh;
 	/* background-color: white; */
-	padding-top: 8em;
+	padding-top: 12em;
 	background-image: linear-gradient(
 		174.2deg,
 		rgba(255, 244, 228, 1) 7.1%,
 		rgba(240, 246, 238, 1) 67.4%
 	);
 	background-image: url('./images/confetti-doodles.svg')
+}
+
+.dashboard-instructions {
+	max-width: 600px;
+	margin: 0 auto;
+	margin-bottom: 3em;
+	padding: 0 1em;
 }
 
 
@@ -560,6 +584,9 @@ footer {
 	font-size: 14px;
 	color: gray;
 	padding-bottom: 1em;
+	border-bottom: 2px solid transparent;
+	transition: font-weight 150ms ease, border-bottom 150ms ease, color 150ms ease;
+
 }
 
 .multi-list {
@@ -732,6 +759,8 @@ button:disabled {
 	font-weight: bold;
 	border-bottom: 2px solid black;
 }
+
+
 
 .list-title {
 	text-align: center;
@@ -906,6 +935,16 @@ button:disabled {
 }
 
 @media screen and (min-width: 1200px) {
+	.active-link {
+		border-bottom: 2px solid var(--main-brown);
+	}
+	
+	.inactive-link {
+		border-bottom: 2px solid transparent;
+	}
+	
+
+
 	/* FULL PAGE TRANSITION */
 
 	.first-overlay,
@@ -966,10 +1005,9 @@ button:disabled {
 	}
 
 	.student-manage {
-		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding-top: 0;
+		/* padding-top: 30em; */
 	}
 
 	.how-it-works-container {
@@ -1000,6 +1038,7 @@ button:disabled {
 		color: black;
 		font-size: 2em;
 		text-align: left;
+		padding-left: 0;
 	}
 
 	.header {
@@ -1012,16 +1051,26 @@ button:disabled {
 	}
 
 	.list-nav {
-		flex-direction: row;
-		padding: 0;
-		align-items: center;
-		flex: 1;
+		/* padding: 0; */
+		/* align-items: center; */
+		/* flex: 1;
 		width: 100%;
+		padding-top: 1em;
+		padding-bottom: 3em; */
+	}
+
+	.sidebar-nav {
+		padding: 0;
 		padding-left: 3em;
+		flex-direction: row;
+		align-items: center;
+		width: 100%;
 	}
 
 	.user-btns {
 		margin: 0;
+		margin-left: auto;
+
 		padding: 0;
 		display: flex;
 		flex-direction: row;
