@@ -35,7 +35,7 @@ function LoginForm() {
 			<div className="outline-input-container">
 				<img className="input-icon" src={emailIcon} />
 				<input
-					className="outline-input border-pink"
+					className="outline-input border-pink icon-input"
 					type="email"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
@@ -45,7 +45,7 @@ function LoginForm() {
 			<div className="outline-input-container">
 				<img className="input-icon" src={lock} />
 				<input
-					className="outline-input border-pink"
+					className="outline-input border-pink icon-input"
 					type="password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}

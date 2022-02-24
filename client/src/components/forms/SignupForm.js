@@ -45,7 +45,7 @@ const SignupForm = () => {
 			<div className="outline-input-container">
 				<img className="input-icon" src={userIcon} />
 				<input
-					className="outline-input border-pink"
+					className="outline-input border-pink icon-input"
 					type="text"
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
@@ -55,7 +55,7 @@ const SignupForm = () => {
 			<div className="outline-input-container">
 				<img className="input-icon" src={emailIcon} />
 				<input
-					className="outline-input border-pink"
+					className="outline-input border-pink icon-input"
 					type="email"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
@@ -65,7 +65,7 @@ const SignupForm = () => {
 			<div className="outline-input-container">
 				<img className="input-icon" src={lockIcon} />
 				<input
-					className="outline-input border-pink"
+					className="outline-input border-pink icon-input"
 					type="password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}

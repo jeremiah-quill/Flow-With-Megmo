@@ -10,7 +10,7 @@ export default function ModalProvider({ children }) {
 
 	const resetModal = () => {
 		setIsModal(false)
-		setModalContent(null)
+		// setModalContent(null)
 	}
 
 	const configureModal = (content) => {

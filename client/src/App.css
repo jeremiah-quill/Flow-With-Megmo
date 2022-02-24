@@ -83,6 +83,11 @@ body {
 	cursor: pointer;
 }
 
+.class-list {
+	max-height: 30vh;
+	overflow-y: scroll;
+}
+
 .class-list-item {
 	display: flex;
 	width: 100%;
@@ -144,6 +149,7 @@ body {
 	flex: 1;
 	text-align: center;
 	cursor: pointer;
+	margin-top: .5em;
 }
 
 .user-btns {
@@ -676,6 +682,7 @@ button:disabled {
 
 .update-class-date {
 	margin-bottom: 1em;
+	padding: 1em;
 }
 
 /* MODALS */
@@ -687,13 +694,13 @@ button:disabled {
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	width: 75%;
+	/* width: 75%; */
 	margin: 0 auto;
 }
 
-.please-confirm-cancel {
+/* .please-confirm-cancel {
 	padding: 0.5em;
-}
+} */
 
 .edit-class-modal {
 	height: 100%;
@@ -702,7 +709,7 @@ button:disabled {
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	width: 75%;
+	/* width: 75%; */
 	margin: 0 auto;
 }
 .delete-class-modal {
@@ -712,7 +719,7 @@ button:disabled {
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	width: 75%;
+	/* width: 75%; */
 	margin: 0 auto;
 }
 
@@ -742,15 +749,16 @@ button:disabled {
 }
 
 .add-playlist-modal {
-	height: 90%;
+	/* height: 90%; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	width: 80%;
+	/* width: 80%; */
 	margin: 0 auto;
-	padding-top: 5em;
+	/* padding-top: 5em; */
+	height: 100%;
 }
 
 /* LISTS */
@@ -789,6 +797,10 @@ button:disabled {
 	justify-content: center;
 }
 
+input:disabled {
+	cursor:not-allowed;
+}
+
 /* PLAYLIST LIST */
 .view-btn, .edit-btn {
 	margin-right: .5em;
@@ -796,6 +808,7 @@ button:disabled {
 
 .playlist-list {
 	padding: 0.5em;
+	max-height: 300px;
 }
 
 .playlist-item {
@@ -952,9 +965,6 @@ button:disabled {
 	.inactive-link {
 		border-bottom: 2px solid transparent;
 	}
-
-
-	
 
 
 	/* FULL PAGE TRANSITION */

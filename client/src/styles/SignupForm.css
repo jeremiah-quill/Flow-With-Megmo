@@ -5,7 +5,10 @@
 
 .outline-input {
     padding: 1em;
-    width: 250px;
+    width: 100%;
+}
+
+.icon-input {
     padding-left: 50px;
 }
 

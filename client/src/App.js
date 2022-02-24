@@ -95,6 +95,8 @@ function App() {
 		initializePageTransition();
 	}, [location.pathname]);
 
+	let timeout = width < breakpoint ? 600 : 350
+
 	return (
 		<ApolloProvider client={client}>
 			<header className="header">
@@ -116,8 +118,8 @@ function App() {
 				toastType={toastType}
 			/>
 			<Modal
-				timeout={600}
-				classNames={"translate-y"}
+				timeout={timeout}
+				classNames={`${width < breakpoint ? "translate-y" : 'fade'}`}
 				unmountOnExit={true}
 				isModal={isModal}
 				resetModal={resetModal}
