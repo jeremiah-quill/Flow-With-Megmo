@@ -11,7 +11,9 @@ const {configureModal} = useModalContext()
 
 
 	return (
+		<div className="how-it-works-hero">
 		<section className="main-section how-it-works">
+			{/* <div className="how-it-works-hero"></div> */}
 			<h2 className="section-title text-container-h2">How does this work?</h2>
 			<div className="how-it-works-container section-content">
 				<p className="how-it-works-item">
@@ -50,6 +52,8 @@ const {configureModal} = useModalContext()
 				</p>
 			</div>
 		</section>
+
+		</div>
 	);
 }
 

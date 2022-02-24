@@ -2,6 +2,7 @@ import React from "react";
 
 function MyClass() {
 	return (
+		<div className="yoga-blocks-hero">
 		<section className="main-section how-it-works-section">
 			<div className="yoga-blocks-img">
 				<h2 className="section-title yoga-blocks-title text-container-h2">
@@ -20,6 +21,7 @@ function MyClass() {
 				</p>
 			</div>
 		</section>
+		</div>
 	);
 }
 

@@ -13,7 +13,9 @@ function BookPrivate() {
     }
 
 	return (
+        <div className="book-private-hero">
 		<div className="main-section book-private-section">
+            <div className="book-private-section-hero"></div>
 			<h1 className="coming-soon">Coming Soon!</h1>
 		{/* <form className="contact-form" onSubmit={handleSubmit}>
 			<input className="contact-email-input" value={email} onChange={(e)=> setEmail(e.target.value)} placeholder="Email"/>
@@ -21,6 +23,7 @@ function BookPrivate() {
             <input className="contact-submit btn btn-green" type="submit"/> 
 		</form> */}
 		</div>
+        </div>
 	);}
 
 export default BookPrivate;

@@ -136,7 +136,7 @@ function App() {
 				}`}
 			></div>
 			{/* Half a second after pathname changes, transition in the new page and out the old page */}
-			<TransitionGroup element={null}>
+			<TransitionGroup element={null} className="test">
 				<CSSTransition key={location.pathname} classNames="" timeout={500}>
 					<div className="page">
 						<Routes location={location}>

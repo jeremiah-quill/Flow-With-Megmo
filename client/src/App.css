@@ -1,3 +1,7 @@
+html, body, #root {
+	height: 100%;
+}
+
 :root {
 	--ff-main: "Spartan";
 	--light-gray-text: hsl(0, 0%, 63%);
@@ -34,7 +38,7 @@
 }
 
 .not-found {
-	height: 100vh;
+	/* height: 100vh; */
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -186,15 +190,14 @@ body {
 }
 
 .student-manage {
-	height: 100vh;
-	/* background-color: white; */
+	/* height: 100vh; */
 	padding-top: 5em;
-	background-image: linear-gradient(
+	/* background-image: linear-gradient(
 		174.2deg,
 		rgba(255, 244, 228, 1) 7.1%,
 		rgba(240, 246, 238, 1) 67.4%
-	);
-	background-image: url('./images/confetti-doodles.svg')
+	); */
+	/* background-image: url('./images/confetti-doodles.svg') */
 }
 
 .dashboard-instructions {
@@ -250,11 +253,11 @@ body {
 }
 
 .yoga-blocks-img {
-	background: linear-gradient(
+	/* background: linear-gradient(
 			rgba(208, 180, 159, 0.5),
 			rgba(208, 180, 159, 0.5)
 		),
-		url("./images/yoga-blocks-min.jpg");
+		url("./images/yoga-blocks-min.jpg"); */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -382,10 +385,11 @@ body {
 }
 
 .main-section {
-	min-height: 100vh;
-	position: relative;
-	left: 0;
-	right: 0;
+	/* min-height: 100vh; */
+	/* position: relative; */
+	/* left: 0;
+	right: 0; */
+	/* padding-bottom: 10em; */
 }
 
 .section-title {
@@ -492,9 +496,66 @@ body {
 		rgba(255, 244, 228, 1) 7.1%,
 		rgba(240, 246, 238, 1) 67.4%
 	); */
-	background-image: url('./images/confetti-doodles.svg');
+	/* background-image: url('./images/confetti-doodles.svg'); */
 padding-top: 8em;
 }
+
+.how-it-works-hero {
+	background-image: url('./images/confetti-doodles.svg');
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-y: scroll;
+}
+
+.yoga-blocks-hero {
+		background: linear-gradient(
+			rgba(208, 180, 159, 0.5),
+			rgba(208, 180, 159, 0.5)
+		),
+		url("./images/yoga-blocks-min.jpg");
+	/* position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-y: scroll;
+
+
+	background: linear-gradient(
+		rgba(208, 180, 159, 0.5),
+		rgba(208, 180, 159, 0.5)
+	),
+	url("./images/group-yoga.jpg"); */
+background-repeat: none;
+height: 100vh;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+position: relative;
+}
+.dashboard-hero {
+	background-image: url('./images/confetti-doodles.svg');
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-y: scroll;
+}
+
+.book-private-hero {
+	background-image: url('./images/group-yoga.jpg');
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-y: scroll;
+}
+
 
 .book-private-section {
 	background: linear-gradient(
@@ -508,6 +569,15 @@ padding-top: 8em;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
+}
+
+
+
+
+
+
+.test {
+	height: 100%;
 }
 
 .book-private-container {
@@ -949,12 +1019,19 @@ input:disabled {
 }
 
 .page > .main-section {
-	position: fixed;
-	top: 0;
+	/* position: fixed; */
+	/* top: 0;
 	left: 0;
 	right: 0;
-	bottom: 0;
-	overflow-y: scroll;
+	bottom: 0; */
+	/* overflow-y: scroll; */
+}
+.page {
+	height: 100%;
+}
+
+.main-section {
+	height: 100%;
 }
 
 @media screen and (min-width: 1200px) {
