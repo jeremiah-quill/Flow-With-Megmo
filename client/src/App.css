@@ -534,7 +534,7 @@ overflow-y: scroll;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	position: relative;
+	/* position: relative; */
 }
 .dashboard-hero {
 	background-image: url('./images/confetti-doodles.svg');
@@ -609,7 +609,7 @@ height: 100vh;
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
-position: relative;
+/* position: relative; */
 }
 
 
