@@ -1,11 +1,12 @@
 import React from "react";
+import Footer from "../components/Footer";
 
 function MyClass() {
 	return (
 		<div className="yoga-blocks-hero">
 		<section className="main-section my-class-section">
 				<h2 className="section-title yoga-blocks-title text-container-h2">
-					What can you expect from my class?
+					What is yoga sculpt?
 				</h2>
 
 				<p className="section-content yoga-blocks-content text-container-p">
@@ -18,6 +19,8 @@ function MyClass() {
 					know how challenging it is to find the time. Don't think of this as
 					yoga, think of this as YOUga!
 				</p>
+				{/* <Footer /> */}
+
 		</section>
 		</div>
 	);

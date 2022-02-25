@@ -7,6 +7,7 @@ import { useUserContext } from "../utils/contexts/UserContext";
 import calendar from "../images/calendar.png";
 import dollarSymbol from "../images/dollar-symbol.png";
 import user from "../images/user.png";
+import Footer from "../components/Footer";
 
 function HowItWorks() {
 	const { configureModal } = useModalContext();
@@ -18,10 +19,10 @@ function HowItWorks() {
 				{/* <div className="how-it-works-hero"></div> */}
 				<h2 className="section-title text-container-h2">How does this work?</h2>
 				<div className="how-it-works-container section-content">
-					<p className="how-it-works-item">
+					<div className="how-it-works-item">
 						<img className="how-it-works-icon" src={user} />
 						{currentUser.loggedIn ? (
-							"Login with your email. "
+							<p>Login with your email. </p>
 						) : (
 							<p>
 								Login&nbsp; 
@@ -45,9 +46,10 @@ function HowItWorks() {
 								.
 							</p>
 						)}
-						I know it's annoying to signup with an email, but it's how we send
-						out class links and any information you may need.
-					</p>
+						<br></br>
+						I know it's annoying to use your real email account, but it's how we send
+						out class links and any information you may need along the way!
+					</div>
 					<p className="how-it-works-item">
 						<img className="how-it-works-icon" src={calendar} />
 						Find a date and time that works for you and book your class from
@@ -61,7 +63,11 @@ function HowItWorks() {
 						admit you!
 					</p>
 				</div>
+				{/* <Footer /> */}
+
 			</section>
+			{/* <Footer /> */}
+
 		</div>
 	);
 }

@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import Footer from "../components/Footer";
 
 function BookPrivate() {
     const [email, setEmail] = useState("")
@@ -22,7 +23,10 @@ function BookPrivate() {
 			<textarea className="contact-message-input" value={message} onChange={(e)=> setMessage(e.target.value)} placeholder="Message"/>
             <input className="contact-submit btn btn-green" type="submit"/> 
 		</form> */}
+        {/* <Footer /> */}
 		</div>
+
+
         </div>
 	);}
 

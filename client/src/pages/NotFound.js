@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function NotFound() {
 	return (
@@ -7,6 +8,8 @@ function NotFound() {
 			<div className="not-found-content">
 				Page not found, sorry! Click <Link to="/">here</Link> to go back home.
 			</div>
+			{/* <Footer /> */}
+
 		</div>
 	);
 }

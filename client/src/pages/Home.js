@@ -1,5 +1,6 @@
 import React from "react";
 import UserButtons from "../components/UserButtons";
+import Footer from "../components/Footer";
 
 function Home() {
 	return (

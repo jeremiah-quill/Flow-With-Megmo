@@ -1,6 +1,6 @@
 import "./reset.css";
 import "./App.css";
-import "./animations.css"
+import "./animations.css";
 import React, { useEffect } from "react";
 import { setContext } from "@apollo/client/link/context";
 import {
@@ -31,6 +31,7 @@ import BookPrivate from "./pages/BookPrivate";
 import StudentManage from "./pages/StudentManage";
 import Navbar from "./components/Navbar";
 import NotFound from "./pages/NotFound";
+import Footer from "./components/Footer";
 import { Link } from "react-router-dom";
 
 // Construct our main GraphQL API endpoint
@@ -95,7 +96,7 @@ function App() {
 		initializePageTransition();
 	}, [location.pathname]);
 
-	let timeout = width < breakpoint ? 600 : 350
+	let timeout = width < breakpoint ? 600 : 350;
 
 	return (
 		<ApolloProvider client={client}>
@@ -119,7 +120,7 @@ function App() {
 			/>
 			<Modal
 				timeout={timeout}
-				classNames={`${width < breakpoint ? "translate-y" : 'fade'}`}
+				classNames={`${width < breakpoint ? "translate-y" : "fade"}`}
 				unmountOnExit={true}
 				isModal={isModal}
 				resetModal={resetModal}
@@ -161,6 +162,8 @@ function App() {
 							/>
 							<Route path="*" element={<NotFound />} />
 						</Routes>
+						{/* <Footer /> */}
+
 					</div>
 				</CSSTransition>
 			</TransitionGroup>

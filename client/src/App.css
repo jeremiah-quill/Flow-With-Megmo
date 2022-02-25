@@ -18,6 +18,17 @@ body {
 	--lighter-pink: rgba(241, 231, 221);
 }
 
+.footer {
+	/* position: absolute; */
+	z-index: 100;
+	background: black;
+	width: 100%;
+	bottom: 0;
+	padding: 2em;
+	left: 0;
+	right: 0;
+}
+
 .coming-soon {
 	color: white;
 	font-size: 5em;
@@ -238,6 +249,8 @@ p {
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
+	top: 0;
+	bottom: 0;
 }
 .hero {
 	background-position: -250px;
@@ -300,6 +313,7 @@ p {
 
 .main-section {
 	height: 100%;
+	/* margin-bottom: 400px; */
 }
 
 .main-section .text-container-h2,
@@ -349,6 +363,7 @@ p {
 	border-radius: 3px;
 	box-shadow: -20px 20px 0px 0px rgb(243, 231, 228),
 		-40px 40px 0px 0px var(--light-pink);
+		margin-bottom: 5em;
 }
 
 .how-it-works,
@@ -357,6 +372,7 @@ p {
 	flex-direction: column;
 	align-items: center;
 	padding-top: 8em;
+	padding-bottom: 5em;
 }
 
 /* how it works */
@@ -474,6 +490,7 @@ p {
 		rgba(255, 244, 228, 1) 7.1%,
 		rgba(240, 246, 238, 1) 67.4%
 	);
+	/* position: static; */
 }
 
 .book-private-hero {
@@ -515,13 +532,13 @@ p {
 	flex-direction: column;
 }
 
-footer {
+/* footer {
 	padding: 5em 3em;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: var(--light-pink);
-}
+} */
 
 .student-lists-container {
 	max-width: 400px;
@@ -1232,6 +1249,8 @@ text-align: center;
 		position: absolute;
 		left: 0;
 		right: 0;
+		top: 0;
+		bottom: 0;
 	}
 
 	.lists-container {

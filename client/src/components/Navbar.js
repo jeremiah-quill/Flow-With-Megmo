@@ -13,13 +13,13 @@ function Navbar() {
 				Home
 			</Link> */}
 			<CustomLink className="nav-item main-nav-item" to="/my-story">
-				My Story
+				About
 			</CustomLink>
 			<CustomLink className="nav-item main-nav-item" to="/my-class">
-				My Class
+				Yoga Sculpt
 			</CustomLink>
 			<CustomLink className="nav-item main-nav-item" to="/how-it-works">
-				How It Works
+				How This Works
 			</CustomLink>
 			<CustomLink className="nav-item main-nav-item" to="/book-private">
 				Book Private

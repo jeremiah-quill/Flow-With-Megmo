@@ -18,6 +18,7 @@ import { unregisterMsg } from "../utils/emailMessages.js";
 import ScheduledClassList from "../components/lists/ScheduledClassList";
 import RegisteredClassList from "../components/lists/RegisteredClassList";
 import CompletedClassList from "../components/lists/CompletedClassList";
+import Footer from "../components/Footer";
 
 function StudentManage() {
 	const [listContent, setListContent] = useState(0);
@@ -136,64 +137,65 @@ function StudentManage() {
 
 	return (
 		<div className="dashboard-hero">
-		<div className="student-manage main-section">
-			{/* <div className="svg-background"> */}
-			<div className="dashboard-instructions">
-				<p className="dashboard-instructions-content">
-					Find my classes here. Book a class and follow the instructions on
-					screen to receive your class link and complete payment. If at any point you can't attend a class please cancel it
-					below so we can refund your class fee. <br></br>
-					<br></br>Heard a song you like in one of my classes? Check your
-					completed classes to find the exact playlist I used!
-				</p>
-			</div>
-			{/* {width < breakpoint ? ( */}
-			<div className="multiple-lists-container list-card">
-				<nav className="list-nav">
-					<ul className="list-nav-ul">
-						<li
-							className={`list-nav-item multiple-lists-nav-item ${
-								listContent === 0 ? "selected-list" : ""
-							}`}
-							onClick={() => setListContent(0)}
-						>
-							Available
-						</li>
-						<li
-							className={`list-nav-item multiple-lists-nav-item ${
-								listContent === 1 ? "selected-list" : ""
-							}`}
-							onClick={() => setListContent(1)}
-						>
-							Registered
-						</li>
-						<li
-							className={`list-nav-item multiple-lists-nav-item ${
-								listContent === 2 ? "selected-list" : ""
-							}`}
-							onClick={() => setListContent(2)}
-						>
-							Completed
-						</li>
-					</ul>
-				</nav>
-				{listContent === 0 ? (
-					<ScheduledClassList
-						scheduledClasses={classes}
-						scheduleRefetch={refetch}
-						studentScheduleRefetch={refetchUpcomingStudentClasses}
-					/>
-				) : listContent === 1 ? (
-					<RegisteredClassList
-						registeredClasses={studentUpcomingClasses}
-						handleUnregister={handleUnregister}
-					/>
-				) : (
-					<CompletedClassList completedClasses={studentCompletedClasses} />
-				)}
-			</div>
+			<div className="student-manage main-section">
+				{/* <div className="svg-background"> */}
+				<div className="dashboard-instructions">
+					<p className="dashboard-instructions-content">
+						Find my classes here. Book a class and follow the instructions on
+						screen to receive your class link and complete payment. If at any
+						point you can't attend a class please cancel it below so we can
+						refund your class fee. <br></br>
+						<br></br>Heard a song you like in one of my classes? Check your
+						completed classes to find the exact playlist I used!
+					</p>
+				</div>
+				{/* {width < breakpoint ? ( */}
+				<div className="multiple-lists-container list-card">
+					<nav className="list-nav">
+						<ul className="list-nav-ul">
+							<li
+								className={`list-nav-item multiple-lists-nav-item ${
+									listContent === 0 ? "selected-list" : ""
+								}`}
+								onClick={() => setListContent(0)}
+							>
+								Available
+							</li>
+							<li
+								className={`list-nav-item multiple-lists-nav-item ${
+									listContent === 1 ? "selected-list" : ""
+								}`}
+								onClick={() => setListContent(1)}
+							>
+								Registered
+							</li>
+							<li
+								className={`list-nav-item multiple-lists-nav-item ${
+									listContent === 2 ? "selected-list" : ""
+								}`}
+								onClick={() => setListContent(2)}
+							>
+								Completed
+							</li>
+						</ul>
+					</nav>
+					{listContent === 0 ? (
+						<ScheduledClassList
+							scheduledClasses={classes}
+							scheduleRefetch={refetch}
+							studentScheduleRefetch={refetchUpcomingStudentClasses}
+						/>
+					) : listContent === 1 ? (
+						<RegisteredClassList
+							registeredClasses={studentUpcomingClasses}
+							handleUnregister={handleUnregister}
+						/>
+					) : (
+						<CompletedClassList completedClasses={studentCompletedClasses} />
+					)}
+				</div>
 
-			{/* : (
+				{/* : (
 				<div className="lists-container">
 					<div className="multi-list-container">
 					<h1 className="list-title">Available</h1>
@@ -227,8 +229,9 @@ function StudentManage() {
 					</div>
 				</div>
 			)} */}
-			{/* </div> */}
-		</div>
+				{/* </div> */}
+			</div>
+			{/* <Footer /> */}
 		</div>
 	);
 }
