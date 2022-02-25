@@ -5,7 +5,6 @@ import Auth from "../../utils/auth";
 import lock from "../../images/lock.png";
 import emailIcon from "../../images/email.png";
 import { useToastContext } from "../../utils/contexts/ToastContext";
-import "../../styles/LoginForm.css";
 
 function LoginForm() {
 	const { configureToast } = useToastContext();
@@ -33,7 +32,7 @@ function LoginForm() {
 	return (
 		<form className="login-form" onSubmit={handleSubmit}>
 			<div className="outline-input-container">
-				<img className="input-icon" src={emailIcon} />
+				<img className="input-icon" src={emailIcon} alt="email-icon" />
 				<input
 					className="outline-input border-pink icon-input"
 					type="email"
@@ -43,7 +42,7 @@ function LoginForm() {
 				/>
 			</div>
 			<div className="outline-input-container">
-				<img className="input-icon" src={lock} />
+				<img className="input-icon" src={lock} alt="lock-icon"/>
 				<input
 					className="outline-input border-pink icon-input"
 					type="password"

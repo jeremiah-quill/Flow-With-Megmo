@@ -1,12 +1,11 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_TO_ROSTER, ADD_CLASS_TO_STUDENT } from "../../utils/mutations";
 import { useUserContext } from "../../utils/contexts/UserContext";
 import { useToastContext } from "../../utils/contexts/ToastContext";
 import { useWidthContext } from "../../utils/contexts/WidthContext";
 import parseDate from "../../utils/helpers/parseDate";
-import "../../styles/ClassSignupModal.css";
 import megmoQr from "../../images/megmo-qr.png";
 import { sendEmail } from "../../utils/API";
 import { registerMsg } from "../../utils/emailMessages.js";
@@ -16,14 +15,6 @@ function ClassSignupModal({
 	scheduleRefetch,
 	studentScheduleRefetch,
 }) {
-	// const [width, setWidth] = useState(window.innerWidth);
-	// const breakpoint = 765;
-
-	// useEffect(() => {
-	// 	const handleWindowResize = () => setWidth(window.innerWidth);
-	// 	window.addEventListener("resize", handleWindowResize);
-	// 	return () => window.removeEventListener("resize", handleWindowResize);
-	// }, []);
 
 	const { width, breakpoint } = useWidthContext();
 
@@ -134,7 +125,7 @@ function ClassSignupModal({
 							</button>
 						) : (
 							<>
-								<img className="qr-code" src={megmoQr} />
+								<img className="qr-code" src={megmoQr} alt="qr-code"/>
 								<p className="qr-code-problem">
 									Having trouble? No prob! Just venmo $12 to{" "}
 									<span className="venmo-span">meghan-moran-7</span>

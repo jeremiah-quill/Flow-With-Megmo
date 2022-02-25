@@ -5,7 +5,6 @@ import {
 	QUERY_COMPLETED_CLASSES,
 } from "../utils/queries";
 import { useModalContext } from "../utils/contexts/ModalContext";
-import { useWidthContext } from "../utils/contexts/WidthContext";
 import CreateClassModal from "../components/modals/CreateClassModal";
 import StatsOverview from "../components/StatsOverview";
 import TeacherUpcomingList from "../components/lists/TeacherUpcomingList";
@@ -14,8 +13,6 @@ import TeacherCompletedList from "../components/lists/TeacherCompletedList";
 function AdminDashboard() {
 	// global context
 	const { configureModal } = useModalContext();
-	// global width context
-	const { width, breakpoint } = useWidthContext();
 
 	// local state
 	const [listContent, setListContent] = useState(0);
@@ -44,33 +41,35 @@ function AdminDashboard() {
 
 	return (
 		<div className="admin-page-background page-background">
-		<div className="main-section admin-dashboard">
-			<h1 className="admin-welcome">Welcome back Yogi!</h1>
-			<div className="admin-square-1">
-				<StatsOverview completedClasses={completedClasses} />
-				<button
-					className="main-btn schedule-class-btn"
-					onClick={() =>
-						// configureModal(<CreateClassForm refetch={refetchUpcoming} />)
-						configureModal(<CreateClassModal refetch={refetchUpcoming} />)
-
-					}
-				>
-					Schedule Class
-				</button>
-			</div>
-			{width < breakpoint ? (
+			<div className="main-section admin-dashboard">
+				<h1 className="admin-welcome">Welcome back Yogi!</h1>
+				<div className="admin-square-1">
+					<StatsOverview completedClasses={completedClasses} />
+					<button
+						className="main-btn schedule-class-btn"
+						onClick={() =>
+							// configureModal(<CreateClassForm refetch={refetchUpcoming} />)
+							configureModal(<CreateClassModal refetch={refetchUpcoming} />)
+						}
+					>
+						Schedule Class
+					</button>
+				</div>
 				<div className="multiple-lists-container list-card">
 					<nav className="list-nav">
 						<ul className="list-nav-ul">
 							<li
-								className={`list-nav-item multiple-lists-nav-item ${listContent === 0 ? "selected-list" : ""}`}
+								className={`list-nav-item multiple-lists-nav-item ${
+									listContent === 0 ? "selected-list" : ""
+								}`}
 								onClick={() => setListContent(0)}
 							>
 								Available
 							</li>
 							<li
-								className={`list-nav-item multiple-lists-nav-item ${listContent === 1 ? "selected-list" : ""}`}
+								className={`list-nav-item multiple-lists-nav-item ${
+									listContent === 1 ? "selected-list" : ""
+								}`}
 								onClick={() => setListContent(1)}
 							>
 								Completed
@@ -89,19 +88,7 @@ function AdminDashboard() {
 						/>
 					)}
 				</div>
-			) : (
-				<div className="lists-container multi-list-container">
-					<TeacherUpcomingList
-						scheduledClasses={upcomingClasses}
-						refetch={refetchUpcoming}
-					/>
-					<TeacherCompletedList
-						completedClasses={completedClasses}
-						refetch={refetchCompleted}
-					/>
-				</div>
-			)}
-		</div>
+			</div>
 		</div>
 	);
 }
