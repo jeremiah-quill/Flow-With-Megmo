@@ -1,6 +1,5 @@
 import React from "react";
 import SignupForm from "../forms/SignupForm";
-import "../../styles/SignupModal.css";
 
 function SignupModal() {
 	return (

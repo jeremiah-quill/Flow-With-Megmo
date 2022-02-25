@@ -9,7 +9,6 @@ export const useToastContext = () => useContext(ToastContext);
 export default function ToastProvider({ children }) {
 	const [isToast, setIsToast] = useState(false);
     const [toastType, setToastType] = useState('');
-    const [resetTimer, setResetTimer] = useState(1000);
 
 
 	const [toastMessage, setToastMessage] = useState(null);

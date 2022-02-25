@@ -1,9 +1,9 @@
-import "../../styles/SpotifyPlayer.css";
 
 function SpotifyPlayer({ playlistId }) {
 	return (
 		<div className="spotify-player">
 			<iframe
+				title="spotify-playlist"
 				src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`}
 				width="100%"
 				height="380"

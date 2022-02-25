@@ -6,7 +6,6 @@ import Auth from "../../utils/auth";
 import emailIcon from "../../images/email.png";
 import userIcon from "../../images/user.png";
 import lockIcon from "../../images/lock.png";
-import "../../styles/SignupForm.css";
 
 const SignupForm = () => {
 	// global state
@@ -43,7 +42,7 @@ const SignupForm = () => {
 	return (
 		<form className="signup-form" onSubmit={handleSubmit}>
 			<div className="outline-input-container">
-				<img className="input-icon" src={userIcon} />
+				<img className="input-icon" src={userIcon} alt="user-icon"/>
 				<input
 					className="outline-input border-pink icon-input"
 					type="text"
@@ -53,7 +52,7 @@ const SignupForm = () => {
 				/>
 			</div>
 			<div className="outline-input-container">
-				<img className="input-icon" src={emailIcon} />
+				<img className="input-icon" src={emailIcon} alt="email-icon"/>
 				<input
 					className="outline-input border-pink icon-input"
 					type="email"
@@ -63,7 +62,7 @@ const SignupForm = () => {
 				/>
 			</div>
 			<div className="outline-input-container">
-				<img className="input-icon" src={lockIcon} />
+				<img className="input-icon" src={lockIcon} alt="lock-icon"/>
 				<input
 					className="outline-input border-pink icon-input"
 					type="password"
