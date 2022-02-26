@@ -21,7 +21,7 @@ function HowItWorks() {
 					<div className="how-it-works-item">
 						<img className="how-it-works-icon" src={user} />
 						{currentUser.loggedIn ? (
-							<p>Login with your email. </p>
+							<p>Step 1 complete!  You're already signed in with an email. </p>
 						) : (
 							<p>
 								Login&nbsp; 
@@ -33,26 +33,26 @@ function HowItWorks() {
 										here
 									</button>
 								</span>
-								&nbsp;or signup
+								&nbsp;or signup&nbsp; 
 								<span className="link-span">
 									<button
 										className="how-it-works-btn"
 										onClick={() => configureModal(<SignupModal />)}
 									>
-										here
+									here
 									</button>
 								</span>
 								.
 							</p>
 						)}
-						<br></br>
+						{/* <br></br>
 						I know it's annoying to use your real email account, but it's how we send
-						out class links and any information you may need along the way!
+						out class links and any information you may need along the way! */}
 					</div>
 					<p className="how-it-works-item">
 						<img className="how-it-works-icon" src={calendar} />
 						Find a date and time that works for you and book your class from
-						your dashboard. You will be sent an email confirmation and zoom
+						your account page. You will be sent an email confirmation and zoom
 						link.
 					</p>
 					<p className="how-it-works-item">

@@ -27,8 +27,8 @@ function Home() {
 							competitive dancer and have always made fitness an important part
 							of my life. In 2017 I found yoga sculpt as a practice and it was
 							love at first sight. I was completely obsessed with the way it
-							incorporated strength & breath (thru yoga) and power & toning
-							(thru sculpt). For me, it's a full body, full mind workout and I
+							incorporated strength & breath (yoga) and power & toning
+							(sculpt). For me, it's a full body, full mind workout and I
 							always leave my mat feeling energized and accomplished. <br></br>
 							<br></br>In 2018 I completed Yoga Sculpt teacher training through
 							Corepower Yoga in Boston and began teaching in 2019. From the mat
@@ -40,8 +40,8 @@ function Home() {
 							this practice in a larger way. Near or far, yogis are welcome to
 							spend 1 hr with me, sweating & striving towards something bigger
 							than themselves.
-							<br></br>
-							<br></br>Namaste
+							{/* <br></br>
+							<br></br>Namaste */}
 						</p>
 					</div>
 				</section>
@@ -57,7 +57,7 @@ function Home() {
 							goal is to get your heart pumping, but my mantra is always "go at
 							your own pace". All set to an upbeat, curated playlist (by yours
 							truly) to match the movements and mood of class.<br></br>
-							<br></br>You deserve to take this time for yourself, believe me, I
+							<br></br>You deserve to take this time for yourself, and believe me, I
 							know how challenging it is to find the time. Don't think of this
 							as yoga, think of this as YOUga!
 						</p>

@@ -9,13 +9,13 @@ function Navbar() {
 	return (
 		<nav className="list-nav sidebar-nav">
 			<UserButtons />
-			{currentUser.loggedIn ? (
+			{/* {currentUser.loggedIn ? (
 				<Link className="nav-item main-nav-item" to="/">
 					Home
 				</Link>
 			) : (
 				""
-			)}
+			)} */}
 
 			{/* <CustomLink className="nav-item main-nav-item" to="/my-story">
 				About
@@ -38,13 +38,13 @@ function Navbar() {
 				""
 			)}
 
-			{currentUser.loggedIn ? (
+			{/* {currentUser.loggedIn ? (
 				<Link className="nav-item main-nav-item" to="/dashboard">
 					Dashboard
 				</Link>
 			) : (
 				""
-			)}
+			)} */}
 
 			{/* </ul> */}
 		</nav>

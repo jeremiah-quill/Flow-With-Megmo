@@ -25,7 +25,7 @@ function UserButtons() {
 						className="user-btn signup-button"
 						onClick={() => configureModal(<SignupModal />)}
 					>
-						Signup
+						Sign Up
 					</button>
 				</>
 			) : (
