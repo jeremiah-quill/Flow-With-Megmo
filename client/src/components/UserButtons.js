@@ -33,15 +33,45 @@ function UserButtons() {
 					{/* <div>Logged in as: {currentUser.username}</div> */}
 					<div className="large-screen-nav-btn-container">
 						{location.pathname === "/" ? (
-							<button className="nav-item main-btn large-screen-nav-btn">
-								<Link to={"/dashboard"}>My Account</Link>
-							</button>
-						) : (
-							<button className="nav-item main-btn large-screen-nav-btn" >
-								<Link to={"/"}>Home</Link>
-							</button>
+							<>
+								<button className="nav-item main-btn large-screen-nav-btn">
+									<Link to={"/dashboard"}>My Account</Link>
+								</button>
+								{currentUser.isAdmin ? (
+									<button className="nav-item main-btn large-screen-nav-btn admin-dashboard-link">
+										<Link to={"/admin-dashboard"}>Admin dashboard</Link>
+									</button>
+								) : (
+									""
+								)}
+							</> ) :
+								location.pathname === "/dashboard"
+							? (
+								<>
+									<button className="nav-item main-btn large-screen-nav-btn">
+										<Link to={"/"}>Home</Link>
+									</button>
+									{currentUser.isAdmin ? (
+										<button className="nav-item main-btn large-screen-nav-btn admin-dashboard-link">
+											<Link to={"/admin-dashboard"}>Admin dashboard</Link>
+										</button>
+									) : (
+										""
+									)}
+								</>
+							)
+						 : (
+							<>
+								<button className="nav-item main-btn large-screen-nav-btn">
+									<Link to={"/"}>Home</Link>
+								</button>
+								<button className="nav-item main-btn large-screen-nav-btn margin-left">
+									<Link to={"/dashboard"}>My Account</Link>
+								</button>
+							</>
 						)}
 					</div>
+
 					<button className="user-btn" onClick={() => Auth.logout()}>
 						Logout
 					</button>

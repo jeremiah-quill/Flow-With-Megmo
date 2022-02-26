@@ -85,6 +85,14 @@ body {
 	width: 60%;
 } */
 
+.admin-dashboard-link {
+	margin-left: 1em;
+}
+
+.margin-left {
+	margin-left: 1em;
+}
+
 .user-btns {
     display: flex;
     flex-direction: column;
