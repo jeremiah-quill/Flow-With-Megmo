@@ -87,6 +87,10 @@ body {
     cursor: pointer;
 }
 
+.user-btn:hover {
+    
+}
+
 .title-btns > .user-btns button {
 	border: 3px solid white;
 	color: white;
