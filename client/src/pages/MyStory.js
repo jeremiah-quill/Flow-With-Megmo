@@ -3,8 +3,8 @@ import Footer from "../components/Footer";
 
 function MyStory() {
 	return (
-		<div className="page-background my-story-background">
-			<section className="main-section my-story-section">
+		<div className="my-story-background">
+			<section className="hero-section">
 
 				<div className="my-story-content-container">
 					<h2 className="section-title text-container-h2">My Story</h2>
@@ -33,9 +33,10 @@ function MyStory() {
 				</div>
 				{/* <Footer /> */}
 
+				
+				<Footer />
 
 			</section>
-			{/* <Footer /> */}
 
 		</div>
 	);

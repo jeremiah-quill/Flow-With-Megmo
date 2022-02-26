@@ -1,5 +1,6 @@
 import "./reset.css";
 import "./App.css";
+import "./TestApp.css"
 import "./animations.css";
 import React, { useEffect } from "react";
 import { setContext } from "@apollo/client/link/context";
@@ -33,6 +34,7 @@ import Navbar from "./components/Navbar";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 import { Link } from "react-router-dom";
+import UserButtons from "./components/UserButtons";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -100,19 +102,11 @@ function App() {
 
 	return (
 		<ApolloProvider client={client}>
-			<header className="header">
-				{width < breakpoint ? (
-					""
-				) : (
-					<div className="hero-content">
-						<h1 className="hero-title">
-							<Link to="/">Flow with Megmo</Link>
-						</h1>
-					</div>
-				)}
 
-				{width < breakpoint ? <Sidebar /> : <Navbar />}
-			</header>
+
+				{width < breakpoint ? <Sidebar /> : <UserButtons />}
+			{/* </header> */}
+			
 			<Toast
 				isToast={isToast}
 				toastMessage={toastMessage}
@@ -142,10 +136,10 @@ function App() {
 					<div className="page">
 						<Routes location={location}>
 							<Route path="/" element={<Home />} />
-							<Route path="/my-story" element={<MyStory />} />
-							<Route path="/my-class" element={<MyClass />} />
-							<Route path="/how-it-works" element={<HowItWorks />} />
-							<Route path="/book-private" element={<BookPrivate />} />
+							{/* <Route path="/my-story" element={<MyStory />} /> */}
+							{/* <Route path="/my-class" element={<MyClass />} /> */}
+							{/* <Route path="/how-it-works" element={<HowItWorks />} /> */}
+							{/* <Route path="/book-private" element={<BookPrivate />} /> */}
 							<Route
 								path="/dashboard"
 								element={

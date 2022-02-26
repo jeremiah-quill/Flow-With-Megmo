@@ -1,0 +1,936 @@
+html,
+body,
+#root {
+	height: 100%;
+}
+
+body {
+	font-family: var(--ff-main);
+}
+
+:root {
+	--ff-main: "Spartan";
+	--light-gray-text: hsl(0, 0%, 63%);
+	--main-tan: #e4d8b4;
+	--tan: rgb(243, 221, 193);
+	--main-brown: rgb(124, 109, 97);
+	--light-pink: rgba(231, 209, 201);
+	--lighter-pink: rgba(241, 231, 221);
+}
+
+.sidebar-title {
+    padding-top: 5em;
+
+}
+
+.hero-title {
+	/* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+	color: white;
+	font-size: 5em;
+	font-family: "Dawning of a New Day", cursive;
+	/* padding-bottom: 1.5em;
+    padding-right: .5em; */
+	padding-bottom: 0.5em;
+}
+
+.sidebar-title a {
+    color: var(--main-brown);
+    text-decoration: none;
+	font-family: "Dawning of a New Day", cursive;
+    font-size: 24px;
+}
+
+.icon-input {
+    padding-left: 50px;
+}
+
+.input-icon {
+    width: 20px;
+    position: absolute;
+    left: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.footer {
+    padding: 5em;
+    display: flex;
+    justify-content: center;
+    background-color: var(--light-pink);
+    font-size: .75em;
+}
+
+.not-found {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: url("./images/confetti-doodles.svg");
+	height: 100%;
+}
+
+/* .user-btns {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding-bottom: 3em;
+	margin-bottom: 3em;
+	border-bottom: 1px solid var(--main-brown);
+	width: 60%;
+} */
+
+.user-btn {
+    color: var(--main-brown);
+    cursor: pointer;
+}
+
+.title-btns > .user-btns button {
+	border: 3px solid white;
+	color: white;
+	background: transparent;
+	margin: 0;
+}
+
+.not-found-content {
+	padding: 1em;
+	text-align: center;
+}
+
+input:disabled {
+	cursor: not-allowed;
+}
+
+.coming-soon {
+	color: white;
+	font-size: 3em;
+	text-align: center;
+    line-height: 1.25;
+}
+
+.book-private-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+p {
+	line-height: 1.5;
+}
+
+
+.hamburger {
+	position: fixed;
+	top: 25px;
+	right: 25px;
+	z-index: 2000;
+	padding: 0.5em 1em;
+	border-radius: 5px;
+	border: none;
+	background: none;
+	outline: none;
+	cursor: pointer;
+	color: white;
+	font-family: var(--ff-main);
+}
+
+.register-btn {
+	margin-left: auto;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.class-list {
+	max-height: 30vh;
+	overflow-y: scroll;
+}
+
+.class-list-item {
+	display: flex;
+	width: 100%;
+	padding: 1em 1em;
+	align-items: center;
+	min-height: 92px;
+}
+
+.class-list-item {
+	border-bottom: 1px solid lightgray;
+}
+
+.class-details-list {
+	padding: 0.5em;
+}
+
+.class-list-item:last-child {
+	border-bottom: none;
+}
+
+.class-details {
+	font-size: 0.75em;
+}
+
+.class-actions,
+.currently-registered {
+	margin-left: auto;
+}
+
+.list-nav {
+	padding-bottom: 3em;
+	padding-top: 1em;
+	display: flex;
+	flex-direction: column;
+}
+
+.sidebar-nav {
+	padding-top: 8em;
+}
+
+.nav-item {
+	text-decoration: none;
+	color: rgb(124, 109, 97);
+}
+
+.nav-item + .nav-item {
+	margin-top: 1em;
+}
+
+.list-nav-ul {
+	display: flex;
+}
+
+.list-nav-item {
+	flex: 1;
+	text-align: center;
+	cursor: pointer;
+	margin-top: 0.5em;
+}
+
+
+
+/* :root {
+	--ff-main: "Spartan";
+	--light-gray-text: hsl(0, 0%, 63%);
+}
+
+body {
+	width: 100%;
+	font-family: var(--ff-main);
+} */
+
+.main-container {
+    background: url('./images/confetti-doodles.svg');
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll;
+}
+
+.dashboard-hero {
+    background: url('./images/confetti-doodles.svg');
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    padding-top: 10em;
+}
+
+.inner-container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+.hero {
+	background:
+    
+		url("./images/tint-hero-image.jpg");
+}
+
+.yoga-blocks-img {
+	background: linear-gradient(
+			rgba(208, 180, 159, .5),
+			rgba(208, 180, 159, .5)
+		),
+		url("./images/yoga-blocks-min.jpg");
+	/* object-fit: cover; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.hero,
+.yoga-blocks-img {
+	background-position: center;
+	background-repeat: none;
+	height: 100vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+.hero {
+    background-position: -200px;
+}
+
+.hero-content {
+	position: absolute;
+	left: 50%;
+    top: 50%;
+	transform: translate(-50%, -50%);
+	/* padding-top: 80px; */
+    text-align: center;
+}
+
+@media screen and (min-width: 600px)  {
+    .hero-content {
+        top: 300px;
+        left: 45%;
+        transform: translate(0, 0);
+    }
+    .hero-title {
+        font-size: 7em;
+    }
+}
+
+
+
+.login-signup-button {
+	background: none;
+	border: none;
+	text-transform: uppercase;
+	letter-spacing: 8px;
+	padding: 0px;
+	font-size: 1em;
+	margin-right: 2em;
+	color: white;
+}
+
+.login-signup-button-group {
+	display: flex;
+	align-items: center;
+	color: white;
+    /* border: 3px solid white; */
+}
+
+.arrow-icon {
+	color: white;
+	stroke: white;
+	fill: white;
+}
+
+.how-it-works-item + .how-it-works-item {
+	margin-top: 2em;
+}
+
+.how-it-works-item {
+	background: var(--light-pink);
+	padding: 1em;
+	border-radius: 5px;
+	padding-top: 6em;
+	max-width: 350px;
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--light-gray-text);
+	line-height: 1.5;
+}
+
+.main-section h2 {
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 5px;
+	line-height: 1.5em;
+    color: rgb(124, 109, 97);
+}
+
+.section-title {
+    text-transform: uppercase;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 5px;
+	line-height: 1.5em;
+    color: rgb(124, 109, 97);
+}
+
+.main-section p {
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--light-gray-text);
+	line-height: 1.5;
+}
+
+.main-section {
+	min-height: 100vh;
+    padding: 10em 0em;
+}
+
+/* .section-title {
+	font-size: 2em;
+	text-align: center;
+	margin-bottom: 1em;
+} */
+
+.section-title {
+	font-size: 2em;
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: 1em;
+	/* margin-bottom: 3em; */
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.yoga-blocks-title{
+    color: white;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    line-height: 1.5em;
+    /* color: rgb(124, 109, 97); */
+}
+
+
+.section-content {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.main-section .text-container-h2,
+.main-section .text-container-p {
+	max-width: 75ch;
+}
+
+.main-section .text-container-h2 {
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 5px;
+	line-height: 1.5em;
+	color: rgb(124, 109, 97);
+}
+
+.main-section .text-container-p {
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--light-gray-text);
+	line-height: 1.5;
+	margin: 0 auto;
+	width: 90%;
+}
+
+.yoga-blocks-content {
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    line-height: 1.5;
+}
+
+/* My story */
+
+.my-story-content-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.my-img {
+}
+
+.my-story-section {
+	/* background-image: linear-gradient(
+		174.2deg,
+		rgba(255, 244, 228, 1) 7.1%,
+		rgba(240, 246, 238, 1) 67.4%
+	); */
+}
+
+.my-img {
+	width: 90%;
+	margin: 0 auto;
+    margin-bottom: 3em;
+
+	max-width: 450px;
+	border-radius: 3px;
+	/* -webkit-box-shadow: -20px 20px 0px 0px #rgb(243, 231, 228); */
+	box-shadow: -20px 20px 0px 0px rgb(243, 231, 228), -40px 40px 0px 0px rgb(231, 209, 201);
+}
+
+/* .how-it-works,
+.my-story-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+} */
+
+
+/* what to expect */
+.what-to-expect + .what-to-expect {
+	margin-top: 2em;
+}
+
+.what-to-expect {
+	color: white !important;
+	/* text-align: center; */
+}
+
+
+
+/* How does this work? */
+
+.how-it-works-icon {
+	position: relative;
+	top: -50px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 50px;
+}
+
+.how-it-works-img {
+	width: 100%;
+	object-fit: cover;
+	max-width: 993px;
+	margin: 0 auto;
+}
+
+.how-it-works-section {
+	/* padding-top: 0; */
+	color: white;
+}
+
+.how-it-works-img {
+	/* height: 150px; */
+	width: 100%;
+	object-fit: cover;
+	max-width: 993px;
+	margin: 0 auto;
+}
+
+
+.how-it-works-section {
+	/* padding-top: 0; */
+	color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.how-it-works {
+	background-image: linear-gradient(
+		174.2deg,
+		rgba(255, 244, 228, 1) 7.1%,
+		rgba(240, 246, 238, 1) 67.4%
+	);
+}
+
+
+
+.book-private-section {
+
+    background: linear-gradient(
+			rgba(208, 180, 159, .5),
+			rgba(208, 180, 159, .5)
+		),
+		url("./images/group-yoga.jpg");
+	background-repeat: none;
+	height: 100vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+
+
+.book-private-container {
+    margin: 0 auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-hero-title {
+    font-size: initial;
+    	/* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+	color: white;
+	font-size: 5em;
+	font-family: "Dawning of a New Day", cursive;
+	/* padding-bottom: 1.5em;
+    padding-right: .5em; */
+	padding-bottom: 0.5em;
+
+}
+
+.nav-hero-title a {
+    text-decoration: none;
+	color: var(--main-brown);
+}
+
+
+
+/* footer {
+    padding: 5em 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D0B49F;
+} */
+
+.sidebar {
+	position: fixed;
+	height: 100vh;
+	background-color: white;
+	top: 0;
+	right: 0;
+	width: 65%;
+	z-index: 700;
+	padding-left: 2em;
+	background: rgba(231, 209, 201);
+}
+
+
+
+/* MODALS */
+
+.cancel-modal {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.edit-class-modal {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin: 0 auto;
+}
+.delete-class-modal {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.modal-title {
+	padding-bottom: 2em;
+	font-size: 1.5em;
+}
+
+.modal-btn {
+	margin-top: 1em;
+	background-color: var(--main-brown);
+	color: var(--light-pink);
+}
+
+.add-playlist-modal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.current-registrant-modal {
+	height: 100%;
+}
+
+.signup-modal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-backdrop {
+	background-color: rgb(0, 0, 0);
+	opacity: 0.8;
+	height: 100vh;
+	width: 100%;
+	z-index: 600;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	overflow-y: hidden;
+}
+
+.modal-card {
+	z-index: 2001;
+	background-color: white;
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--light-pink);
+	color: var(--main-brown);
+	padding: .5em;
+}
+
+.modal-header {
+	padding: 1em;
+}
+
+.modal-content {
+	display: flex;
+	justify-content: center;
+	overflow-y: hidden;
+	width: 100%;
+}
+
+.modal-footer {
+	width: 100%;
+	padding: 1em;
+}
+
+.reset-modal-btn {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.reset-modal-btn > img {
+	width: 20px;
+}
+
+
+.modal-center {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 60%;
+	margin: 0 auto;
+}
+
+.login-modal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.class-signup-modal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.cancellation-btn {
+	margin-top: 1em;
+}
+
+.venmo-btn {
+	text-decoration: none !important;
+}
+
+.main-btn {
+	background-color: var(--main-brown);
+	color: var(--light-pink);
+	border-radius: 5px;
+}
+
+@media screen and (min-width: 1000px) {
+    .hero {
+        background-position: initial;
+        background-position: 0 -120px;
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
+	.my-class-section {
+		padding-top: 12em;
+	}
+
+	.active-link {
+		border-bottom: 2px solid var(--main-brown);
+	}
+
+	.inactive-link {
+		border-bottom: 2px solid transparent;
+	}
+
+	.page {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+
+	.lists-container {
+		display: flex;
+		width: 100%;
+	}
+
+	.lists-container > * {
+		flex: 1;
+	}
+
+	.student-manage {
+		align-items: center;
+		justify-content: center;
+		padding-top: 12em;
+	}
+
+	/* .how-it-works,
+	.my-story-section {
+		padding-top: 12em;
+	} */
+
+	.how-it-works-container {
+		display: flex;
+		max-width: 893px;
+	}
+
+	.how-it-works-item + .how-it-works-item {
+		margin-top: 0;
+		margin-left: 4em;
+	}
+
+	.how-it-works-item {
+		flex: 1;
+	}
+
+	/* .hero-content {
+		position: static;
+	} */
+
+
+
+	/* .hero-title {
+		color: black;
+		font-size: 2em;
+		text-align: left;
+		padding-left: 0;
+	} */
+
+	.header {
+		display: flex;
+		align-items: center;
+		padding: 2em 3em;
+		background: var(--light-pink);
+		top: 0;
+		position: fixed;
+	}
+
+	.sidebar-nav {
+		padding: 0;
+		padding-left: 3em;
+		flex-direction: row;
+		align-items: center;
+		width: 100%;
+	}
+
+	.user-btns {
+		margin: 0;
+		margin-left: auto;
+		padding: 0;
+		display: flex;
+		flex-direction: row;
+		border-bottom: none;
+		width: auto;
+		order: 2;
+		margin-left: auto;
+		line-height: 16px;
+        z-index: 200;
+        position: fixed;
+        right: 50px;
+        top: 50px;
+	}
+
+    .large-screen-nav-btn-container {
+        top: 50px;
+        left: 50px;
+        position: fixed;
+        line-height: 16px;
+    }
+
+    .large-screen-nav-btn {
+        background-color: transparent !important;
+        color: var(--main-brown);
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .large-screen-nav-btn-container a {
+        text-decoration: none;
+        color: var(--main-brown);
+        background-color: var(--light-pink);
+        padding: 1em;
+        border-radius: 5px;
+
+    }
+
+
+
+	.main-title {
+		font-size: 8em;
+		max-width: 500px;
+	}
+
+	.nav-item + .nav-item {
+		margin-top: 0;
+	}
+
+	.main-nav-item {
+		margin-right: 2.5em;
+	}
+
+	.list-nav * {
+		font-size: 12px;
+	}
+	.signup-button {
+		margin-left: 1em;
+	}
+
+	.modal-card {
+		width: auto;
+		height: auto;
+		padding: 3em;
+		border-radius: 10px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		max-width: 400px;
+		max-height: 500px;
+	}
+}
+
+

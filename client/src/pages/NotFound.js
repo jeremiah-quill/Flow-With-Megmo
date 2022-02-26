@@ -9,6 +9,7 @@ function NotFound() {
 				Page not found, sorry! Click <Link to="/">here</Link> to go back home.
 			</div>
 			{/* <Footer /> */}
+			<Footer />
 
 		</div>
 	);

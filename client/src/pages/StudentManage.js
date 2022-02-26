@@ -137,8 +137,9 @@ function StudentManage() {
 
 	return (
 		<div className="dashboard-hero">
-			<div className="student-manage main-section">
+			<div className="hero-section">
 				{/* <div className="svg-background"> */}
+				<div className="dashboard-container">
 				<div className="dashboard-instructions">
 					<p className="dashboard-instructions-content">
 						Find my classes here. Book a class and follow the instructions on
@@ -230,8 +231,10 @@ function StudentManage() {
 				</div>
 			)} */}
 				{/* </div> */}
+				</div>
+				{/* <Footer /> */}
+
 			</div>
-			{/* <Footer /> */}
 		</div>
 	);
 }

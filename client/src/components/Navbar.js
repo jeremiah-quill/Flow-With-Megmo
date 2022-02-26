@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useUserContext } from "../utils/contexts/UserContext";
 import UserButtons from "./UserButtons";
 import CustomLink from "./CustomLink";
@@ -9,10 +9,15 @@ function Navbar() {
 	return (
 		<nav className="list-nav sidebar-nav">
 			<UserButtons />
-			{/* <Link className="nav-item main-nav-item" to="/">
-				Home
-			</Link> */}
-			<CustomLink className="nav-item main-nav-item" to="/my-story">
+			{currentUser.loggedIn ? (
+				<Link className="nav-item main-nav-item" to="/">
+					Home
+				</Link>
+			) : (
+				""
+			)}
+
+			{/* <CustomLink className="nav-item main-nav-item" to="/my-story">
 				About
 			</CustomLink>
 			<CustomLink className="nav-item main-nav-item" to="/my-class">
@@ -23,20 +28,20 @@ function Navbar() {
 			</CustomLink>
 			<CustomLink className="nav-item main-nav-item" to="/book-private">
 				Book Private
-			</CustomLink>
+			</CustomLink> */}
 
 			{currentUser.isAdmin ? (
-				<CustomLink className="nav-item main-nav-item" to="/admin-dashboard">
+				<Link className="nav-item main-nav-item" to="/admin-dashboard">
 					Admin Dashboard
-				</CustomLink>
+				</Link>
 			) : (
 				""
 			)}
 
 			{currentUser.loggedIn ? (
-				<CustomLink className="nav-item main-nav-item" to="/dashboard">
+				<Link className="nav-item main-nav-item" to="/dashboard">
 					Dashboard
-				</CustomLink>
+				</Link>
 			) : (
 				""
 			)}

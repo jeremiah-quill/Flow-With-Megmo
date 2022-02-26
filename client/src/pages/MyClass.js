@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 function MyClass() {
 	return (
 		<div className="yoga-blocks-hero">
-		<section className="main-section my-class-section">
+			<section className="hero-section">
 				<h2 className="section-title yoga-blocks-title text-container-h2">
 					What is yoga sculpt?
 				</h2>
@@ -19,9 +19,9 @@ function MyClass() {
 					know how challenging it is to find the time. Don't think of this as
 					yoga, think of this as YOUga!
 				</p>
-				{/* <Footer /> */}
+				<Footer />
 
-		</section>
+			</section>
 		</div>
 	);
 }
