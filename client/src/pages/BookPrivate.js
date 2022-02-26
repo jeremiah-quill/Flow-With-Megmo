@@ -24,6 +24,8 @@ function BookPrivate() {
             <input className="contact-submit btn btn-green" type="submit"/> 
 		</form> */}
         {/* <Footer /> */}
+        <Footer />
+
 		</div>
 
 

@@ -28,8 +28,8 @@ function Sidebar() {
 						onClick={() => setIsSidebarOpen(false)}
 					></div>
 					<div className="sidebar">
-						<div className="hero-content hero-content-sidebar">
-							<h1 className="hero-title"><Link to={'/'}>Flow with Megmo</Link></h1>
+						<div className="hero-content-sidebar">
+							<h1 className="sidebar-title"><Link to={'/'}>Flow with Megmo</Link></h1>
 						</div>
 						<Navbar />
 					</div>

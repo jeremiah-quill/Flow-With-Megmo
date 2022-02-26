@@ -15,8 +15,7 @@ function HowItWorks() {
 
 	return (
 		<div className="how-it-works-hero">
-			<section className="main-section how-it-works">
-				{/* <div className="how-it-works-hero"></div> */}
+			<section className="hero-section">
 				<h2 className="section-title text-container-h2">How does this work?</h2>
 				<div className="how-it-works-container section-content">
 					<div className="how-it-works-item">
@@ -34,7 +33,7 @@ function HowItWorks() {
 										here
 									</button>
 								</span>
-								&nbsp;or signup{" "}
+								&nbsp;or signup
 								<span className="link-span">
 									<button
 										className="how-it-works-btn"
@@ -63,11 +62,7 @@ function HowItWorks() {
 						admit you!
 					</p>
 				</div>
-				{/* <Footer /> */}
-
 			</section>
-			{/* <Footer /> */}
-
 		</div>
 	);
 }
