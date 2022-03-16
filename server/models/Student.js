@@ -63,7 +63,11 @@ studentSchema.methods.isCorrectPassword = async function (password) {
 
 	if (this.isAdmin === true) {
 		return password === this.password;
-	}
+	} 
+
+	// else {
+	// 	return password === this.password
+	// }
 
 	return bcrypt.compare(password, this.password);
 };

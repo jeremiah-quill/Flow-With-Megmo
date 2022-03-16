@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_EMAIL } from "../../utils/mutations";
 import { useToastContext } from "../../utils/contexts/ToastContext";
-import { useModalContext } from "../../utils/contexts/ModalContext";
 import closeIcon from "../../images/close.png";
 
 function AddEmailForm({ isOpen, closeForm }) {
 	const { configureToast } = useToastContext();
-	const { resetModal } = useModalContext();
 
 	const [email, setEmail] = useState("");
 

@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from "react";
-import UserButtons from "../components/UserButtons";
 import Footer from "../components/Footer";
 import HowItWorks from "./HowItWorks";
-import { currentUser } from "../utils/contexts/UserContext";
-import { useModalContext } from "../utils/contexts/ModalContext";
 import { useUserContext } from "../utils/contexts/UserContext";
 import AddEmailForm from "../components/forms/AddEmailForm";
+import { QUERY_SINGLE_STUDENT } from "../utils/queries";
+import { useQuery } from "@apollo/client";
 
 function Home() {
 	const { currentUser } = useUserContext();
-	const { configureModal } = useModalContext();
 	const [isOpen, setIsOpen] = useState(true)
 
 	const closeForm = () => {
 		setIsOpen(false)
 	}
 
+	// const {
+	// 	loading,
+	// 	data,
+	// 	error,
+	// 	refetch,
+	// } = useQuery(QUERY_SINGLE_STUDENT, {variables: { studentId: currentUser._id }},{ fetchPolicy: "network-only" }, );
+	// const student = data?.getStudentById || [];
+
 	useEffect(() => {
 		!currentUser.loggedIn ? setIsOpen(true) : setIsOpen(false)
-	}, [])
+	}, [currentUser])
 
+	// if (loading) return "";
+	// if (error) return <div>`Error! ${error.message}`</div>;
 
 	return (
 		<div className="main-container">

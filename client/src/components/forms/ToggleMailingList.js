@@ -5,7 +5,7 @@ import { QUERY_SINGLE_STUDENT } from "../../utils/queries";
 import { useMutation, useQuery } from "@apollo/client";
 import { useToastContext } from "../../utils/contexts/ToastContext";
 
-function ToggleMailingList({isSignedUp}) {
+function ToggleMailingList({isSignedUp, refetchStudent}) {
 	const { currentUser } = useUserContext();
     const {configureToast} = useToastContext()
 
@@ -26,6 +26,7 @@ function ToggleMailingList({isSignedUp}) {
             });
             
             configureToast(`You have been ${e.target.checked ? "added to" : "removed from"} our mailing list.`, "success", 5000);
+			refetchStudent()
         } catch(err) {
             configureToast(err.message, "failure", 10000)
         }

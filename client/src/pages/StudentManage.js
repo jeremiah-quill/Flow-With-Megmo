@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
 	QUERY_UPCOMING_STUDENT_CLASSES,
 	QUERY_COMPLETED_STUDENT_CLASSES,
@@ -12,7 +12,6 @@ import {
 import { useModalContext } from "../utils/contexts/ModalContext";
 import { useUserContext } from "../utils/contexts/UserContext";
 import { useToastContext } from "../utils/contexts/ToastContext";
-import { useWidthContext } from "../utils/contexts/WidthContext";
 import { sendEmail } from "../utils/API";
 import { unregisterMsg } from "../utils/emailMessages.js";
 import ScheduledClassList from "../components/lists/ScheduledClassList";
@@ -27,7 +26,6 @@ function StudentManage() {
 	const { currentUser } = useUserContext();
 	const { resetModal } = useModalContext();
 	const { configureToast } = useToastContext();
-	const { width, breakpoint } = useWidthContext();
 
 
 	const {
@@ -169,7 +167,7 @@ function StudentManage() {
 							<br></br>Heard a song you like in one of my classes? Check your
 							completed classes to find the exact playlist I used!
 						</p>
-						<ToggleMailingList isSignedUp={isSignedUp.isSendNotifications}/>
+						<ToggleMailingList isSignedUp={isSignedUp.isSendNotifications} refetchStudent={refetchStudent}/>
 
 		
 					</div>

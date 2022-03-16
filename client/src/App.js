@@ -25,15 +25,8 @@ import Toast from "./components/Toast";
 import RequireAdmin from "./components/RequireAdmin";
 import Sidebar from "./components/Sidebar";
 import Home from "./pages/Home";
-import MyStory from "./pages/MyStory";
-import MyClass from "./pages/MyClass";
-import HowItWorks from "./pages/HowItWorks";
-import BookPrivate from "./pages/BookPrivate";
 import StudentManage from "./pages/StudentManage";
-import Navbar from "./components/Navbar";
 import NotFound from "./pages/NotFound";
-import Footer from "./components/Footer";
-import { Link } from "react-router-dom";
 import UserButtons from "./components/UserButtons";
 
 // Construct our main GraphQL API endpoint
