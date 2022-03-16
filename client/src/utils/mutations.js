@@ -1,5 +1,23 @@
 import { gql } from "@apollo/client";
 
+export const ADD_EMAIL = gql`
+	mutation addEmail($email: String!) {
+		addEmail(email: $email) {
+			_id
+			email
+		}
+	}
+`;
+
+export const TOGGLE_EMAIL = gql`
+	mutation toggleEmail($studentId: ID!, $email: String!) {
+		toggleEmail(studentId: $studentId, email: $email) {
+			_id
+			isSendNotifications
+		}
+	}
+`;
+
 export const CREATE_STUDENT = gql`
 	mutation createStudent(
 		$username: String!
@@ -53,9 +71,9 @@ export const CREATE_CLASS = gql`
 export const DELETE_CLASS = gql`
 	mutation deleteClass($classId: ID!) {
 		deleteClass(classId: $classId) {
-				email
-				username
-				_id
+			email
+			username
+			_id
 		}
 	}
 `;

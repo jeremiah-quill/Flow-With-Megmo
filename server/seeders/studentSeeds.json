@@ -3,22 +3,30 @@
       "username": "megmo",
       "email": "mmm5660@gmail.com",
       "password": "test123",
-      "isAdmin": true
+      "isAdmin": true,
+      "isSendNotification": true
+
     },
     {
         "username": "jeremiah",
         "email": "jcq5010@gmail.com",
-        "password": "test123"
+        "password": "test123",
+        "isSendNotification": true
+
       },
       {
         "username": "ollie",
         "email": "ollie@gmail.com",
-        "password": "test123"
+        "password": "test123",
+        "isSendNotification": true
+
       },
       {
         "username": "remi",
         "email": "remi@gmail.com",
-        "password": "test123"
+        "password": "test123",
+        "isSendNotification": true
+
       }
   ]
   

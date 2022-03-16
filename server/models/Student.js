@@ -40,17 +40,21 @@ const studentSchema = new Schema({
 		minlength: 3,
 		maxlength: 30
 	},
+	isSendNotifications: {
+		type: Boolean,
+		default: true,
+	}
 });
 
 // set up pre-save middleware to create password
-studentSchema.pre('save', async function (next) {
-	if (this.isNew || this.isModified('password')) {
-	  const saltRounds = 10;
-	  this.password = await bcrypt.hash(this.password, saltRounds);
-	}
+// studentSchema.pre('save', async function (next) {
+// 	if (this.isNew || this.isModified('password')) {
+// 	  const saltRounds = 10;
+// 	  this.password = await bcrypt.hash(this.password, saltRounds);
+// 	}
   
-	next();
-  });
+// 	next();
+//   });
 
 // compare the incoming password with the hashed password
 studentSchema.methods.isCorrectPassword = async function (password) {
@@ -60,7 +64,9 @@ studentSchema.methods.isCorrectPassword = async function (password) {
 		return password === this.password
 
 	} else {
-	return bcrypt.compare(password, this.password);
+		return password === this.password
+
+	// return bcrypt.compare(password, this.password);
 	}
   };
 

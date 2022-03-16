@@ -13,6 +13,11 @@ export const cancelClassMsg = (classDetails) => {
 	return `Oh snap!  Something came up and I need to cancel class on ${dayOfWeek}, ${month}/${dayOfMonth} @ ${hour}.  Please allow up to 48 hours for us to refund your class fee via venmo.  Check back for more classes soon!`;
 };
 
+export const newClassMsg = (classDetails) => {
+	const { dayOfWeek, month, dayOfMonth, hour } = classDetails;
+	return `Yay!  A new class has been added to the schedule on ${dayOfWeek}, ${month}/${dayOfMonth} @ ${hour}.  Visit www.flowwithmegmo.com to register.  Hope to see you there!`;
+};
+
 
 export const updateClassMsg = (oldClassDetails, updatedClassDetails) => {
 	const { dayOfWeek, month, dayOfMonth, hour } = oldClassDetails;

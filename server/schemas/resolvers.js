@@ -1,9 +1,13 @@
-const { Teacher, Class, Student } = require("../models");
+const { Teacher, Class, Student, Email } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
 	Query: {
+		getAllEmails: async () => {
+			return await Email.find();
+		},
+
 		teachers: async () => {
 			return await Teacher.find();
 		},
@@ -57,24 +61,59 @@ const resolvers = {
 
 		getUpcomingClasses: async () => {
 			let now = new Date();
-			return Class.find({ date: { $gt: now } }).populate("roster");
+			return await Class.find({ date: { $gt: now } }).populate("roster");
 		},
 		getCompletedClasses: async () => {
 			let now = new Date();
-			return Class.find({ date: { $lt: now } }).populate("roster");
+			return await Class.find({ date: { $lt: now } }).populate("roster");
 		},
 	},
 
 	Mutation: {
+		toggleEmail: async (_, {studentId, email}) => {
+			let emailObjects = await Email.find()
+
+			let emails = emailObjects.map(emailObject => emailObject.email)
+
+			if(emails.indexOf(email) === -1) {
+				let newEmail = await Email.create({
+					email: email
+				})
+			} else {
+				let removedEmail = await Email.deleteOne({email: email})
+			}
+
+			return await Student.findOneAndUpdate({_id: studentId}, [
+				{ $set: { isSendNotifications: { $not: "$isSendNotifications" } } }
+			  ])
+		},
+
+
+		addEmail: async (_, { email }) => {
+			return await Email.create({
+				email: email,
+			});
+		},
+
+		// removeNotifyEmail: async() => {
+
+		// },
+
 		createStudent: async (_, { username, email, password }) => {
-			
 			const student = await Student.create({
 				username: username,
 				email: email,
 				password: password,
 			});
 
-			
+			const emails = await Email.find();
+
+			if (emails.indexOf(email) === -1) {
+				const newEmail = await Email.create({
+					email: email,
+				});
+			}
+
 			const token = signToken(student);
 
 			return { token, student };
@@ -105,7 +144,9 @@ const resolvers = {
 			});
 		},
 		deleteClass: async (_, { classId }) => {
-			let classToDelete = await Class.findOne({ _id: classId }).populate("roster");
+			let classToDelete = await Class.findOne({ _id: classId }).populate(
+				"roster"
+			);
 			let deleted = await Class.deleteOne({ _id: classId }).populate("roster");
 			return classToDelete.roster;
 		},
@@ -118,7 +159,7 @@ const resolvers = {
 						date: newDateTime,
 					},
 				}
-			).populate("roster")
+			).populate("roster");
 		},
 
 		addStudentToClass: async (_, { classId, studentId }) => {

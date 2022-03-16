@@ -80,6 +80,7 @@ function App() {
 				username: userInfo.username,
 				email: userInfo.email,
 				_id: userInfo._id,
+				isSendNotifications: userInfo.isSendNotifications
 			});
 		}
 	}, []);

@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UserButtons from "../components/UserButtons";
 import Footer from "../components/Footer";
 import HowItWorks from "./HowItWorks";
+import { currentUser } from "../utils/contexts/UserContext";
+import { useModalContext } from "../utils/contexts/ModalContext";
+import { useUserContext } from "../utils/contexts/UserContext";
+import AddEmailForm from "../components/forms/AddEmailForm";
 
 function Home() {
+	const { currentUser } = useUserContext();
+	const { configureModal } = useModalContext();
+	const [isOpen, setIsOpen] = useState(true)
+
+	const closeForm = () => {
+		setIsOpen(false)
+	}
+
+	useEffect(() => {
+		!currentUser.loggedIn ? setIsOpen(true) : setIsOpen(false)
+	}, [])
+
+
 	return (
 		<div className="main-container">
+			<AddEmailForm isOpen={isOpen} closeForm={closeForm}/>
 			<header className="main-header">
 				<div className="hero">
 					<div className="hero-content">
@@ -27,9 +45,9 @@ function Home() {
 							competitive dancer and have always made fitness an important part
 							of my life. In 2017 I found yoga sculpt as a practice and it was
 							love at first sight. I was completely obsessed with the way it
-							incorporated strength & breath (yoga) and power & toning
-							(sculpt). For me, it's a full body, full mind workout and I
-							always leave my mat feeling energized and accomplished. <br></br>
+							incorporated strength & breath (yoga) and power & toning (sculpt).
+							For me, it's a full body, full mind workout and I always leave my
+							mat feeling energized and accomplished. <br></br>
 							<br></br>In 2018 I completed Yoga Sculpt teacher training through
 							Corepower Yoga in Boston and began teaching in 2019. From the mat
 							in the back, to front & center, I quickly realized leading this
@@ -57,9 +75,9 @@ function Home() {
 							goal is to get your heart pumping, but my mantra is always "go at
 							your own pace". All set to an upbeat, curated playlist (by yours
 							truly) to match the movements and mood of class.<br></br>
-							<br></br>You deserve to take this time for yourself, and believe me, I
-							know how challenging it is to find the time. Don't think of this
-							as yoga, think of this as YOUga!
+							<br></br>You deserve to take this time for yourself, and believe
+							me, I know how challenging it is to find the time. Don't think of
+							this as yoga, think of this as YOUga!
 						</p>
 					</div>
 				</section>
@@ -67,7 +85,9 @@ function Home() {
 					<HowItWorks />
 				</section>
 				<section className="book-private-section">
-					<h1 className="coming-soon inner-container">Private bookings coming soon!</h1>
+					<h1 className="coming-soon inner-container">
+						Private bookings coming soon!
+					</h1>
 				</section>
 			</div>
 			<Footer />

@@ -29,6 +29,7 @@ const SignupForm = () => {
 					password: password,
 				},
 			});
+			// console.log(data)
 			Auth.login(data.createStudent.token);
 		} catch (e) {
 			console.log(e);

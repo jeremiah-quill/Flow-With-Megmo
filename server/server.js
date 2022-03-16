@@ -17,6 +17,7 @@ const server = new ApolloServer({
 	resolvers,
 });
 
+
 const configServer = async () => {
 	await server.start();
 	server.applyMiddleware({ app });
@@ -25,13 +26,10 @@ const configServer = async () => {
 configServer();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 
-// app.listen(3001, () => {
-// 	console.log("listening on port 3001");
-// });
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static(path.join(__dirname, "../client/build")));

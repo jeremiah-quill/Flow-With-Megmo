@@ -6,6 +6,8 @@ const studentSeeds = require("./studentSeeds.json");
 
 
 
+
+
 db.once("open", async () => {
 	try {
 		await Teacher.deleteMany({});

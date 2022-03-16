@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/flow-with-megmo'
+  process.env.MONGODB_URI || 'mongodb://127.0.0.1/flow-with-megmo'
+  
   // ,
   // {
-  //   useNewUrlParser: true,
-  //   useUnifiedTopology: true,
-  //   useCreateIndex: true,
-  //   useFindAndModify: false,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: false,
+    // useCreateIndex: true,
+    // useFindAndModify: false,
   // }
 );
 
-module.exports = mongoose.connection;
+module.exports = mongoose.connection

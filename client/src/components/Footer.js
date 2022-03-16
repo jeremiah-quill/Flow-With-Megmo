@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className="footer">Website designed and developed by <a target="_blank" href="http://www.jeremiahquill.com">Jeremiah Quill</a></div>
+    <div className="footer">Website designed and developed by <a target="_blank" href="https://www.jeremiahquill.com">Jeremiah Quill</a></div>
   )
 }
 

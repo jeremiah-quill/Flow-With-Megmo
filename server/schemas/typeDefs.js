@@ -16,6 +16,12 @@ const typeDefs = gql`
 		email: String!
 		password: String!
 		registeredClasses: [Class]
+		isSendNotifications: Boolean
+	}
+
+	type Email {
+		_id: ID!
+		email: String!
 	}
 
 	type Auth {
@@ -43,10 +49,12 @@ const typeDefs = gql`
 		getCompletedStudentClasses(studentId: ID!): [Class]
 		getUpcomingClasses: [Class]
 		getCompletedClasses: [Class]
-
+		getAllEmails: [Email]
 	}
 
 	type Mutation {
+
+		toggleEmail(studentId: ID!, email: String!): Student
 
 		createStudent(
 			username: String!
@@ -63,6 +71,8 @@ const typeDefs = gql`
 			price: Float!
 		): Class
 
+		addEmail(email: String!): Email
+
 		deleteClass(classId: ID!): [Student]
 
 		updateClass(classId: ID!, newDateTime: Date!): Class
@@ -77,7 +87,10 @@ const typeDefs = gql`
 		removeClassFromStudent(studentId: ID!, classId: ID!): Student
 
 		addPlaylist(classId: ID!, playlistId: String!): Class
+
 	}
 `;
 
 module.exports = typeDefs;
+
+
